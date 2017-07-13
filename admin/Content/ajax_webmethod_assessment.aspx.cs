@@ -1,0 +1,61 @@
+﻿using MVCDatatableApp;
+using System.IO;
+using ICSharpCode.SharpZipLib.Zip;
+using Microsoft.AspNet.Identity;
+using Excel;
+using System.Data;
+using System.Data.OleDb;
+using Newtonsoft.Json.Linq;
+using System.Threading;
+using System.Web;
+using System.Web.Services;
+using System.Collections.Generic;
+
+public partial class admin_Staff_ajax_webmethod_assessment : System.Web.UI.Page
+{
+    //protected void Page_Load(object sender, EventArgs e)
+    //{
+
+    //}
+    [WebMethod]
+    public static void GetSectionAll(Model_AsSection parameters)
+    {
+        IList<Model_AsSection> ret = AssessmentController.GetSectionList();
+
+
+        AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
+    }
+
+
+    [WebMethod]
+    public static void GetAll(Model_Assessment parameters)
+    {
+        IList<Model_Assessment> ret = AssessmentController.GetAssessmentList(parameters);
+
+
+        AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
+    }
+
+
+
+    [WebMethod]
+    public static void GetSubSectionAll(Model_AsSubSection parameters)
+    {
+        IList<Model_AsSubSection> ret = AssessmentController.getSubsectionBySecId(parameters);
+
+
+        AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
+    }
+
+
+    [WebMethod]
+    public static void GetQtAll(Model_QType parameters)
+    {
+        IList<Model_QType> ret = AssessmentController.GetQTypeAll(parameters);
+
+
+        AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
+    }
+    
+
+}

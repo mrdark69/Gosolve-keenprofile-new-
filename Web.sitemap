@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="Default" title="DashBoard"  description="">
+    <siteMapNode url="" title="Staff"  description="">
+      <siteMapNode url="~/admin/Staff/Role" title="Role"  description="" >
+        <siteMapNode url="~/admin/Staff/RoleEdit" title="Edit"  description="" />
+        <siteMapNode url="~/admin/Staff/RoleAdd" title="Add"  description="" />
+      </siteMapNode>
+    
+    </siteMapNode>
+    <siteMapNode url="" title="Content Manage"  description="">
+      <siteMapNode url="~/admin/Content/Assessment" title="Assessment"  description="" />
+      <siteMapNode url="~/admin/Content/Assessmentoptionaddedit" title="Assessment Option Edit"  description="" />
+    </siteMapNode>
+    <siteMapNode url="" title="AppSetting"  description="">
+      <siteMapNode url="~/Application/Setting" title="MailServer Setting"  description="" />
+    </siteMapNode>
+   
+
+  </siteMapNode>
+</siteMap>
