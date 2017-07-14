@@ -23,18 +23,21 @@ public partial class _Assessmentoptionaddedit : BasePage
                         tab1.Attributes.Add("aria-expanded", "false");
                         tab2.Attributes.Add("aria-expanded", "true");
                         tab3.Attributes.Add("aria-expanded", "false");
+                        tab4.Attributes.Add("aria-expanded", "false");
 
                         li_tab1.Attributes.Remove("class");
                         li_tab2.Attributes.Add("class", "active");
                         li_tab3.Attributes.Remove("class");
+                        li_tab4.Attributes.Remove("class");
 
 
                         tab_content1.Visible = false;
                         tab_content2.Visible = true;
                         tab_content3.Visible = false;
+                        tab_content4.Visible = false;
 
 
-                    List<Model_AsSection> sec = AssessmentController.GetSectionList();
+                        List<Model_AsSection> sec = AssessmentController.GetSectionList();
                     dropSection.DataSource = sec;
                     dropSection.DataTextField = "Title";
                     dropSection.DataValueField = "SCID";
@@ -72,14 +75,17 @@ public partial class _Assessmentoptionaddedit : BasePage
                         tab1.Attributes.Add("aria-expanded", "false");
                         tab2.Attributes.Add("aria-expanded", "false");
                         tab3.Attributes.Add("aria-expanded", "true");
+                        tab4.Attributes.Add("aria-expanded", "false");
 
                         li_tab1.Attributes.Remove("class");
                         li_tab2.Attributes.Remove("class");
                         li_tab3.Attributes.Add("class", "active");
+                        li_tab4.Attributes.Remove("class");
 
                         tab_content1.Visible = false;
                         tab_content2.Visible = false;
                         tab_content3.Visible = true;
+                        tab_content4.Visible = false;
 
                         if (!string.IsNullOrEmpty(Request.QueryString["qt"]))
                         {
@@ -98,6 +104,29 @@ public partial class _Assessmentoptionaddedit : BasePage
                         }
 
                         break;
+                    case "4":
+                        tab1.Attributes.Add("aria-expanded", "false");
+                        tab2.Attributes.Add("aria-expanded", "false");
+                        tab3.Attributes.Add("aria-expanded", "false");
+                        tab4.Attributes.Add("aria-expanded", "true");
+
+                        li_tab1.Attributes.Remove("class");
+                        li_tab2.Attributes.Remove("class");
+                        li_tab3.Attributes.Remove("class");
+                        li_tab4.Attributes.Add("class", "active");
+
+
+                        tab_content1.Visible = false;
+                        tab_content2.Visible = false;
+                        tab_content3.Visible = false;
+                        tab_content4.Visible = true;
+
+
+                        Model_AssesIntro ai = AssessmentController.GetAssIntro();
+                        txtIntroTitle.Text = ai.Title;
+                        txtIntroContent.Text = ai.Description;
+
+                        break;
                 }
             }
             else
@@ -106,14 +135,20 @@ public partial class _Assessmentoptionaddedit : BasePage
                 tab_content1.Visible = true;
                 tab_content2.Visible = false;
                 tab_content3.Visible = false;
+                tab_content4.Visible = false;
 
                 tab1.Attributes.Add("aria-expanded", "true");
                 tab2.Attributes.Add("aria-expanded", "false");
                 tab3.Attributes.Add("aria-expanded", "false");
+                tab4.Attributes.Add("aria-expanded", "false");
 
                 li_tab1.Attributes.Add("class", "active");
                 li_tab2.Attributes.Remove("class");
                 li_tab3.Attributes.Remove("class");
+                li_tab4.Attributes.Remove("class");
+
+             
+
 
                 if (!string.IsNullOrEmpty(Request.QueryString["section"]))
                 {
@@ -274,5 +309,21 @@ public partial class _Assessmentoptionaddedit : BasePage
     protected void Button11_Click(object sender, EventArgs e)
     {
         qType_pan.Visible = false;
+    }
+
+    
+
+    protected void Button14_Click(object sender, EventArgs e)
+    {
+        Model_AssesIntro intro = new Model_AssesIntro
+        {
+             Title = txtIntroTitle.Text.Trim(),
+             Description = txtIntroContent.Text.Trim()
+        };
+        if (AssessmentController.UpdateIntro(intro))
+        {
+            Response.Redirect("Assessmentoptionaddedit?tab=4");
+        }
+        
     }
 }

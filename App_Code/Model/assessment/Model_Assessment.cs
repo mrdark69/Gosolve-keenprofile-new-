@@ -38,6 +38,9 @@ public class Model_Assessment : BaseModel<Model_Assessment>
     }
 
 
+
+
+
     public List<Model_Assessment> GetAssessment(Model_Assessment mu)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
@@ -65,5 +68,8 @@ INNER JOIN Section ur ON ur.SCID =u.SCID ORDER BY Priority ASC" + w);
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }
     }
+
+
+   
 
 }

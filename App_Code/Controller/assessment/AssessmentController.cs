@@ -128,4 +128,17 @@ public class AssessmentController
     {
         return q.AddnewQ(q);
     }
+
+
+    public static bool UpdateIntro(Model_AssesIntro ss)
+    {
+       return ss.SaveAssIntro(ss);
+    }
+
+
+    public static Model_AssesIntro GetAssIntro()
+    {
+        Model_AssesIntro ai = new Model_AssesIntro();
+        return ai.GetIntro();
+    }
 }

@@ -48,6 +48,7 @@ margin-right:5px;
                             <li class="active" id="li_tab1" runat="server"><a href="Assessmentoptionaddedit" id="tab1" runat="server" aria-expanded="true"> Section</a></li>
                             <li class="" id="li_tab2" runat="server"><a href="Assessmentoptionaddedit?tab=2" id="tab2" runat="server" aria-expanded="false">Sub section</a></li>
                             <li class="" id="li_tab3" runat="server"><a  href="Assessmentoptionaddedit?tab=3" id="tab3" runat="server" aria-expanded="false">Question Type</a></li>
+                            <li class="" id="li_tab4" runat="server"><a  href="Assessmentoptionaddedit?tab=4" id="tab4" runat="server" aria-expanded="false">Assessment Intro</a></li>
                         </ul>
                         <div class="tab-content">
                             <div id="tab_content1" runat="server" class="tab-pane active">
@@ -467,6 +468,50 @@ margin-right:5px;
                         </div>
                     </div>
                                 </div>
+                            </div>
+
+                            <div id="tab_content4" runat="server" class="tab-pane active">
+                                 <div class="panel-body">
+                                      <div class="ibox float-e-margins" style="margin-bottom:0px;"   runat="server" >
+
+                                          <div class="ibox-content">
+                                            <div class="form-horizontal">
+                                <h4 id="h1" runat="server">Create a new Question Type</h4>
+                                <hr />
+                             <%--   <asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
+                                <asp:Label ID="Label3" runat="server"></asp:Label>
+                               
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="txtIntroTitle" CssClass="col-md-2 control-label">Title</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="txtIntroTitle" CssClass="form-control" />
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtIntroTitle"
+                                            CssClass="text-danger" ErrorMessage="The  field is required." />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="txtIntroContent" CssClass="col-md-2 control-label">Content </asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="txtIntroContent" CssClass="form-control"  TextMode="MultiLine" Rows="5" />
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtIntroContent"
+                                            CssClass="text-danger" ErrorMessage="The  field is required." />
+                                    </div>
+                                </div>
+                           
+     
+                                   
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+               
+                                       <asp:Button runat="server" ID="Button14"  OnClick="Button14_Click"  Text="Save" CssClass="btn btn-w-m btn-primary" />
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                                             </div>
+                                      </div>
+                                 </div>
                             </div>
                         </div>
 
