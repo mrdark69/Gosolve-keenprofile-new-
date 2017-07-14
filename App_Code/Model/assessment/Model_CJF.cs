@@ -14,40 +14,40 @@ using System.Security.Cryptography;
 /// <summary>
 /// Summary description for Model_User
 /// </summary>
-public class Model_QType : BaseModel<Model_QType>
+public class Model_CJF : BaseModel<Model_CJF>
 {
-    public int QTID { get; set; }
+    public int CJFID { get; set; }
 
     public string Title { get; set; }
 
 
     public bool Status { get; set; }
+ 
 
 
-
-    public Model_QType()
+    public Model_CJF()
     {
         //
         // TODO: Add constructor logic here
         //
     }
 
-    public List<Model_QType> GetQTypeAll()
+    public List<Model_CJF> GetCJFeAll()
     {
-        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        using(SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM QuestionsType ", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM CJF ", cn);
             cn.Open();
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }
     }
 
-    public Model_QType GetQTypeByID(byte byid)
+    public Model_CJF GetCJFByID(int byid)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM QuestionsType WHERE QTID=@QTID", cn);
-            cmd.Parameters.Add("@QTID", SqlDbType.TinyInt).Value = byid;
+            SqlCommand cmd = new SqlCommand("SELECT * FROM CJF WHERE CJFID=@CJFID", cn);
+            cmd.Parameters.Add("@CJFID", SqlDbType.Int).Value = byid;
             cn.Open();
             IDataReader reader = ExecuteReader(cmd, CommandBehavior.SingleRow);
             if (reader.Read())
@@ -55,16 +55,16 @@ public class Model_QType : BaseModel<Model_QType>
             else
                 return null;
         }
-    }
+    } 
 
-    public bool UpdateQ(Model_QType q)
+    public bool UpdateCJF(Model_CJF q)
     {
-        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        using(SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("UPDATE QuestionsType SET Title=@Title,Status=@Status WHERE QTID=@QTID", cn);
+            SqlCommand cmd = new SqlCommand("UPDATE CJF SET Title=@Title,Status=@Status WHERE CJFID=@CJFID", cn);
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = q.Title;
             cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = q.Status;
-            cmd.Parameters.Add("@QTID", SqlDbType.TinyInt).Value = q.QTID;
+            cmd.Parameters.Add("@CJFID", SqlDbType.Int).Value = q.CJFID;
             cn.Open();
 
             return ExecuteNonQuery(cmd) == 1;
@@ -72,18 +72,17 @@ public class Model_QType : BaseModel<Model_QType>
     }
 
 
-    public int AddnewQ(Model_QType q)
+    public int AddnewCJF(Model_CJF q)
     {
-        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        using(SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("INSERT INTO QuestionsType (Title,Status) VALUES(@Title,@Status)", cn);
+            SqlCommand cmd = new SqlCommand("INSERT INTO CJF (Title,Status) VALUES(@Title,@Status)", cn);
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = q.Title;
             cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = q.Status;
             cn.Open();
 
             return ExecuteNonQuery(cmd);
         }
-
+        
     }
 }
-

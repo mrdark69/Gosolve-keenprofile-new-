@@ -224,5 +224,59 @@ public class UsersController
     {
        return mu.UpdatePassword(mu);
     }
-    
+
+
+
+
+
+
+
+
+    ///FC
+    ///
+
+    public static Model_FC GetFCID(byte bytId)
+    {
+        Model_FC q = new Model_FC();
+        return q.GetFCByID(bytId);
+    }
+
+    public static List<Model_FC> GetFCeAll(Model_FC ae)
+    {
+        return ae.GetFCAll();
+    }
+
+    public static bool EditFC(Model_FC q)
+    {
+        return q.UpdateFC(q);
+    }
+
+    public static int AddFc(Model_FC q)
+    {
+        return q.AddFC(q);
+    }
+
+    ///CJF
+    ///
+
+    public static Model_CJF GetCJF(int inttId)
+    {
+        Model_CJF q = new Model_CJF();
+        return q.GetCJFByID(inttId);
+    }
+
+    public static List<Model_CJF> GetCJFAll(Model_CJF ae)
+    {
+        return ae.GetCJFeAll();
+    }
+
+    public static bool EditCJF(Model_CJF q)
+    {
+        return q.UpdateCJF(q);
+    }
+
+    public static int AddCJF(Model_CJF q)
+    {
+        return q.AddnewCJF(q);
+    }
 }

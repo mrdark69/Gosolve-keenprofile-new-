@@ -74,11 +74,12 @@
                      
                     </ul>
                 </li>
-                  <li <%=MenuActive("Content","Assessment,Assessmentoptionaddedit")%>>
+                  <li <%=MenuActive("Content","Assessment,Assessmentoptionaddedit,UsersContent")%>>
                     <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Content Manage</span><span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level">
                            <li  <%=MenuActive("Assessment")%>><a href="<%= Page.ResolveClientUrl("~/admin/Content/Assessment") %>">Assessment</a></li>
                             <li  <%=MenuActive("Assessmentoptionaddedit")%>><a href="<%= Page.ResolveClientUrl("~/admin/Content/Assessmentoptionaddedit") %>">Assessment Option</a></li>
+                         <li  <%=MenuActive("UsersContent")%>><a href="<%= Page.ResolveClientUrl("~/admin/Content/UsersContent") %>">Users Content Manage</a></li>
                      
                     </ul>
                 </li>

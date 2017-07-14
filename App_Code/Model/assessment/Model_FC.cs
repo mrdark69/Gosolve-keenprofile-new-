@@ -14,40 +14,40 @@ using System.Security.Cryptography;
 /// <summary>
 /// Summary description for Model_User
 /// </summary>
-public class Model_QType : BaseModel<Model_QType>
+public class Model_FC : BaseModel<Model_FC>
 {
-    public int QTID { get; set; }
+    public int FCID { get; set; }
 
     public string Title { get; set; }
 
 
     public bool Status { get; set; }
+ 
 
 
-
-    public Model_QType()
+    public Model_FC()
     {
         //
         // TODO: Add constructor logic here
         //
     }
 
-    public List<Model_QType> GetQTypeAll()
+    public List<Model_FC> GetFCAll()
     {
-        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        using(SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM QuestionsType ", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM FC ", cn);
             cn.Open();
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }
     }
 
-    public Model_QType GetQTypeByID(byte byid)
+    public Model_FC GetFCByID(byte byid)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM QuestionsType WHERE QTID=@QTID", cn);
-            cmd.Parameters.Add("@QTID", SqlDbType.TinyInt).Value = byid;
+            SqlCommand cmd = new SqlCommand("SELECT * FROM FC WHERE FCID=@FCID", cn);
+            cmd.Parameters.Add("@FCID", SqlDbType.Int).Value = byid;
             cn.Open();
             IDataReader reader = ExecuteReader(cmd, CommandBehavior.SingleRow);
             if (reader.Read())
@@ -55,16 +55,16 @@ public class Model_QType : BaseModel<Model_QType>
             else
                 return null;
         }
-    }
+    } 
 
-    public bool UpdateQ(Model_QType q)
+    public bool UpdateFC(Model_FC q)
     {
-        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        using(SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("UPDATE QuestionsType SET Title=@Title,Status=@Status WHERE QTID=@QTID", cn);
+            SqlCommand cmd = new SqlCommand("UPDATE FC SET Title=@Title,Status=@Status WHERE FCID=@FCID", cn);
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = q.Title;
             cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = q.Status;
-            cmd.Parameters.Add("@QTID", SqlDbType.TinyInt).Value = q.QTID;
+            cmd.Parameters.Add("@FCID", SqlDbType.Int).Value = q.FCID;
             cn.Open();
 
             return ExecuteNonQuery(cmd) == 1;
@@ -72,18 +72,17 @@ public class Model_QType : BaseModel<Model_QType>
     }
 
 
-    public int AddnewQ(Model_QType q)
+    public int AddFC(Model_FC q)
     {
-        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        using(SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("INSERT INTO QuestionsType (Title,Status) VALUES(@Title,@Status)", cn);
+            SqlCommand cmd = new SqlCommand("INSERT INTO FC (Title,Status) VALUES(@Title,@Status)", cn);
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = q.Title;
             cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = q.Status;
             cn.Open();
 
             return ExecuteNonQuery(cmd);
         }
-
+        
     }
 }
-

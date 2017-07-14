@@ -11,6 +11,7 @@
     <siteMapNode url="" title="Content Manage"  description="">
       <siteMapNode url="~/admin/Content/Assessment" title="Assessment"  description="" />
       <siteMapNode url="~/admin/Content/Assessmentoptionaddedit" title="Assessment Option Edit"  description="" />
+      <siteMapNode url="~/admin/Content/UserContent" title="Users Content Manage"  description="" />
     </siteMapNode>
     <siteMapNode url="" title="AppSetting"  description="">
       <siteMapNode url="~/Application/Setting" title="MailServer Setting"  description="" />

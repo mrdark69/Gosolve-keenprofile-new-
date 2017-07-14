@@ -56,6 +56,23 @@ public partial class admin_Staff_ajax_webmethod_assessment : System.Web.UI.Page
 
         AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
     }
-    
 
+
+    [WebMethod]
+    public static void GetFCAll(Model_FC parameters)
+    {
+        IList<Model_FC> ret = UsersController.GetFCeAll(parameters);
+
+
+        AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
+    }
+
+    [WebMethod]
+    public static void GetCJFAll(Model_CJF parameters)
+    {
+        IList<Model_CJF> ret = UsersController.GetCJFAll(parameters);
+
+
+        AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
+    }
 }
