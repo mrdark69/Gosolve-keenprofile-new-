@@ -52,14 +52,14 @@ public class UserSessionController
     {
 
         HttpSessionState Hotels2Session = HttpContext.Current.Session;
-        Hotels2Session["staff"] = Users.UserCatId;
+        Hotels2Session["UserFront"] = Users.UserCatId;
 
         Model_Session ms = new Model_Session();
 
         int Key = ms.InsertUserToSesstionRecord(Users);
 
         //creat Cookie for Reference user Login Life Time
-        CreateCookieSession(Key);
+        CreateCookieSessionFront(Key);
 
         HttpContext.Current.Response.Redirect("~/");
     }
@@ -70,7 +70,14 @@ public class UserSessionController
 
         int Key = ms.CloseOtherCurrentLogin(UserID);
     }
-
+    public static void CreateCookieSessionFront(int intKey)
+    {
+        HttpCookie cookiesSessionKey = new HttpCookie("SessionKeyFront");
+        cookiesSessionKey.Values["LogKeyFront"] = intKey.ToString();
+        cookiesSessionKey.Values["LangActiveFront"] = "1";
+        cookiesSessionKey.Expires = DateTime.Now.AddMonths(1);
+        HttpContext.Current.Response.Cookies.Add(cookiesSessionKey);
+    }
     public static void CreateCookieSession(int intKey)
     {
         HttpCookie cookiesSessionKey = new HttpCookie("SessionKey");
@@ -101,13 +108,13 @@ public class UserSessionController
 
     public static void LogoutFront()
     {
-        HttpCookie objCookie = HttpContext.Current.Request.Cookies["SessionKey"];
+        HttpCookie objCookie = HttpContext.Current.Request.Cookies["SessionKeyFront"];
         objCookie.Expires = DateTime.Now.AddDays(-1D);
         HttpContext.Current.Response.Cookies.Add(objCookie);
 
         HttpSessionState Hotels2Session = HttpContext.Current.Session;
 
-        int intLogKey = int.Parse(HttpContext.Current.Request.Cookies["SessionKey"]["LogKey"]);
+        int intLogKey = int.Parse(HttpContext.Current.Request.Cookies["SessionKeyFront"]["LogKeyFront"]);
         UpdateSessionLogout(intLogKey);
 
         Hotels2Session.Clear();
@@ -254,10 +261,10 @@ public class UserSessionController
         Model_Users u = null;
         HttpSessionState Hotels2Session = HttpContext.Current.Session;
         //object objSession = HttpContext.Current.Session["staff"];
-        HttpCookie objCookie = HttpContext.Current.Request.Cookies["SessionKey"];
+        HttpCookie objCookie = HttpContext.Current.Request.Cookies["SessionKeyFront"];
         Model_Session ms = new Model_Session();
 
-        object objSession = Hotels2Session["staff"];
+        object objSession = Hotels2Session["UserFront"];
         int intLogKey = 0;
 
 
@@ -278,7 +285,7 @@ public class UserSessionController
 
         if (objCookie != null)
         {
-            intLogKey = int.Parse(objCookie["LogKey"]);
+            intLogKey = int.Parse(objCookie["LogKeyFront"]);
             ms = ms.IsHaveSessionRecord(intLogKey);
 
 
@@ -313,7 +320,7 @@ public class UserSessionController
             }
 
 
-            Hotels2Session["staff"] = u.UserCatId.ToString();
+            Hotels2Session["UserFront"] = u.UserCatId.ToString();
             UpdateSessionStatus(intLogKey);
 
 
