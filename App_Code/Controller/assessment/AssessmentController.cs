@@ -96,10 +96,10 @@ public class AssessmentController
     }
 
 
-    public static  Model_AsSection getSectionByID(byte bytSectionID)
+    public static  Model_AsSection getSectionByID(int intSectionID)
     {
         Model_AsSection sec = new Model_AsSection();
-        return sec.GetSectionByID(bytSectionID);
+        return sec.GetSectionByID(intSectionID);
        
     }
     public static List<Model_AsSection> GetSectionList()

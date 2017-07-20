@@ -72,12 +72,12 @@ public class Model_AsSection : BaseModel<Model_AsSection>
         }
     }
 
-    public Model_AsSection GetSectionByID(byte bytID)
+    public Model_AsSection GetSectionByID(int intID)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand("SELECT * FROM Section WHERE SCID=@SCID", cn);
-            cmd.Parameters.Add("@SCID", SqlDbType.TinyInt).Value = bytID;
+            cmd.Parameters.Add("@SCID", SqlDbType.Int).Value = intID;
             cn.Open();
 
             IDataReader reader = ExecuteReader(cmd, CommandBehavior.SingleRow);

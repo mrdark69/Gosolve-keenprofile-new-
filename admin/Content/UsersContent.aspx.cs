@@ -141,7 +141,8 @@ public partial class _UserContent : BasePage
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-        add_section.Visible = false;
+        //  add_section.Visible = false;
+        Response.Redirect("UsersContent");
     }
 
     protected void Button3_Click(object sender, EventArgs e)
@@ -188,7 +189,8 @@ public partial class _UserContent : BasePage
 
     protected void Button5_Click(object sender, EventArgs e)
     {
-        sub_pan.Visible = true;
+        //sub_pan.Visible = true;
+        Response.Redirect("UsersContent?tab=2");
     }
 }
 

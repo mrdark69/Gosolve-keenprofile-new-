@@ -92,6 +92,8 @@ public class Model_Assessment : BaseModel<Model_Assessment>
     public int StartRank { get; set; }
     public int EndRank { get; set; }
 
+
+    public string SectionTitle { get; set; }
     private List<Model_Assessment_Choice> _asschoice = null;
     public List<Model_Assessment_Choice> AssChoice {
 
@@ -125,14 +127,14 @@ public class Model_Assessment : BaseModel<Model_Assessment>
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand(@"INSERT INTO Assessment (Code,Questions,SCID,SUCID,Status,IsHide,QTID,SUCIDLF,SUCIDRT,Priority,StartRank,EndRank) 
-VALUES(@ASID,@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@SUCIDLF,@SUCIDRT,@Priority,@StartRank,@EndRank) SET @ASID = SCOPE_IDENTITY", cn);
-
+VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@SUCIDLF,@SUCIDRT,@Priority,@StartRank,@EndRank);SET @ASID = SCOPE_IDENTITY();", cn);
+            cn.Open();
             cmd.Parameters.Add("@Code", SqlDbType.VarChar).Value = mu.Code;
             cmd.Parameters.Add("@Questions", SqlDbType.NVarChar).Value = mu.Questions;
             cmd.Parameters.Add("@SCID", SqlDbType.Int).Value = mu.SCID;
 
 
-            if (mu.SUCIDLF.HasValue)
+            if (mu.SUCID.HasValue)
                 cmd.Parameters.Add("@SUCID", SqlDbType.Int).Value = mu.SUCID;
             else
                 cmd.Parameters.AddWithValue("@SUCID", DBNull.Value);
@@ -148,7 +150,7 @@ VALUES(@ASID,@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@SUCIDLF,@SUCID
             else
                 cmd.Parameters.AddWithValue("@SUCIDLF", DBNull.Value);
 
-            if (mu.SUCIDLF.HasValue)
+            if (mu.SUCIDRT.HasValue)
                 cmd.Parameters.Add("@SUCIDRT", SqlDbType.Int).Value = mu.SUCIDRT;
             else
                 cmd.Parameters.AddWithValue("@SUCIDRT", DBNull.Value);
@@ -174,14 +176,14 @@ VALUES(@ASID,@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@SUCIDLF,@SUCID
    
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand(@"UPDATE Assessment SET @Code=@Code, Questions=@Questions, SCID=@SCID, SUCID=@SUCID 
+            SqlCommand cmd = new SqlCommand(@"UPDATE Assessment SET Code=@Code, Questions=@Questions, SCID=@SCID, SUCID=@SUCID, 
 
 Status =@Status,IsHide=@IsHide,QTID=@QTID ,SUCIDLF=@SUCIDLF, SUCIDRT=@SUCIDRT,Priority=@Priority, StartRank=@StartRank,EndRank=@EndRank WHERE ASID=@ASID", cn);
 
             cmd.Parameters.Add("@Code", SqlDbType.VarChar).Value = mu.Code;
             cmd.Parameters.Add("@Questions", SqlDbType.NVarChar).Value = mu.Questions;
             cmd.Parameters.Add("@SCID", SqlDbType.Int).Value = mu.SCID;
-            if (mu.SUCIDLF.HasValue)
+            if (mu.SUCID.HasValue)
                 cmd.Parameters.Add("@SUCID", SqlDbType.Int).Value = mu.SUCID;
             else
                 cmd.Parameters.AddWithValue("@SUCID", DBNull.Value);
@@ -194,7 +196,7 @@ Status =@Status,IsHide=@IsHide,QTID=@QTID ,SUCIDLF=@SUCIDLF, SUCIDRT=@SUCIDRT,Pr
             else
                 cmd.Parameters.AddWithValue("@SUCIDLF", DBNull.Value);
 
-            if (mu.SUCIDLF.HasValue)
+            if (mu.SUCIDRT.HasValue)
                 cmd.Parameters.Add("@SUCIDRT", SqlDbType.Int).Value = mu.SUCIDRT;
             else
                 cmd.Parameters.AddWithValue("@SUCIDRT", DBNull.Value);
@@ -206,6 +208,7 @@ Status =@Status,IsHide=@IsHide,QTID=@QTID ,SUCIDLF=@SUCIDLF, SUCIDRT=@SUCIDRT,Pr
 
             cmd.Parameters.Add("@ASID", SqlDbType.Int).Value = mu.ASID;
 
+            cn.Open();
             return ExecuteNonQuery(cmd) == 1;
         }
        
@@ -240,12 +243,12 @@ Status =@Status,IsHide=@IsHide,QTID=@QTID ,SUCIDLF=@SUCIDLF, SUCIDRT=@SUCIDRT,Pr
 
             if (mu.SCID > 0)
             {
-                w = "WHERE u.SCID =@SCID";
+                w = " WHERE u.SCID =@SCID";
                 cmd.Parameters.Add("@SCID", SqlDbType.TinyInt).Value = mu.SCID;
 
             }
-            cText.Append(@"SELECT u.*,ur.Title AS UserRoleName FROM  Assessment u 
-INNER JOIN Section ur ON ur.SCID =u.SCID ORDER BY Priority ASC" + w);
+            cText.Append(@"SELECT u.*,ur.Title AS SectionTitle FROM  Assessment u 
+INNER JOIN Section ur ON ur.SCID =u.SCID " + w  + " ORDER BY Priority ASC");
 
             cmd.CommandText = cText.ToString();
             cmd.Connection = cn;

@@ -62,32 +62,7 @@ margin-right:5px;
                                 <hr />
                              <%--   <asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
                                 <asp:Label ID="lblsms" runat="server"></asp:Label>
-
-                                <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="QuestionTitle" CssClass="col-md-2 control-label">Question </asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="QuestionTitle" CssClass="form-control" />
-                                        <asp:RequiredFieldValidator Display="Dynamic" runat="server" ControlToValidate="QuestionTitle"
-                                            CssClass="text-danger" ErrorMessage="The  field is required." />
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="txtCode" CssClass="col-md-2 control-label">Question Code</asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="txtCode" MaxLength="2" CssClass="form-control" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCode" Width="100"
-                                            CssClass="text-danger" Display="Dynamic" ErrorMessage="The  field is required." />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="txtpri" CssClass="col-md-2 control-label">Priority</asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="txtpri" CssClass="form-control"  Text="1"  />
-                                       <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator1" ControlToValidate="txtpri" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
-                                    </div>
-                                </div>
-                                                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                                                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                                     <ContentTemplate>
 
@@ -106,12 +81,39 @@ margin-right:5px;
                                         <asp:DropDownList ID="dropsubrigth" placeholder="Sub Section Right" Visible="false" runat="server" CssClass="form-control"></asp:DropDownList>
                                     </div>
                                 </div>
+
+                                                        <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="txtCode" CssClass="col-md-2 control-label">Question Code</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="txtCode" MaxLength="5" CssClass="form-control" />
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCode" Width="100"
+                                            CssClass="text-danger" Display="Dynamic" ErrorMessage="The  field is required." />
+                                    </div>
+                                </div>
                                                     </ContentTemplate>
 
                                                 </asp:UpdatePanel>
                                    
 
 
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="QuestionTitle" CssClass="col-md-2 control-label">Question </asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="QuestionTitle" CssClass="form-control" />
+                                        <asp:RequiredFieldValidator Display="Dynamic" runat="server" ControlToValidate="QuestionTitle"
+                                            CssClass="text-danger" ErrorMessage="The  field is required." />
+                                    </div>
+                                </div>
+
+                                
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="txtpri" CssClass="col-md-2 control-label">Priority</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="txtpri" CssClass="form-control"  Text="1"  />
+                                       <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator1" ControlToValidate="txtpri" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
+                                    </div>
+                                </div>
+                                                
 
                             <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="dropQType" CssClass="col-md-2 control-label">Question Type</asp:Label>
@@ -124,9 +126,11 @@ margin-right:5px;
                                     <asp:Label runat="server" AssociatedControlID="txtStartRank" CssClass="col-md-2 control-label">Rank</asp:Label>
                                     <div class="col-md-5">
                                         <asp:TextBox ID="txtStartRank" placeholder="From" runat="server" CssClass="form-control"></asp:TextBox>
+                                           <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator2" ControlToValidate="txtStartRank" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                                     </div>
                                         <div class="col-md-5">
                                         <asp:TextBox ID="txtEndRank" placeholder="To"  runat="server" CssClass="form-control"></asp:TextBox>
+                                               <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator3" ControlToValidate="txtEndRank" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                                     </div>
                                 </div>
 
@@ -220,7 +224,7 @@ margin-right:5px;
                                     </div>--%>
                                 </div>
                                 <div class="col-sm-3" style="text-align:right">
-                                    <asp:Button  runat="server" ID="btnAddnewSection" class="btn btn-w-m btn-success" OnClick="btnAddnewSection_Click" Text="Add New Section" />
+                                    <asp:Button  runat="server" ID="btnAddnewSection" class="btn btn-w-m btn-success" OnClick="btnAddnewSection_Click" Text="Add New Assessment" />
                                    <%-- <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
                                         <button type="button" class="btn btn-sm btn-primary"> Go!</button> </span></div>--%>
                                 </div>
@@ -234,6 +238,7 @@ margin-right:5px;
                                       
                                         <th >Title</th>
                                          <th style="text-align:center">Code </th>
+                                         <th style="text-align:center"> Section</th>
                                           <th style="text-align:center"> Priority</th>
                                         <th style="text-align:center">Status </th>
 
@@ -274,10 +279,11 @@ margin-right:5px;
 <asp:Content ID="FooterScript" ContentPlaceHolderID="ContentFooter" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
-            getList();
+
+            getList($('#dropsecs').val());
           
 
-            $('#dropRole').on('change', function () {
+            $('#dropsecs').on('change', function () {
 
                 var v = $(this).val();
                 getList(v);
@@ -330,7 +336,7 @@ margin-right:5px;
             var url = "<%= ResolveUrl("/admin/Content/ajax_webmethod_assessment.aspx/GetAssessment") %>";
 
             if (!v) { v = 0 }
-            var data = { UsersRoleId: v };
+            var data = { SCID: v };
             var param = JSON.stringify({ parameters: data });
 
             AjaxPost(url, param, function () {
@@ -355,6 +361,7 @@ margin-right:5px;
                 ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
                 ret += '   <td>' + data[i].Questions + '</td>';
                 ret += '   <td style="text-align:center">' + data[i].Code + '</td>';
+                ret += '   <td style="text-align:center">' + data[i].SectionTitle + '</td>';
                 ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
                 //ret += '   <td>' + data[i].LastName + '</td>';
                 //ret += '   <td>' + data[i].UserName + '</td>';
@@ -362,7 +369,7 @@ margin-right:5px;
                 var bage = 'primary'
                 if (!data[i].Status) { txt = 'Inactive'; bage = 'default'; }
                 ret += '   <td style="text-align:center"><span class="label label-' + bage + '">' + txt + '</span></td>';
-                ret += '   <td style="text-align:center"><a href="Assessmentoptionaddedit?ass=' + data[i].ASID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
+                ret += '   <td style="text-align:center"><a href="Assessment?ass=' + data[i].ASID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
                 ret += '   </tr >';
             }
 

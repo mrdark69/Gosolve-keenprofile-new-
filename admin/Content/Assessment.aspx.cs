@@ -32,8 +32,10 @@ public partial class _Assessment : BasePage
             dropQType.DataTextField = "Title";
             dropQType.DataValueField = "QTID";
             dropQType.DataBind();
-            
 
+
+            Model_AsSection secs = AssessmentController.getSectionByID(int.Parse(dropSection.SelectedValue));
+            txtCode.Text = secs.Code.ToString();
 
             Model_AsSubSection ss = new Model_AsSubSection
             {
@@ -56,18 +58,41 @@ public partial class _Assessment : BasePage
 
                 Model_Assessment ass = AssessmentController.GetAssessmentByID(id);
                
-            
-                if(ass.AssChoice.Count > 0)
+                if(ass != null)
                 {
-                    dropChoice_ret.DataSource = ass.AssChoice;
-                    dropChoice_ret.DataTextField = "Questions";
-                    dropChoice_ret.DataValueField = "Priority";
-                    dropChoice_ret.DataBind(); 
-                }
+                    if(ass.AssChoice.Count > 0)
+                    {
+                        dropChoice_ret.DataSource = ass.AssChoice;
+                        dropChoice_ret.DataTextField = "Questions";
+                        dropChoice_ret.DataValueField = "Priority";
+                        dropChoice_ret.DataBind();
+                    }
 
-                //Button btneditsec = (Button)FindControl("Button1");
-                //btneditsec.CommandName = "Edit";
-                //btneditsec.CommandName = "Edit";
+                    QuestionTitle.Text = ass.Questions;
+                    txtCode.Text = ass.Code;
+                    dropSection.SelectedValue = ass.SCID.ToString();
+                    dropQType.SelectedValue = ass.QTID.ToString();
+                    txtpri.Text = ass.Priority.ToString();
+                    txtStartRank.Text = ass.StartRank.ToString();
+                    txtEndRank.Text = ass.EndRank.ToString();
+
+                    
+
+                    if (ass.SCID == 7)
+                    {
+                        dropsub.SelectedValue = (ass.SUCIDLF.HasValue? ((int)ass.SUCIDLF).ToString(): "0");
+                        dropsubrigth.SelectedValue = (ass.SUCIDRT.HasValue ? ((int)ass.SUCIDRT).ToString() : "0"); 
+                        dropsubrigth.Visible = true;
+                       
+                    }
+                    else
+                    {
+                        dropsub.SelectedValue = (ass.SUCID.HasValue ? ((int)ass.SUCID).ToString() : "0");  
+                       // intSUCID = int.Parse(dropsub.SelectedValue);
+                    }
+                   
+                }
+              
             }
 
         }
@@ -248,6 +273,7 @@ public partial class _Assessment : BasePage
         if (!string.IsNullOrEmpty(Request.QueryString["ass"]))
         {
             byte bytID = byte.Parse(Request.QueryString["ass"]);
+            ass.ASID = bytID;
             if (AssessmentController.EditAssessment(ass))
             {
                 Response.Redirect("Assessment");
@@ -273,7 +299,7 @@ public partial class _Assessment : BasePage
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-        add_section.Visible = false;
+        Response.Redirect("Assessment");
     }
 
 
@@ -303,5 +329,13 @@ public partial class _Assessment : BasePage
 
 
         }
+        else
+        {
+            dropsubrigth.Visible = false;
+        }
+
+
+        Model_AsSection secs = AssessmentController.getSectionByID(intSCID);
+        txtCode.Text = secs.Code.ToString();
     }
 }

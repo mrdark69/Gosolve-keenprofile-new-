@@ -15,7 +15,7 @@ public partial class _Assessmentoptionaddedit : BasePage
             if (!string.IsNullOrEmpty(Request.QueryString["section"]))
             {
                 add_section.Visible = true;
-                byte id = byte.Parse(Request.QueryString["section"]);
+                int id = int.Parse(Request.QueryString["section"]);
                 Model_AsSection sec = AssessmentController.getSectionByID(id);
                 SectionTitle.Text = sec.Title;
                 txtCode.Text = sec.Code;
@@ -220,7 +220,8 @@ public partial class _Assessmentoptionaddedit : BasePage
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-        add_section.Visible = false;
+        Response.Redirect("Assessmentoptionaddedit");
+        //add_section.Visible = false;
     }
 
     protected void Button3_Click(object sender, EventArgs e)
@@ -262,7 +263,8 @@ public partial class _Assessmentoptionaddedit : BasePage
 
     protected void Button4_Click(object sender, EventArgs e)
     {
-        sub_pan.Visible  = false;
+        Response.Redirect("Assessmentoptionaddedit?tab=2");
+        //sub_pan.Visible  = false;
     }
 
     protected void Button5_Click(object sender, EventArgs e)
@@ -315,7 +317,8 @@ public partial class _Assessmentoptionaddedit : BasePage
 
     protected void Button11_Click(object sender, EventArgs e)
     {
-        qType_pan.Visible = false;
+        Response.Redirect("Assessmentoptionaddedit?tab=3");
+        //qType_pan.Visible = false;
     }
 
     
