@@ -16,6 +16,8 @@
       <link rel="stylesheet" type="text/css" href="//cdn2.editmysite.com/css/old/fancybox.css?1487981270" />
       <link rel="stylesheet" type="text/css" href="//cdn2.editmysite.com/css/social-icons.css?buildtime=1487981270" media="screen,projection" />
       <link rel="stylesheet" type="text/css" href="Theme/css/main_style.css" title="wsite-theme-css" />
+       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+         <link rel="stylesheet" type="text/css" href="Theme/css/custom.css" title="wsite-theme-css" />
       <link href='//fonts.googleapis.com/css?family=Lato:400,300,300italic,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
       <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -109,27 +111,7 @@
    <body class="header-page page-has-banner  wsite-theme-light  wsite-page-contact header-overlay-on ">
       <form runat="server">
          <div class="wrapper">
-            <div class="banner-wrap">
-               <div class="wsite-elements wsite-not-footer wsite-header-elements">
-                  <div class="wsite-section-wrap">
-                     <div  class="wsite-section wsite-header-section wsite-section-bg-image" style="height: auto;vertical-align: middle;background-image: url(&quot;//cdn2.editmysite.com/images/editor/theme-background/stock/Colaboration.jpg&quot;) ;background-repeat: no-repeat ;background-position: undefined undefined ;background-size: 100% ;background-color: transparent ;background-size: cover;" >
-                        <div class="wsite-section-content">
-                           <div class="container">
-                              <div class="banner">
-                                 <div class="wsite-section-elements">
-                                    <div class="paragraph" style="text-align:center;"><font size="3">Please Feel Free to</font></div>
-                                    <h2 class="wsite-content-title" style="text-align:center;">Contact US</h2>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class=""></div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- end banner-wrap -->
-            <div class="dusk-header">
+               <div class="dusk-header">
                <div class="nav-wrap">
                   <div class="container">
                      <div class="logo"><span class="wsite-logo">
@@ -226,9 +208,35 @@
                   </div>
                   <!-- end container -->
                </div>
+
+
+                
+            <!-- end banner-wrap -->
+            </div>
+
+             <div class="banner-wrap">
+               <div class="wsite-elements wsite-not-footer wsite-header-elements">
+                  <div class="wsite-section-wrap">
+                     <div  class="wsite-section wsite-header-section wsite-section-bg-image" style="height: 515px;vertical-align: middle;background-image: url(//cdn2.editmysite.com/images/editor/theme-background/stock/Skyscrapers.jpg) ;background-repeat: no-repeat ;background-position: undefined undefined ;background-size: 100% ;background-color: transparent ;background-size: cover;" >
+                        <div class="wsite-section-content">
+                           <div class="container">
+                              <div class="banner">
+                               <%--  <div class="wsite-section-elements">
+                                    <div class="paragraph" style="text-align:center;"><font size="3">Please Feel Free to</font></div>
+                                    <h2 class="wsite-content-title" style="text-align:center;">Contact US</h2>
+                                 </div>--%>
+                              </div>
+                           </div>
+                        </div>
+                        <div class=""></div>
+                     </div>
+                  </div>
+               </div>
             </div>
             <!-- end header -->
-            <div class="main-wrap">
+            
+          
+            <div class="main-wrap" style="background-color:#202020">
                <div id="wsite-content" class="wsite-elements wsite-not-footer">
                   <div class="wsite-section-wrap">
                      <div class="wsite-section wsite-body-section wsite-background-6 wsite-custom-background"  >
@@ -245,7 +253,7 @@
                                   <strong>Success!</strong> The verfify email has been sent.
                                 </div>
 
-                               <a href="Logout.aspx">logout</a>
+                              
                               <asp:ContentPlaceHolder ID="MainContent" runat="server">
                               </asp:ContentPlaceHolder>
                               <%--<div class="wsite-section-elements">
@@ -574,91 +582,16 @@
                  labels: "l5,u83467774.u83467774s827884025728838030"
              });
          </script>
-         <noscript>
-            <div style="display:none;">
-               <img src="//pixel.quantserve.com/pixel/p-0dYLvhSGGqUWo.gif?labels=l5,u83467774.u83467774s827884025728838030" border="0" height="1" width="1" alt="Quantcast"/>
-            </div>
-         </noscript>
-         <!-- End Quantcast tag -->
-         <script>
-             (function (jQuery) {
-                 try {
-                     if (jQuery) {
-                         jQuery('div.blog-social div.fb-like').attr('class', 'blog-social-item blog-fb-like');
-                         var $commentFrame = jQuery('#commentArea iframe');
-                         if ($commentFrame.length > 0) {
-                             var frameHeight = jQuery($commentFrame[0].contentWindow.document).height() + 50;
-                             $commentFrame.css('min-height', frameHeight + 'px');
-                         }
-                         if (jQuery('.product-button').length > 0) {
-                             jQuery(document).ready(function () {
-                                 jQuery('.product-button').parent().each(function (index, product) {
-                                     if (jQuery(product).attr('target') == 'paypal') {
-                                         if (!jQuery(product).find('> [name="bn"]').length) {
-                                             jQuery('<input>').attr({
-                                                 type: 'hidden',
-                                                 name: 'bn',
-                                                 value: 'DragAndDropBuil_SP_EC'
-                                             }).appendTo(product);
-                                         }
-                                     }
-                                 });
-                             });
-                         }
-                     }
-                     else {
-                         // Prototype
-                         $$('div.blog-social div.fb-like').each(function (div) {
-                             div.className = 'blog-social-item blog-fb-like';
-                         });
-                         $$('#commentArea iframe').each(function (iframe) {
-                             iframe.style.minHeight = '410px';
-                         });
-                     }
-                 }
-                 catch (ex) { }
-             })(window._W && _W.jQuery);
-
-         </script>
+         
+       
+         
          <div id="eu-cookie" class="notification" style="display: none;">
             <span id="eu-cookie-content"></span>
             <span id="eu-cookie-close">&#10005;</span>
          </div>
          <script type="text/javascript">
-             (function ($) {
-                 window.cookie_location = '';
-                 // this cookie_content should already be pre-encoded from CookieSettingView.js
-                 window.cookie_content = '' || _W.stl('templates.publish.virtual-includes.footerCode_1');
-                 window.cookie_policy_key = '827884025728838030_cookie_policy';
-                 window.cookie_content_hash = '';
-
-                 if (!_W.getCookie(window.cookie_policy_key) || _W.getCookie(window.cookie_policy_key) !== window.cookie_content_hash) {
-                     if (window.cookie_location === 'top' || window.cookie_location === 'bottom') {
-                         $('#eu-cookie-content').text(decodeURIComponent(window.cookie_content));
-                         (window.cookie_location === 'top') ? animateFromTop() : animateFromBottom();
-                         $('#eu-cookie').show();
-                     }
-                 }
-
-                 $('#eu-cookie-close').click(function () {
-                     _W.setCookie(window.cookie_policy_key, window.cookie_content_hash, 100000);
-                     $('#eu-cookie').hide();
-                 });
-
-                 function animateFromTop() {
-                     $('#eu-cookie').css({
-                         'top': '0px',
-                         'animation': 'reveal-top 1 2s'
-                     });
-                 }
-
-                 function animateFromBottom() {
-                     $('#eu-cookie').css({
-                         'bottom': '0px',
-                         'animation': 'reveal-bottom 1 2s'
-                     });
-                 }
-             })(window._W && _W.jQuery);
+             
+           
 
              function alertshow() {
                  $('#alertbar').show();

@@ -1312,7 +1312,7 @@ h2#wsite-com-product-title {
 
     .dusk-header {
         display: table;
-        z-index: 13;
+        z-index: 1000;
         height: 50px;
         background: #202020;
     }

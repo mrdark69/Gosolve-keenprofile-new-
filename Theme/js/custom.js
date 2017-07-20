@@ -62,8 +62,8 @@
     init: function(opts) {
       var base = this;
 
-      // Check content positioning
-      $('.main-wrap').checkElementPositioning($('body.page-has-banner'), $('.dusk-header'), 'affix');
+      //// Check content positioning
+      //$('.main-wrap').checkElementPositioning($('body.page-has-banner'), $('.dusk-header'), 'affix');
 
       // Add classes to elements
       base._addClasses();
@@ -144,32 +144,32 @@
         });
 
 
-      // Move cart + login
-      if ($(window).width() <= 992) {
-        $.fn.intervalLoop('.mobile-nav #member-login', base._moveLogin, 800, 5);
-      }
+     // // Move cart + login
+     // if ($(window).width() <= 992) {
+     //   $.fn.intervalLoop('.mobile-nav #member-login', base._moveLogin, 800, 5);
+     // }
 
-    	// Window scroll
-      if($('body').hasClass('page-has-banner')) {
-        var offset;
-        var headerHeight = $('.dusk-header').outerHeight();
+    	//// Window scroll
+     // if($('body').hasClass('page-has-banner')) {
+     //   var offset;
+     //   var headerHeight = $('.dusk-header').outerHeight();
 
-        $(window).on('scroll', function(){
+     //   $(window).on('scroll', function(){
 
-          // Set offset
-          if($(window).width() <= 767) {
-            offset = headerHeight;
-          } else {
-            offset = 0;
-          }
+     //     // Set offset
+     //     if($(window).width() <= 2000) {
+     //       offset = headerHeight;
+     //     } else {
+     //       offset = 0;
+     //     }
 
-          // Affix nav
-          $('.main-wrap').checkElementPositioning($('body.page-has-banner'), $('.dusk-header'), 'affix');
+     //     // Affix nav
+     //     $('.main-wrap').checkElementPositioning($('body.page-has-banner'), $('.dusk-header'), 'affix');
 
-          // Fade out banner header
-          $('body:not(.header-animation-off) .banner h2').fadeBanner($('body.page-has-banner'), 'fade-on-scroll', offset);
-        });
-      }
+     //     // Fade out banner header
+     //     $('body:not(.header-animation-off) .banner h2').fadeBanner($('body.page-has-banner'), 'fade-on-scroll', offset);
+     //   });
+     // }
 
         // Subnav toggle
         $('li.has-submenu span.icon-caret').on('click', function() {
