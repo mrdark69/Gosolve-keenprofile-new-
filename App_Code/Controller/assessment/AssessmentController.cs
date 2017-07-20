@@ -22,12 +22,45 @@ public class AssessmentController
     }
 
 
+    /// Assessment
+    /// 
+
+    public static int AddAssessment(Model_Assessment ass)
+    {
+        int assid = ass.AddAssessment(ass);
+        if(ass.AssChoice.Count > 0)
+        {
+            Model_Assessment_Choice assc = new Model_Assessment_Choice();
+            assc.AddAssessmentChoice(ass.AssChoice, assid);
+        }
+        return assid;
+    }
+    public static bool EditAssessment(Model_Assessment ass)
+    {
+
+        return ass.Update(ass);
+    }
+
+    public static Model_Assessment GetAssessmentByID(int ASID)
+    {
+        Model_Assessment ass = new Model_Assessment();
+        return ass.GetAssessmentByID(ASID);
+    }
+
+
+  
+
+
     /// <summary>
     /// Assessment Section
     /// </summary>
     /// <param name="ass"></param>
     /// <returns></returns>
     /// 
+
+
+
+
 
 
     public static int AddSection(string s, string c, string i, int pr)

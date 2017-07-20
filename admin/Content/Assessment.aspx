@@ -64,10 +64,10 @@ margin-right:5px;
                                 <asp:Label ID="lblsms" runat="server"></asp:Label>
 
                                 <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="SectionTitle" CssClass="col-md-2 control-label">Question </asp:Label>
+                                    <asp:Label runat="server" AssociatedControlID="QuestionTitle" CssClass="col-md-2 control-label">Question </asp:Label>
                                     <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="SectionTitle" CssClass="form-control" />
-                                        <asp:RequiredFieldValidator Display="Dynamic" runat="server" ControlToValidate="SectionTitle"
+                                        <asp:TextBox runat="server" ID="QuestionTitle" CssClass="form-control" />
+                                        <asp:RequiredFieldValidator Display="Dynamic" runat="server" ControlToValidate="QuestionTitle"
                                             CssClass="text-danger" ErrorMessage="The  field is required." />
                                     </div>
                                 </div>
@@ -133,6 +133,7 @@ margin-right:5px;
                             <div class="form-group">
                                 <asp:Label runat="server" AssociatedControlID="dropQType" CssClass="col-md-2 control-label">Choice</asp:Label>
                                  <div class="col-md-10">
+                                     <asp:DropDownList  ID="dropChoice_ret" ClientIDMode="Static" style="display:none;" runat="server"></asp:DropDownList>
                                 <input type="button" id="addchoice" class="btn btn-success btn-xs" value="Add Choice" />
                                      <div>
                                     <table class="table" id="add-row-social">
@@ -296,6 +297,26 @@ margin-right:5px;
                 $('#add-row-social tbody').append(html);
                 return false;
             });
+
+
+            var option = $('#dropChoice_ret option');
+            if (option.length > 0) {
+                $.each(option, function () {
+                    var uuid = guid();
+                    var link = $(this).html();
+                    //var dropsocial = $('#dropSocial').html();
+                    var val = $(this).attr('value');
+
+                    var chk = '<input type="checkbox" name="chk_social" checked="checked" value="' + uuid + '" style="display:none;" />';
+                    var txtbox1 = '<input class="form-control" type="textbox"  id="question_s_' + uuid + '" name="question_s_' + uuid + '" value="' + link +'" />'
+                    var txtbox = '<input class="form-control" type="textbox" value="1" id="pri_s_' + uuid + '" name="pri_s_' + uuid + '" value="' + val +'"  />'
+                    var html = '<tr id="row_s_' + uuid + '"><td>' + chk + txtbox1 + '</td><td>' + txtbox + '</td><td><button data-idrow="' + uuid + '"  onclick="removeRow(this);" class="btn btn-warning btn-circle" type="button"><i class="fa fa-times"></i></button ></td></tr>'
+                    $('#add-row-social tbody').append(html);
+
+
+                    //$('#sel_' + uuid).val(val);
+                });
+            }
           
         });
 
@@ -332,7 +353,7 @@ margin-right:5px;
 
                 ret += '<tr>';
                 ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
-                ret += '   <td>' + data[i].Title + '</td>';
+                ret += '   <td>' + data[i].Questions + '</td>';
                 ret += '   <td style="text-align:center">' + data[i].Code + '</td>';
                 ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
                 //ret += '   <td>' + data[i].LastName + '</td>';
@@ -341,7 +362,7 @@ margin-right:5px;
                 var bage = 'primary'
                 if (!data[i].Status) { txt = 'Inactive'; bage = 'default'; }
                 ret += '   <td style="text-align:center"><span class="label label-' + bage + '">' + txt + '</span></td>';
-                ret += '   <td style="text-align:center"><a href="Assessmentoptionaddedit?section=' + data[i].SCID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
+                ret += '   <td style="text-align:center"><a href="Assessmentoptionaddedit?ass=' + data[i].ASID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
                 ret += '   </tr >';
             }
 
