@@ -12,65 +12,221 @@ public partial class _Assessment : BasePage
     {
         if (!this.Page.IsPostBack)
         {
-            dropRole.DataSource = AssessmentController.GetSectionList();
-            dropRole.DataValueField = "SCID";
-            dropRole.DataTextField  = "Title";
-            dropRole.DataBind();
 
-            ListItem lis = new ListItem("All", "0");
-            dropRole.Items.Insert(0, lis);
+            List<Model_AsSection> sec = AssessmentController.GetSectionList();
+            dropSection.DataSource = sec;
+            dropSection.DataTextField = "Title";
+            dropSection.DataValueField = "SCID";
+            dropSection.DataBind();
+
+            dropsecs.DataSource = sec;
+            dropsecs.DataTextField = "Title";
+            dropsecs.DataValueField = "SCID";
+            dropsecs.DataBind();
+
+            
+
+            dropQType.DataSource = AssessmentController.GetQTypeAllByStatus(true);
+            dropQType.DataTextField = "Title";
+            dropQType.DataValueField = "QTID";
+            dropQType.DataBind();
+            
+
+
+            Model_AsSubSection ss = new Model_AsSubSection
+            {
+                SCID = int.Parse(dropSection.SelectedValue)
+            };
+
+            List<Model_AsSubSection> sub = AssessmentController.getSubsectionBySecId(ss);
+            dropsub.DataSource = sub;
+            dropsub.DataTextField = "Title";
+            dropsub.DataValueField = "SUCID";
+            dropsub.DataBind();
+            
+        }
+
+
+        if (!string.IsNullOrEmpty(Request.QueryString["tab"]))
+        {
+            string tab = Request.QueryString["tab"];
+
+            switch (tab)
+            {
+                case "2":
+                    tab1.Attributes.Add("aria-expanded", "false");
+                    //tab2.Attributes.Add("aria-expanded", "true");
+                    //tab3.Attributes.Add("aria-expanded", "false");
+                    //tab4.Attributes.Add("aria-expanded", "false");
+
+                    li_tab1.Attributes.Remove("class");
+                    //li_tab2.Attributes.Add("class", "active");
+                    //li_tab3.Attributes.Remove("class");
+                    //li_tab4.Attributes.Remove("class");
+
+
+                    tab_content1.Visible = false;
+                    //tab_content2.Visible = true;
+                    //tab_content3.Visible = false;
+                    //tab_content4.Visible = false;
+
+
+                    //List<Model_AsSection> sec = AssessmentController.GetSectionList();
+                    //dropSection.DataSource = sec;
+                    //dropSection.DataTextField = "Title";
+                    //dropSection.DataValueField = "SCID";
+                    //dropSection.DataBind();
+
+                    //dropsection2.DataSource = sec;
+                    //dropsection2.DataTextField = "Title";
+                    //dropsection2.DataValueField = "SCID";
+                    //dropsection2.DataBind();
+
+                    //ListItem lis = new ListItem("All", "0");
+                    //dropsection2.Items.Insert(0, lis);
+
+
+
+
+                    break;
+                case "3":
+                    tab1.Attributes.Add("aria-expanded", "false");
+                    //tab2.Attributes.Add("aria-expanded", "false");
+                    //tab3.Attributes.Add("aria-expanded", "true");
+                    //tab4.Attributes.Add("aria-expanded", "false");
+
+                    li_tab1.Attributes.Remove("class");
+                    //li_tab2.Attributes.Remove("class");
+                    //li_tab3.Attributes.Add("class", "active");
+                    //li_tab4.Attributes.Remove("class");
+
+                    tab_content1.Visible = false;
+                    //tab_content2.Visible = false;
+                    //tab_content3.Visible = true;
+                    //tab_content4.Visible = false;
+
+
+
+                    break;
+                case "4":
+                    tab1.Attributes.Add("aria-expanded", "false");
+                    //tab2.Attributes.Add("aria-expanded", "false");
+                    //tab3.Attributes.Add("aria-expanded", "false");
+                    //tab4.Attributes.Add("aria-expanded", "true");
+
+                    li_tab1.Attributes.Remove("class");
+                    //li_tab2.Attributes.Remove("class");
+                    //li_tab3.Attributes.Remove("class");
+                    //li_tab4.Attributes.Add("class", "active");
+
+
+                    tab_content1.Visible = false;
+                    //tab_content2.Visible = false;
+                    //tab_content3.Visible = false;
+                    //tab_content4.Visible = true;
+
+
+                    Model_AssesIntro ai = AssessmentController.GetAssIntro();
+                    //txtIntroTitle.Text = ai.Title;
+                    //txtIntroContent.Text = ai.Description;
+
+                    break;
+            }
+        }
+        else
+        {
+
+            tab_content1.Visible = true;
+            //tab_content2.Visible = false;
+            //tab_content3.Visible = false;
+            //tab_content4.Visible = false;
+
+            tab1.Attributes.Add("aria-expanded", "true");
+            //tab2.Attributes.Add("aria-expanded", "false");
+            //tab3.Attributes.Add("aria-expanded", "false");
+            //tab4.Attributes.Add("aria-expanded", "false");
+
+            li_tab1.Attributes.Add("class", "active");
+            //li_tab2.Attributes.Remove("class");
+            //li_tab3.Attributes.Remove("class");
+            //li_tab4.Attributes.Remove("class");
+
+
+
+
+
         }
     }
 
 
-    protected string GetSideMenu()
+
+
+
+    protected void Button1_Click(object sender, EventArgs e)
     {
-        StringBuilder ret = new StringBuilder();
-        //List<Model_AppFeature> cmf = UsersController.GetMenu();
+        //string s = SectionTitle.Text.Trim();
+        //string c = txtCode.Text.Trim();
+        //string i = txtintro.Text.Trim();
+        //bool st = bool.Parse(status.SelectedValue);
+        //int pr = int.Parse(txtpri.Text);
 
-        //List<Model_AppFeature> cmf_child = UsersController.GetMenuChild();
 
-        //foreach (Model_AppFeature item in cmf)
+        //Button btn = (Button)sender;
+
+        //if (!string.IsNullOrEmpty(Request.QueryString["section"]))
         //{
-        //    List<Model_AppFeature> cmf_s = cmf_child.Where(c => c.IDRef == item.AppID).ToList();
-
-        //    string slug = Page.ResolveClientUrl("~/" + item.Permarlink);
-        //    bool IsChild = false;
-        //    string arrow = string.Empty;
-        //    string child = string.Empty;
-        //    if (cmf_s.Count() > 0)
+        //    byte bytID = byte.Parse(Request.QueryString["section"]);
+        //    if (AssessmentController.EditSection(bytID, s, c, i, st, pr))
         //    {
-        //        slug = "#";
-        //        IsChild = true;
-        //        arrow = "<span class=\"fa arrow\"></span>";
-
-        //        child = String.Join(",", cmf_s.Select(r => r.Permarlink).ToArray());
+        //        Response.Redirect("Assessmentoptionaddedit");
         //    }
-
-
-        //    ret.Append("<li >");
-        //    ret.Append("<input type=\"checkbox\" name=\"rol-check\" value=\""+ item.AppID+ "\" />&nbsp;&nbsp;<span class=\"nav-label\">" + item.Title + "</span>");
-
-
-
-        //    if (IsChild)
+        //}
+        //else
+        //{
+        //    if (AssessmentController.AddSection(s, c, i, pr) > 0)
         //    {
-        //        ret.Append("<ul class=\"nav nav-second-level app-sec-lev\">");
-        //        foreach (Model_AppFeature i in cmf_s)
-        //        {
-        //            string slug_child = Page.ResolveClientUrl("~/" + i.Permarlink);
-        //            ret.Append("<li ><input type=\"checkbox\" name=\"rol-check\" value=\"" + i.AppID + "\" /> &nbsp;&nbsp;<span class=\"nav-label\">" + i.Title + "</span></a>");
-        //        }
-        //        ret.Append("</ul>");
+        //        Response.Redirect(Request.Url.ToString());
         //    }
-
-        //    ret.Append("</li>");
-
-
         //}
 
-
-        return ret.ToString();
     }
 
+    protected void btnAddnewSection_Click(object sender, EventArgs e)
+    {
+        add_section.Visible = true;
+    }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        add_section.Visible = false;
+    }
+
+
+
+    protected void dropSection_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        int intSCID = int.Parse(dropSection.SelectedValue);
+        Model_AsSubSection ss = new Model_AsSubSection
+        {
+            SCID = intSCID,
+        };
+
+        List<Model_AsSubSection> sub = AssessmentController.getSubsectionBySecId(ss);
+        dropsub.DataSource = sub;
+        dropsub.DataTextField = "Title";
+        dropsub.DataValueField = "SUCID";
+        dropsub.DataBind();
+
+        if(intSCID == 7)
+        {
+            dropsubrigth.DataSource = sub;
+            dropsubrigth.DataTextField = "Title";
+            dropsubrigth.DataValueField = "SUCID";
+            dropsubrigth.DataBind();
+
+            dropsubrigth.Visible = true;
+
+
+        }
+    }
 }

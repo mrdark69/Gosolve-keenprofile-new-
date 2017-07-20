@@ -113,10 +113,15 @@ public class AssessmentController
         Model_QType q = new Model_QType();
         return q.GetQTypeByID(bytId);
     }
-
-    public static List<Model_QType> GetQTypeAll(Model_QType ae)
+    public static List<Model_QType> GetQTypeAllByStatus(bool Status)
     {
-        return ae.GetQTypeAll();
+        Model_QType q = new Model_QType();
+        return q.GetQTypeAllByStatus(Status);
+    }
+    public static List<Model_QType> GetQTypeAll()
+    {
+        Model_QType q = new Model_QType();
+        return q.GetQTypeAll();
     }
 
     public static bool EditQType(Model_QType q)

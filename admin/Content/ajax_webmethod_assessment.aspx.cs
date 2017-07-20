@@ -17,6 +17,17 @@ public partial class admin_Staff_ajax_webmethod_assessment : System.Web.UI.Page
     //{
 
     //}
+
+
+    [WebMethod]
+    public static void GetAssessment(Model_Assessment parameters)
+    {
+        List<Model_Assessment> ret = AssessmentController.GetAssessmentList(parameters);
+
+
+        AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
+    }
+
     [WebMethod]
     public static void GetSectionAll(Model_AsSection parameters)
     {
@@ -51,7 +62,7 @@ public partial class admin_Staff_ajax_webmethod_assessment : System.Web.UI.Page
     [WebMethod]
     public static void GetQtAll(Model_QType parameters)
     {
-        IList<Model_QType> ret = AssessmentController.GetQTypeAll(parameters);
+        IList<Model_QType> ret = AssessmentController.GetQTypeAll();
 
 
         AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());

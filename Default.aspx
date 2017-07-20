@@ -23,7 +23,7 @@
                                             </p>
 <%--                                            <img src="http://rscard.px-lab.com/img/uploads/rs-photo-v1.jpg" alt="Robert Smith">--%>
 
-                                              <a class="btn btn-lg btn-border ripple" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;"   target="_blank" href="#"> Download Now</a>
+                                              <a class="btn btn-lg btn-border ripple" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;"   target="_blank" href="Assessmentstep.aspx"> Download Now</a>
 										</div>
 									</div>
 									<div class="col-xs-7">

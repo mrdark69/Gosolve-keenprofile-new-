@@ -5,6 +5,12 @@
        
 
     </style>
+    <link href="Content/animate.css" rel="stylesheet" />
+    <link href="Content/plugins/iCheck/custom.css" rel="stylesheet" />
+    <link href="Content/plugins/steps/jquery.steps.css" rel="stylesheet" />
+   <%--     <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="css/plugins/steps/jquery.steps.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">--%>
  </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -14,62 +20,52 @@
 						<div class="section-box">
 							<div class="profile">
 								<div class="row">
-									<div class="col-xs-5">
-										<div class="profile-photo">
-                                            <h1>Lorem Ipsum is simply dummy text of the printing and</h1>
-                                            <p>
+									<div class="col-xs-12">
+									 <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Basic Wizzard</h5>
+                        
+                    </div>
+                    <div class="ibox-content">
+                        <p>
+                            This is basic example of Step
+                        </p>
+                        <div id="wizard">
+                            <h1>First Step</h1>
+                            <div class="step-content">
+                                <div class="text-center m-t-md">
+                                <h2>Hello in Step 1</h2>
+                                <p>
+                                    This is the first content.
+                                </p>
+                                </div>
+                            </div>
 
-                                                 typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                                            </p>
-<%--                                            <img src="http://rscard.px-lab.com/img/uploads/rs-photo-v1.jpg" alt="Robert Smith">--%>
+                            <h1>Second Step</h1>
+                            <div class="step-content">
+                                <div class="text-center m-t-md">
+                                    <h2>This is step 2</h2>
+                                    <p>
+                                        This content is diferent than the first one.
+                                    </p>
+                                </div>
+                            </div>
 
-                                              <a class="btn btn-lg btn-border ripple" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;"   target="_blank" href="#"> Download Now</a>
-										</div>
+                            <h1>Third Step</h1>
+                            <div class="step-content">
+                                <div class="text-center m-t-md">
+                                    <h2>This is step 3</h2>
+                                    <p>
+                                        This is last content.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
 									</div>
-									<div class="col-xs-7">
-										<div class="profile-info">
-											<div class="profile-preword"><span>Hello</span></div>
-											<h1 class="profile-title"><span>I'm</span> Robert Smith</h1>
-                                              <a class="btn btn-lg btn-border ripple" style="float:right;top:-20px;font-size:11px;    background-color: #fff;
-    padding: 5px;" target="_blank" href="#">Update Profile </a>
-											<h2 class="profile-position">Developer and businessman</h2></div>
-                                      
-                                            <ul class="profile-list">
-                                                <li class="clearfix">
-                                                    <strong class="title">Date of Birth</strong>
-                                                    <span class="cont">29</span>
-                                                </li>
-                                                <li class="clearfix">
-                                                    <strong class="title">Gender</strong>
-                                                    <span class="cont">29</span>
-                                                </li>
-                                                <li class="clearfix">
-                                                    <strong class="title">Nationality</strong>
-                                                    <span class="cont">24058, Belgium, Brussels, Liutte 27, BE</span>
-                                                </li>
-                                                <li class="clearfix">
-                                                    <strong class="title">E-mail</strong>
-                                                    <span class="cont"><a href="mailto:robertsmith@company.com">robertsmith@company.com</a></span>
-                                                </li>
-                                                <li class="clearfix">
-                                                    <strong class="title">Phone</strong>
-                                                    <span class="cont"><a href="tel:+12562548456">+1 256 254 84 56</a></span>
-                                                </li>
-                                                <li class="clearfix">
-                                                    <strong class="title" >Functional Competencies</strong>
-                                                    <span class="cont">till April 15, 2016</span>
-                                                </li>
-                                            <%--     <li class="clearfix">
-                                                    <strong class="title">Current Job Function</strong>
-                                                    <span class="cont">till April 15, 2016</span>
-                                                </li>--%>
-                                                
-                                                <%--<li class="clearfix">
-                                                    <strong class="title"><span class="button">On Vacation</span></strong>
-                                                    <span class="cont"><i class="rsicon rsicon-calendar"></i>till March 25, 2016</span>
-                                                </li>--%>
-                                            </ul>
-									</div>
+								
 								</div>
 							</div>
 							<div class="profile-social" style="height:40px;" >
@@ -94,34 +90,96 @@
 					</div>	
 				</section>
 
-    <div class="divider">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4 col-sm-6">
-				<div class="divider-wrapper divider-one">
-					<i class="fa fa-star-o"></i>
-					<h2>The Career Pillar Calculation</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                    <asp:Button ID="btnReport1" runat="server" Text="Dowload Now" CssClass="btn_button" />
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-6">
-				<div class="divider-wrapper divider-two">
-					<i class="fa fa-star-half-o"></i>
-					<h2>The Career Pillar Calculation</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                     <asp:Button ID="btnReport2" runat="server" Text="Dowload Now" CssClass="btn_button" />
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-12">
-				<div class="divider-wrapper divider-three">
-					<i class="fa fa-star"></i>
-					<h2>The Career Pillar Calculation</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                     <asp:Button ID="btnReport3" runat="server" Text="Dowload Now" CssClass="btn_button" />
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+    
 </asp:Content>
+<asp:Content ID="FooterScript" ContentPlaceHolderID="ContentFooter" runat="server">
+      <!-- Steps -->
+    <script src="Scripts/theme/plugins/steps/jquery.steps.min.js"></script>
+    <%--<script src="js/plugins/steps/jquery.steps.min.js"></script>--%>
+
+    <!-- Jquery Validate -->
+    <script src="Scripts/theme/plugins/validate/jquery.validate.min.js"></script>
+    <%--<script src="js/plugins/validate/jquery.validate.min.js"></script>--%>
+
+
+     <script>
+        $(document).ready(function(){
+            $("#wizard").steps();
+            $("#form").steps({
+                bodyTag: "fieldset",
+                onStepChanging: function (event, currentIndex, newIndex)
+                {
+                    // Always allow going backward even if the current step contains invalid fields!
+                    if (currentIndex > newIndex)
+                    {
+                        return true;
+                    }
+
+                    // Forbid suppressing "Warning" step if the user is to young
+                    if (newIndex === 3 && Number($("#age").val()) < 18)
+                    {
+                        return false;
+                    }
+
+                    var form = $(this);
+
+                    // Clean up if user went backward before
+                    if (currentIndex < newIndex)
+                    {
+                        // To remove error styles
+                        $(".body:eq(" + newIndex + ") label.error", form).remove();
+                        $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                    }
+
+                    // Disable validation on fields that are disabled or hidden.
+                    form.validate().settings.ignore = ":disabled,:hidden";
+
+                    // Start validation; Prevent going forward if false
+                    return form.valid();
+                },
+                onStepChanged: function (event, currentIndex, priorIndex)
+                {
+                    // Suppress (skip) "Warning" step if the user is old enough.
+                    if (currentIndex === 2 && Number($("#age").val()) >= 18)
+                    {
+                        $(this).steps("next");
+                    }
+
+                    // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+                    if (currentIndex === 2 && priorIndex === 3)
+                    {
+                        $(this).steps("previous");
+                    }
+                },
+                onFinishing: function (event, currentIndex)
+                {
+                    var form = $(this);
+
+                    // Disable validation on fields that are disabled.
+                    // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+                    form.validate().settings.ignore = ":disabled";
+
+                    // Start validation; Prevent form submission if false
+                    return form.valid();
+                },
+                onFinished: function (event, currentIndex)
+                {
+                    var form = $(this);
+
+                    // Submit form input
+                    form.submit();
+                }
+            }).validate({
+                        errorPlacement: function (error, element)
+                        {
+                            element.before(error);
+                        },
+                        rules: {
+                            confirm: {
+                                equalTo: "#password"
+                            }
+                        }
+                    });
+       });
+    </script>
+    </asp:Content>

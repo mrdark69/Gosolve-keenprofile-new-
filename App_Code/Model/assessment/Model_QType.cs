@@ -31,12 +31,21 @@ public class Model_QType : BaseModel<Model_QType>
         // TODO: Add constructor logic here
         //
     }
-
+    public List<Model_QType> GetQTypeAllByStatus(bool Status)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM QuestionsType WHERE Status =@Status ORDER BY Status DESC", cn);
+            cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = Status;
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+        }
+    }
     public List<Model_QType> GetQTypeAll()
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM QuestionsType ", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM QuestionsType ORDER BY Status DESC", cn);
             cn.Open();
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }

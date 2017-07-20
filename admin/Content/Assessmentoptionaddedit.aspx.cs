@@ -12,32 +12,88 @@ public partial class _Assessmentoptionaddedit : BasePage
     {
         if (!this.Page.IsPostBack)
         {
-
-            if (!string.IsNullOrEmpty(Request.QueryString["tab"]))
+            if (!string.IsNullOrEmpty(Request.QueryString["section"]))
             {
-                string tab = Request.QueryString["tab"];
-
-                switch (tab)
-                {
-                    case "2":
-                        tab1.Attributes.Add("aria-expanded", "false");
-                        tab2.Attributes.Add("aria-expanded", "true");
-                        tab3.Attributes.Add("aria-expanded", "false");
-                        tab4.Attributes.Add("aria-expanded", "false");
-
-                        li_tab1.Attributes.Remove("class");
-                        li_tab2.Attributes.Add("class", "active");
-                        li_tab3.Attributes.Remove("class");
-                        li_tab4.Attributes.Remove("class");
+                add_section.Visible = true;
+                byte id = byte.Parse(Request.QueryString["section"]);
+                Model_AsSection sec = AssessmentController.getSectionByID(id);
+                SectionTitle.Text = sec.Title;
+                txtCode.Text = sec.Code;
+                txtintro.Text = sec.Intro;
+                status.SelectedValue = sec.Status.ToString();
+                txtpri.Text = sec.Priority.ToString();
+                headsection_pan.InnerHtml = "Edit Section";
 
 
-                        tab_content1.Visible = false;
-                        tab_content2.Visible = true;
-                        tab_content3.Visible = false;
-                        tab_content4.Visible = false;
+                //Button btneditsec = (Button)FindControl("Button1");
+                //btneditsec.CommandName = "Edit";
+                //btneditsec.CommandName = "Edit";
+            }
+
+            if (!string.IsNullOrEmpty(Request.QueryString["subsection"]))
+            {
+                sub_pan.Visible = true;
+                int subid = int.Parse(Request.QueryString["subsection"]);
+                Model_AsSubSection sub = AssessmentController.getSubByID(subid);
+                dropSection.SelectedValue = sub.SCID.ToString();
+                txtSubTitle.Text = sub.Title;
+                radioSubStatus.Text = sub.Status.ToString();
 
 
-                        List<Model_AsSection> sec = AssessmentController.GetSectionList();
+                headsection_pan1.InnerHtml = "Edit Sub Section";
+
+
+                //Button btneditsec = (Button)FindControl("Button1");
+                //btneditsec.CommandName = "Edit";
+                //btneditsec.CommandName = "Edit";
+            }
+
+            if (!string.IsNullOrEmpty(Request.QueryString["qt"]))
+            {
+                qType_pan.Visible = true;
+                byte subid = byte.Parse(Request.QueryString["qt"]);
+                Model_QType q = AssessmentController.GetQtypeID(subid);
+                txtQtitle.Text = q.Title;
+                qstatus.SelectedValue = q.Status.ToString();
+
+                headsection_pan1.InnerHtml = "Edit Question Type";
+
+
+                //Button btneditsec = (Button)FindControl("Button1");
+                //btneditsec.CommandName = "Edit";
+                //btneditsec.CommandName = "Edit";
+            }
+           
+
+
+        }
+
+
+        if (!string.IsNullOrEmpty(Request.QueryString["tab"]))
+        {
+            string tab = Request.QueryString["tab"];
+
+            switch (tab)
+            {
+                case "2":
+                    tab1.Attributes.Add("aria-expanded", "false");
+                    tab2.Attributes.Add("aria-expanded", "true");
+                    tab3.Attributes.Add("aria-expanded", "false");
+                    tab4.Attributes.Add("aria-expanded", "false");
+
+                    li_tab1.Attributes.Remove("class");
+                    li_tab2.Attributes.Add("class", "active");
+                    li_tab3.Attributes.Remove("class");
+                    li_tab4.Attributes.Remove("class");
+
+
+                    tab_content1.Visible = false;
+                    tab_content2.Visible = true;
+                    tab_content3.Visible = false;
+                    tab_content4.Visible = false;
+
+
+                    List<Model_AsSection> sec = AssessmentController.GetSectionList();
                     dropSection.DataSource = sec;
                     dropSection.DataTextField = "Title";
                     dropSection.DataValueField = "SCID";
@@ -52,122 +108,73 @@ public partial class _Assessmentoptionaddedit : BasePage
                     dropsection2.Items.Insert(0, lis);
 
 
-                    if (!string.IsNullOrEmpty(Request.QueryString["subsection"]))
-                    {
-                        sub_pan.Visible = true;
-                        int subid = int.Parse(Request.QueryString["subsection"]);
-                        Model_AsSubSection sub = AssessmentController.getSubByID(subid);
-                        dropSection.SelectedValue = sub.SCID.ToString();
-                        txtSubTitle.Text = sub.Title;
-                        radioSubStatus.Text = sub.Status.ToString();
 
-
-                        headsection_pan1.InnerHtml = "Edit Sub Section";
-
-
-                        //Button btneditsec = (Button)FindControl("Button1");
-                        //btneditsec.CommandName = "Edit";
-                        //btneditsec.CommandName = "Edit";
-                    }
 
                     break;
-                    case "3":
-                        tab1.Attributes.Add("aria-expanded", "false");
-                        tab2.Attributes.Add("aria-expanded", "false");
-                        tab3.Attributes.Add("aria-expanded", "true");
-                        tab4.Attributes.Add("aria-expanded", "false");
+                case "3":
+                    tab1.Attributes.Add("aria-expanded", "false");
+                    tab2.Attributes.Add("aria-expanded", "false");
+                    tab3.Attributes.Add("aria-expanded", "true");
+                    tab4.Attributes.Add("aria-expanded", "false");
 
-                        li_tab1.Attributes.Remove("class");
-                        li_tab2.Attributes.Remove("class");
-                        li_tab3.Attributes.Add("class", "active");
-                        li_tab4.Attributes.Remove("class");
+                    li_tab1.Attributes.Remove("class");
+                    li_tab2.Attributes.Remove("class");
+                    li_tab3.Attributes.Add("class", "active");
+                    li_tab4.Attributes.Remove("class");
 
-                        tab_content1.Visible = false;
-                        tab_content2.Visible = false;
-                        tab_content3.Visible = true;
-                        tab_content4.Visible = false;
-
-                        if (!string.IsNullOrEmpty(Request.QueryString["qt"]))
-                        {
-                            qType_pan.Visible = true;
-                            byte subid = byte.Parse(Request.QueryString["qt"]);
-                            Model_QType q = AssessmentController.GetQtypeID(subid);
-                            txtQtitle.Text = q.Title;
-                            qstatus.SelectedValue = q.Status.ToString();
-                            
-                            headsection_pan1.InnerHtml = "Edit Question Type";
+                    tab_content1.Visible = false;
+                    tab_content2.Visible = false;
+                    tab_content3.Visible = true;
+                    tab_content4.Visible = false;
 
 
-                            //Button btneditsec = (Button)FindControl("Button1");
-                            //btneditsec.CommandName = "Edit";
-                            //btneditsec.CommandName = "Edit";
-                        }
 
-                        break;
-                    case "4":
-                        tab1.Attributes.Add("aria-expanded", "false");
-                        tab2.Attributes.Add("aria-expanded", "false");
-                        tab3.Attributes.Add("aria-expanded", "false");
-                        tab4.Attributes.Add("aria-expanded", "true");
+                    break;
+                case "4":
+                    tab1.Attributes.Add("aria-expanded", "false");
+                    tab2.Attributes.Add("aria-expanded", "false");
+                    tab3.Attributes.Add("aria-expanded", "false");
+                    tab4.Attributes.Add("aria-expanded", "true");
 
-                        li_tab1.Attributes.Remove("class");
-                        li_tab2.Attributes.Remove("class");
-                        li_tab3.Attributes.Remove("class");
-                        li_tab4.Attributes.Add("class", "active");
+                    li_tab1.Attributes.Remove("class");
+                    li_tab2.Attributes.Remove("class");
+                    li_tab3.Attributes.Remove("class");
+                    li_tab4.Attributes.Add("class", "active");
 
 
-                        tab_content1.Visible = false;
-                        tab_content2.Visible = false;
-                        tab_content3.Visible = false;
-                        tab_content4.Visible = true;
+                    tab_content1.Visible = false;
+                    tab_content2.Visible = false;
+                    tab_content3.Visible = false;
+                    tab_content4.Visible = true;
 
 
-                        Model_AssesIntro ai = AssessmentController.GetAssIntro();
-                        txtIntroTitle.Text = ai.Title;
-                        txtIntroContent.Text = ai.Description;
+                    Model_AssesIntro ai = AssessmentController.GetAssIntro();
+                    txtIntroTitle.Text = ai.Title;
+                    txtIntroContent.Text = ai.Description;
 
-                        break;
-                }
+                    break;
             }
-            else
-            {
+        }
+        else
+        {
 
-                tab_content1.Visible = true;
-                tab_content2.Visible = false;
-                tab_content3.Visible = false;
-                tab_content4.Visible = false;
+            tab_content1.Visible = true;
+            tab_content2.Visible = false;
+            tab_content3.Visible = false;
+            tab_content4.Visible = false;
 
-                tab1.Attributes.Add("aria-expanded", "true");
-                tab2.Attributes.Add("aria-expanded", "false");
-                tab3.Attributes.Add("aria-expanded", "false");
-                tab4.Attributes.Add("aria-expanded", "false");
+            tab1.Attributes.Add("aria-expanded", "true");
+            tab2.Attributes.Add("aria-expanded", "false");
+            tab3.Attributes.Add("aria-expanded", "false");
+            tab4.Attributes.Add("aria-expanded", "false");
 
-                li_tab1.Attributes.Add("class", "active");
-                li_tab2.Attributes.Remove("class");
-                li_tab3.Attributes.Remove("class");
-                li_tab4.Attributes.Remove("class");
-
-             
-
-
-                if (!string.IsNullOrEmpty(Request.QueryString["section"]))
-                {
-                    add_section.Visible = true;
-                    byte id = byte.Parse(Request.QueryString["section"]);
-                    Model_AsSection sec = AssessmentController.getSectionByID(id);
-                    SectionTitle.Text = sec.Title;
-                    txtCode.Text = sec.Code;
-                    txtintro.Text = sec.Intro;
-                    status.SelectedValue = sec.Status.ToString();
-                    txtpri.Text = sec.Priority.ToString();
-                    headsection_pan.InnerHtml = "Edit Section";
+            li_tab1.Attributes.Add("class", "active");
+            li_tab2.Attributes.Remove("class");
+            li_tab3.Attributes.Remove("class");
+            li_tab4.Attributes.Remove("class");
 
 
-                    //Button btneditsec = (Button)FindControl("Button1");
-                    //btneditsec.CommandName = "Edit";
-                    //btneditsec.CommandName = "Edit";
-                }
-            }
+
 
 
         }

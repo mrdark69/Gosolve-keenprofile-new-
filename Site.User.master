@@ -486,6 +486,8 @@
                </li>
             </ul>
          </div>
+
+            </form>
          <script type="text/javascript" src="/Theme/js/plugins.js?1485295283"></script>
          <script type="text/javascript" src="/Theme/js/custom.js?1485295283"></script>
          <!-- Latest compiled and minified JavaScript -->
@@ -597,6 +599,11 @@
                  $('#alertbar').show();
              }
          </script>
-      </form>
+
+              <asp:ContentPlaceHolder ID="ContentFooter" runat="server">
+
+       
+       </asp:ContentPlaceHolder>
+    
    </body>
 </html>
