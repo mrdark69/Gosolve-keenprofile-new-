@@ -20,9 +20,21 @@ public class Model_Assessment_Choice : BaseModel<Model_Assessment_Choice>
 {
     public int ASCID { get; set; }
     public int ASID { get; set; }
+
+    public string Code { get; set; }
+    public int SUCID { get; set; }
     public string Questions { get; set; }
     public bool Status { get; set; }
     public int Priority { get; set; }
+
+
+    public string CombindValue
+    {
+        get
+        {
+            return this.Questions + "," + this.Code + "," + this.SUCID;
+        }
+    }
 
     public Model_Assessment_Choice()
     {
@@ -50,22 +62,30 @@ public class Model_Assessment_Choice : BaseModel<Model_Assessment_Choice>
             SqlCommand cmd = new SqlCommand("DELETE FROM AssessmentChoice WHERE ASID=@ASID", cn);
             cmd.Parameters.Add("@ASID", SqlDbType.Int).Value = ASID;
             cn.Open();
+            ////try
+            ////{
+                ExecuteNonQuery(cmd);
 
-            ret = ExecuteNonQuery(cmd);
-
-            if(ret > 0)
-            {
-                foreach(Model_Assessment_Choice mm in list)
+                if (list.Count > 0)
                 {
-                    SqlCommand cmd1 = new SqlCommand("DELETE FROM AssessmentChoice WHERE ASID=@ASID", cn);
-                    cmd1.Parameters.Add("@ASID", SqlDbType.Int).Value = ASID;
-                    cmd1.Parameters.Add("@Questions", SqlDbType.NVarChar).Value = mm.Questions;
+                    foreach (Model_Assessment_Choice mm in list)
+                    {
+                        SqlCommand cmd1 = new SqlCommand("INSERT INTO  AssessmentChoice (ASID,Code,SUCID,Questions,Priority) VALUES(@ASID,@Code,@SUCID,@Questions,@Priority) ", cn);
 
-                    cmd1.Parameters.Add("@Priority", SqlDbType.Int).Value = mm.Priority;
+                        cmd1.Parameters.Add("@ASID", SqlDbType.Int).Value = ASID;
+                        cmd1.Parameters.Add("@Questions", SqlDbType.NVarChar).Value = mm.Questions;
+                        cmd1.Parameters.Add("@Code", SqlDbType.VarChar).Value = mm.Code;
+                        cmd1.Parameters.Add("@SUCID", SqlDbType.Int).Value = mm.SUCID;
+                        cmd1.Parameters.Add("@Priority", SqlDbType.Int).Value = mm.Priority;
 
-                    ret=  ExecuteNonQuery(cmd1);
+                        ret = ExecuteNonQuery(cmd1);
+                    }
                 }
-            }
+                   
+                
+            //}
+            //catch  { }
+          
         }
 
         return ret;
@@ -248,7 +268,7 @@ Status =@Status,IsHide=@IsHide,QTID=@QTID ,SUCIDLF=@SUCIDLF, SUCIDRT=@SUCIDRT,Pr
 
             }
             cText.Append(@"SELECT u.*,ur.Title AS SectionTitle FROM  Assessment u 
-INNER JOIN Section ur ON ur.SCID =u.SCID " + w  + " ORDER BY Priority ASC");
+INNER JOIN Section ur ON ur.SCID =u.SCID " + w  + " ORDER BY Status DESC, Priority ASC");
 
             cmd.CommandText = cText.ToString();
             cmd.Connection = cn;

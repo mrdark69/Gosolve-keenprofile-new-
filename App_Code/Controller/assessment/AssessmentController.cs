@@ -37,7 +37,13 @@ public class AssessmentController
     }
     public static bool EditAssessment(Model_Assessment ass)
     {
-
+        bool ret = ass.Update(ass);
+        int assid = ass.ASID;
+        if (ass.AssChoice.Count > 0 && ret)
+        {
+            Model_Assessment_Choice assc = new Model_Assessment_Choice();
+            assc.AddAssessmentChoice(ass.AssChoice, assid);
+        }
         return ass.Update(ass);
     }
 

@@ -75,7 +75,7 @@ margin-right:5px;
                                    <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="dropsub" CssClass="col-md-2 control-label">Sub Section</asp:Label>
                                     <div class="col-md-5">
-                                        <asp:DropDownList ID="dropsub" runat="server" CssClass="form-control"></asp:DropDownList>
+                                        <asp:DropDownList ID="dropsub" ClientIDMode="Static" runat="server" CssClass="form-control"></asp:DropDownList>
                                     </div>
                                        <div class="col-md-5">
                                         <asp:DropDownList ID="dropsubrigth" placeholder="Sub Section Right" Visible="false" runat="server" CssClass="form-control"></asp:DropDownList>
@@ -143,9 +143,11 @@ margin-right:5px;
                                     <table class="table" id="add-row-social">
                                         <thead>
                                             <tr>
-                                                <td>Question</td>
-                                                <td>Priority</td>
-                                                <td></td>
+                                                <td style="width:10%">Code</td>
+                                                 <td style="width:15%">Sub Section</td>
+                                                <td style="width:65%">Question</td>
+                                                 <td style="width:5%">Priority</td>
+                                                <td style="width:5%"></td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -234,10 +236,11 @@ margin-right:5px;
                                     <thead>
                                     <tr>
 
-                                        <th></th>
-                                      
+                                       <%-- <th></th>--%>
+                                         <th style="text-align:center">No. </th>
+                                        <th style="text-align:center">Code </th>
                                         <th >Title</th>
-                                         <th style="text-align:center">Code </th>
+                                       
                                          <th style="text-align:center"> Section</th>
                                           <th style="text-align:center"> Priority</th>
                                         <th style="text-align:center">Status </th>
@@ -292,14 +295,18 @@ margin-right:5px;
 
             $("#addchoice").on('click', function () {
                 var uuid = guid();
-
+                var dropsub = $('#dropsub').html();
                 //var dropsocial = $('#dropSocial').html();
 
                 var chk = '<input type="checkbox" name="chk_choice" checked="checked" value="' + uuid + '" style="display:none;" />';
                 //var drop = '<select id="sel_' + uuid + '" name="sel_' + uuid + '" class="form-control">' + dropsocial + '</select>'
                 var txtbox1 = '<input class="form-control" type="textbox"  id="question_s_' + uuid + '" name="question_s_' + uuid + '" />'
                 var txtbox = '<input class="form-control" type="textbox" value="1" id="pri_s_' + uuid + '" name="pri_s_' + uuid + '" />'
-                var html = '<tr id="row_s_' + uuid + '"><td>' + chk + txtbox1 + '</td><td>' + txtbox + '</td><td><button data-idrow="' + uuid + '"  onclick="removeRow(this);" class="btn btn-warning btn-circle" type="button"><i class="fa fa-times"></i></button ></td></tr>'
+
+                var drop = '<select id="sel_sub_' + uuid + '" name="sel_sub_' + uuid + '" class="form-control">' + dropsub + '</select>'
+                var txtbox3 = '<input class="form-control" type="textbox" value="" id="choice_sub_s_' + uuid + '" name="choice_sub_s_' + uuid + '"   />'
+
+                var html = '<tr id="row_s_' + uuid + '"><td>' + txtbox3 + '</td><td>' + drop +'</td><td>' + chk + txtbox1 + '</td><td>' + txtbox + '</td><td><button data-idrow="' + uuid + '"  onclick="removeRow(this);" class="btn btn-warning btn-circle" type="button"><i class="fa fa-times"></i></button ></td></tr>'
                 $('#add-row-social tbody').append(html);
                 return false;
             });
@@ -310,17 +317,27 @@ margin-right:5px;
                 $.each(option, function () {
                     var uuid = guid();
                     var link = $(this).html();
-                    //var dropsocial = $('#dropSocial').html();
+                    var dropsub = $('#dropsub').html();
                     var val = $(this).attr('value');
 
-                    var chk = '<input type="checkbox" name="chk_social" checked="checked" value="' + uuid + '" style="display:none;" />';
-                    var txtbox1 = '<input class="form-control" type="textbox"  id="question_s_' + uuid + '" name="question_s_' + uuid + '" value="' + link +'" />'
-                    var txtbox = '<input class="form-control" type="textbox" value="1" id="pri_s_' + uuid + '" name="pri_s_' + uuid + '" value="' + val +'"  />'
-                    var html = '<tr id="row_s_' + uuid + '"><td>' + chk + txtbox1 + '</td><td>' + txtbox + '</td><td><button data-idrow="' + uuid + '"  onclick="removeRow(this);" class="btn btn-warning btn-circle" type="button"><i class="fa fa-times"></i></button ></td></tr>'
+                    var arr = link.split(',');
+                    var q = arr[0];
+                    var code = arr[1];
+                    var SUCID = arr[2];
+
+                    var chk = '<input type="checkbox" name="chk_choice" checked="checked" value="' + uuid + '" style="display:none;" />';
+                    var txtbox1 = '<input class="form-control" type="textbox"  id="question_s_' + uuid + '" name="question_s_' + uuid + '" value="' + q +'" />'
+                    var txtbox = '<input class="form-control" type="textbox" value="1" id="pri_s_' + uuid + '" name="pri_s_' + uuid + '" value="' + val + '"  />'
+
+
+                    var drop = '<select id="sel_sub_' + uuid + '" name="sel_sub_' + uuid + '" class="form-control">' + dropsub + '</select>'
+                    var txtbox3 = '<input class="form-control" type="textbox"  id="choice_sub_s_' + uuid + '" name="choice_sub_s_' + uuid + '" value="' + code + '"  />'
+
+                    var html = '<tr id="row_s_' + uuid + '"><td>' + txtbox3+'</td><td>' + drop+'</td><td>' + chk + txtbox1 + '</td><td>' + txtbox + '</td><td><button data-idrow="' + uuid + '"  onclick="removeRow(this);" class="btn btn-warning btn-circle" type="button"><i class="fa fa-times"></i></button ></td></tr>'
                     $('#add-row-social tbody').append(html);
 
 
-                    //$('#sel_' + uuid).val(val);
+                    $('#sel_sub_' + uuid).val(SUCID);
                 });
             }
           
@@ -355,12 +372,21 @@ margin-right:5px;
        
         function GenlistAll(data) {
             var ret = "";
+            var count = 1;
             for (var i in data) {
 
+                var ch = data[i].AssChoice;
+                var flag = "";
+                if (ch.length > 0) {
+                    flag = '<span class="badge badge-success">C</span>';
+                }
+
                 ret += '<tr>';
-                ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
+                //ret += '   <td><input type="checkbox" checked class="i-checks" disabled="disabled" name="input[]"></td>';
+                ret += '   <td style="text-align:center">' + count + '</td>';
+                ret += '   <td style="text-align:center">' + data[i].Code + ' ' + flag+'</td>';
                 ret += '   <td>' + data[i].Questions + '</td>';
-                ret += '   <td style="text-align:center">' + data[i].Code + '</td>';
+             
                 ret += '   <td style="text-align:center">' + data[i].SectionTitle + '</td>';
                 ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
                 //ret += '   <td>' + data[i].LastName + '</td>';
@@ -371,6 +397,8 @@ margin-right:5px;
                 ret += '   <td style="text-align:center"><span class="label label-' + bage + '">' + txt + '</span></td>';
                 ret += '   <td style="text-align:center"><a href="Assessment?ass=' + data[i].ASID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
                 ret += '   </tr >';
+
+                count++;
             }
 
             return ret;

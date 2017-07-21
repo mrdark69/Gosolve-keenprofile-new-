@@ -63,7 +63,8 @@ public partial class _Assessment : BasePage
                     if(ass.AssChoice.Count > 0)
                     {
                         dropChoice_ret.DataSource = ass.AssChoice;
-                        dropChoice_ret.DataTextField = "Questions";
+
+                        dropChoice_ret.DataTextField = "CombindValue";
                         dropChoice_ret.DataValueField = "Priority";
                         dropChoice_ret.DataBind();
                     }
@@ -242,8 +243,9 @@ public partial class _Assessment : BasePage
                 {
                     Questions = Request.Form["question_s_" + i],
                     Priority = int.Parse(Request.Form["pri_s_" + i]),
+                    SUCID = int.Parse(Request.Form["sel_sub_" + i]),
+                     Code = Request.Form["choice_sub_s_" + i]
                     
-
                 });
 
             }
@@ -257,14 +259,15 @@ public partial class _Assessment : BasePage
             Code = txtCode.Text.Trim(),
             SCID = int.Parse(dropSection.SelectedValue),
             SUCID = intSUCID,
-            Status = true,
+            Status = bool.Parse(status.SelectedValue),
             QTID = byte.Parse(dropQType.SelectedValue),
             SUCIDLF = intSUCIDLF,
             SUCIDRT = intSUCIDRT,
             Priority = int.Parse(txtpri.Text.Trim()),
             StartRank = int.Parse(txtStartRank.Text.Trim()),
             EndRank = int.Parse(txtEndRank.Text.Trim()), 
-             AssChoice = cl
+             AssChoice = cl,
+
 
         };
 
@@ -272,8 +275,8 @@ public partial class _Assessment : BasePage
 
         if (!string.IsNullOrEmpty(Request.QueryString["ass"]))
         {
-            byte bytID = byte.Parse(Request.QueryString["ass"]);
-            ass.ASID = bytID;
+            int intID = int.Parse(Request.QueryString["ass"]);
+            ass.ASID = intID;
             if (AssessmentController.EditAssessment(ass))
             {
                 Response.Redirect("Assessment");
