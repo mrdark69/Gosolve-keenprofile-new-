@@ -957,9 +957,36 @@ body {
 }
 
 .wizard > .steps > ul > li {
+    /*width:16% !important;*/
     display: none;
 }
 
+.wizard > .steps > ul > li a{
+    text-align:center;
+}
+
+
+.wizard > .steps .current a, .wizard > .steps .current a:hover, .wizard > .steps .current a:active {
+    background: #1161ee !important;
+    color: #fff !important;
+    cursor: default !important;
+}
+.wizard > .steps .done a, .wizard > .steps .done a:hover, .wizard > .steps .done a:active {
+    background: #1161ee !important;
+    color: #fff;
+}
+
+/*#5cb85c*/
+.wizard > .steps a, .wizard > .steps a:hover, .wizard > .steps a:active {
+    display: block;
+    width: auto;
+    margin: 0px !important;
+    padding: 0px !important;
+    text-decoration: none;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+}
 .wizard > .actions a, .wizard > .actions a:hover, .wizard > .actions a:active {
     background-color: #3f51b5 !important;
     margin: 0 auto;
@@ -1086,3 +1113,39 @@ body {
             margin-top:5px;
         }
 
+
+
+        /*Question Rank left right*/
+
+.q-type-rank-scale-lr .tbl-rank-scale-lr {
+}
+    .q-type-rank-scale-lr .tbl-rank-scale-lr table tr td.question {
+        font-size: 18px;
+        display: table-cell;
+        width: 10%;
+        color: #fff;
+        font-family: "Kanit" !important;
+       
+        padding-bottom:20px;
+    }
+
+
+        .q-type-rank-scale-lr .tbl-rank-scale-lr table tr td.question.left {
+            text-align: center;
+        }
+        .q-type-rank-scale-lr .tbl-rank-scale-lr table tr td.question.right {
+            text-align: center;
+        }
+    .q-type-rank-scale-lr .tbl-rank-scale-lr table tr td.choice {
+        color: #fff;
+        font-family: "Kanit" !important;
+    }
+
+
+        .q-type-rank-scale-lr .tbl-rank-scale-lr table tr td.choice input {
+            margin: 0 auto;
+            margin-top: 5px;
+        }
+
+
+   

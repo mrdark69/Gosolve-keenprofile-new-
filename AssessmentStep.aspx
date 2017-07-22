@@ -38,7 +38,12 @@
                         <%--<p>
                             This is basic example of Step
                         </p>--%>
-
+                        <div class="p_percent">
+                            <div style="float:left"> <span></span>
+                            <p>0%</p></div>
+                            <div style="float:right"> <span></span>
+                            <p>100%</p></div>
+                        </div>
                         <div class="progress">
                                 <div style="width: 35%;background-color:#1161ee" aria-valuemax="100" aria-valuemin="0" aria-valuenow="35" role="progressbar" class="progress-bar " >
                                     <span class="sr-only">35% Complete (success)</span>
@@ -193,6 +198,58 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+                             <h1></h1>
+                            <div class="step-content">
+                                <div class="text-center m-t-md">
+                                    <h2>ความสามารถแบบใดที่อธิบายตัวคุณได้ดีที่สุด </h2>
+                                   <div class="question-type q-type-rank-scale-lr">
+                                        <div class="col-md-5 tbl-rank-scale-lr"   >
+
+                                            <table>
+                                                <tr><td colspan="5" class="question left">ทุ่มเททํางาน อย่างหนัก </td></tr>
+                                                <tr><td class="choice">1</td><td class="choice">2</td><td class="choice">3</td><td class="choice">4</td>
+                                                    <td class="choice">5</td></tr>
+                                                 <tr>
+                                                     <td class="choice"><input type="radio" name="le" /></td>
+                                                     <td class="choice"><input type="radio" name="le" /></td>
+                                                     <td class="choice"><input type="radio" name="le" /></td>
+                                                     <td class="choice"><input type="radio" name="le" /></td>
+                                                     <td class="choice"><input type="radio" name="le" /></td>
+                                                 </tr>
+                                            </table>
+
+                                        </div>
+
+                                          <div class="col-md-2"></div>
+                                       <div class="col-md-5 tbl-rank-scale-lr"   >
+
+                                            <table>
+                                                <tr><td colspan="5" class="question right">ทุ่มเททํางาน อย่างหนัก </td></tr>
+                                                <tr><td class="choice">1</td><td class="choice">2</td><td class="choice">3</td><td class="choice">4</td>
+                                                    <td class="choice">5</td></tr>
+                                                 <tr>
+                                                     <td class="choice"><input type="radio" name="le" /></td>
+                                                     <td class="choice"><input type="radio" name="le" /></td>
+                                                     <td class="choice"><input type="radio" name="le" /></td>
+                                                     <td class="choice"><input type="radio" name="le" /></td>
+                                                     <td class="choice"><input type="radio" name="le" /></td>
+                                                 </tr>
+                                            </table>
+
+                                        </div>
+                                        
+                                            
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
 
                     </div>
@@ -225,6 +282,7 @@
      <script>
         $(document).ready(function(){
             $("#wizard").steps({
+                
                 onStepChanging: function (event, currentIndex, newIndex) {
 
                     return true;
