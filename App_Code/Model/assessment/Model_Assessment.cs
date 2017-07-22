@@ -98,13 +98,13 @@ public class Model_Assessment : BaseModel<Model_Assessment>
     public string Code { get; set; }
     public string Questions { get; set; }
     public int SCID { get; set; }
-    public int? SUCID { get; set; }
+    public int SUCID { get; set; }
 
     public bool Status { get; set; }
     public bool IsHide { get; set; } = false;
     public byte QTID { get; set; }
-    public int? SUCIDLF { get; set; }
-    public int? SUCIDRT { get; set; }
+    //public int? SUCIDLF { get; set; }
+    //public int? SUCIDRT { get; set; }
 
     public int Priority { get; set; }
 
@@ -112,6 +112,8 @@ public class Model_Assessment : BaseModel<Model_Assessment>
     public int StartRank { get; set; }
     public int EndRank { get; set; }
 
+    public string GroupName { get; set; }
+    public byte Side { get; set; }
 
     public string SectionTitle { get; set; }
     private List<Model_Assessment_Choice> _asschoice = null;
@@ -146,39 +148,29 @@ public class Model_Assessment : BaseModel<Model_Assessment>
         int ret = 0;
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand(@"INSERT INTO Assessment (Code,Questions,SCID,SUCID,Status,IsHide,QTID,SUCIDLF,SUCIDRT,Priority,StartRank,EndRank) 
-VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@SUCIDLF,@SUCIDRT,@Priority,@StartRank,@EndRank);SET @ASID = SCOPE_IDENTITY();", cn);
+            SqlCommand cmd = new SqlCommand(@"INSERT INTO Assessment (Code,Questions,SCID,SUCID,Status,IsHide,QTID,Priority,StartRank,EndRank,Side,GroupName) 
+VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,@EndRank,@Side,@GroupName);SET @ASID = SCOPE_IDENTITY();", cn);
             cn.Open();
             cmd.Parameters.Add("@Code", SqlDbType.VarChar).Value = mu.Code;
             cmd.Parameters.Add("@Questions", SqlDbType.NVarChar).Value = mu.Questions;
             cmd.Parameters.Add("@SCID", SqlDbType.Int).Value = mu.SCID;
 
-
-            if (mu.SUCID.HasValue)
-                cmd.Parameters.Add("@SUCID", SqlDbType.Int).Value = mu.SUCID;
-            else
-                cmd.Parameters.AddWithValue("@SUCID", DBNull.Value);
-       
-
-
+            cmd.Parameters.Add("@SUCID", SqlDbType.Int).Value = mu.SUCID;
+         
+        
             cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = mu.Status;
             cmd.Parameters.Add("@IsHide", SqlDbType.Bit).Value = mu.IsHide;
             cmd.Parameters.Add("@QTID", SqlDbType.TinyInt).Value = mu.QTID;
 
-            if (mu.SUCIDLF.HasValue)
-                cmd.Parameters.Add("@SUCIDLF", SqlDbType.Int).Value = mu.SUCIDLF;
-            else
-                cmd.Parameters.AddWithValue("@SUCIDLF", DBNull.Value);
-
-            if (mu.SUCIDRT.HasValue)
-                cmd.Parameters.Add("@SUCIDRT", SqlDbType.Int).Value = mu.SUCIDRT;
-            else
-                cmd.Parameters.AddWithValue("@SUCIDRT", DBNull.Value);
-
+           
             cmd.Parameters.Add("@Priority", SqlDbType.Int).Value = mu.Priority;
 
             cmd.Parameters.Add("@StartRank", SqlDbType.Int).Value = mu.StartRank;
             cmd.Parameters.Add("@EndRank", SqlDbType.Int).Value = mu.EndRank;
+
+
+            cmd.Parameters.Add("@Side", SqlDbType.TinyInt).Value = mu.Side;
+            cmd.Parameters.Add("@GroupName", SqlDbType.NVarChar).Value = mu.GroupName;
 
             cmd.Parameters.Add("@ASID", SqlDbType.Int).Direction = ParameterDirection.Output;
 

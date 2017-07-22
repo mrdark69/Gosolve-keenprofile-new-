@@ -74,15 +74,15 @@ margin-right:5px;
                                 </div>
                                    <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="dropsub" CssClass="col-md-2 control-label">Sub Section</asp:Label>
-                                    <div class="col-md-5">
+                                    <div class="col-md-10">
                                         <asp:DropDownList ID="dropsub" ClientIDMode="Static" runat="server" CssClass="form-control"></asp:DropDownList>
                                     </div>
-                                       <div class="col-md-5">
+                                      <%-- <div class="col-md-5">
                                         <asp:DropDownList ID="dropsubrigth" placeholder="Sub Section Right" Visible="false" runat="server" CssClass="form-control"></asp:DropDownList>
-                                    </div>
+                                    </div>--%>
                                 </div>
 
-                                                        <div class="form-group">
+                                     <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="txtCode" CssClass="col-md-2 control-label">Question Code</asp:Label>
                                     <div class="col-md-10">
                                         <asp:TextBox runat="server" ID="txtCode" MaxLength="5" CssClass="form-control" />
@@ -116,22 +116,37 @@ margin-right:5px;
                                                 
 
                             <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="dropQType" CssClass="col-md-2 control-label">Question Type</asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:DropDownList ID="dropQType" runat="server" CssClass="form-control"></asp:DropDownList>
-                                    </div>
-                                </div>
 
-                                   <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="txtStartRank" CssClass="col-md-2 control-label">Rank</asp:Label>
-                                    <div class="col-md-5">
+                                
+                                    <asp:Label runat="server" AssociatedControlID="dropQType" CssClass="col-md-2 control-label">Question Type</asp:Label>
+                                    <div class="col-md-2">
+                                        <asp:DropDownList ID="dropQType" runat="server" CssClass="form-control"></asp:DropDownList>
+
+                                         
+                                    </div>
+                                  <div class="col-md-1">
+                                      <asp:DropDownList ID="dropside" runat="server" CssClass="form-control">
+                                          <asp:ListItem Text="Left" Value="1"></asp:ListItem>
+                                           <asp:ListItem Text="Right" Value="2"></asp:ListItem>
+                                      </asp:DropDownList>
+                                      </div>
+                                    <asp:Label runat="server" AssociatedControlID="txtStartRank" CssClass="col-md-1 control-label">Range</asp:Label>
+                                    <div class="col-md-2">
                                         <asp:TextBox ID="txtStartRank" placeholder="From" runat="server" CssClass="form-control"></asp:TextBox>
                                            <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator2" ControlToValidate="txtStartRank" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                                     </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-2">
                                         <asp:TextBox ID="txtEndRank" placeholder="To"  runat="server" CssClass="form-control"></asp:TextBox>
                                                <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator3" ControlToValidate="txtEndRank" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                                     </div>
+
+                                </div>
+
+                                 <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="txtGroup" CssClass="col-md-2 control-label">Group </asp:Label>
+                                          <div class="col-md-10">
+                                     <asp:TextBox ID="txtGroup"   runat="server" CssClass="form-control"></asp:TextBox>
+                                              </div>
                                 </div>
 
                             <div class="form-group">

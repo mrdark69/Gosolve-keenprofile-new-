@@ -77,21 +77,11 @@ public partial class _Assessment : BasePage
                     txtStartRank.Text = ass.StartRank.ToString();
                     txtEndRank.Text = ass.EndRank.ToString();
 
-                    
+                    dropsub.SelectedValue = ass.SUCID.ToString();
 
-                    if (ass.SCID == 7)
-                    {
-                        dropsub.SelectedValue = (ass.SUCIDLF.HasValue? ((int)ass.SUCIDLF).ToString(): "0");
-                        dropsubrigth.SelectedValue = (ass.SUCIDRT.HasValue ? ((int)ass.SUCIDRT).ToString() : "0"); 
-                        dropsubrigth.Visible = true;
-                       
-                    }
-                    else
-                    {
-                        dropsub.SelectedValue = (ass.SUCID.HasValue ? ((int)ass.SUCID).ToString() : "0");  
-                       // intSUCID = int.Parse(dropsub.SelectedValue);
-                    }
-                   
+
+
+
                 }
               
             }
@@ -218,19 +208,19 @@ public partial class _Assessment : BasePage
     {
         int section = int.Parse(dropSection.SelectedValue);
 
-        int? intSUCID = null;
-        int? intSUCIDLF = null;
-        int? intSUCIDRT = null;
+        //int? intSUCID = null;
+        //int? intSUCIDLF = null;
+        //int? intSUCIDRT = null;
 
-        if(intSUCID == 7)
-        {
-            intSUCIDLF = int.Parse(dropsub.SelectedValue);
-            intSUCIDRT = int.Parse(dropsubrigth.SelectedValue);
-        }
-        else
-        {
-            intSUCID = int.Parse(dropsub.SelectedValue);
-        }
+        //if(intSUCID == 7)
+        //{
+        //    intSUCIDLF = int.Parse(dropsub.SelectedValue);
+        //   // intSUCIDRT = int.Parse(dropsubrigth.SelectedValue);
+        //}
+        //else
+        //{
+        //    intSUCID = int.Parse(dropsub.SelectedValue);
+        //}
 
         List<Model_Assessment_Choice> cl = new List<Model_Assessment_Choice>();
         if (!string.IsNullOrEmpty(Request.Form["chk_choice"]))
@@ -258,15 +248,16 @@ public partial class _Assessment : BasePage
             Questions = QuestionTitle.Text.Trim(),
             Code = txtCode.Text.Trim(),
             SCID = int.Parse(dropSection.SelectedValue),
-            SUCID = intSUCID,
+            SUCID = int.Parse(dropsub.SelectedValue),
             Status = bool.Parse(status.SelectedValue),
             QTID = byte.Parse(dropQType.SelectedValue),
-            SUCIDLF = intSUCIDLF,
-            SUCIDRT = intSUCIDRT,
+          
             Priority = int.Parse(txtpri.Text.Trim()),
             StartRank = int.Parse(txtStartRank.Text.Trim()),
-            EndRank = int.Parse(txtEndRank.Text.Trim()), 
-             AssChoice = cl,
+            EndRank = int.Parse(txtEndRank.Text.Trim()),
+            AssChoice = cl,
+            Side = byte.Parse(dropside.SelectedValue),
+            GroupName = txtGroup.Text.Trim()
 
 
         };
@@ -321,24 +312,26 @@ public partial class _Assessment : BasePage
         dropsub.DataValueField = "SUCID";
         dropsub.DataBind();
 
-        if(intSCID == 7)
-        {
-            dropsubrigth.DataSource = sub;
-            dropsubrigth.DataTextField = "Title";
-            dropsubrigth.DataValueField = "SUCID";
-            dropsubrigth.DataBind();
+        //if(intSCID == 7)
+        //{
+        //    dropsubrigth.DataSource = sub;
+        //    dropsubrigth.DataTextField = "Title";
+        //    dropsubrigth.DataValueField = "SUCID";
+        //    dropsubrigth.DataBind();
 
-            dropsubrigth.Visible = true;
+        //    dropsubrigth.Visible = true;
 
 
-        }
-        else
-        {
-            dropsubrigth.Visible = false;
-        }
+        //}
+        //else
+        //{
+        //    dropsubrigth.Visible = false;
+        //}
 
 
         Model_AsSection secs = AssessmentController.getSectionByID(intSCID);
         txtCode.Text = secs.Code.ToString();
     }
+
+    
 }
