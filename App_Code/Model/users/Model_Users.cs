@@ -27,8 +27,7 @@ public class Model_Users : BaseModel<Model_Users>
     public byte Gender { get; set; }
     public int Nationality { get; set; }
     public string MobileNumber { get; set; }
-    public string FC { get; set; }
-    public string CurrentJob { get; set; }
+
     public byte UserCatId { get; set; }
     public byte UsersRoleId { get; set; }
     public bool Status { get; set; }

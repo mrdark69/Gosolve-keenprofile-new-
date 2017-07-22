@@ -190,34 +190,24 @@ VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,
         {
             SqlCommand cmd = new SqlCommand(@"UPDATE Assessment SET Code=@Code, Questions=@Questions, SCID=@SCID, SUCID=@SUCID, 
 
-Status =@Status,IsHide=@IsHide,QTID=@QTID ,SUCIDLF=@SUCIDLF, SUCIDRT=@SUCIDRT,Priority=@Priority, StartRank=@StartRank,EndRank=@EndRank WHERE ASID=@ASID", cn);
+Status =@Status,IsHide=@IsHide,QTID=@QTID ,GroupName=@GroupName, Side=@Side,Priority=@Priority, StartRank=@StartRank,EndRank=@EndRank WHERE ASID=@ASID", cn);
 
             cmd.Parameters.Add("@Code", SqlDbType.VarChar).Value = mu.Code;
             cmd.Parameters.Add("@Questions", SqlDbType.NVarChar).Value = mu.Questions;
             cmd.Parameters.Add("@SCID", SqlDbType.Int).Value = mu.SCID;
-            if (mu.SUCID.HasValue)
-                cmd.Parameters.Add("@SUCID", SqlDbType.Int).Value = mu.SUCID;
-            else
-                cmd.Parameters.AddWithValue("@SUCID", DBNull.Value);
+            cmd.Parameters.Add("@SUCID", SqlDbType.Int).Value = mu.SUCID;
             cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = mu.Status;
             cmd.Parameters.Add("@IsHide", SqlDbType.Bit).Value = mu.IsHide;
             cmd.Parameters.Add("@QTID", SqlDbType.TinyInt).Value = mu.QTID;
 
-            if (mu.SUCIDLF.HasValue)
-                cmd.Parameters.Add("@SUCIDLF", SqlDbType.Int).Value = mu.SUCIDLF;
-            else
-                cmd.Parameters.AddWithValue("@SUCIDLF", DBNull.Value);
-
-            if (mu.SUCIDRT.HasValue)
-                cmd.Parameters.Add("@SUCIDRT", SqlDbType.Int).Value = mu.SUCIDRT;
-            else
-                cmd.Parameters.AddWithValue("@SUCIDRT", DBNull.Value);
+          
 
             cmd.Parameters.Add("@Priority", SqlDbType.Int).Value = mu.Priority;
 
             cmd.Parameters.Add("@StartRank", SqlDbType.Int).Value = mu.StartRank;
             cmd.Parameters.Add("@EndRank", SqlDbType.Int).Value = mu.EndRank;
-
+            cmd.Parameters.Add("@Side", SqlDbType.TinyInt).Value = mu.Side;
+            cmd.Parameters.Add("@GroupName", SqlDbType.NVarChar).Value = mu.GroupName;
             cmd.Parameters.Add("@ASID", SqlDbType.Int).Value = mu.ASID;
 
             cn.Open();
