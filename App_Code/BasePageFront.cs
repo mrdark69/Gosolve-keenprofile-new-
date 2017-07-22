@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 /// </summary>
 public class BasePageFront : System.Web.UI.Page
 {
+    public Model_Users UserActive { get; set; }
     public BasePageFront()
     {
         //
@@ -22,8 +23,11 @@ public class BasePageFront : System.Web.UI.Page
         // StaffSessionAuthorize.CheckCooikie();
       Model_Users u =  UserSessionController.FrontAppAuthorization(this);
 
+       
+
         if (u != null)
         {
+            this.UserActive = u;
             if (!u.EmailVerify)
             {
               
