@@ -15,7 +15,7 @@ public partial class _Assessment : BasePage
 
 
 
-            List<Model_AsSection> sec = AssessmentController.GetSectionList();
+            List<Model_AsSection> sec = AssessmentController.GetSectionList(true);
             dropSection.DataSource = sec;
             dropSection.DataTextField = "Title";
             dropSection.DataValueField = "SCID";
@@ -89,6 +89,7 @@ public partial class _Assessment : BasePage
                     dropsub.DataBind();
 
                     dropSection.SelectedValue = ass.SCID.ToString();
+                    dropsecs.SelectedValue = ass.SCID.ToString();
                     dropsub.SelectedValue = ass.SUCID.ToString();
 
 

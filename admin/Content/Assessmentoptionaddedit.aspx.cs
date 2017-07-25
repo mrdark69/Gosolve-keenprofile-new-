@@ -21,7 +21,7 @@ public partial class _Assessmentoptionaddedit : BasePage
            
 
 
-            List<Model_AsSection> seclist = AssessmentController.GetSectionList();
+            List<Model_AsSection> seclist = AssessmentController.GetSectionList(true);
             dropSection.DataSource = seclist;
             dropSection.DataTextField = "Title";
             dropSection.DataValueField = "SCID";

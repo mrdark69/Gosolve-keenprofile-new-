@@ -108,10 +108,10 @@ public class AssessmentController
         return sec.GetSectionByID(intSectionID);
        
     }
-    public static List<Model_AsSection> GetSectionList()
+    public static List<Model_AsSection> GetSectionList(bool status)
     {
         Model_AsSection sec = new Model_AsSection();
-        return sec.GetListSection();
+        return sec.GetListSection(status);
     }
     
 

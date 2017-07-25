@@ -32,7 +32,7 @@ public partial class _AssessmentStep : BasePageFront
 
             //Get Section 
             Model_AsSection section = new Model_AsSection();
-            List<Model_AsSection> sectionlist = section.GetListSection();
+            List<Model_AsSection> sectionlist = section.GetListSection(true);
 
             //Get Assessment
             Model_Assessment ass = new Model_Assessment();

@@ -66,7 +66,23 @@ public class Model_AsSection : BaseModel<Model_AsSection>
     {
         using(SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Section WHERE Status =1 ORDER BY Priority ASC", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Section   ORDER BY Status DESC, Priority ASC", cn);
+            
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+        }
+    }
+    /// <summary>
+    /// override method 
+    /// </summary>
+    /// <param name="Status"></param>
+    /// <returns></returns>
+    public List<Model_AsSection> GetListSection(bool Status)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Section WHERE Status =@Status ORDER BY Priority ASC", cn);
+            cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = Status;
             cn.Open();
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }

@@ -48,7 +48,7 @@ public class Model_AsSubSection : BaseModel<Model_AsSubSection>
 
             }
             cText.Append(@"SELECT u.*,ur.Title AS SectionTitle FROM  SubSection u 
-INNER JOIN Section ur ON ur.SCID =u.SCID " + w);
+INNER JOIN Section ur ON ur.SCID =u.SCID AND ur.Status = 1" + w + " ORDER BY ur.SCID ASC");
 
             cmd.CommandText = cText.ToString();
             cmd.Connection = cn;
