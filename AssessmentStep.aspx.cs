@@ -51,13 +51,18 @@ public partial class _AssessmentStep : BasePageFront
             dropNation.SelectedValue = "211";
 
 
-            stepprofile_head.Visible = false;
-            stepprofile.Visible = false;
+            //stepprofile_head.Visible = false;
+            //stepprofile.Visible = false;
 
 
 
             IntroTitle.Text = intro.Title;
-            IntroDetail.Text = convertcontent(intro.Description); 
+            IntroDetail.Text = convertcontent(intro.Description);
+
+            LastTitle.Text = intro.LastTitle;
+            LastDes.Text = convertcontent(intro.LastDes);
+
+            Maintitle.Text = intro.MainTitle;
 
             StringBuilder ret = new StringBuilder();
             foreach (Model_AsSection sec in sectionlist)
@@ -135,14 +140,23 @@ public partial class _AssessmentStep : BasePageFront
             ret.Append("<div class=\"col-md-5 tbl-rank-scale-lr\"   >");
             ret.Append("<table>");
             ret.Append(" <tr><td colspan=\"5\" class=\"question left\">" + ass.Questions + "</td></tr>");
-            ret.Append("<tr><td class=\"choice\">1</td><td class=\"choice\">2</td><td class=\"choice\">3</td><td class=\"choice\">4</td>");
-            ret.Append("<td class=\"choice\">5</td></tr>");
             ret.Append("<tr>");
-            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            for (int i = ass.StartRank; i <= ass.EndRank; i++)
+            {
+                ret.Append("<td class=\"choice\">"+i+"</td>");
+            }
+                //ret.Append("<tr><td class=\"choice\">1</td><td class=\"choice\">2</td><td class=\"choice\">3</td><td class=\"choice\">4</td>");
+            //ret.Append("<td class=\"choice\">5</td></tr>");
+            ret.Append("</tr><tr>");
+            for (int i = ass.StartRank; i <= ass.EndRank; i++)
+            {
+                ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            }
+            //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
             ret.Append("</tr>");
             ret.Append("</table>");
             ret.Append("</div>");
@@ -154,14 +168,23 @@ public partial class _AssessmentStep : BasePageFront
             ret.Append("<div class=\"col-md-5 tbl-rank-scale-lr\" >");
             ret.Append("<table>");
             ret.Append("<tr><td colspan=\"5\" class=\"question right\">" + ass.Questions + "</td></tr>");
-            ret.Append("<tr><td class=\"choice\">1</td><td class=\"choice\">2</td><td class=\"choice\">3</td><td class=\"choice\">4</td>");
-            ret.Append("<td class=\"choice\">5</td></tr>");
             ret.Append("<tr>");
-            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            for (int i = ass.StartRank; i <= ass.EndRank; i++)
+            {
+                ret.Append("<td class=\"choice\">" + i + "</td>");
+            }
+                //ret.Append("<tr><td class=\"choice\">1</td><td class=\"choice\">2</td><td class=\"choice\">3</td><td class=\"choice\">4</td>");
+            //ret.Append("<td class=\"choice\">5</td></tr>");
+            ret.Append("</tr><tr>");
+            for (int i = ass.StartRank; i <= ass.EndRank; i++)
+            {
+                ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            }
+            //    ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
             ret.Append("</tr>");
             ret.Append("</table>");
             ret.Append("</div>");

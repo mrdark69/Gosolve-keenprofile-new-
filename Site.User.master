@@ -603,7 +603,7 @@
              }
          </script>
        <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
-
+       <script src="/Scripts/theme/plugins/validate/jquery.validate.min.js"></script>
               <asp:ContentPlaceHolder ID="ContentFooter" runat="server">
 
        

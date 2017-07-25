@@ -22,7 +22,7 @@
     position: absolute;
     z-index: 1;
     top:-39px;
-        margin-left: 47px;
+        margin-left: -21px;
 }
 .progress-bar .tooltip-top::after {
     content: "";
@@ -55,7 +55,7 @@
    <section id="about" class="section section-about">
        <div class="banner">
 				<div class="wsite-section-elements">
-					<h2 class="wsite-content-title" style="text-align:center;color:#fff;text-transform: uppercase;font-family: 'Lato', sans-serif;margin-bottom:20px;">Working Geniuses & Current Job Assessment</h2>
+					<h2 class="wsite-content-title" style="text-align:center;color:#fff;text-transform: uppercase;font-family: 'Lato', sans-serif;margin-bottom:20px;"><asp:Literal ID="Maintitle" runat="server"></asp:Literal></h2>
 
 <div class="paragraph" style="text-align:center;"></div>
 				</div>
@@ -111,15 +111,15 @@
                                         <div class="form-group"><label class="col-sm-2 control-label">First name:</label>
 
                                             <div class="col-sm-10">
-                                                <asp:TextBox ID="firstName" runat="server" CssClass="form-control"></asp:TextBox>
-                                               
+                                                <asp:TextBox ID="firstName" runat="server" CssClass="form-control required"></asp:TextBox>
+                                          
 
                                             </div>
                                         </div>
                                         <div class="form-group"><label class="col-sm-2 control-label">Last name:</label>
 
                                             <div class="col-sm-10">
-                                                    <asp:TextBox ID="LastName" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="LastName" runat="server" CssClass="form-control required"></asp:TextBox>
                                                
 
                                             </div>
@@ -144,7 +144,7 @@
                                         <div class="form-group"><label class="col-sm-2 control-label">Date of birth:</label>
 
                                             <div class="col-sm-10" style="text-align:left">
-                                                <asp:TextBox ID="day" runat="server" MaxLengt="2" TextMode="Date" placeholder="Day" CssClass="form-control dob"></asp:TextBox>
+                                                <asp:TextBox ID="day" runat="server" MaxLengt="2" TextMode="Date" placeholder="Day" CssClass="form-control dob required"></asp:TextBox>
                                                  
 
                                             </div>
@@ -157,6 +157,17 @@
                           
                          <asp:Literal ID="Stepcontent" runat="server"></asp:Literal>
 
+
+                            <h1  class="step_count"></h1>
+                            <div class="step-content">
+                                <div class="text-center m-t-md">
+                                <h2><asp:Literal ID="LastTitle" runat="server">Congratuation</asp:Literal></h2>
+                                <p>
+                                    <asp:Literal ID="LastDes" runat="server">คุณได้ทํา The Career Pillar Assessment ของทาง Keen Profile ครบทุกข้อแล้ว โปรดคลิก “ส่ง” เพื่อส่งแบบสอบถาม </asp:Literal>
+                                </p>
+                                    
+                                </div>
+                            </div>
 
                            <%-- <h1></h1>
                             <div class="step-content">
@@ -386,7 +397,29 @@
                 },
                 onStepChanging: function (event, currentIndex, newIndex) {
 
-                    return true;
+                    if (currentIndex > newIndex) {
+                        return true;
+                    }
+
+                    // Forbid suppressing "Warning" step if the user is to young
+                    ////if (newIndex === 3 && Number($("#age").val()) < 18) {
+                    ////    return false;
+                    ////}
+
+                    var form = $("form");
+
+                    // Clean up if user went backward before
+                    if (currentIndex < newIndex) {
+                        // To remove error styles
+                        $(".body:eq(" + newIndex + ") label.error", form).remove();
+                        $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                    }
+
+                    // Disable validation on fields that are disabled or hidden.
+                    form.validate().settings.ignore = ":disabled,:hidden";
+
+                    // Start validation; Prevent going forward if false
+                    return form.valid();
                 },
                 onStepChanged: function (event, currentIndex, priorIndex) {
 
@@ -396,13 +429,40 @@
 
                     progress(currentIndex);
 
-                    return true;
+                    //// Suppress (skip) "Warning" step if the user is old enough.
+                    //if (currentIndex === 2 && Number($("#age").val()) >= 18) {
+                    //    $(this).steps("next");
+                    //}
+
+                    //// Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+                    //if (currentIndex === 2 && priorIndex === 3) {
+                    //    $(this).steps("previous");
+                    //}
                 },
                 onFinishing: function (event, currentIndex) {
-                    return true;
+                    var form = $("form");
+
+                    // Disable validation on fields that are disabled.
+                    // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+                    form.validate().settings.ignore = ":disabled";
+
+                    // Start validation; Prevent form submission if false
+                    return form.valid();
                 },
                 onFinished: function (event, currentIndex) {
-                    return true;
+                    var form = $("form");
+
+                    // Submit form input
+                    form.submit();
+                }
+            }).validate({
+                errorPlacement: function (error, element) {
+                    element.before(error);
+                },
+                rules: {
+                    confirm: {
+                        equalTo: "#password"
+                    }
                 }
             });
             
@@ -416,8 +476,12 @@
              var percent_format = numeral(percent).format('0');
             
 
-             $("#progress_bar_per").animate({ width: percent+"%" }, 600);
-            // $("#progress_bar_per").css("width", percent + "%");
+            
+             $("#progress_bar_per").css("width", percent + "%");
+             $('.tooltiptext').css("left", $('#progress_bar_per').width() + "px");
+             //setTimeout(function () {
+             //    $('.tooltiptext').css("left", $('#progress_bar_per').width() + "px");
+             //}, 2000);
 
              //var w = $('#progress_bar_per').width();
              console.log(current);
@@ -425,13 +489,14 @@
 
              //var f = $('#progress_bar_per').offset();
              //$("#example").animate({ width: 250 }, 200);
-             $('.tooltiptext').animate({ left: $('#progress_bar_per').width() }, 600);
+            // $('.tooltiptext').animate({ left: $('#progress_bar_per').width() }, 0);
+            // $("#progress_bar_per").animate({ width: percent + "%" }, 0);
              var text = percent_format + "% Complete";
              if (percent_format >= 100) {
                  text = "Done!!";
              }
              $('.tooltiptext').html(text);
-             //$('.tooltiptext').css("left", $('#progress_bar_per').width()+ "px");
+            
          }
     </script>
     </asp:Content>

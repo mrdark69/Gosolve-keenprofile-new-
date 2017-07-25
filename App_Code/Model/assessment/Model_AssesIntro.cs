@@ -19,7 +19,13 @@ public class Model_AssesIntro : BaseModel<Model_AssesIntro>
     public byte ID { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
-   
+
+
+    public string LastTitle { get; set; }
+    public string LastDes { get; set; }
+    public string MainTitle { get; set; }
+
+
 
     public Model_AssesIntro()
     {
@@ -32,10 +38,13 @@ public class Model_AssesIntro : BaseModel<Model_AssesIntro>
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("UPDATE AssIntro SET Title=@Title, Description=@Description WHERE ID =1", cn);
+            SqlCommand cmd = new SqlCommand("UPDATE AssIntro SET Title=@Title, Description=@Description, LastTitle=@LastTitle,LastDes=@LastDes,MainTitle=@MainTitle WHERE ID =1", cn);
             cn.Open();
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = ss.Title;
             cmd.Parameters.Add("@Description", SqlDbType.NVarChar).Value = ss.Description;
+            cmd.Parameters.Add("@LastTitle", SqlDbType.NVarChar).Value = ss.LastTitle;
+            cmd.Parameters.Add("@LastDes", SqlDbType.NVarChar).Value = ss.LastDes;
+            cmd.Parameters.Add("@MainTitle", SqlDbType.NVarChar).Value = ss.MainTitle;
 
             return ExecuteNonQuery(cmd) == 1;
         }

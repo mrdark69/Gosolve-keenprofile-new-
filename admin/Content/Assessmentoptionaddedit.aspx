@@ -481,6 +481,16 @@ margin-right:5px;
                              <%--   <asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
                                 <asp:Label ID="Label3" runat="server"></asp:Label>
                                
+                                                 <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="txtIntroTitle" CssClass="col-md-2 control-label">Topic Title</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="MainTitle" CssClass="form-control" />
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="MainTitle"
+                                            CssClass="text-danger" ErrorMessage="The  field is required." />
+                                    </div>
+                                </div>
+
+
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="txtIntroTitle" CssClass="col-md-2 control-label">Title</asp:Label>
                                     <div class="col-md-10">
@@ -495,6 +505,27 @@ margin-right:5px;
                                     <div class="col-md-10">
                                         <asp:TextBox runat="server" ID="txtIntroContent" CssClass="form-control"  TextMode="MultiLine" Rows="5" />
                                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtIntroContent"
+                                            CssClass="text-danger" ErrorMessage="The  field is required." />
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="LastTitle" CssClass="col-md-2 control-label">Finished Title</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="LastTitle" CssClass="form-control" />
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="LastTitle"
+                                            CssClass="text-danger" ErrorMessage="The  field is required." />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="LastDes" CssClass="col-md-2 control-label">Finished Content </asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="LastDes" CssClass="form-control"  TextMode="MultiLine" Rows="5" />
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="LastDes"
                                             CssClass="text-danger" ErrorMessage="The  field is required." />
                                     </div>
                                 </div>

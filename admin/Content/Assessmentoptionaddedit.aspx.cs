@@ -15,8 +15,10 @@ public partial class _Assessmentoptionaddedit : BasePage
             Model_AssesIntro ai = AssessmentController.GetAssIntro();
             txtIntroTitle.Text = ai.Title;
             txtIntroContent.Text = ai.Description;
-
-
+            LastTitle.Text = ai.LastTitle;
+            LastDes.Text = ai.LastDes;
+            MainTitle.Text = ai.MainTitle;
+           
 
 
             List<Model_AsSection> seclist = AssessmentController.GetSectionList();
@@ -325,7 +327,11 @@ public partial class _Assessmentoptionaddedit : BasePage
         Model_AssesIntro intro = new Model_AssesIntro
         {
              Title = txtIntroTitle.Text.Trim(),
-             Description = txtIntroContent.Text.Trim()
+             Description = txtIntroContent.Text.Trim(),
+            LastTitle = LastTitle.Text.Trim(),
+            LastDes = LastDes.Text.Trim(),
+            MainTitle = MainTitle.Text.Trim(),
+
         };
         if (AssessmentController.UpdateIntro(intro))
         {

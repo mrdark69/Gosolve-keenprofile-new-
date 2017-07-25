@@ -1194,3 +1194,11 @@ body {
 :-moz-placeholder { /* Firefox 18- */
     color: #3f51b5;
 }
+
+
+.wizard > .content > .body label.error {
+    float: left;
+    color: red !important;
+    font-weight: normal !important;
+    font-size: 12px !important;
+}
