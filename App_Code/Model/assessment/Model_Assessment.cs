@@ -115,6 +115,9 @@ public class Model_Assessment : BaseModel<Model_Assessment>
     public string GroupName { get; set; }
     public byte Side { get; set; }
 
+    public string LeftScaleTitle { get; set; }
+    public string RigthScaleTitle { get; set; }
+
     public string SectionTitle { get; set; }
     private List<Model_Assessment_Choice> _asschoice = null;
     public List<Model_Assessment_Choice> AssChoice {
@@ -148,8 +151,8 @@ public class Model_Assessment : BaseModel<Model_Assessment>
         int ret = 0;
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand(@"INSERT INTO Assessment (Code,Questions,SCID,SUCID,Status,IsHide,QTID,Priority,StartRank,EndRank,Side,GroupName) 
-VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,@EndRank,@Side,@GroupName);SET @ASID = SCOPE_IDENTITY();", cn);
+            SqlCommand cmd = new SqlCommand(@"INSERT INTO Assessment (Code,Questions,SCID,SUCID,Status,IsHide,QTID,Priority,StartRank,EndRank,Side,GroupName,LeftScaleTitle,RigthScaleTitle) 
+VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,@EndRank,@Side,@GroupName,@LeftScaleTitle,@RigthScaleTitle);SET @ASID = SCOPE_IDENTITY();", cn);
             cn.Open();
             cmd.Parameters.Add("@Code", SqlDbType.VarChar).Value = mu.Code;
             cmd.Parameters.Add("@Questions", SqlDbType.NVarChar).Value = mu.Questions;
@@ -172,6 +175,9 @@ VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,
             cmd.Parameters.Add("@Side", SqlDbType.TinyInt).Value = mu.Side;
             cmd.Parameters.Add("@GroupName", SqlDbType.NVarChar).Value = mu.GroupName;
 
+            cmd.Parameters.Add("@LeftScaleTitle", SqlDbType.NVarChar).Value = mu.LeftScaleTitle;
+            cmd.Parameters.Add("@RigthScaleTitle", SqlDbType.NVarChar).Value = mu.RigthScaleTitle;
+
             cmd.Parameters.Add("@ASID", SqlDbType.Int).Direction = ParameterDirection.Output;
 
             if (ExecuteNonQuery(cmd) > 0)
@@ -189,8 +195,8 @@ VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand(@"UPDATE Assessment SET Code=@Code, Questions=@Questions, SCID=@SCID, SUCID=@SUCID, 
-
-Status =@Status,IsHide=@IsHide,QTID=@QTID ,GroupName=@GroupName, Side=@Side,Priority=@Priority, StartRank=@StartRank,EndRank=@EndRank WHERE ASID=@ASID", cn);
+            Status =@Status,IsHide=@IsHide,QTID=@QTID ,GroupName=@GroupName, Side=@Side,Priority=@Priority, 
+        StartRank=@StartRank,EndRank=@EndRank ,LeftScaleTitle=@LeftScaleTitle,RigthScaleTitle=@RigthScaleTitle WHERE ASID=@ASID", cn);
 
             cmd.Parameters.Add("@Code", SqlDbType.VarChar).Value = mu.Code;
             cmd.Parameters.Add("@Questions", SqlDbType.NVarChar).Value = mu.Questions;
@@ -208,6 +214,9 @@ Status =@Status,IsHide=@IsHide,QTID=@QTID ,GroupName=@GroupName, Side=@Side,Prio
             cmd.Parameters.Add("@EndRank", SqlDbType.Int).Value = mu.EndRank;
             cmd.Parameters.Add("@Side", SqlDbType.TinyInt).Value = mu.Side;
             cmd.Parameters.Add("@GroupName", SqlDbType.NVarChar).Value = mu.GroupName;
+            cmd.Parameters.Add("@LeftScaleTitle", SqlDbType.NVarChar).Value = mu.LeftScaleTitle;
+            cmd.Parameters.Add("@RigthScaleTitle", SqlDbType.NVarChar).Value = mu.RigthScaleTitle;
+
             cmd.Parameters.Add("@ASID", SqlDbType.Int).Value = mu.ASID;
 
             cn.Open();
@@ -233,7 +242,15 @@ Status =@Status,IsHide=@IsHide,QTID=@QTID ,GroupName=@GroupName, Side=@Side,Prio
                 return null;
         }
     }
-
+    public List<Model_Assessment> GetAssessmentAll()
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Assessment WHERe Status =1", cn);
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+        }
+    }
     public List<Model_Assessment> GetAssessment(Model_Assessment mu)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))

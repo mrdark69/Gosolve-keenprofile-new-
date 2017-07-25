@@ -13,7 +13,7 @@
     <link href="css/plugins/steps/jquery.steps.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">--%>
  </asp:Content>
-
+  
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
   
    <section id="about" class="section section-about">
@@ -23,7 +23,7 @@
 
 <div class="paragraph" style="text-align:center;"></div>
 				</div>
-			</div>
+		
 					<div class="animate-up animated">
 						<div class="section-box">
 							<div class="profile">
@@ -50,19 +50,78 @@
                                 </div>
                             </div>
                         <div id="wizard">
+
+                           
                             <h1></h1>
                             <div class="step-content">
                                 <div class="text-center m-t-md">
-                                <h2>ขอต้อนรับสู่ Assessment ของทาง Keen Profile</h2>
+                                <h2><asp:Literal ID="IntroTitle" runat="server"></asp:Literal></h2>
                                 <p>
-                                    ขอให้คุณใช้เวลาประมาณ 20 นาที เพื่อตอบคำถามในแบบสอบถามนี้ 
-                                    เพื่อที่ทางทีมงานจะสามารถนำข้อมูลที่ได้ไปทำการวิเคราะห์และให้คำปรึกษาแก่คุณในด้านต่างๆ ในลำดับต่อไป
+                                    <asp:Literal ID="IntroDetail" runat="server"></asp:Literal>
                                 </p>
                                     
                                 </div>
                             </div>
 
-                            <h1></h1>
+
+                       
+                            <h1 id="stepprofile_head" runat="server"></h1>
+                            <div class="step-content" id="stepprofile" runat="server">
+                                <div class="text-center m-t-md">
+                                <h2>ขอต้อนรับสู่ Assessment ของทาง Keen Profile</h2>
+                               
+                                    <div class="q-form-bio form-horizontal">
+                                        <div class="form-group"><label class="col-sm-2 control-label">First name:</label>
+
+                                            <div class="col-sm-10">
+                                                <asp:TextBox ID="firstName" runat="server" CssClass="form-control"></asp:TextBox>
+                                               
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group"><label class="col-sm-2 control-label">Last name:</label>
+
+                                            <div class="col-sm-10">
+                                                    <asp:TextBox ID="LastName" runat="server" CssClass="form-control"></asp:TextBox>
+                                               
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group"><label class="col-sm-2 control-label">Gender:</label>
+
+                                            <div class="col-sm-10">
+                                                <asp:DropDownList ID="dropGender" CssClass="form-control" runat="server">
+                                                    <asp:ListItem Text="Male" Value="1"></asp:ListItem>
+                                                    <asp:ListItem Text="Female" Value="2"></asp:ListItem>
+                                                </asp:DropDownList>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="form-group"><label class="col-sm-2 control-label">Nationality:</label>
+
+                                            <div class="col-sm-10">
+                                                <asp:DropDownList ID="dropNation" CssClass="form-control" runat="server"></asp:DropDownList>
+                                             
+                                            </div>
+                                        </div>
+                                        <div class="form-group"><label class="col-sm-2 control-label">Date of birth:</label>
+
+                                            <div class="col-sm-10" style="text-align:left">
+                                                <asp:TextBox ID="day" runat="server" MaxLengt="2" TextMode="Date" placeholder="Day" CssClass="form-control dob"></asp:TextBox>
+                                                 
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                          
+                         <asp:Literal ID="Stepcontent" runat="server"></asp:Literal>
+
+
+                           <%-- <h1></h1>
                             <div class="step-content">
                                 <div class="text-center m-t-md">
                                     <h2>Working Geniuses Assessment</h2>
@@ -247,7 +306,7 @@
 
                                     </div>
                                 </div>
-                            </div>
+                            </div>--%>
 
 
                         </div>

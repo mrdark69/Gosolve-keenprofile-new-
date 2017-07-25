@@ -308,7 +308,7 @@ public class UserSessionController
 
             if (!u.Status)
             {
-                LogoutStaffNotActivate();
+                LogoutStaffNotActivateFront();
             }
 
             if (ms.LeaveTime.HasValue)
@@ -340,10 +340,10 @@ public class UserSessionController
         Model_Users u = null;
         HttpSessionState Hotels2Session = HttpContext.Current.Session;
         //object objSession = HttpContext.Current.Session["staff"];
-        HttpCookie objCookie = HttpContext.Current.Request.Cookies["SessionKey"];
+        HttpCookie objCookie = HttpContext.Current.Request.Cookies["SessionKeyFront"];
         Model_Session ms = new Model_Session();
 
-        object objSession = Hotels2Session["staff"];
+        object objSession = Hotels2Session["UserFront"];
         int intLogKey = 0;
 
 
@@ -364,7 +364,7 @@ public class UserSessionController
 
         if (objCookie != null)
         {
-            intLogKey = int.Parse(objCookie["LogKey"]);
+            intLogKey = int.Parse(objCookie["LogKeyFront"]);
             ms = ms.IsHaveSessionRecord(intLogKey);
 
 
@@ -387,7 +387,7 @@ public class UserSessionController
 
             if (!u.Status)
             {
-                LogoutStaffNotActivate();
+                LogoutStaffNotActivateFront();
             }
 
             if (ms.LeaveTime.HasValue)
@@ -438,6 +438,22 @@ public class UserSessionController
         HttpContext.Current.Response.End();
     }
 
+
+    public static void LogoutStaffNotActivateFront()
+    {
+        HttpCookie objCookie = HttpContext.Current.Request.Cookies["SessionKeyFront"];
+        objCookie.Expires = DateTime.Now.ToThaiDateTime().AddDays(-1D);
+        HttpContext.Current.Response.Cookies.Add(objCookie);
+
+        HttpSessionState Hotels2Session = HttpContext.Current.Session;
+
+        int intLogKey = int.Parse(HttpContext.Current.Request.Cookies["SessionKeyFront"]["LogKeyFront"]);
+        UpdateSessionLogout(intLogKey);
+
+        Hotels2Session.Clear();
+        HttpContext.Current.Response.Redirect("~/Login");
+        HttpContext.Current.Response.End();
+    }
     private static bool IsAuthorizePage(Model_Users u, string AuthorizeBaseUrl)
     {
 

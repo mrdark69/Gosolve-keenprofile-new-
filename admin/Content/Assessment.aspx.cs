@@ -71,16 +71,29 @@ public partial class _Assessment : BasePage
 
                     QuestionTitle.Text = ass.Questions;
                     txtCode.Text = ass.Code;
-                    dropSection.SelectedValue = ass.SCID.ToString();
+                    
                     dropQType.SelectedValue = ass.QTID.ToString();
                     txtpri.Text = ass.Priority.ToString();
                     txtStartRank.Text = ass.StartRank.ToString();
                     txtEndRank.Text = ass.EndRank.ToString();
 
+                    Model_AsSubSection sss = new Model_AsSubSection
+                    {
+                        SCID = ass.SCID
+                    };
+
+                    List<Model_AsSubSection> sub_edit = AssessmentController.getSubsectionBySecId(sss);
+                    dropsub.DataSource = sub_edit;
+                    dropsub.DataTextField = "Title";
+                    dropsub.DataValueField = "SUCID";
+                    dropsub.DataBind();
+
+                    dropSection.SelectedValue = ass.SCID.ToString();
                     dropsub.SelectedValue = ass.SUCID.ToString();
 
 
-
+                    leftTitle.Text = ass.LeftScaleTitle;
+                    rightTitle.Text = ass.RigthScaleTitle;
 
                 }
               
@@ -251,15 +264,17 @@ public partial class _Assessment : BasePage
             SUCID = int.Parse(dropsub.SelectedValue),
             Status = bool.Parse(status.SelectedValue),
             QTID = byte.Parse(dropQType.SelectedValue),
-          
+
             Priority = int.Parse(txtpri.Text.Trim()),
             StartRank = int.Parse(txtStartRank.Text.Trim()),
             EndRank = int.Parse(txtEndRank.Text.Trim()),
             AssChoice = cl,
             Side = byte.Parse(dropside.SelectedValue),
-            GroupName = txtGroup.Text.Trim()
+            GroupName = txtGroup.Text.Trim(),
+            LeftScaleTitle = leftTitle.Text,
+            RigthScaleTitle = rightTitle.Text
 
-
+            
         };
 
         Button btn = (Button)sender;

@@ -12,6 +12,10 @@ public partial class _Assessmentoptionaddedit : BasePage
     {
         if (!this.Page.IsPostBack)
         {
+            Model_AssesIntro ai = AssessmentController.GetAssIntro();
+            txtIntroTitle.Text = ai.Title;
+            txtIntroContent.Text = ai.Description;
+
             if (!string.IsNullOrEmpty(Request.QueryString["section"]))
             {
                 add_section.Visible = true;
@@ -148,9 +152,7 @@ public partial class _Assessmentoptionaddedit : BasePage
                     tab_content4.Visible = true;
 
 
-                    Model_AssesIntro ai = AssessmentController.GetAssIntro();
-                    txtIntroTitle.Text = ai.Title;
-                    txtIntroContent.Text = ai.Description;
+                   
 
                     break;
             }

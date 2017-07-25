@@ -105,6 +105,21 @@ margin-right:5px;
                                     </div>
                                 </div>
 
+
+                                 <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="lefttitle" CssClass="col-md-2 control-label">Left/Right Scale Title </asp:Label>
+                                    <div class="col-md-5">
+                                        <asp:TextBox runat="server" ID="leftTitle" CssClass="form-control" placeholder="Left" />
+                                        <asp:RequiredFieldValidator Display="Dynamic" runat="server" ControlToValidate="lefttitle"
+                                            CssClass="text-danger" ErrorMessage="The  field is required." />
+                                    </div>
+                                       <div class="col-md-5">
+                                        <asp:TextBox runat="server" ID="rightTitle" CssClass="form-control" placeholder="Right" />
+                                        <asp:RequiredFieldValidator Display="Dynamic" runat="server" ControlToValidate="rightTitle"
+                                            CssClass="text-danger" ErrorMessage="The  field is required." />
+                                    </div>
+                                </div>
+
                                 
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="txtpri" CssClass="col-md-2 control-label">Priority</asp:Label>

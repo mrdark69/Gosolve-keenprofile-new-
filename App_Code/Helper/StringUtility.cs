@@ -16,7 +16,7 @@ public static class StringUtility
     //    //
     //}
 
-    public static string GetKeywordReplace(string Content, string tagStart, string tagEnd)
+    public static string GetKeywordReplace(this string Content, string tagStart, string tagEnd)
     {
         int startIndex = Content.IndexOf(tagStart);
         int endIndex = Content.LastIndexOf(tagEnd) + tagEnd.Length;
