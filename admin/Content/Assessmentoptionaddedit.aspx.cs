@@ -16,6 +16,23 @@ public partial class _Assessmentoptionaddedit : BasePage
             txtIntroTitle.Text = ai.Title;
             txtIntroContent.Text = ai.Description;
 
+
+
+
+            List<Model_AsSection> seclist = AssessmentController.GetSectionList();
+            dropSection.DataSource = seclist;
+            dropSection.DataTextField = "Title";
+            dropSection.DataValueField = "SCID";
+            dropSection.DataBind();
+
+            dropsection2.DataSource = seclist;
+            dropsection2.DataTextField = "Title";
+            dropsection2.DataValueField = "SCID";
+            dropsection2.DataBind();
+
+            ListItem lis = new ListItem("All", "0");
+            dropsection2.Items.Insert(0, lis);
+
             if (!string.IsNullOrEmpty(Request.QueryString["section"]))
             {
                 add_section.Visible = true;
@@ -29,9 +46,6 @@ public partial class _Assessmentoptionaddedit : BasePage
                 headsection_pan.InnerHtml = "Edit Section";
 
 
-                //Button btneditsec = (Button)FindControl("Button1");
-                //btneditsec.CommandName = "Edit";
-                //btneditsec.CommandName = "Edit";
             }
 
             if (!string.IsNullOrEmpty(Request.QueryString["subsection"]))
@@ -47,9 +61,6 @@ public partial class _Assessmentoptionaddedit : BasePage
                 headsection_pan1.InnerHtml = "Edit Sub Section";
 
 
-                //Button btneditsec = (Button)FindControl("Button1");
-                //btneditsec.CommandName = "Edit";
-                //btneditsec.CommandName = "Edit";
             }
 
             if (!string.IsNullOrEmpty(Request.QueryString["qt"]))
@@ -63,9 +74,6 @@ public partial class _Assessmentoptionaddedit : BasePage
                 headsection_pan1.InnerHtml = "Edit Question Type";
 
 
-                //Button btneditsec = (Button)FindControl("Button1");
-                //btneditsec.CommandName = "Edit";
-                //btneditsec.CommandName = "Edit";
             }
            
 
@@ -97,19 +105,6 @@ public partial class _Assessmentoptionaddedit : BasePage
                     tab_content4.Visible = false;
 
 
-                    List<Model_AsSection> sec = AssessmentController.GetSectionList();
-                    dropSection.DataSource = sec;
-                    dropSection.DataTextField = "Title";
-                    dropSection.DataValueField = "SCID";
-                    dropSection.DataBind();
-
-                    dropsection2.DataSource = sec;
-                    dropsection2.DataTextField = "Title";
-                    dropsection2.DataValueField = "SCID";
-                    dropsection2.DataBind();
-
-                    ListItem lis = new ListItem("All", "0");
-                    dropsection2.Items.Insert(0, lis);
 
 
 

@@ -95,6 +95,8 @@ public partial class _Assessment : BasePage
                     leftTitle.Text = ass.LeftScaleTitle;
                     rightTitle.Text = ass.RigthScaleTitle;
 
+                    txtGroup.Text = ass.GroupName;
+
                 }
               
             }

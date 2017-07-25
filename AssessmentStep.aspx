@@ -2,7 +2,43 @@
 
 <asp:Content ID="HeaderScript" ContentPlaceHolderID="HeaderScript" runat="server">
     <style type="text/css">
-        
+        /* Tooltip container */
+
+
+/* Tooltip text */
+.progress-bar{
+    transition:none !important;
+}
+.progress-bar .tooltiptext {
+    /*visibility: hidden;*/
+    width: 120px;
+    background-color: rgb(17, 97, 238);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    top:-39px;
+        margin-left: 47px;
+}
+.progress-bar .tooltip-top::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgb(17, 97, 238) transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+/*.tooltip:hover .tooltiptext {
+    visibility: visible;
+}*/
     </style>
     <link href="Content/animate.css" rel="stylesheet" />
     <link href="Content/plugins/iCheck/custom.css" rel="stylesheet" />
@@ -45,14 +81,15 @@
                             <p>100%</p></div>
                         </div>
                         <div class="progress">
-                                <div style="width: 35%;background-color:#1161ee" aria-valuemax="100" aria-valuemin="0" aria-valuenow="35" role="progressbar" class="progress-bar " >
-                                    <span class="sr-only">35% Complete (success)</span>
+                                <div id="progress_bar_per" style="width: 0%;background-color:#1161ee" aria-valuemax="100" aria-valuemin="0" aria-valuenow="35" role="progressbar" class="progress-bar" >
+                                    <span class="tooltiptext tooltip-top">Tooltip text</span>
+                                   <%-- <span class="sr-only">35% Complete (success)</span>--%>
                                 </div>
                             </div>
                         <div id="wizard">
 
                            
-                            <h1></h1>
+                            <h1  class="step_count"></h1>
                             <div class="step-content">
                                 <div class="text-center m-t-md">
                                 <h2><asp:Literal ID="IntroTitle" runat="server"></asp:Literal></h2>
@@ -65,7 +102,7 @@
 
 
                        
-                            <h1 id="stepprofile_head" runat="server"></h1>
+                            <h1 id="stepprofile_head" runat="server" class="step_count"></h1>
                             <div class="step-content" id="stepprofile" runat="server">
                                 <div class="text-center m-t-md">
                                 <h2>ขอต้อนรับสู่ Assessment ของทาง Keen Profile</h2>
@@ -312,7 +349,7 @@
                         </div>
 
                     </div>
-                </div>
+                                    </div>
 									</div>
 								
 								</div>
@@ -324,7 +361,8 @@
 						</div>
 
 					</div>	
-				</section>
+           </div>
+		</section>
 
     
 </asp:Content>
@@ -339,14 +377,25 @@
 
 
      <script>
-        $(document).ready(function(){
+         $(document).ready(function () {
+            
             $("#wizard").steps({
-                
+                onInit: function (event, currentIndex) {
+                    //alert(currentIndex);
+                    progress(currentIndex);
+                },
                 onStepChanging: function (event, currentIndex, newIndex) {
 
                     return true;
                 },
                 onStepChanged: function (event, currentIndex, priorIndex) {
+
+                    //var total_step = $(".step_count").length;
+                    //alert(currentIndex);
+                    //var pro = $("#progress_bar_per");
+
+                    progress(currentIndex);
+
                     return true;
                 },
                 onFinishing: function (event, currentIndex) {
@@ -357,6 +406,32 @@
                 }
             });
             
-       });
+         });
+
+         function progress(current) {
+             var total = $(".step_count").length;
+
+             var percent = ((current + 1) * 100) / total;
+
+             var percent_format = numeral(percent).format('0');
+            
+
+             $("#progress_bar_per").animate({ width: percent+"%" }, 600);
+            // $("#progress_bar_per").css("width", percent + "%");
+
+             //var w = $('#progress_bar_per').width();
+             console.log(current);
+             //console.log(w);
+
+             //var f = $('#progress_bar_per').offset();
+             //$("#example").animate({ width: 250 }, 200);
+             $('.tooltiptext').animate({ left: $('#progress_bar_per').width() }, 600);
+             var text = percent_format + "% Complete";
+             if (percent_format >= 100) {
+                 text = "Done!!";
+             }
+             $('.tooltiptext').html(text);
+             //$('.tooltiptext').css("left", $('#progress_bar_per').width()+ "px");
+         }
     </script>
     </asp:Content>

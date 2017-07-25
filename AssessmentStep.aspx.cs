@@ -65,7 +65,7 @@ public partial class _AssessmentStep : BasePageFront
                 //string sIntro = sec.Title;
                 //string sDetail = convertcontent(sec.Intro);
 
-                List<Model_Assessment> list = asslist.Where(r => r.SCID == sec.SCID).ToList();
+                List<Model_Assessment> list = asslist.Where(r => r.SCID == sec.SCID).OrderBy(r=>r.Priority).OrderBy(r=>r.GroupName).ToList();
                 if(list.Count > 0)
                 {
                     ret.Append(GenSectionIntro(sec));
@@ -114,7 +114,93 @@ public partial class _AssessmentStep : BasePageFront
 
     }
 
+    public string GenQuestionTypeRankLeftRigth(Model_Assessment ass)
+    {
 
+        //List<Model_Assessment_Choice> choice = ass.AssChoice;
+        StringBuilder ret = new StringBuilder();
+
+        if (ass.Side == 1)
+        {
+            ret.Append("<h1 class=\"step_count\"></h1>");
+            ret.Append("<div class=\"step-content\">");
+            ret.Append("<div class=\"text-center m-t-md\">");
+            ret.Append("<h2></h2>");
+
+
+
+            ret.Append("<div class=\"question-type q-type-rank-scale-lr\">");
+
+
+            ret.Append("<div class=\"col-md-5 tbl-rank-scale-lr\"   >");
+            ret.Append("<table>");
+            ret.Append(" <tr><td colspan=\"5\" class=\"question left\">" + ass.Questions + "</td></tr>");
+            ret.Append("<tr><td class=\"choice\">1</td><td class=\"choice\">2</td><td class=\"choice\">3</td><td class=\"choice\">4</td>");
+            ret.Append("<td class=\"choice\">5</td></tr>");
+            ret.Append("<tr>");
+            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            ret.Append("</tr>");
+            ret.Append("</table>");
+            ret.Append("</div>");
+
+            ret.Append("<div class=\"col-md-2\"></div>");
+        }
+        if (ass.Side == 2)
+        {
+            ret.Append("<div class=\"col-md-5 tbl-rank-scale-lr\" >");
+            ret.Append("<table>");
+            ret.Append("<tr><td colspan=\"5\" class=\"question right\">" + ass.Questions + "</td></tr>");
+            ret.Append("<tr><td class=\"choice\">1</td><td class=\"choice\">2</td><td class=\"choice\">3</td><td class=\"choice\">4</td>");
+            ret.Append("<td class=\"choice\">5</td></tr>");
+            ret.Append("<tr>");
+            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+            ret.Append("</tr>");
+            ret.Append("</table>");
+            ret.Append("</div>");
+
+
+            ret.Append("</div>");
+
+
+
+            ret.Append("</div>");
+            ret.Append("</div>");
+        }
+
+
+            
+
+        return ret.ToString();
+
+
+    }
+
+    public void rigth()
+    {
+        StringBuilder ret = new StringBuilder();
+        ret.Append("<div class=\"col-md-5 tbl-rank-scale-lr\" >");
+        ret.Append("<table>");
+        ret.Append("<tr><td colspan=\"5\" class=\"question right\">ทุ่มเททํางาน อย่างหนัก </td></tr>");
+        ret.Append("<tr><td class=\"choice\">1</td><td class=\"choice\">2</td><td class=\"choice\">3</td><td class=\"choice\">4</td>");
+        ret.Append("<td class=\"choice\">5</td></tr>");
+        ret.Append("<tr>");
+        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
+        ret.Append("</tr>");
+        ret.Append("</table>");
+        ret.Append("</div>");
+    }
     public string convertcontent(string content)
     {
         content = content.Replace("\r\n", "<br/>");
@@ -129,7 +215,7 @@ public partial class _AssessmentStep : BasePageFront
         StringBuilder ret = new StringBuilder();
 
 
-        ret.Append("<h1></h1>");
+        ret.Append("<h1 class=\"step_count\"></h1>");
         ret.Append("<div class=\"step-content\">");
         ret.Append("<div class=\"text-center m-t-md\">");
         ret.Append("<h2>"+sec.Title+"</h2>");
@@ -142,13 +228,13 @@ public partial class _AssessmentStep : BasePageFront
     }
 
 
-
+   
     public string GenQuestionTypeScale(Model_Assessment ass)
     {
 
         //List<Model_Assessment_Choice> choice = ass.AssChoice;
         StringBuilder ret = new StringBuilder();
-        ret.Append("<h1></h1>");
+        ret.Append("<h1 class=\"step_count\"></h1>");
         ret.Append("<div class=\"step-content\">");
         ret.Append("<div class=\"text-center m-t-md\">");
         ret.Append("<h2>"+ass.Questions+"</h2>");
@@ -197,7 +283,7 @@ public partial class _AssessmentStep : BasePageFront
     {
       
         StringBuilder ret = new StringBuilder();
-        ret.Append("<h1></h1>");
+        ret.Append("<h1 class=\"step_count\"></h1>");
         ret.Append("<div class=\"step-content\">");
         ret.Append("<div class=\"text-center m-t-md\">");
         ret.Append("<h2>"+ass.Questions+"</h2>");
@@ -263,60 +349,7 @@ public partial class _AssessmentStep : BasePageFront
     }
 
 
-    public string GenQuestionTypeRankLeftRigth(Model_Assessment ass)
-    {
-
-        //List<Model_Assessment_Choice> choice = ass.AssChoice;
-        StringBuilder ret = new StringBuilder();
-        ret.Append("<h1></h1>");
-        ret.Append("<div class=\"step-content\">");
-        ret.Append("<div class=\"text-center m-t-md\">");
-        ret.Append("<h2></h2>");
-
-
-
-        ret.Append("<div class=\"question-type q-type-rank-scale-lr\">");
-        ret.Append("<div class=\"col-md-5 tbl-rank-scale-lr\"   >");
-        ret.Append("<table>");
-
-        ret.Append("<tr><td class=\"choice\">1</td><td class=\"choice\">2</td><td class=\"choice\">3</td><td class=\"choice\">4</td>");
-        ret.Append("<td class=\"choice\">5</td></tr>");
-        ret.Append("<tr>");
-        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-        ret.Append("</tr>");
-        ret.Append("</table>");
-        ret.Append("</div>");
-        ret.Append("<div class=\"col-md-2\"></div>");
-        ret.Append("<div class=\"col-md-5 tbl-rank-scale-lr\" >");
-        ret.Append("<table>");
-
-        ret.Append("<tr><td class=\"choice\">1</td><td class=\"choice\">2</td><td class=\"choice\">3</td><td class=\"choice\">4</td>");
-        ret.Append("<td class=\"choice\">5</td></tr>");
-        ret.Append("<tr>");
-        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-        ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
-        ret.Append("</tr>");
-        ret.Append("</table>");
-        ret.Append("</div>");
-
-        ret.Append("</div>");
-
-
-
-        ret.Append("</div>");
-        ret.Append("</div>");
-
-        return ret.ToString();
-
-
-    }
+   
 
     protected void Button1_Click(object sender, EventArgs e)
     {
