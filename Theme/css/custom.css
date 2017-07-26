@@ -1164,7 +1164,7 @@ body {
     display:inline-block !important;
 }
 
-    .q-form-bio input[type=text], .q-form-bio input[type=date] {
+    .q-form-bio input[type=text], .q-form-bio input[type=date], .q-form-bio input[type=tel] {
         border: none !important;
         padding: 15px 20px !important;
         border-radius: 25px !important;

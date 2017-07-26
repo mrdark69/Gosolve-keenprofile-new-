@@ -113,7 +113,12 @@ public class AssessmentController
         Model_AsSection sec = new Model_AsSection();
         return sec.GetListSection(status);
     }
-    
+
+    public static List<Model_AsSection> GetSectionList()
+    {
+        Model_AsSection sec = new Model_AsSection();
+        return sec.GetListSection();
+    }
 
 
 

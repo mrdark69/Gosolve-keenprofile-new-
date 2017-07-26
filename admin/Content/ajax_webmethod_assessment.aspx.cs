@@ -31,7 +31,7 @@ public partial class admin_Staff_ajax_webmethod_assessment : System.Web.UI.Page
     [WebMethod]
     public static void GetSectionAll(Model_AsSection parameters)
     {
-        IList<Model_AsSection> ret = AssessmentController.GetSectionList(true);
+        IList<Model_AsSection> ret = AssessmentController.GetSectionList();
 
 
         AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());

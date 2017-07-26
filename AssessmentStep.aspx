@@ -179,6 +179,8 @@
 
                                             </div>
                                         </div>
+
+                                          
                                     </div>
                                     
                                 </div>
@@ -231,16 +233,16 @@
                             <h1  class="step_count"></h1>
                             <div class="step-content">
                                 <div class="text-center m-t-md">
-                                <h2><asp:Literal ID="LastTitle" runat="server">Congratuation</asp:Literal></h2>
+                                <h2><asp:Literal ID="LastTitle" runat="server"></asp:Literal></h2>
                                 <p>
-                                    <asp:Literal ID="LastDes" runat="server">คุณได้ทํา The Career Pillar Assessment ของทาง Keen Profile ครบทุกข้อแล้ว โปรดคลิก “ส่ง” เพื่อส่งแบบสอบถาม </asp:Literal>
+                                    <asp:Literal ID="LastDes" runat="server"> </asp:Literal>
                                 </p>
                                     <div class="q-form-bio form-horizontal">
                                         <div class="form-group"><%--<label class="col-sm-2 control-label">Current Job Function name:</label>--%>
 
                                             <div class="col-sm-12" style="padding:0 30px 0 30px">
                                                 
-                                           <asp:TextBox ID="txtPhon" runat="server" CssClass="form-control" TextMode="Phone"></asp:TextBox>
+                                         <asp:TextBox ID="txtPhon" runat="server" ClientIDMode="Static" placeholder="###-###-####" CssClass="form-control required customphone" TextMode="Phone"></asp:TextBox>
 
                                             </div>
                                         </div>
@@ -504,6 +506,66 @@
 
      <script>
          $(document).ready(function () {
+
+
+             $.validator.setDefaults({
+                 onkeyup: function () {
+                     var originalKeyUp = $.validator.defaults.onkeyup;
+                     var customKeyUp = function (element, event) {
+                         if ($("#txtPhon")[0] === element) {
+
+                                   // var v = $(element).val();
+
+                                    //var arv = v.split('');
+                                    //if (arv.length == 3 || arv.length == 7) {
+                                    //    if (event.keyCode != 46 || event.keyCode != 8) {
+                                    //        $(element).val(v + "-");
+                                    //    }
+                                       
+                                    //}
+                                    //if (arv.length == 7) {
+                                    //    $(element).val(v + "-");
+                                    //}
+
+                                    if ((event.keyCode > 47 && event.keyCode < 58) || (event.keyCode < 106 && event.keyCode > 95)) {
+                                        var v = $(element).val();
+                                        v = v.replace(/(\d{3})(\d{3})(\d{4})\-?/g, '$1-$2-$3');
+                                        $(element).val(v);
+                                        return true;
+                                    }
+                                    
+                                    //console.log(arv);
+                                    //console.log(arv.length);
+                                    //return false;
+                                    return $(element).valid();
+                         }
+                         else {
+                             return originalKeyUp.call(this, element, event);
+                         }
+                     }
+
+                     return customKeyUp;
+                 }()
+             });
+             //$("form").validate({
+             //    onkeyup: function (ele) {
+             //        var v = $(ele).val();
+
+             //        var arv = v.split('');
+
+             //        console.log(arv);
+             //        console.log(arv.length);
+
+             //        return false;
+             //    }
+             //});
+             //$('#txtPhon').on('keyup', function () {
+               
+             //});
+
+             $.validator.addMethod('customphone', function (value, element) {
+                 return this.optional(element) || /^\d{3}-\d{3}-\d{4}$/.test(value);
+             }, "Please enter a valid phone number");
              $.LoadingOverlaySetup({
                  color: "rgba(0, 0, 0, 0.4)",
                  //image: "img/custom_loading.gif",
@@ -573,17 +635,20 @@
                 },
                 onFinished: function (event, currentIndex) {
                     var form = $("form");
-                    $.LoadingOverlay("show");
+                   
                     // Submit form input
-
+                    $.LoadingOverlay("show");
                     SendData();
+                    
                     //form.submit();
                 }
             }).validate({
+               
                 errorPlacement: function (error, element) {
                     element.before(error);
                 },
                 rules: {
+                    ctl00$MainContent$txtPhon:"customphone",
                     confirm: {
                         equalTo: "#password"
                     }
@@ -592,7 +657,7 @@
             
          });
 
-
+        
          function SendData() {
              var post = $("#form1").find("input,textarea,select,hidden").not("#__VIEWSTATE,#__EVENTVALIDATION").serialize();
              $.post("ajax_save_assessment.aspx", post, function (data) {
