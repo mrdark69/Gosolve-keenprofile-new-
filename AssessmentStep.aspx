@@ -565,7 +565,9 @@
                     var form = $("form");
                     $.LoadingOverlay("show");
                     // Submit form input
-                    form.submit();
+
+                    SendData();
+                    //form.submit();
                 }
             }).validate({
                 errorPlacement: function (error, element) {
@@ -580,6 +582,18 @@
             
          });
 
+
+         function SendData() {
+             var post = $("#form1").find("input,textarea,select,hidden").not("#__VIEWSTATE,#__EVENTVALIDATION").serialize();
+             $.post("ajax_save_assessment.aspx", post, function (data) {
+                 if (data == "True") {
+                     window.location.href = "Assessmentstep.aspx?success=done";
+                 }
+                 if (data == "method_invalid") {
+                     staffAuthenMethod();
+                 }
+             });
+         }
          function progress(current) {
              var total = $(".step_count").length;
 
