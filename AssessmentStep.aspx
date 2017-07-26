@@ -235,7 +235,17 @@
                                 <p>
                                     <asp:Literal ID="LastDes" runat="server">คุณได้ทํา The Career Pillar Assessment ของทาง Keen Profile ครบทุกข้อแล้ว โปรดคลิก “ส่ง” เพื่อส่งแบบสอบถาม </asp:Literal>
                                 </p>
-                                    
+                                    <div class="q-form-bio form-horizontal">
+                                        <div class="form-group"><%--<label class="col-sm-2 control-label">Current Job Function name:</label>--%>
+
+                                            <div class="col-sm-12" style="padding:0 30px 0 30px">
+                                                
+                                           <asp:TextBox ID="txtPhon" runat="server" CssClass="form-control" TextMode="Phone"></asp:TextBox>
+
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
                                 </div>
                             </div>
 
@@ -496,11 +506,11 @@
          $(document).ready(function () {
              $.LoadingOverlaySetup({
                  color: "rgba(0, 0, 0, 0.4)",
-                 image: "img/custom_loading.gif",
-                 maxSize: "80px",
-                 minSize: "20px",
-                 resizeInterval: 0,
-                 size: "50%"
+                 //image: "img/custom_loading.gif",
+                 //maxSize: "80px",
+                 //minSize: "20px",
+                 //resizeInterval: 0,
+                 //size: "50%"
              });
             $("#wizard").steps({
                 onInit: function (event, currentIndex) {

@@ -35,6 +35,9 @@ public class Model_Users : BaseModel<Model_Users>
 
     public DateTime DateSubmit  { get; set; } = DatetimeHelper._UTCNow();
 
+    public bool Ispaid { get; set; }
+    public DateTime DatePayment { get; set; }
+
     public string UserRoleName { get; set; }
 
     public bool IsResetPassword { get; set; } = false;

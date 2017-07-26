@@ -8,8 +8,12 @@ using gs_newsletter;
 public partial class Account_Login : Page
 {
     
-    protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
+            if (!this.IsPostBack)
+            {
+                Model_Users u = UserSessionController.AdminAppAuthLogin(this);
+            }
             //RegisterHyperLink.NavigateUrl = "Register";
             //OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
             //var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);

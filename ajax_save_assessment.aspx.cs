@@ -11,6 +11,8 @@ public partial class ajax_save_assessment : BasePageFront
     {
         if (!this.Page.IsPostBack)
         {
+
+            
             Response.Write("True");
             Response.End();
         }

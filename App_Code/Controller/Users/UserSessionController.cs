@@ -335,76 +335,72 @@ public class UserSessionController
 
 
     }
+
+    public static Model_Users AdminAppAuthLogin(Page p)
+    {
+        Model_Users u = null;
+
+
+
+        if (HttpContext.Current.Request.Cookies["SessionKey"] != null)
+        {
+            HttpCookie objCookie = new HttpCookie("SessionKey");
+            //objCookie.Domain = "www.hotels2thailand.com";
+            objCookie.Expires = DateTime.Now.AddDays(-1d);
+            HttpContext.Current.Response.Cookies.Add(objCookie);
+
+
+            Model_Session ms = new Model_Session();
+            int intLogKey = int.Parse(HttpContext.Current.Request.Cookies["SessionKey"]["LogKey"]);
+            ms = ms.IsHaveSessionRecord(intLogKey);
+            if (ms != null)
+            {
+                u = UsersController.GetUserbyID(ms.UserID);
+                if (u != null && !ms.LeaveTime.HasValue)
+                {
+                    HttpContext.Current.Response.Redirect("~/admin/");
+                }
+
+            }
+        }
+
+
+
+        return u;
+
+
+
+
+
+    }
     public static Model_Users FrontAppAuthLogin(Page p)
     {
         Model_Users u = null;
-        HttpSessionState Hotels2Session = HttpContext.Current.Session;
-        //object objSession = HttpContext.Current.Session["staff"];
-        HttpCookie objCookie = HttpContext.Current.Request.Cookies["SessionKeyFront"];
-        Model_Session ms = new Model_Session();
-
-        object objSession = Hotels2Session["UserFront"];
-        int intLogKey = 0;
 
 
-        if (objSession == null && objCookie == null)
+
+        if (HttpContext.Current.Request.Cookies["SessionKeyFront"] != null)
         {
-            //HttpContext.Current.Response.Redirect("~/admin/accessdenie.aspx?error=requestlogin_111");
-            //HttpContext.Current.Response.Redirect("~/Login");
-            //HttpContext.Current.Response.End();
-        }
+            HttpCookie objCookie = new HttpCookie("SessionKeyFront");
+            //objCookie.Domain = "www.hotels2thailand.com";
+            objCookie.Expires = DateTime.Now.AddDays(-1d);
+            HttpContext.Current.Response.Cookies.Add(objCookie);
 
 
-        if (objSession != null && objCookie == null)
-        {
-            //HttpContext.Current.Response.Redirect("~/admin/accessdenie.aspx?error=requestlogin_444");
-            //HttpContext.Current.Response.Redirect("~/Login");
-            //HttpContext.Current.Response.End();
-        }
-
-        if (objCookie != null)
-        {
-            intLogKey = int.Parse(objCookie["LogKeyFront"]);
+            Model_Session ms = new Model_Session();
+            int intLogKey = int.Parse(HttpContext.Current.Request.Cookies["SessionKeyFront"]["LogKeyFront"]);
             ms = ms.IsHaveSessionRecord(intLogKey);
-
-
-            if (ms == null)
+            if (ms != null)
             {
-                //HttpContext.Current.Response.Redirect("~/admin/accessdenie.aspx?error=requestlogin_333");
-                //HttpContext.Current.Response.Redirect("~/Login");
-                //HttpContext.Current.Response.End();
+                u = UsersController.GetUserbyID(ms.UserID);
+                if (u != null && !ms.LeaveTime.HasValue)
+                {
+                    HttpContext.Current.Response.Redirect("/");
+                }
+               
             }
-
-
-            u = UsersController.GetUserbyID(ms.UserID);
-
-
-            if (u.UserCatId != 1)
-            {
-                //HttpContext.Current.Response.Redirect("~/Login");
-                //HttpContext.Current.Response.End();
-            }
-
-            if (!u.Status)
-            {
-                LogoutStaffNotActivateFront();
-            }
-
-            if (ms.LeaveTime.HasValue)
-            {
-
-
-                //HttpContext.Current.Response.Redirect("~/Login");
-                //HttpContext.Current.Response.End();
-            }
-
-
-            //Hotels2Session["staff"] = u.UserCatId.ToString();
-            //UpdateSessionStatus(intLogKey);
-
-
-
         }
+        
 
 
         return u;

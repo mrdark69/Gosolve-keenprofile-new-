@@ -12,11 +12,11 @@ public partial class _Login : Page
         if (!this.Page.IsPostBack)
         {
             Model_Users u = UserSessionController.FrontAppAuthLogin(this);
-            if (u != null)
-            {
-                Response.Redirect("/");
-                Response.End();
-            }
+            //if (u != null)
+            //{
+            //    Response.Redirect("/");
+            //    Response.End();
+            //}
         }
             
 
