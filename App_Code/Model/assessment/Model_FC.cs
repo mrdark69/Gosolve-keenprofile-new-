@@ -14,6 +14,11 @@ using System.Security.Cryptography;
 /// <summary>
 /// Summary description for Model_User
 /// </summary>
+/// 
+public class Model_UserFC : BaseModel<Model_UserFC>
+{
+
+}
 public class Model_FC : BaseModel<Model_FC>
 {
     public int FCID { get; set; }

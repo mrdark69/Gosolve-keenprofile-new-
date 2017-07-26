@@ -14,6 +14,11 @@ using System.Security.Cryptography;
 /// <summary>
 /// Summary description for Model_User
 /// </summary>
+/// 
+public class Model_UserCJF : BaseModel<Model_UserCJF>
+{
+
+}
 public class Model_CJF : BaseModel<Model_CJF>
 {
     public int CJFID { get; set; }
