@@ -34,9 +34,7 @@
        .app-sec-lev li{
            margin-bottom:0px !important;
        }
-        input[type=checkbox],input[type=radio]{
-margin-right:5px;
-}
+       
    </style>
  </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">

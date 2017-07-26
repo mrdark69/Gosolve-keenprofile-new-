@@ -1163,8 +1163,8 @@ body {
 .q-form-bio .dob{
     display:inline-block !important;
 }
-   
-    .q-form-bio input {
+
+    .q-form-bio input[type=text], .q-form-bio input[type=date] {
         border: none !important;
         padding: 15px 20px !important;
         border-radius: 25px !important;
@@ -1201,4 +1201,9 @@ body {
     color: red !important;
     font-weight: normal !important;
     font-size: 12px !important;
+}
+/*, input[type=radio]*/
+input[type=checkbox] {
+    margin-right: 5px !important;
+    margin-top:0px !important;
 }

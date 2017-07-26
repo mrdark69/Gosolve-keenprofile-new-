@@ -10,110 +10,147 @@ public partial class _AssessmentStep : BasePageFront
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        Model_Users u = this.UserActive;
-        if (u != null)
+        if (!this.Page.IsPostBack)
         {
 
-
-            //Get Main Intro
-            Model_AssesIntro intro = new Model_AssesIntro();
-            intro = intro.GetIntro();
-
-
-            //Get Job Function
-            Model_CJF cjf = new Model_CJF();
-            List<Model_CJF> cjflist = cjf.GetCJFeAll();
-
-            //Get Functional Competencies
-            Model_FC fc = new Model_FC();
-            List<Model_FC> fclist = fc.GetFCAll();
-
-
-            //Get Section 
-            Model_AsSection section = new Model_AsSection();
-            List<Model_AsSection> sectionlist = section.GetListSection(true);
-
-            //Get Assessment
-            Model_Assessment ass = new Model_Assessment();
-            List<Model_Assessment> asslist = ass.GetAssessmentAll();
-
-            //Get Country
-            Model_Country c = new Model_Country();
-            List<Model_Country> ccountry = c.GetAllCountry();
-
-
-            dropNation.DataSource = ccountry;
-            dropNation.DataTextField = "DropValue";
-            dropNation.DataValueField = "ID";
-            dropNation.DataBind();
-
-            dropNation.SelectedValue = "211";
-
-
-            //stepprofile_head.Visible = false;
-            //stepprofile.Visible = false;
-
-
-
-            IntroTitle.Text = intro.Title;
-            IntroDetail.Text = convertcontent(intro.Description);
-
-            LastTitle.Text = intro.LastTitle;
-            LastDes.Text = convertcontent(intro.LastDes);
-
-            Maintitle.Text = intro.MainTitle;
-
-            StringBuilder ret = new StringBuilder();
-            foreach (Model_AsSection sec in sectionlist)
+            if (!string.IsNullOrEmpty(Request.QueryString["success"]))
             {
-                //string sIntro = sec.Title;
-                //string sDetail = convertcontent(sec.Intro);
+                main_thanks.Visible = true;
+                main_form.Visible = false;
 
-                List<Model_Assessment> list = asslist.Where(r => r.SCID == sec.SCID).OrderBy(r=>r.Priority).OrderBy(r=>r.GroupName).ToList();
-                if(list.Count > 0)
+                Model_AssesIntro intro = new Model_AssesIntro();
+                intro = intro.GetIntro();
+                ThanksTitle.Text = intro.ThanksTitle;
+                ThanksDes.Text = convertcontent(intro.ThanksDes);
+            }
+            else
+            {
+                Model_Users u = this.UserActive;
+                if (u != null)
                 {
-                    ret.Append(GenSectionIntro(sec));
 
 
-                    foreach (Model_Assessment asi in list)
+                    //Get Main Intro
+                    Model_AssesIntro intro = new Model_AssesIntro();
+                    intro = intro.GetIntro();
+
+
+                    //Get Job Function
+                    Model_CJF cjf = new Model_CJF();
+                    List<Model_CJF> cjflist = cjf.GetCJFeAll();
+
+                    //Get Functional Competencies
+                    Model_FC fc = new Model_FC();
+                    List<Model_FC> fclist = fc.GetFCAll();
+
+
+                    //Get Section 
+                    Model_AsSection section = new Model_AsSection();
+                    List<Model_AsSection> sectionlist = section.GetListSection(true);
+
+                    //Get Assessment
+                    Model_Assessment ass = new Model_Assessment();
+                    List<Model_Assessment> asslist = ass.GetAssessmentAll();
+
+                    //Get Country
+                    Model_Country c = new Model_Country();
+                    List<Model_Country> ccountry = c.GetAllCountry();
+
+
+                    dropNation.DataSource = ccountry;
+                    dropNation.DataTextField = "DropValue";
+                    dropNation.DataValueField = "ID";
+                    dropNation.DataBind();
+
+                    dropNation.SelectedValue = "211";
+
+
+
+                    chckCJF.DataSource = cjflist;
+                    chckCJF.DataTextField = "Title";
+                    chckCJF.DataValueField = "CJFID";
+                    chckCJF.DataBind();
+
+                    checkFC.DataSource = fclist;
+                    checkFC.DataTextField = "Title";
+                    checkFC.DataValueField = "FCID";
+                    checkFC.DataBind();
+                    //stepprofile_head.Visible = false;
+                    //stepprofile.Visible = false;
+
+
+
+                    IntroTitle.Text = intro.Title;
+                    IntroDetail.Text = convertcontent(intro.Description);
+
+                    LastTitle.Text = intro.LastTitle;
+                    LastDes.Text = convertcontent(intro.LastDes);
+
+                    Maintitle.Text = intro.MainTitle;
+
+
+                    profiletitle.Text = intro.ProfileTitle;
+                    fctitle.Text = intro.ProfileFCTitle;
+                    cjftitle.Text = intro.ProfileCJFTitle;
+
+                    StringBuilder ret = new StringBuilder();
+                    foreach (Model_AsSection sec in sectionlist)
                     {
-                        string question = asi.Questions;
-                        int rs = asi.StartRank;
-                        int rd = asi.EndRank;
+                        //string sIntro = sec.Title;
+                        //string sDetail = convertcontent(sec.Intro);
 
-                        byte questionType = asi.QTID;
-
-
-
-                        // 1   Scale
-                        //4   Ranking Scale
-                        //5   Left / Right Ranking
-                        switch (questionType)
+                        List<Model_Assessment> list = asslist.Where(r => r.SCID == sec.SCID).OrderBy(r => r.Priority).OrderBy(r => r.GroupName).ToList();
+                        if (list.Count > 0)
                         {
-                            //Scale
-                            case 1:
-                                ret.Append(GenQuestionTypeScale(asi));
-                                break;
-                            //Ranking Scale
-                            case 4:
-                                ret.Append(GenQuestionTypeRankingScalChoice(asi));
-                                break;
-                            //Left / Right Ranking
-                            case 5:
-                                ret.Append(GenQuestionTypeRankLeftRigth(asi));
-                                break;
+                            ret.Append(GenSectionIntro(sec));
+
+
+                            foreach (Model_Assessment asi in list)
+                            {
+                                string question = asi.Questions;
+                                int rs = asi.StartRank;
+                                int rd = asi.EndRank;
+
+                                byte questionType = asi.QTID;
+
+
+
+                                // 1   Scale
+                                //4   Ranking Scale
+                                //5   Left / Right Ranking
+                                switch (questionType)
+                                {
+                                    //Scale
+                                    case 1:
+                                        ret.Append(GenQuestionTypeScale(asi));
+                                        break;
+                                    //Ranking Scale
+                                    case 4:
+                                        ret.Append(GenQuestionTypeRankingScalChoice(asi));
+                                        break;
+                                    //Left / Right Ranking
+                                    case 5:
+                                        ret.Append(GenQuestionTypeRankLeftRigth(asi));
+                                        break;
+                                }
+
+                            }
                         }
 
+
+
                     }
+
+                    Stepcontent.Text = ret.ToString();
                 }
-                
-
-
             }
-
-            Stepcontent.Text = ret.ToString();
+           
         }
+        else
+        {
+            //Button btn = (Button)sender;
+        }
+       
 
 
 
@@ -378,5 +415,15 @@ public partial class _AssessmentStep : BasePageFront
     {
         Response.Write("sss");
         Response.End();
+    }
+
+    protected void btnBackprofile_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Default");
+    }
+
+    protected void btnDownload_Click(object sender, EventArgs e)
+    {
+
     }
 }

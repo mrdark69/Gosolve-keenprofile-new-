@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.User.master.cs" Inherits="SiteUserMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.User1.master.cs" Inherits="SiteUserMaster1" %>
 <!DOCTYPE html>
 <html lang="en">
    <head runat="server">
@@ -75,6 +75,12 @@
       <style>
          .wsite-background {background-image: url("//cdn2.editmysite.com/images/editor/theme-background/stock/Skyscrapers.jpg") !important;background-repeat: no-repeat !important;background-position: 50.00% 50.00% !important;background-size: 100% !important;background-color: transparent !important;}
          body.wsite-background {background-attachment: fixed !important;}.wsite-background.wsite-custom-background{ background-size: cover !important}
+
+
+        .section-about{
+            margin-top:0px !important;
+            padding-top: 0px !important;
+        }
       </style>
       
        <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
@@ -191,29 +197,10 @@
             <!-- end banner-wrap -->
             </div>
 
-             <div class="banner-wrap">
-               <div class="wsite-elements wsite-not-footer wsite-header-elements">
-                  <div class="wsite-section-wrap">
-                     <div  class="wsite-section wsite-header-section wsite-section-bg-image" style="height: 515px;vertical-align: middle;background-image: url(//cdn2.editmysite.com/images/editor/theme-background/stock/Skyscrapers.jpg) ;background-repeat: no-repeat ;background-position: undefined undefined ;background-size: 100% ;background-color: transparent ;background-size: cover;" >
-                        <div class="wsite-section-content">
-                           <div class="container">
-                              <div class="banner">
-                               <%--  <div class="wsite-section-elements">
-                                    <div class="paragraph" style="text-align:center;"><font size="3">Please Feel Free to</font></div>
-                                    <h2 class="wsite-content-title" style="text-align:center;">Contact US</h2>
-                                 </div>--%>
-                              </div>
-                           </div>
-                        </div>
-                        <div class=""></div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- end header -->
+             
             
           
-            <div class="main-wrap" style="background-color:#202020">
+            <div class="main-wrap wsite-section wsite-header-section wsite-section-bg-image" style="vertical-align: middle;background-image: url(//cdn2.editmysite.com/images/editor/theme-background/stock/Skyscrapers.jpg) ;background-repeat:no-repeat ;background-position: undefined undefined ;background-size: 100% ;background-color: transparent ;background-size: cover;position:relative;height:600px">
                <div id="wsite-content" class="wsite-elements wsite-not-footer">
                   <div class="wsite-section-wrap">
                      <div class="wsite-section wsite-body-section wsite-background-6 wsite-custom-background"  >

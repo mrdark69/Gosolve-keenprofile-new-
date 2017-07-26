@@ -26,6 +26,11 @@ public class Model_AssesIntro : BaseModel<Model_AssesIntro>
     public string MainTitle { get; set; }
 
 
+    public string ThanksTitle { get; set; }
+    public string ThanksDes { get; set; }
+    public string ProfileTitle { get; set; }
+    public string ProfileCJFTitle { get; set; }
+    public string ProfileFCTitle { get; set; }
 
     public Model_AssesIntro()
     {
@@ -38,13 +43,21 @@ public class Model_AssesIntro : BaseModel<Model_AssesIntro>
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("UPDATE AssIntro SET Title=@Title, Description=@Description, LastTitle=@LastTitle,LastDes=@LastDes,MainTitle=@MainTitle WHERE ID =1", cn);
+            SqlCommand cmd = new SqlCommand(@"UPDATE AssIntro SET Title=@Title, Description=@Description, 
+            LastTitle=@LastTitle,LastDes=@LastDes,MainTitle=@MainTitle,ThanksTitle=@ThanksTitle 
+,ThanksDes=@ThanksDes ,ProfileTitle=@ProfileTitle ,ProfileCJFTitle=@ProfileCJFTitle ,ProfileFCTitle=@ProfileFCTitle  WHERE ID =1", cn);
             cn.Open();
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = ss.Title;
             cmd.Parameters.Add("@Description", SqlDbType.NVarChar).Value = ss.Description;
             cmd.Parameters.Add("@LastTitle", SqlDbType.NVarChar).Value = ss.LastTitle;
             cmd.Parameters.Add("@LastDes", SqlDbType.NVarChar).Value = ss.LastDes;
             cmd.Parameters.Add("@MainTitle", SqlDbType.NVarChar).Value = ss.MainTitle;
+
+            cmd.Parameters.Add("@ThanksTitle", SqlDbType.NVarChar).Value = ss.ThanksTitle;
+            cmd.Parameters.Add("@ThanksDes", SqlDbType.NVarChar).Value = ss.ThanksDes;
+            cmd.Parameters.Add("@ProfileTitle", SqlDbType.NVarChar).Value = ss.ProfileTitle;
+            cmd.Parameters.Add("@ProfileCJFTitle", SqlDbType.NVarChar).Value = ss.ProfileCJFTitle;
+            cmd.Parameters.Add("@ProfileFCTitle", SqlDbType.NVarChar).Value = ss.ProfileFCTitle;
 
             return ExecuteNonQuery(cmd) == 1;
         }

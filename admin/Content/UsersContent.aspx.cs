@@ -58,7 +58,7 @@ public partial class _UserContent : BasePage
                     li_tab2.Attributes.Add("class", "active");
 
 
-
+                  
                     tab_content1.Visible = false;
                     tab_content2.Visible = true;
 
@@ -184,13 +184,14 @@ public partial class _UserContent : BasePage
 
     protected void Button4_Click(object sender, EventArgs e)
     {
-        sub_pan.Visible = false;
+        Response.Redirect("UsersContent?tab=2");
+        //sub_pan.Visible = false;
     }
 
     protected void Button5_Click(object sender, EventArgs e)
     {
-        //sub_pan.Visible = true;
-        Response.Redirect("UsersContent?tab=2");
+        sub_pan.Visible = true;
+        //Response.Redirect("UsersContent?tab=2");
     }
 }
 

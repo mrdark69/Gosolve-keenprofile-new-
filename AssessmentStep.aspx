@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.User.Master" AutoEventWireup="true" CodeFile="AssessmentStep.aspx.cs" Inherits="_AssessmentStep" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.User1.Master" AutoEventWireup="true" CodeFile="AssessmentStep.aspx.cs" Inherits="_AssessmentStep" %>
 
 <asp:Content ID="HeaderScript" ContentPlaceHolderID="HeaderScript" runat="server">
     <style type="text/css">
@@ -34,7 +34,37 @@
     border-style: solid;
     border-color: rgb(17, 97, 238) transparent transparent transparent;
 }
+    input[type="checkbox"]{
+        background-color: transparent !important;
+    }
+    input[type="checkbox"]:after {
+         
+        width: 7px !important;
+        height: 10px !important;
+    }
+    .checkitem tr td{
+        padding:0 0 0 20px;
+    }
 
+    .main_thanksyoublock{
+        padding-bottom:57px;
+    }
+
+    .t_title{
+        font-family:'Kanit' !important;
+        color:#fff;
+    }
+
+    .t_des{
+         font-family:'Kanit' !important;
+        color:#fff;
+        font-size:16px;
+        margin-bottom:30px;
+    }
+    .main-wrap {
+   
+    
+}
 /* Show the tooltip text when you mouse over the tooltip container */
 /*.tooltip:hover .tooltiptext {
     visibility: visible;
@@ -60,7 +90,7 @@
 <div class="paragraph" style="text-align:center;"></div>
 				</div>
 		
-					<div class="animate-up animated">
+					<div class="animate-up animated" id="main_form" runat="server">
 						<div class="section-box">
 							<div class="profile">
 								<div class="row">
@@ -101,11 +131,11 @@
                             </div>
 
 
-                       
+
                             <h1 id="stepprofile_head" runat="server" class="step_count"></h1>
                             <div class="step-content" id="stepprofile" runat="server">
                                 <div class="text-center m-t-md">
-                                <h2>ขอต้อนรับสู่ Assessment ของทาง Keen Profile</h2>
+                                <h2><asp:Literal ID="profiletitle" runat="server"></asp:Literal></h2>
                                
                                     <div class="q-form-bio form-horizontal">
                                         <div class="form-group"><label class="col-sm-2 control-label">First name:</label>
@@ -149,6 +179,46 @@
 
                                             </div>
                                         </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                             <h1 id="H1" runat="server" class="step_count"></h1>
+                             <div class="step-content" id="Div2" runat="server">
+                                <div class="text-center m-t-md">
+                                <h2><asp:Literal ID="fctitle" runat="server"></asp:Literal></h2>
+                               
+                                    <div class="q-form-bio form-horizontal">
+                                        <div class="form-group"><%--<label class="col-sm-2 control-label">Current Job Function name:</label>--%>
+
+                                            <div class="col-sm-12" style="padding:0 30px 0 30px">
+                                                
+                                            <asp:CheckBoxList ID="checkFC" runat="server" CssClass="checkitem" RepeatLayout="Table"  RepeatDirection="Horizontal"></asp:CheckBoxList>
+
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                             <h1 id="stepprofile_CJF" runat="server" class="step_count"></h1>
+                             <div class="step-content" id="Div1" runat="server">
+                                <div class="text-center m-t-md">
+                                <h2><asp:Literal ID="cjftitle" runat="server"></asp:Literal></h2>
+                               
+                                    <div class="q-form-bio form-horizontal">
+                                        <div class="form-group"><%--<label class="col-sm-2 control-label">Current Job Function name:</label>--%>
+
+                                            <div class="col-sm-12" style="padding:0 30px 0 30px">
+                                                
+                                            <asp:CheckBoxList ID="chckCJF" runat="server" CssClass="checkitem" RepeatLayout="Table"  RepeatDirection="Horizontal"></asp:CheckBoxList>
+
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                                     
                                 </div>
@@ -372,6 +442,41 @@
 						</div>
 
 					</div>	
+
+                    <div id="main_thanks" class="animate-up animated" runat="server" visible="false">
+
+                        <div class="section-box">
+							<div class="profile">
+								<div class="row">
+									<div class="col-xs-12">
+									 <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <%--<h5>Basic Wizzard</h5>--%>
+                        <div class="col-md-12">
+                             <h2 class="t_title"><asp:Literal ID="ThanksTitle" runat="server"></asp:Literal> </h2>
+                        </div>
+                        
+                    </div>
+                    <div class="ibox-content">
+                        <div class="main_thanksyoublock col-md-12">
+                           
+                            <div class="t_des"><asp:Literal ID="ThanksDes" runat="server"></asp:Literal></div>
+                            <div class="btn_pan">
+
+                                <asp:Button ID="btnBackprofile" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;" CssClass="btn btn-lg btn-border ripple" runat="server" OnClick="btnBackprofile_Click" Text="Your profile" />
+                                 <asp:Button ID="btnDownload" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;" CssClass="btn btn-lg btn-border ripple" runat="server" OnClick="btnDownload_Click" Text="Download Now" />
+                            </div>
+                        </div>
+                        
+                        </div>
+
+                                         </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
            </div>
 		</section>
 
@@ -389,7 +494,14 @@
 
      <script>
          $(document).ready(function () {
-            
+             $.LoadingOverlaySetup({
+                 color: "rgba(0, 0, 0, 0.4)",
+                 image: "img/custom_loading.gif",
+                 maxSize: "80px",
+                 minSize: "20px",
+                 resizeInterval: 0,
+                 size: "50%"
+             });
             $("#wizard").steps({
                 onInit: function (event, currentIndex) {
                     //alert(currentIndex);
@@ -451,7 +563,7 @@
                 },
                 onFinished: function (event, currentIndex) {
                     var form = $("form");
-
+                    $.LoadingOverlay("show");
                     // Submit form input
                     form.submit();
                 }

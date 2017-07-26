@@ -18,7 +18,14 @@ public partial class _Assessmentoptionaddedit : BasePage
             LastTitle.Text = ai.LastTitle;
             LastDes.Text = ai.LastDes;
             MainTitle.Text = ai.MainTitle;
-           
+
+            ThanksTitle.Text = ai.ThanksTitle;
+            ThanksDes.Text = ai.ThanksDes;
+            ProfileTitle.Text = ai.ProfileTitle;
+            ProfileCJFTitle.Text = ai.ProfileCJFTitle;
+            ProfileFCTitle.Text = ai.ProfileFCTitle;
+
+
 
 
             List<Model_AsSection> seclist = AssessmentController.GetSectionList(true);
@@ -324,6 +331,7 @@ public partial class _Assessmentoptionaddedit : BasePage
 
     protected void Button14_Click(object sender, EventArgs e)
     {
+      
         Model_AssesIntro intro = new Model_AssesIntro
         {
              Title = txtIntroTitle.Text.Trim(),
@@ -331,6 +339,12 @@ public partial class _Assessmentoptionaddedit : BasePage
             LastTitle = LastTitle.Text.Trim(),
             LastDes = LastDes.Text.Trim(),
             MainTitle = MainTitle.Text.Trim(),
+
+            ThanksTitle = ThanksTitle.Text.Trim(),
+            ThanksDes = ThanksDes.Text.Trim(),
+            ProfileTitle = ProfileTitle.Text.Trim(),
+            ProfileCJFTitle = ProfileCJFTitle.Text.Trim(),
+            ProfileFCTitle = ProfileFCTitle.Text.Trim(),
 
         };
         if (AssessmentController.UpdateIntro(intro))
