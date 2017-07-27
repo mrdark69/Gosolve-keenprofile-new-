@@ -65,16 +65,60 @@ public partial class _AssessmentStep : BasePageFront
                     dropNation.SelectedValue = "211";
 
 
+                    StringBuilder strcjf  = new StringBuilder();
+                    StringBuilder strfc = new StringBuilder();
 
-                    chckCJF.DataSource = cjflist;
-                    chckCJF.DataTextField = "Title";
-                    chckCJF.DataValueField = "CJFID";
-                    chckCJF.DataBind();
 
-                    checkFC.DataSource = fclist;
-                    checkFC.DataTextField = "Title";
-                    checkFC.DataValueField = "FCID";
-                    checkFC.DataBind();
+                    strcjf.Append("<div  class=\"checkitem\">");
+                 
+
+                    foreach (Model_CJF i  in cjflist)
+                    {
+                        strcjf.Append("<div class=\"item\">");
+                        strcjf.Append("<input  type=\"checkbox\" name=\"chckCJF_form\" class=\"role_cjf_valid\" value=\"" + i.CJFID+"\">");
+                        strcjf.Append("<label>" + i.Title + "</label>");
+                        strcjf.Append("</div>");
+                    }
+
+
+                    strcjf.Append("</div>");
+
+
+
+                    strfc.Append("<div class=\"checkitem\">");
+              
+                    foreach (Model_FC i in fclist)
+                    {
+                        strfc.Append("<div class=\"item\">");
+                        strfc.Append("<input  type=\"checkbox\" name=\"chckFC_form\" class=\"role_fc_valid\" value=\"" + i.FCID+"\">");
+                        strfc.Append("<label>"+i.Title+"</label>");
+                        strfc.Append("</div>");
+
+                        
+                    }
+                   
+                    strfc.Append("</div>");
+
+                    chckCJF.Text = strcjf.ToString();
+                    checkFC.Text = strfc.ToString();
+                    //chckCJF.DataSource = cjflist;
+                    //chckCJF.DataTextField = "Title";
+                    //chckCJF.DataValueField = "CJFID";
+                    //chckCJF.DataBind();
+
+                    //checkFC.DataSource = fclist;
+                    //checkFC.DataTextField = "Title";
+                    //checkFC.DataValueField = "FCID";
+                    //checkFC.DataBind();
+
+                    //checkFC.Attributes.Add("class", "{roles: true}");
+
+
+                    //foreach (ListItem i in checkFC.Items)
+                    //{
+
+                    //    i.Attributes.Add("class", "{roles: true}");
+                    //}
                     //stepprofile_head.Visible = false;
                     //stepprofile.Visible = false;
 
@@ -149,6 +193,8 @@ public partial class _AssessmentStep : BasePageFront
         else
         {
             //Button btn = (Button)sender;
+
+            //Response.Write(chckCJF.SelectedValue);
         }
        
 

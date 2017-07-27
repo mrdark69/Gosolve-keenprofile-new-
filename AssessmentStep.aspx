@@ -187,7 +187,7 @@
                             </div>
 
                              <h1 id="H1" runat="server" class="step_count"></h1>
-                             <div class="step-content" id="Div2" runat="server">
+                             <div class="step-content" id="Div2" runat="server" data-valid="checkcount">
                                 <div class="text-center m-t-md">
                                 <h2><asp:Literal ID="fctitle" runat="server"></asp:Literal></h2>
                                
@@ -196,7 +196,8 @@
 
                                             <div class="col-sm-12" style="padding:0 30px 0 30px">
                                                 
-                                            <asp:CheckBoxList ID="checkFC" runat="server" CssClass="checkitem" RepeatLayout="Table"  RepeatDirection="Horizontal"></asp:CheckBoxList>
+                                                <asp:Literal ID="checkFC" runat="server"></asp:Literal>
+                                        <%--    <asp:CheckBoxList ID="checkFC" runat="server" CssClass="checkitem" RepeatLayout="Table"  RepeatDirection="Horizontal"></asp:CheckBoxList>--%>
 
                                             </div>
                                         </div>
@@ -207,7 +208,7 @@
                             </div>
 
                              <h1 id="stepprofile_CJF" runat="server" class="step_count"></h1>
-                             <div class="step-content" id="Div1" runat="server">
+                             <div class="step-content" id="Div1" runat="server" data-valid="checkcount">
                                 <div class="text-center m-t-md">
                                 <h2><asp:Literal ID="cjftitle" runat="server"></asp:Literal></h2>
                                
@@ -216,7 +217,8 @@
 
                                             <div class="col-sm-12" style="padding:0 30px 0 30px">
                                                 
-                                            <asp:CheckBoxList ID="chckCJF" runat="server" CssClass="checkitem" RepeatLayout="Table"  RepeatDirection="Horizontal"></asp:CheckBoxList>
+                                                <asp:Literal ID="chckCJF" runat="server"></asp:Literal>
+                                           <%-- <asp:CheckBoxList ID="chckCJF" runat="server" CssClass="checkitem" RepeatLayout="Table"  RepeatDirection="Horizontal"></asp:CheckBoxList>--%>
 
                                             </div>
                                         </div>
@@ -566,6 +568,15 @@
              $.validator.addMethod('customphone', function (value, element) {
                  return this.optional(element) || /^\d{3}-\d{3}-\d{4}$/.test(value);
              }, "Please enter a valid phone number");
+
+             //$.validator.addMethod("roles", function (value, elem, param) {
+             //    if ($(".roles:checkbox:checked").length > 0) {
+             //        return true;
+             //    } else {
+             //        return false;
+             //    }
+             //}, "You must select at least one!");
+
              $.LoadingOverlaySetup({
                  color: "rgba(0, 0, 0, 0.4)",
                  //image: "img/custom_loading.gif",
@@ -591,6 +602,15 @@
                     ////}
 
                     var form = $("form");
+                    var valid = $("#wizard .body.current").data('valid');
+
+                    if (valid == "checkcount") {
+                        if ($("#wizard .body.current").find('input[type=checkbox]:checked').length == 0) {
+                            alert("You must select at least one!");
+                            return false;
+                        }
+                    }
+                   
 
                     // Clean up if user went backward before
                     if (currentIndex < newIndex) {
@@ -648,7 +668,8 @@
                     element.before(error);
                 },
                 rules: {
-                    ctl00$MainContent$txtPhon:"customphone",
+                    ctl00$MainContent$txtPhon: "customphone",
+                   
                     confirm: {
                         equalTo: "#password"
                     }

@@ -1207,3 +1207,14 @@ input[type=checkbox] {
     margin-right: 5px !important;
     margin-top:0px !important;
 }
+
+div.checkitem {
+    width: 95%;
+    text-align: left;
+}
+
+    div.checkitem div.item {
+        display: inline-block;
+        margin-left: 20px;
+        padding: 5px;
+    }
