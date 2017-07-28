@@ -17,7 +17,40 @@ using System.Security.Cryptography;
 /// 
 public class Model_UserFC : BaseModel<Model_UserFC>
 {
+    public int UserID { get; set; }
+    public int FCID { get; set; }
 
+    public string Title { get; set; }
+
+
+    public int AddUserFC(Model_UserFC userfc)
+    {
+        int ret = 1;
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("DELETE FROM UserFC WHERE UserID=@UserID", cn);
+            cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userfc.UserID;
+            cn.Open();
+            ExecuteNonQuery(cmd);
+
+            SqlCommand add = new SqlCommand("INSERT INTO UserFC (UserID,FCID) VALUES(@UserID,@FCID)", cn);
+            add.Parameters.Add("@UserID", SqlDbType.Int).Value = userfc.UserID;
+            add.Parameters.Add("@FCID", SqlDbType.Int).Value = userfc.FCID;
+            ret = ExecuteNonQuery(add);
+        }
+        return ret;
+    }
+
+
+    public List<Model_UserFC> GetListUserFc(int UserID)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT uc.*,ff.Title FROM UserFC uc INNER JOIN FC ff ON ff.FCID=uc.FCID WHERE uc.UserID=@UserID", cn);
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+        }
+    }
 }
 public class Model_FC : BaseModel<Model_FC>
 {

@@ -17,7 +17,40 @@ using System.Security.Cryptography;
 /// 
 public class Model_UserCJF : BaseModel<Model_UserCJF>
 {
+    public int UserID { get; set; }
+    public int CJFID { get; set; }
 
+    public string Title { get; set; }
+
+
+    public int AddUserCjf(Model_UserCJF userfc)
+    {
+        int ret = 1;
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("DELETE FROM UserCJF WHERE UserID=@UserID", cn);
+            cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userfc.UserID;
+            cn.Open();
+            ExecuteNonQuery(cmd);
+
+            SqlCommand add = new SqlCommand("INSERT INTO UserCJF (UserID,CJFID) VALUES(@UserID,@CJFID)", cn);
+            add.Parameters.Add("@UserID", SqlDbType.Int).Value = userfc.UserID;
+            add.Parameters.Add("@CJFID", SqlDbType.Int).Value = userfc.CJFID;
+            ret = ExecuteNonQuery(add);
+        }
+        return ret;
+    }
+
+
+    public List<Model_UserCJF> GetListUserFc(int UserID)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT uc.*,ff.Title FROM UserCJF uc INNER JOIN CJF ff ON ff.CJFID=uc.CJFID WHERE uc.UserID=@UserID", cn);
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+        }
+    }
 }
 public class Model_CJF : BaseModel<Model_CJF>
 {

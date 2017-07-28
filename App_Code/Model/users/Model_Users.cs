@@ -42,6 +42,32 @@ public class Model_Users : BaseModel<Model_Users>
 
     public bool IsResetPassword { get; set; } = false;
 
+    private List<Model_UserFC> _userfc = null;
+    public List<Model_UserFC> UserFC {
+        get
+        {
+            if(_userfc == null)
+            {
+                Model_UserFC ufc = new Model_UserFC();
+                _userfc = ufc.GetListUserFc(this.UserID);
+            }
+            return _userfc;
+        }
+    }
+    private List<Model_UserCJF> _usercjf = null;
+    public List<Model_UserCJF> UserCJF
+    {
+        get
+        {
+            if (_usercjf == null)
+            {
+                Model_UserCJF ufc = new Model_UserCJF();
+                _usercjf = ufc.GetListUserFc(this.UserID);
+            }
+            return _usercjf;
+        }
+    }
+
     public Model_Users()
     {
         //
@@ -149,6 +175,34 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit);SET @UserID = 
 
     }
 
+    public bool UpdateUserProfileFront(Model_Users users)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            string w = string.Empty;
+
+            SqlCommand cmd = new SqlCommand();
+           
+            string q = @"UPDATE Users SET FirstName=@FirstName ,LastName=@LastName 
+            ,DateofBirth=@DateofBirth,Gender=@Gender,Nationality=@Nationality,MobileNumber=@MobileNumber WHERE UserID=@UserID";
+            cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = users.FirstName;
+            cmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = users.LastName;
+          
+
+            cmd.Parameters.Add("@DateofBirth", SqlDbType.SmallDateTime).Value = users.DateofBirth;
+            cmd.Parameters.Add("@Gender", SqlDbType.TinyInt).Value = users.Gender;
+            cmd.Parameters.Add("@Nationality", SqlDbType.Int).Value = users.Nationality;
+            cmd.Parameters.Add("@MobileNumber", SqlDbType.VarChar).Value = users.MobileNumber;
+            cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = users.UserID;
+            cmd.CommandText = q;
+            cmd.Connection = cn;
+
+            cn.Open();
+
+            return ExecuteNonQuery(cmd) == 1;
+        }
+
+    }
     public bool UpdateUserProfile(Model_Users users)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
