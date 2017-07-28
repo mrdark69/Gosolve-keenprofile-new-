@@ -125,3 +125,15 @@
 	</div>
 </div>
 </asp:Content>
+<asp:Content ID="FooterScript" ContentPlaceHolderID="ContentFooter" runat="server">
+    <script>
+        $(document).ready(function(){
+            if (window.location.hash) {
+                $('html, body').animate({ scrollTop: $(".divider").offset().top}, 500);
+            } else {
+                // Fragment doesn't exist
+            }
+
+        });
+    </script>
+    </asp:Content>

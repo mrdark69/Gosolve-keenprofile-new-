@@ -1131,21 +1131,33 @@ body {
 
 
         .q-type-rank-scale-lr .tbl-rank-scale-lr table tr td.question.left {
-            text-align: center;
+            text-align:left;
         }
         .q-type-rank-scale-lr .tbl-rank-scale-lr table tr td.question.right {
-            text-align: center;
+            text-align: right;
         }
     .q-type-rank-scale-lr .tbl-rank-scale-lr table tr td.choice {
         color: #fff;
         font-family: "Kanit" !important;
+       
     }
 
+     .q-type-rank-scale-lr .tbl-rank-scale-lr.left table tr td.choice{
+         
+     }
+    .q-type-rank-scale-lr .tbl-rank-scale-lr.right table tr td.choice {
+       
+    }
+    .q-type-rank-scale-lr .tbl-rank-scale-lr.left table tr td.choice input {
+     
+        margin: 0 auto;
+        margin-top: 5px;
+    }
+    .q-type-rank-scale-lr .tbl-rank-scale-lr.right table tr td.choice input {
+        margin: 0 auto;
+        margin-top: 5px;
+    }
 
-        .q-type-rank-scale-lr .tbl-rank-scale-lr table tr td.choice input {
-            margin: 0 auto;
-            margin-top: 5px;
-        }
 .q-form-bio{
     margin-top:40px;
 }

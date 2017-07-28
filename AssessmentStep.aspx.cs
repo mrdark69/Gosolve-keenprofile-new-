@@ -253,12 +253,12 @@ public partial class _AssessmentStep : BasePageFront
 
             ret.Append("<div class=\"question-type q-type-rank-scale-lr\">");
 
-
-            ret.Append("<div class=\"col-md-5 tbl-rank-scale-lr\"   >");
+            int col = (ass.EndRank - ass.StartRank) + 1;
+            ret.Append("<div class=\"col-md-6 tbl-rank-scale-lr left\"   >");
             ret.Append("<table>");
-            ret.Append(" <tr><td colspan=\"5\" class=\"question left\">" + ass.Questions + "</td></tr>");
+            ret.Append(" <tr><td colspan=\""+ col + "\" class=\"question left\">" + ass.Questions + "</td></tr>");
             ret.Append("<tr>");
-            for (int i = ass.StartRank; i <= ass.EndRank; i++)
+            for (int i = ass.EndRank; i >= ass.StartRank; i--)
             {
                 ret.Append("<td class=\"choice\">"+i+"</td>");
             }
@@ -278,14 +278,15 @@ public partial class _AssessmentStep : BasePageFront
             ret.Append("</table>");
             ret.Append("</div>");
 
-            ret.Append("<div class=\"col-md-2\"></div>");
+            //ret.Append("<div class=\"col-md-1\"></div>");
         }
         if (ass.Side == 2)
         {
+            int col = (ass.EndRank - ass.StartRank) + 1;
             ret.Append("<input type=\"hidden\" name=\"ass_fill_\"  value=\"" + ass.ASID + "\" />");
-            ret.Append("<div class=\"col-md-5 tbl-rank-scale-lr\" >");
+            ret.Append("<div class=\"col-md-6 tbl-rank-scale-lr right\" >");
             ret.Append("<table>");
-            ret.Append("<tr><td colspan=\"5\" class=\"question right\">" + ass.Questions + "</td></tr>");
+            ret.Append("<tr><td colspan=\""+ col + "\" class=\"question right\">" + ass.Questions + "</td></tr>");
             ret.Append("<tr>");
             for (int i = ass.StartRank; i <= ass.EndRank; i++)
             {
@@ -483,11 +484,11 @@ public partial class _AssessmentStep : BasePageFront
 
     protected void btnBackprofile_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/Default");
+        Response.Redirect("~/Default#download");
     }
 
     protected void btnDownload_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("~/Default#download");
     }
 }
