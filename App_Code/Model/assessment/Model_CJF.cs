@@ -23,30 +23,38 @@ public class Model_UserCJF : BaseModel<Model_UserCJF>
     public string Title { get; set; }
 
 
-    public int AddUserCjf(Model_UserCJF userfc)
+    public int AddUserCjf(List<Model_UserCJF> userfc, int userId )
     {
         int ret = 1;
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand("DELETE FROM UserCJF WHERE UserID=@UserID", cn);
-            cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userfc.UserID;
+            cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userId;
             cn.Open();
             ExecuteNonQuery(cmd);
 
-            SqlCommand add = new SqlCommand("INSERT INTO UserCJF (UserID,CJFID) VALUES(@UserID,@CJFID)", cn);
-            add.Parameters.Add("@UserID", SqlDbType.Int).Value = userfc.UserID;
-            add.Parameters.Add("@CJFID", SqlDbType.Int).Value = userfc.CJFID;
-            ret = ExecuteNonQuery(add);
+            if(userfc.Count > 0)
+            {
+                foreach(Model_UserCJF i in userfc)
+                {
+                    SqlCommand add = new SqlCommand("INSERT INTO UserCJF (UserID,CJFID) VALUES(@UserID,@CJFID)", cn);
+                    add.Parameters.Add("@UserID", SqlDbType.Int).Value = i.UserID;
+                    add.Parameters.Add("@CJFID", SqlDbType.Int).Value = i.CJFID;
+                    ret = ExecuteNonQuery(add);
+                }
+            }
+            
         }
         return ret;
     }
 
 
-    public List<Model_UserCJF> GetListUserFc(int UserID)
+    public List<Model_UserCJF> GetListUsercjf(int UserID)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand("SELECT uc.*,ff.Title FROM UserCJF uc INNER JOIN CJF ff ON ff.CJFID=uc.CJFID WHERE uc.UserID=@UserID", cn);
+            cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = UserID;
             cn.Open();
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }

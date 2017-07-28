@@ -180,7 +180,7 @@ public static class MAilSender
 
             success = true;
         }
-        catch (Exception ex)
+        catch 
         {
             //(Exception ex)
         }

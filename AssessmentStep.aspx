@@ -81,7 +81,7 @@
  </asp:Content>
   
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-  
+  <asp:HiddenField ID="heUserID" runat="server" />
    <section id="about" class="section section-about">
        <div class="banner">
 				<div class="wsite-section-elements">

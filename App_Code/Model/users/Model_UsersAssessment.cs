@@ -17,7 +17,29 @@ using System.Security.Cryptography;
 public class Model_UsersAssessment: BaseModel<Model_UsersAssessment>
 {
 
-    
+
+    public int TASID { get; set; }
+
+    public int TransactionID { get; set; }
+
+    public int ASID { get; set; }
+    public string Code { get; set; }
+    public string Questions { get; set; }
+    public int SCID { get; set; }
+    public int SUCID { get; set; }
+
+    public bool Status { get; set; }
+    public bool IsHide { get; set; } = false;
+    public byte QTID { get; set; }
+    public int Priority { get; set; }
+    public int StartRank { get; set; }
+    public int EndRank { get; set; }
+    public string GroupName { get; set; }
+    public byte Side { get; set; }
+    public string LeftScaleTitle { get; set; }
+    public string RigthScaleTitle { get; set; }
+
+    public int Score { get; set; }
 
     public Model_UsersAssessment()
     {
@@ -26,6 +48,59 @@ public class Model_UsersAssessment: BaseModel<Model_UsersAssessment>
         //
     }
 
-   
+    public int InsertUserAssessment(Model_UsersAssessment uass)
+    {
+        int ret = 0;
+
+        Model_Assessment ass = new Model_Assessment();
+        ass = ass.GetAssessmentByID(uass.ASID);
+
+        if(ass != null)
+        {
+            using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand(@"INSERT INTO UserAssessment (TransactionID,Score,ASID,Code,Questions,SCID,SUCID,Status,IsHide,QTID,Priority,
+                                    StartRank,EndRank,GroupName,Side,LeftScaleTitle,RigthScaleTitle) 
+                            VALUES (@TransactionID,@Score,@ASID,@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,
+                    @StartRank,@EndRank,@GroupName,@Side,@LeftScaleTitle,@RigthScaleTitle);SET @TASID = SCOPE_IDENTITY();", cn);
+
+                cn.Open();
+
+                cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = uass.TransactionID;
+                cmd.Parameters.Add("@ASID", SqlDbType.Int).Value = uass.ASID;
+                cmd.Parameters.Add("@Score", SqlDbType.Int).Value = uass.Score;
+
+
+                cmd.Parameters.Add("@Code", SqlDbType.NVarChar).Value = ass.Code;
+                cmd.Parameters.Add("@Questions", SqlDbType.NVarChar).Value = ass.Questions;
+                cmd.Parameters.Add("@SCID", SqlDbType.Int).Value = ass.SCID;
+                cmd.Parameters.Add("@SUCID", SqlDbType.Int).Value = ass.SUCID;
+                cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = ass.Status;
+                cmd.Parameters.Add("@IsHide", SqlDbType.Bit).Value = ass.IsHide;
+                cmd.Parameters.Add("@QTID", SqlDbType.TinyInt).Value = ass.QTID;
+                cmd.Parameters.Add("@Priority", SqlDbType.Int).Value = ass.Priority;
+                cmd.Parameters.Add("@StartRank", SqlDbType.Int).Value = ass.StartRank;
+                cmd.Parameters.Add("@EndRank", SqlDbType.Int).Value = ass.EndRank;
+                cmd.Parameters.Add("@GroupName", SqlDbType.NVarChar).Value = ass.GroupName;
+                cmd.Parameters.Add("@Side", SqlDbType.TinyInt).Value = ass.Side;
+                cmd.Parameters.Add("@LeftScaleTitle", SqlDbType.NVarChar).Value = ass.LeftScaleTitle;
+                cmd.Parameters.Add("@RigthScaleTitle", SqlDbType.NVarChar).Value = ass.RigthScaleTitle;
+
+
+                cmd.Parameters.Add("@TASID", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+
+                if (ExecuteNonQuery(cmd) > 0)
+                {
+                    ret = (int)cmd.Parameters["@TASID"].Value;
+
+                }
+
+              
+
+            }
+        }
+        return ret;
+    }
 
 }

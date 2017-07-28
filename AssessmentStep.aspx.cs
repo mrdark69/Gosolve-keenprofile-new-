@@ -28,7 +28,11 @@ public partial class _AssessmentStep : BasePageFront
                 Model_Users u = this.UserActive;
                 if (u != null)
                 {
+                    
 
+
+                   
+                        
 
                     //Get Main Intro
                     Model_AssesIntro intro = new Model_AssesIntro();
@@ -39,10 +43,15 @@ public partial class _AssessmentStep : BasePageFront
                     Model_CJF cjf = new Model_CJF();
                     List<Model_CJF> cjflist = cjf.GetCJFeAll();
 
-                    //Get Functional Competencies
+                    Model_UserCJF cjflistUser = new Model_UserCJF();
+                    List<Model_UserCJF> cjfuserChecked = cjflistUser.GetListUsercjf(u.UserID);
+
+                   //Get Functional Competencies
                     Model_FC fc = new Model_FC();
                     List<Model_FC> fclist = fc.GetFCAll();
 
+                    Model_UserFC fcuser = new Model_UserFC();
+                    List<Model_UserFC> fcuserchecked = fcuser.GetListUserFc(u.UserID);
 
                     //Get Section 
                     Model_AsSection section = new Model_AsSection();
@@ -74,8 +83,16 @@ public partial class _AssessmentStep : BasePageFront
 
                     foreach (Model_CJF i  in cjflist)
                     {
+
+                        string check = string.Empty;
+                        if(cjfuserChecked.Where(r=>r.CJFID == i.CJFID).Count() > 0)
+                            check = "Checked=\"Checked\"";
+
+
                         strcjf.Append("<div class=\"item\">");
-                        strcjf.Append("<input  type=\"checkbox\" name=\"chckCJF_form\" class=\"role_cjf_valid\" value=\"" + i.CJFID+"\">");
+
+
+                        strcjf.Append("<input  type=\"checkbox\" name=\"chckCJF_form\" "+ check + " class=\"role_cjf_valid\" value=\"" + i.CJFID+"\">");
                         strcjf.Append("<label>" + i.Title + "</label>");
                         strcjf.Append("</div>");
                     }
@@ -89,8 +106,13 @@ public partial class _AssessmentStep : BasePageFront
               
                     foreach (Model_FC i in fclist)
                     {
+
+                        string check = string.Empty;
+                        if (fcuserchecked.Where(r => r.FCID == i.FCID).Count() > 0)
+                            check = "Checked=\"Checked\"";
+
                         strfc.Append("<div class=\"item\">");
-                        strfc.Append("<input  type=\"checkbox\" name=\"chckFC_form\" class=\"role_fc_valid\" value=\"" + i.FCID+"\">");
+                        strfc.Append("<input  type=\"checkbox\" name=\"chckFC_form\" "+check+" class=\"role_fc_valid\" value=\"" + i.FCID+"\">");
                         strfc.Append("<label>"+i.Title+"</label>");
                         strfc.Append("</div>");
 
@@ -186,6 +208,16 @@ public partial class _AssessmentStep : BasePageFront
                     }
 
                     Stepcontent.Text = ret.ToString();
+
+
+                    //Binding profile (initial data)
+                    heUserID.Value = u.UserID.ToString();
+                    firstName.Text = (string.IsNullOrEmpty(u.FirstName) ? "" : u.FirstName);
+                    LastName.Text = (string.IsNullOrEmpty(u.LastName) ? "" : u.LastName);
+                    dropGender.SelectedValue = u.Gender.ToString();
+                    dropNation.SelectedValue = u.Nationality.ToString();
+                    day.Text = (u.DateofBirth !=null? u.DateofBirth.ToString("yyy-MM-dd"): "" ) ;
+                    txtPhon.Text = (string.IsNullOrEmpty(u.MobileNumber) ? "" : u.MobileNumber);
                 }
             }
            

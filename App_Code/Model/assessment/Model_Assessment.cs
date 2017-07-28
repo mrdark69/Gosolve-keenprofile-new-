@@ -53,6 +53,22 @@ public class Model_Assessment_Choice : BaseModel<Model_Assessment_Choice>
         }
     }
 
+    public Model_Assessment_Choice GetAssessmentChoiceByID(int ASCID)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM AssessmentChoice WHERE ASCID=@ASCID ", cn);
+            cmd.Parameters.Add("@ASCID", SqlDbType.Int).Value = ASCID;
+            cn.Open();
+
+            IDataReader reader = ExecuteReader(cmd, CommandBehavior.SingleRow);
+            if (reader.Read())
+                return MappingObjectFromDataReaderByName(reader);
+            else
+                return null;
+        }
+    }
+
 
     public int AddAssessmentChoice(List<Model_Assessment_Choice> list,int ASID)
     {

@@ -62,7 +62,7 @@ public class Model_Users : BaseModel<Model_Users>
             if (_usercjf == null)
             {
                 Model_UserCJF ufc = new Model_UserCJF();
-                _usercjf = ufc.GetListUserFc(this.UserID);
+                _usercjf = ufc.GetListUsercjf(this.UserID);
             }
             return _usercjf;
         }

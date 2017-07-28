@@ -60,7 +60,7 @@ public class GsCsvReader
     private DataTable CsvCreateDataTableNew()
     {
         DataTable dt = new DataTable();
-        DataRow dr;
+       // DataRow dr;
 
 
         dt.Columns.Add("FirstName");

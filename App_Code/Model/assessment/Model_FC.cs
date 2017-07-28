@@ -23,20 +23,26 @@ public class Model_UserFC : BaseModel<Model_UserFC>
     public string Title { get; set; }
 
 
-    public int AddUserFC(Model_UserFC userfc)
+    public int AddUserFC(List<Model_UserFC> userfc, int UserID)
     {
         int ret = 1;
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand("DELETE FROM UserFC WHERE UserID=@UserID", cn);
-            cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userfc.UserID;
+            cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = UserID;
             cn.Open();
             ExecuteNonQuery(cmd);
-
-            SqlCommand add = new SqlCommand("INSERT INTO UserFC (UserID,FCID) VALUES(@UserID,@FCID)", cn);
-            add.Parameters.Add("@UserID", SqlDbType.Int).Value = userfc.UserID;
-            add.Parameters.Add("@FCID", SqlDbType.Int).Value = userfc.FCID;
-            ret = ExecuteNonQuery(add);
+            if(userfc.Count > 0)
+            {
+                foreach(Model_UserFC i in userfc)
+                {
+                    SqlCommand add = new SqlCommand("INSERT INTO UserFC (UserID,FCID) VALUES(@UserID,@FCID)", cn);
+                    add.Parameters.Add("@UserID", SqlDbType.Int).Value = i.UserID;
+                    add.Parameters.Add("@FCID", SqlDbType.Int).Value = i.FCID;
+                    ret = ExecuteNonQuery(add);
+                }
+            }
+           
         }
         return ret;
     }
@@ -47,6 +53,7 @@ public class Model_UserFC : BaseModel<Model_UserFC>
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand("SELECT uc.*,ff.Title FROM UserFC uc INNER JOIN FC ff ON ff.FCID=uc.FCID WHERE uc.UserID=@UserID", cn);
+            cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = UserID;
             cn.Open();
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }

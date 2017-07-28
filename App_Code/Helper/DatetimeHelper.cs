@@ -102,9 +102,26 @@ public static class DatetimeHelper
         }
 
 
-      
-   
+    public static DateTime DateSplitYear(this string strTimeCurrent, char chrCharToSplit)
+    {
+
+        string[] arrstrTimeCurrent = strTimeCurrent.Split(chrCharToSplit);
+
+        DateTime ret =  DateTime.Now.ApiService_ToUTC();
+
+        if (arrstrTimeCurrent.Count() == 3)
+        {
+            int y = int.Parse(arrstrTimeCurrent[0]);
+            int m = int.Parse(arrstrTimeCurrent[1]);
+            int d = int.Parse(arrstrTimeCurrent[2]);
+            ret = new DateTime(y, m, d);
+        }
+
+        return ret;
+       
     }
+
+}
 
 //ID
 //Time zone name
