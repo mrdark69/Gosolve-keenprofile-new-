@@ -216,40 +216,18 @@ public class UserSessionController
             UpdateSessionStatus(intLogKey);
 
 
-            if (!IsAuthorizePage(u, ConfigurationManager.AppSettings["AuthorizeBaseURL"].ToString()))
-            {
+            //if (!IsAuthorizePage(u, ConfigurationManager.AppSettings["AuthorizeBaseURL"].ToString()))
+            //{
 
-                //ms.CurrentURL
-                     HttpContext.Current.Response.Redirect("~/admin/#accessdinied");
-
-                //try
-                //{
-                   
-                //}
-                //catch
-                //{
-                //    HttpContext.Current.Response.Redirect(HttpContext.Current.Request.Url.ToString() + "#accessdinied");
-                //}
-                //HiddenField h = (HiddenField)p.FindControl("hdAlert");
-                //HttpContext.Current.Response.Write(p);
-                //h.Value = "False";
-                HttpContext.Current.Response.End();
-                //Page page = HttpContext.Current.Request.pag
-                //ScriptManager.RegisterStartupScript(this, Page.GetType(), null, script, false);
-                // HttpContext.Current.Response.Redirect("~/admin/accessdenie.aspx?error=accessdenied");
-                // 
-            }
+          
+            //   HttpContext.Current.Response.Redirect("~/admin/#accessdinied");
+            //   HttpContext.Current.Response.End();
+                
+            //}
 
         }
 
-        //Action Method
-
-        
-        //else
-        //{
-        //    HttpSessionState Hotels2SessionMethod = HttpContext.Current.Session;
-        //    Hotels2SessionMethod["Method"] = clStaffSesssion.HotelsSessionItem + ";null";
-        //}
+       
 
 
 

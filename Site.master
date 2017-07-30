@@ -69,8 +69,8 @@
                 <li <%=MenuActive("Users")%> >
                     <a href="<%= Page.ResolveClientUrl("~/admin/Users/user_list") %>"><i class="fa fa-th-large"></i> <span class="nav-label">Users</span><span class="fa arrow"></span></a>
                      <ul class="nav nav-second-level">
-                           <li><a href="<%= Page.ResolveClientUrl("~/admin/Staff/UsersList") %>">Staff Role</a></li>
-                        
+                           <li><a href="<%= Page.ResolveClientUrl("~/admin/Users/UsersList") %>">Customers</a></li>
+                        <li><a href="<%= Page.ResolveClientUrl("~/admin/Users/Transaction") %>">Transaction</a></li>
                      
                     </ul>
                 </li>

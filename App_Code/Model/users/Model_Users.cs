@@ -42,6 +42,15 @@ public class Model_Users : BaseModel<Model_Users>
 
     public bool IsResetPassword { get; set; } = false;
 
+
+    public int TotalRows { get; set; }
+    public int RowNum { get; set; }
+
+
+    public DTParameters PagingParam { get; set; }
+   
+
+
     private List<Model_UserFC> _userfc = null;
     public List<Model_UserFC> UserFC {
         get
@@ -75,6 +84,7 @@ public class Model_Users : BaseModel<Model_Users>
         //
     }
 
+#region Hide unfocus
     public int InsertUserAdmin(Model_Users users)
     {
         int ret = 0;
@@ -353,7 +363,7 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit);SET @UserID = 
                 return null;
         }
     }
-
+#endregion
     public IList<Model_Users> getUserAll(Model_Users mu)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
@@ -365,12 +375,14 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit);SET @UserID = 
 
             if (mu.UsersRoleId > 0)
             {
-                w = "WHERE u.UsersRoleId =@UsersRoleId";
+                w = "AND u.UsersRoleId =@UsersRoleId";
                 cmd.Parameters.Add("@UsersRoleId", SqlDbType.TinyInt).Value = mu.UsersRoleId;
 
             }
             cText.Append(@"SELECT u.*,ur.Title AS UserRoleName FROM  Users u 
-INNER JOIN UsersRole ur ON ur.UsersRoleId =u.UsersRoleId " + w);
+LEFT JOIN UsersRole ur ON ur.UsersRoleId =u.UsersRoleId WHERE u.UserCatId = @UserCatId" + w);
+
+            cmd.Parameters.Add("@UserCatId", SqlDbType.TinyInt).Value = mu.UserCatId;
 
             cmd.CommandText = cText.ToString();
             cmd.Connection = cn;
@@ -380,6 +392,111 @@ INNER JOIN UsersRole ur ON ur.UsersRoleId =u.UsersRoleId " + w);
 
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }
+    }
+
+
+    public IList<Model_Users> getUserAll_Paging(Model_Users mu)
+    {
+
+        string search =  (mu.PagingParam.Search != null? mu.PagingParam.Search.Value:"");
+        string sortOrder = mu.PagingParam.SortOrder;
+        int start = mu.PagingParam.Start;
+        int length = mu.PagingParam.Length;
+        //List<string> columnFilters = DataTablesJS<Model_Users>.getcolumnSearch(mu.PagingParam);
+
+        DTCustomSerach custom = mu.PagingParam.CustomSearch;
+
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+
+
+            string[] filerName = { "", "", "FirstName", "LastName", "Email" };
+            StringBuilder strfilter = new StringBuilder();
+
+
+
+            //for (int i = 0; i < columnFilters.Count; i++)
+            //{
+            //    if (!string.IsNullOrEmpty(columnFilters[i]))
+            //    {
+            //        strfilter.Append(" AND LOWER(" + filerName[i] + ") LIKE @filer_" + i);
+
+            //    }
+
+            //}
+            SqlCommand cmd = new SqlCommand();
+            string w = string.Empty;
+            if (mu.UsersRoleId > 0)
+            {
+                w = "AND u.UsersRoleId =@UsersRoleId";
+                cmd.Parameters.Add("@UsersRoleId", SqlDbType.TinyInt).Value = mu.UsersRoleId;
+
+            }
+            string strcmd = @"
+                ;WITH Users_cte AS (
+                SELECT u.*,ur.Title AS UserRoleName
+                FROM dbo.Users u
+                LEFT JOIN UsersRole ur ON ur.UsersRoleId =u.UsersRoleId  
+                WHERE u.UserCatId = @UserCatId " + w +
+                //(string.IsNullOrEmpty(search) ? "" : "AND  (FirstName LIKE @search  OR LastName LIKE @search OR Email LIKE @search) ") +
+                // (custom.Value != null ? "AND " + custom.Key + " = @CustomKeyValue" : "") +
+                //(columnFilters.Count > 0 ? strfilter.ToString() : "")
+                @"
+            )
+
+            SELECT 
+                db.*,
+                tCountOrders.CountOrders AS TotalRows
+            FROM Users_cte db
+                CROSS JOIN (SELECT Count(*) AS CountOrders FROM Users_cte) AS tCountOrders
+            ORDER BY UserID 
+            OFFSET @Start ROWS
+            FETCH NEXT @Size ROWS ONLY;
+            ";
+
+            // ORDER BY UserID, " + sortOrder + @"
+            cmd.Parameters.Add("@UserCatId", SqlDbType.TinyInt).Value = mu.UserCatId;
+            cmd.Parameters.Add("@Start", SqlDbType.Int).Value = start;
+            cmd.Parameters.Add("@Size", SqlDbType.Int).Value = length;
+
+
+            //if (custom.Value != null)
+            //    cmd.Parameters.Add("@CustomKeyValue", SqlDbType.Int).Value = custom.Value;
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                string searchTerm = string.Format("%{0}%", search);
+                cmd.Parameters.Add(new SqlParameter("@search", searchTerm));
+                //cmd.Parameters.Add("@search", SqlDbType.NVarChar).Value = searchTerm;
+            }
+
+            //if (columnFilters.Count > 0)
+            //{
+            //    if (!string.IsNullOrEmpty(columnFilters[2]))
+            //    {
+            //        string searchTerm = string.Format("%{0}%", columnFilters[2]);
+            //        cmd.Parameters.Add(new SqlParameter("@filer_2", searchTerm));
+            //    }
+            //    if (!string.IsNullOrEmpty(columnFilters[3]))
+            //    {
+            //        string searchTerm = string.Format("%{0}%", columnFilters[3]);
+            //        cmd.Parameters.Add(new SqlParameter("@filer_3", searchTerm));
+            //    }
+
+
+            //}
+
+
+            cmd.CommandText = strcmd;
+            cmd.Connection = cn;
+            cn.Open();
+
+
+
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+
+        }
+
     }
 
 

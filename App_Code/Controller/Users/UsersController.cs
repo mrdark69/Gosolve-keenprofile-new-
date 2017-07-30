@@ -56,6 +56,11 @@ public class UsersController
         return mu.getUserAll(mu);
     }
 
+    public static IList<Model_Users> GetUsers_Paging(Model_Users mu)
+    {
+        return mu.getUserAll_Paging(mu);
+    }
+
     public static IList<Model_usersRole> GetRoleAll(Model_usersRole mu)
     {
         return mu.getRole();

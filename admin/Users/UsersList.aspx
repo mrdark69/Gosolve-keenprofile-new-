@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Staff.aspx.cs" Inherits="Staff_Staff" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="UsersList.aspx.cs" Inherits="Users_UsersList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderScript" runat="server">
     <style>
       th.dt-center,td.dt-center{
@@ -66,8 +66,14 @@
                         <div class="ibox-content">
                             <div class="row">
                                 <div class="col-sm-5 m-b-xs">
-                                   <strong>Role:</strong> <asp:DropDownList ID="dropRole" ClientIDMode="Static" runat="server" CssClass="input-sm form-control input-s-sm inline">
+                                   <strong>Pagesize:</strong> <%--<asp:DropDownList ID="dropRole" ClientIDMode="Static" runat="server" CssClass="input-sm form-control input-s-sm inline">
 
+                                    </asp:DropDownList>--%>
+                                    <asp:DropDownList ID="droppagsize" ClientIDMode="Static" Width="50px" runat="server" CssClass="input-sm form-control input-s-sm inline">
+                                        <asp:ListItem Text="5" Value="5"></asp:ListItem>
+                                        <asp:ListItem Text="10" Value="10"></asp:ListItem>
+                                             <asp:ListItem Text="20" Value="20"></asp:ListItem>
+                                          <asp:ListItem Text="30" Value="30"></asp:ListItem>
                                     </asp:DropDownList>
                                    <%-- <select class="input-sm form-control input-s-sm inline">
                                     <option value="0">Option 1</option>
@@ -115,7 +121,14 @@
                                     </tbody>
                                 </table>
                             </div>
-
+                            <div class="btn-group" id="pagination">
+                                <%--<button type="button" class="btn btn-white"><i class="fa fa-chevron-left"></i></button>
+                                <button class="btn btn-white">1</button>
+                                <button class="btn btn-white  active">2</button>
+                                <button class="btn btn-white">3</button>
+                                <button class="btn btn-white">4</button>
+                                <button type="button" class="btn btn-white"><i class="fa fa-chevron-right"></i> </button>--%>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,22 +143,33 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            getList();
+            var pagesize = $('#droppagsize').val();
+            getList(pagesize,1);
 
-            $('#dropRole').on('change', function () {
+            $('#droppagsize').on('change', function () {
 
-                var v = $(this).val();
-                getList(v);
+                var ps = $(this).val();
+                getList(ps,1);
             });
+
+
+           
         });
 
 
-        function getList(v) {
+        function getList(ps,s) {
 
-            var url = "<%= ResolveUrl("/admin/Staff/ajax_webmethod_staff.aspx/GetAll") %>";
+            var url = "<%= ResolveUrl("/admin/Users/ajax_webmethod_user.aspx/GetAll") %>";
 
-            if(!v){ v = 0}
-            var data = { UsersRoleId: v, UserCatId:2};
+            //if (!v) { v = 0 };
+
+            //if (!s) { v = 1 };
+            //var s = store.get('Paging_now');
+
+            store.set('Paging_now', s);
+            var offset = (s - 1) * ps;
+            var PagingParam = { Start: offset, Length: ps};
+            var data = { UsersRoleId: 0, UserCatId: 1, PagingParam: PagingParam};
             var param = JSON.stringify({ parameters: data });
 
             AjaxPost(url, param, function () {
@@ -174,7 +198,39 @@
                 ret += '   </tr >';
             }
 
+           
+            paging(data);
+
             return ret;
+        }
+
+        function paging(data) {
+            if (data.length > 0) {
+                //store.set('Paging_now', 1);
+                var totalS = data[0].TotalRows;
+
+                var pagesize = $('#droppagsize').val();
+                var s = store.get('Paging_now');
+                var tp = Math.ceil(totalS / pagesize);
+
+                if (tp > 1) {
+                    $('#pagination').bootpag({
+                        total: tp,          // total pages
+                        page: s,            // default page
+                        maxVisible: 5,     // visible pagination
+                        leaps: true         // next/prev leaps through maxVisible
+                    }).on("page", function (event, num) {
+                        store.set('Paging_now', num);
+
+                        var pagesize = $('#droppagsize').val();
+                        getList(pagesize, num);
+                        //$("#content").html("Page " + num); // or some ajax content loading...
+                        //// ... after content load -> change total to 10
+                        //$(this).bootpag({ total: 10, maxVisible: 10 });
+                    });
+                }
+              
+            }
         }
 
     </script>

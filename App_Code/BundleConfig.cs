@@ -55,6 +55,7 @@ namespace gs_newsletter
                       "~/Scripts/theme/plugins/select2/select2.full.min.js",
                       "~/Scripts/theme/plugins/datapicker/bootstrap-datepicker.js",
                       "~/Scripts/theme/plugins/clockpicker/clockpicker.js",
+                      "~/Scripts/theme/plugins/bootpag/jquery.bootpag.min.js",
                     //"~/Scripts/theme/plugins/blueimp/jquery.blueimp-gallery.min.js",
                     "~/Scripts/theme/plugins/dropzone/dropzone.js",
                     "~/Scripts/app.tool.js",
