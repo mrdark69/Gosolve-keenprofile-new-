@@ -128,6 +128,7 @@ public class UsersController
         Model_Users u = new Model_Users();
         return u.CheckLoginUser(user, pass);
     }
+
     public static int InsertUser(Model_Users user)
     {
         int ret = user.InsertUser(user);
