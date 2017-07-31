@@ -92,11 +92,11 @@ public partial class SiteUserMaster1 : MasterPage
         if (!string.IsNullOrEmpty(el.CommandArgument))
         {
             
-            Model_Users mu = new Model_Users
-            {
-                UserID = int.Parse(el.CommandArgument)
-            };
-            UsersController.SendEmailVerify(mu);
+            //Model_Users mu = new Model_Users
+            //{
+            //    UserID = int.Parse(el.CommandArgument)
+            //};
+            UsersController.SendEmailVerify(int.Parse(el.CommandArgument));
 
             Response.Redirect(Request.Url.ToString() + "?resend=completed");
             
