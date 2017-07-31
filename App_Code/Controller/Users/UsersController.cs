@@ -135,18 +135,18 @@ public class UsersController
 
         if(ret > 0)
         {
-            SendEmailVerify(user);
+            SendEmailVerify(ret);
         }
         return ret;
     }
 
 
-    public static void SendEmailVerify(Model_Users user)
+    public static void SendEmailVerify(int UserID)
     {
         Model_Setting s = new Model_Setting();
         s = s.GetSetting();
 
-        user = GetUserbyID(user.UserID);
+      Model_Users  user = GetUserbyID(UserID);
 
         string body = string.Empty;
         string text = File.ReadAllText(HttpContext.Current.Server.MapPath("/Theme/emailtemplate/layout.html"), Encoding.UTF8);

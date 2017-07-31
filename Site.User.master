@@ -75,6 +75,12 @@
       <style>
          .wsite-background {background-image: url("//cdn2.editmysite.com/images/editor/theme-background/stock/Skyscrapers.jpg") !important;background-repeat: no-repeat !important;background-position: 50.00% 50.00% !important;background-size: 100% !important;background-color: transparent !important;}
          body.wsite-background {background-attachment: fixed !important;}.wsite-background.wsite-custom-background{ background-size: cover !important}
+
+          .alert{
+              margin-bottom:0px;
+             
+              border-radius:0px;
+          }
       </style>
       
        <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
@@ -186,7 +192,15 @@
                   <!-- end container -->
                </div>
 
+                   <div runat="server" class="alert alert-warning" id="alertbar"  visible="false">
+                                  <strong>Warning!</strong> Your Account is not verify please check your email which you registerd.
+                                    <asp:LinkButton Text="Resend NoW" ID="sendmailverify" runat="server" CommandArgument="" OnClick="sendmailverify_Click"></asp:LinkButton>
+                                    
+                                </div>
 
+                               <div runat="server" class="alert alert-success" id="alertbarsentmailcompleted" visible="false">
+                                  <strong>Success!</strong> The verfify email has been sent.
+                                </div>
                 
             <!-- end banner-wrap -->
             </div>
@@ -220,15 +234,7 @@
                         <div class="wsite-section-content">
                            <div class="container">
 
-                                <div runat="server" class="alert alert-warning" id="alertbar"  visible="false">
-                                  <strong>Warning!</strong> Your Account is not verify please check your email which you registerd.
-                                    <asp:LinkButton Text="Resend NoW" ID="sendmailverify" runat="server" CommandArgument="" OnClick="sendmailverify_Click"></asp:LinkButton>
-                                    
-                                </div>
-
-                               <div runat="server" class="alert alert-success" id="alertbarsentmailcompleted" visible="false">
-                                  <strong>Success!</strong> The verfify email has been sent.
-                                </div>
+                                
 
                               
                               <asp:ContentPlaceHolder ID="MainContent" runat="server">
