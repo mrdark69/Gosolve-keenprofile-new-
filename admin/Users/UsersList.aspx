@@ -46,32 +46,13 @@
 
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Staff List </h5>
+                            <h5>User List </h5>
 
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#">Config option 1</a>
-                                    </li>
-                                    <li><a href="#">Config option 2</a>
-                                    </li>
-                                </ul>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
                         </div>
                         <div class="ibox-content">
                             <div class="row">
-                                <div class="col-sm-5 m-b-xs">
-                                   <strong>Pagesize:</strong> <%--<asp:DropDownList ID="dropRole" ClientIDMode="Static" runat="server" CssClass="input-sm form-control input-s-sm inline">
-
-                                    </asp:DropDownList>--%>
+                                <div class="col-sm-2 m-b-xs">
+                                   <label><strong>Pagesize:</strong></label>
                                     <asp:DropDownList ID="droppagsize" ClientIDMode="Static" Width="50px" runat="server" CssClass="input-sm form-control input-s-sm inline">
                                         <asp:ListItem Text="5" Value="5"></asp:ListItem>
                                         <asp:ListItem Text="10" Value="10"></asp:ListItem>
@@ -86,27 +67,29 @@
                                     </select>--%>
                                 </div>
                                 <div class="col-sm-4 m-b-xs">
-                                     <strong>Case Issue:</strong>
-                                    <asp:DropDownList ID="dropcase" ClientIDMode="Static"  runat="server" CssClass="input-sm form-control input-s-sm inline">
-                                        <asp:ListItem Text="5" Value="5">Paid account</asp:ListItem>
-                                        <asp:ListItem Text="10" Value="10">Free account</asp:ListItem>
-                                        <asp:ListItem Text="20" Value="20">Waiting for verify email</asp:ListItem>
-                                        <asp:ListItem Text="20" Value="20">Email verified</asp:ListItem>
-                                        <asp:ListItem Text="30" Value="30">Assessment expired</asp:ListItem>
-                                        <asp:ListItem Text="30" Value="30">Incomplete Profile</asp:ListItem>
+                                    <label><strong>Case Issue:</strong></label> 
+                                    <asp:DropDownList ID="dropcase" ClientIDMode="Static"  runat="server" Width="250px" CssClass="input-sm form-control input-s-sm inline">
+                                         <asp:ListItem Text="All" Value="0"></asp:ListItem>
+                                        <asp:ListItem Text="Paid account" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="Free account" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="Waiting for verify email" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="Email verified" Value="4"></asp:ListItem>
+                                        <asp:ListItem Text="Assessment expired" Value="5"></asp:ListItem>
+                                        <asp:ListItem Text="Incomplete Profile" Value="6"></asp:ListItem>
                                       
                                     </asp:DropDownList>
-                                   <%-- <div data-toggle="buttons" class="btn-group">
-                                        <label class="btn btn-sm btn-white"> <input type="radio" id="option1" name="options"> Day </label>
-                                        <label class="btn btn-sm btn-white active"> <input type="radio" id="option2" name="options"> Week </label>
-                                        <label class="btn btn-sm btn-white"> <input type="radio" id="option3" name="options"> Month </label>
-                                    </div>--%>
+                                 
                                 </div>
-                                <div class="col-sm-3" style="text-align:right">
-                                    <a href="Register"  class="btn btn-w-m btn-success">Add New Staff</a>
-                                   <%-- <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-primary"> Go!</button> </span></div>--%>
+
+                                <div class="col-sm-6">
+                                    <div class="input-group"><input type="text" onkeypress="return clickButton(event,'btn_search')" id="input-search" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
+                                        <button type="button" id="btn_search" class="btn btn-sm btn-primary"> Go!</button> </span></div>
                                 </div>
+                              <%--  <div class="col-sm-6" >
+                                    <label><strong>Search:</strong></label> 
+                                    <asp:TextBox ID="Search" style="display: inline-block;" CssClass="form-control" Width="300" ClientIDMode="Static" runat="server" placeholder="Name and Email"></asp:TextBox>
+                                 
+                                </div>--%>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -160,32 +143,71 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            var pagesize = $('#droppagsize').val();
-            getList(pagesize,1);
+            
+            getList();
 
             $('#droppagsize').on('change', function () {
-
-                var ps = $(this).val();
-                getList(ps,1);
+               
+                getList();
+                return false;
             });
 
+            $('#btn_search').on('click', function () {
+                
+                getList();
 
+                return false;
+            });
+
+            $('#dropcase').on('change', function () {
+
+                getList();
+                return false;
+            });
+            
            
         });
 
-
-        function getList(ps,s) {
+        function clickButton(e, buttonid) {
+            var evt = e ? e : window.event;
+            var bt = document.getElementById(buttonid);
+            if (bt) {
+                if (evt.keyCode == 13) {
+                    bt.click();
+                    return false;
+                }
+            }
+        }
+        function getList() {
 
             var url = "<%= ResolveUrl("/admin/Users/ajax_webmethod_user.aspx/GetAll") %>";
-
+            var ps = $('#droppagsize').val();
+            var v = $('#input-search').val();
+            var c = $('#dropcase').val();
             //if (!v) { v = 0 };
 
             //if (!s) { v = 1 };
-            //var s = store.get('Paging_now');
+            var s = store.get('Paging_now');
+
+            //add custom filter 
+            var CustomSearchList = [];
+           var key1 = {
+                Key: "Search",
+                Value: v
+            };
+
+           var caseissue = {
+               Key: "caseissue",
+               Value: c
+           }
+           CustomSearchList.push(key1);
+            
+           CustomSearchList.push(caseissue);
+
 
             store.set('Paging_now', s);
             var offset = (s - 1) * ps;
-            var PagingParam = { Start: offset, Length: ps};
+            var PagingParam = { Start: offset, Length: ps, CustomSearchList: CustomSearchList};
             var data = { UsersRoleId: 0, UserCatId: 1, PagingParam: PagingParam};
             var param = JSON.stringify({ parameters: data });
 
@@ -252,7 +274,7 @@
              
 
                 var pagesize = $('#droppagsize').val();
-                var s = store.get('Paging_now');
+                var s = (store.get('Paging_now') == null ? 1 : store.get('Paging_now'));
                 var tp = Math.ceil(totalS / pagesize);
 
                 $('#list-total').html("Showing " + (((s - 1) * pagesize) + 1) + " to " + ((s * pagesize) > totalS ? totalS : (s * pagesize)) +" of " + totalS + " entries");
@@ -265,9 +287,8 @@
                         leaps: true         // next/prev leaps through maxVisible
                     }).on("page", function (event, num) {
                         store.set('Paging_now', num);
-
-                        var pagesize = $('#droppagsize').val();
-                        getList(pagesize, num);
+                       
+                        getList();
                         //$("#content").html("Page " + num); // or some ajax content loading...
                         //// ... after content load -> change total to 10
                         //$(this).bootpag({ total: 10, maxVisible: 10 });

@@ -119,8 +119,9 @@ namespace MVCDatatableApp
             }
         }
 
+        public DTCustomSerach CustomSearch  { get; set; }
+        public List<DTCustomSerach> CustomSearchList { get; set; }
 
-        public DTCustomSerach CustomSearch { get; set; }
     }
 
     /// <summary>

@@ -76,15 +76,21 @@ public class Model_Users : BaseModel<Model_Users>
             return _usercjf;
         }
     }
-
+    private string _nationalityTitle = string.Empty;
     public string NationalityTitle {
 
         get
         {
-            Model_Country c = new Model_Country();
-          c = c.GetAllCountryByID(this.Nationality);
-            return c.Nationality;
+            if (string.IsNullOrEmpty(_nationalityTitle) && this.Nationality>0)
+            {
+                Model_Country c = new Model_Country();
+                c = c.GetAllCountryByID(this.Nationality);
+                _nationalityTitle = c.Nationality;
+            }
+            return _nationalityTitle;
         }
+
+        
     }
 
     public Model_Users()
@@ -471,7 +477,7 @@ LEFT JOIN UsersRole ur ON ur.UsersRoleId =u.UsersRoleId WHERE u.UserCatId = @Use
         int length = mu.PagingParam.Length;
         //List<string> columnFilters = DataTablesJS<Model_Users>.getcolumnSearch(mu.PagingParam);
 
-        DTCustomSerach custom = mu.PagingParam.CustomSearch;
+        List<DTCustomSerach> custom = mu.PagingParam.CustomSearchList;
 
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
@@ -492,6 +498,53 @@ LEFT JOIN UsersRole ur ON ur.UsersRoleId =u.UsersRoleId WHERE u.UserCatId = @Use
 
             //}
             SqlCommand cmd = new SqlCommand();
+
+            string cfilter = string.Empty;
+            if (custom.Count > 0)
+            {
+                foreach(DTCustomSerach f in custom)
+                {
+                    if(f.Key == "Search")
+                    {
+                        cfilter += (!string.IsNullOrEmpty(f.Value) ? " AND FirstName LIKE '%'+@CustomKeyValue+'%' OR LastName LIKE '%'+@CustomKeyValue+'%' OR Email LIKE '%'+@CustomKeyValue+'%' OR MobileNumber LIKE '%'+@CustomKeyValue+'%'" : "");
+                        cmd.Parameters.Add("@CustomKeyValue", SqlDbType.NVarChar).Value = f.Value;
+                    }
+
+                    if (f.Key == "caseissue")
+                    {
+                        if (!string.IsNullOrEmpty(f.Value))
+                        {
+                            switch (f.Value)
+                            {
+                                //Paid account
+                                case "1":
+                                    cfilter += " AND u.Ispaid = 1 ";
+                                    break;
+                                //Free account
+                                case "2":
+                                    cfilter += " AND u.Ispaid = 0 ";
+                                    break;
+                                //Waiting for verify email
+                                case "3":
+                                    cfilter += " AND u.EmailVerify = 0 ";
+                                    break;
+                                //Email verified EmailVerify
+                                case "4":
+                                    cfilter += " AND u.EmailVerify = 1 ";
+                                    break;
+                                //Assessment expired
+                                case "5":
+                                    break;
+                                //Incomplete Profile
+                                case "6":
+                                    cfilter += " AND u.FirstName IS NULL OR u.LastName IS NULL OR u.DateofBirth IS NULL OR u.Genfer IS NULL OR u.Nationality IS NULL OR u.MobileNumber IS NULL";
+                                    break;
+                            }
+                        }
+                          
+                    }
+                }
+            }
             string w = string.Empty;
             if (mu.UsersRoleId > 0)
             {
@@ -506,8 +559,9 @@ LEFT JOIN UsersRole ur ON ur.UsersRoleId =u.UsersRoleId WHERE u.UserCatId = @Use
                 LEFT JOIN UsersRole ur ON ur.UsersRoleId =u.UsersRoleId  
                 WHERE u.UserCatId = @UserCatId " + w +
                 //(string.IsNullOrEmpty(search) ? "" : "AND  (FirstName LIKE @search  OR LastName LIKE @search OR Email LIKE @search) ") +
-                // (custom.Value != null ? "AND " + custom.Key + " = @CustomKeyValue" : "") +
+                cfilter +
                 //(columnFilters.Count > 0 ? strfilter.ToString() : "")
+                //OR LastName LIKE '%@CustomKeyValue%' OR Email LIKE '%@CustomKeyValue%'
                 @"
             )
 
@@ -527,8 +581,8 @@ LEFT JOIN UsersRole ur ON ur.UsersRoleId =u.UsersRoleId WHERE u.UserCatId = @Use
             cmd.Parameters.Add("@Size", SqlDbType.Int).Value = length;
 
 
-            //if (custom.Value != null)
-            //    cmd.Parameters.Add("@CustomKeyValue", SqlDbType.Int).Value = custom.Value;
+            //if (custom.Key != null && !string.IsNullOrEmpty(custom.Value))
+            //    cmd.Parameters.Add("@CustomKeyValue", SqlDbType.NVarChar).Value = custom.Value;
 
             if (!string.IsNullOrEmpty(search))
             {
