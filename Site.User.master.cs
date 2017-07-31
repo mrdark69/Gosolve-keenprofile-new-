@@ -99,7 +99,7 @@ public partial class SiteUserMaster : MasterPage
             UsersController.SendEmailVerify(int.Parse(el.CommandArgument));
 
             Response.Redirect(Request.Url.ToString() + "?resend=completed");
-            
+           
         }
          
     }

@@ -172,7 +172,7 @@ public static class MAilSender
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtpClient.EnableSsl = option.MailSetting.IsSSL;
             smtpClient.Port = option.MailSetting.Port;
-
+            smtpClient.UseDefaultCredentials = true;
             smtpClient.Host =option.MailSetting.MailServer.Trim();
             smtpClient.Credentials = new System.Net.NetworkCredential(option.MailSetting.MailServerUser.Trim(), option.MailSetting.MailServerPass.Trim());//"bluehousetravel","vug,]NFVgm]m^wmpc]ofN"
 
@@ -180,8 +180,9 @@ public static class MAilSender
 
             success = true;
         }
-        catch 
+        catch (Exception ex)
         {
+            string ss = ex.Message + ex.StackTrace;
             //(Exception ex)
         }
 
