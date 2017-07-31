@@ -126,7 +126,7 @@
                     </div>
                     <div class="ibox-content">
                         <div class="main_thanksyoublock col-md-12">
-
+                            <asp:Label ID="lblError" runat="server" style="color: red;text-align: center;margin: 0 auto;display: block;"></asp:Label>
                             <div class="q-form-bio form-horizontal">
                                         <div class="form-group"><label class="col-sm-2 control-label">First name:</label>
 

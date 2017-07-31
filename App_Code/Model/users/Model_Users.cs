@@ -223,6 +223,63 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit);SET @UserID = 
         }
 
     }
+
+
+    public int UpdateUserProfileUserEdit(Model_Users users)
+    {
+        int ret = 0;
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            string w = string.Empty;
+
+            Model_Users uu = null;
+           
+
+            SqlCommand cmd1 = new SqlCommand("SELECT * FROM  Users WHERE UserName=@UserName AND UserID<>@UserID", cn);
+            cmd1.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = users.Email;
+            cmd1.Parameters.Add("@UserID", SqlDbType.Int).Value = users.UserID;
+            cn.Open();
+            IDataReader reader = ExecuteReader(cmd1, CommandBehavior.SingleRow);
+            if (reader.Read())
+                 uu = MappingObjectFromDataReaderByName(reader);
+
+            reader.Close();
+
+            if (uu == null)
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                string q = @"UPDATE Users SET FirstName=@FirstName ,LastName=@LastName ,Email=@Email,UserName=@UserName
+            ,DateofBirth=@DateofBirth,Gender=@Gender,Nationality=@Nationality,MobileNumber=@MobileNumber WHERE UserID=@UserID";
+                cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = users.FirstName;
+                cmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = users.LastName;
+
+                cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = users.Email;
+                cmd.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = users.Email;
+
+                cmd.Parameters.Add("@DateofBirth", SqlDbType.SmallDateTime).Value = users.DateofBirth;
+                cmd.Parameters.Add("@Gender", SqlDbType.TinyInt).Value = users.Gender;
+                cmd.Parameters.Add("@Nationality", SqlDbType.Int).Value = users.Nationality;
+                cmd.Parameters.Add("@MobileNumber", SqlDbType.VarChar).Value = users.MobileNumber;
+                cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = users.UserID;
+                cmd.CommandText = q;
+                cmd.Connection = cn;
+
+                ret = ExecuteNonQuery(cmd);
+            }else
+            {
+                ret = -1;
+            }
+
+
+
+
+
+            return ret;
+        }
+
+    }
+
     public bool UpdateUserProfile(Model_Users users)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
