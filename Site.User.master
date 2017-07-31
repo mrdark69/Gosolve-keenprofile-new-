@@ -193,8 +193,8 @@
                </div>
 
                    <div runat="server" class="alert alert-warning" id="alertbar"  visible="false">
-                                  <strong>Warning!</strong> Your Account is not verify please check your email which you registerd.
-                                    <asp:LinkButton Text="Resend NoW" ID="sendmailverify" runat="server" CommandArgument="" OnClick="sendmailverify_Click"></asp:LinkButton>
+                                  <strong>Warning!</strong> Your account is not verify please check your email which you registerd.
+                                    <asp:LinkButton Text="Resend" ID="sendmailverify" runat="server" CommandArgument="" OnClick="sendmailverify_Click"></asp:LinkButton>
                                     
                                 </div>
 

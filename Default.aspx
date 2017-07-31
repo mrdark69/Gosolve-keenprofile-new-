@@ -29,35 +29,35 @@
 									<div class="col-xs-7">
 										<div class="profile-info">
 											<div class="profile-preword"><span>Hello</span></div>
-											<h1 class="profile-title"><span>I'm</span> Robert Smith</h1>
+											<h1 class="profile-title"><span>I'm</span><asp:Literal ID="name" runat="server"></asp:Literal> </h1>
                                               <a class="btn btn-lg btn-border ripple" style="float:right;top:-20px;font-size:11px;    background-color: #fff;
-    padding: 5px;" target="_blank" href="#">Update Profile </a>
-											<h2 class="profile-position">Developer and businessman</h2></div>
+    padding: 5px;" target="_blank" href="ProfileUpdate">Update Profile </a>
+											<h2 class="profile-position"><asp:Literal ID="cjf" runat="server"></asp:Literal></h2></div>
                                       
                                             <ul class="profile-list">
                                                 <li class="clearfix">
                                                     <strong class="title">Date of Birth</strong>
-                                                    <span class="cont">29</span>
+                                                    <span class="cont"><asp:Literal ID="dob" runat="server"></asp:Literal></span>
                                                 </li>
                                                 <li class="clearfix">
                                                     <strong class="title">Gender</strong>
-                                                    <span class="cont">29</span>
+                                                    <span class="cont"> <asp:Literal ID="gender" runat="server"></asp:Literal> </span>
                                                 </li>
                                                 <li class="clearfix">
                                                     <strong class="title">Nationality</strong>
-                                                    <span class="cont">24058, Belgium, Brussels, Liutte 27, BE</span>
+                                                    <span class="cont"><% Response.Write(UserActive.NationalityTitle); %></span>
                                                 </li>
                                                 <li class="clearfix">
                                                     <strong class="title">E-mail</strong>
-                                                    <span class="cont"><a href="mailto:robertsmith@company.com">robertsmith@company.com</a></span>
+                                                    <span class="cont"><a href="<% Response.Write(UserActive.Email); %>"><% Response.Write(UserActive.Email); %></a></span>
                                                 </li>
                                                 <li class="clearfix">
                                                     <strong class="title">Phone</strong>
-                                                    <span class="cont"><a href="tel:+12562548456">+1 256 254 84 56</a></span>
+                                                    <span class="cont"><a href="tel:<% Response.Write(UserActive.MobileNumber); %>"><% Response.Write(UserActive.MobileNumber); %></a></span>
                                                 </li>
                                                 <li class="clearfix">
                                                     <strong class="title" >Functional Competencies</strong>
-                                                    <span class="cont">till April 15, 2016</span>
+                                                    <span class="cont"><asp:Literal ID="fc" runat="server"></asp:Literal></span>
                                                 </li>
                                             <%--     <li class="clearfix">
                                                     <strong class="title">Current Job Function</strong>

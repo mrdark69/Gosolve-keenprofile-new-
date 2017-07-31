@@ -77,6 +77,16 @@ public class Model_Users : BaseModel<Model_Users>
         }
     }
 
+    public string NationalityTitle {
+
+        get
+        {
+            Model_Country c = new Model_Country();
+          c = c.GetAllCountryByID(this.Nationality);
+            return c.Nationality;
+        }
+    }
+
     public Model_Users()
     {
         //

@@ -58,7 +58,21 @@ public class Model_Country : BaseModel<Model_Country>
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }
     }
-
+    public Model_Country GetAllCountryByID(int Cid)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Country WHERE ID=@ID", cn);
+            cmd.Parameters.Add("@ID", SqlDbType.Int).Value = Cid;
+            cn.Open();
+            IDataReader reader = ExecuteReader(cmd, CommandBehavior.SingleRow);
+            if (reader.Read())
+                return MappingObjectFromDataReaderByName(reader);
+            else
+                return null;
+           
+        }
+    }
 
 
     public void UpdateCountry()

@@ -98,7 +98,9 @@ public partial class SiteUserMaster : MasterPage
             //};
             UsersController.SendEmailVerify(int.Parse(el.CommandArgument));
 
-            Response.Redirect(Request.Url.ToString() + "?resend=completed");
+           
+
+            Response.Redirect(Request.Url.ToString().Split('?')[0] + "?resend=completed");
            
         }
          
