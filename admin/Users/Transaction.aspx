@@ -67,7 +67,7 @@
                                     </select>--%>
                                 </div>
                                 <div class="col-sm-4 m-b-xs">
-                                    <label><strong>Case Issue:</strong></label> 
+                                   <%-- <label><strong>Case Issue:</strong></label> 
                                     <asp:DropDownList ID="dropcase" ClientIDMode="Static"  runat="server" Width="250px" CssClass="input-sm form-control input-s-sm inline">
                                          <asp:ListItem Text="All" Value="0"></asp:ListItem>
                                         <asp:ListItem Text="Paid account" Value="1"></asp:ListItem>
@@ -77,13 +77,13 @@
                                         <asp:ListItem Text="Assessment expired" Value="5"></asp:ListItem>
                                         <asp:ListItem Text="Incomplete Profile" Value="6"></asp:ListItem>
                                       
-                                    </asp:DropDownList>
+                                    </asp:DropDownList>--%>
                                  
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <div class="input-group"><input type="text" onkeypress="return clickButton(event,'btn_search')" id="input-search" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
-                                        <button type="button" id="btn_search" class="btn btn-sm btn-primary"> Go!</button> </span></div>
+                                    <%--<div class="input-group"><input type="text" onkeypress="return clickButton(event,'btn_search')" id="input-search" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
+                                        <button type="button" id="btn_search" class="btn btn-sm btn-primary"> Go!</button> </span></div>--%>
                                 </div>
                              
                             </div>
@@ -146,18 +146,18 @@
                 return false;
             });
 
-            $('#btn_search').on('click', function () {
+            //$('#btn_search').on('click', function () {
                 
-                getList();
+            //    getList();
 
-                return false;
-            });
+            //    return false;
+            //});
 
-            $('#dropcase').on('change', function () {
+            //$('#dropcase').on('change', function () {
 
-                getList();
-                return false;
-            });
+            //    getList();
+            //    return false;
+            //});
 
 
             $(".th_sort").on('click', function () {
@@ -313,7 +313,7 @@
                 ret += '   <td style="text-align:left"><span class="label label-' + bage + '">' + txt + '</span></td>';
                 //ret += '   <td>' + verify +'</td>';
                 //ret += '   <td><span class="label label-primary">' + data[i].UserRoleName +'</span></td>';
-                ret += '   <td><a href="UserDetail?s=' + data[i].UserID+'"><i class="fa fa-pencil"></i> view </a></td>';
+                ret += '   <td><a href="UserAssDetail?ts=' + data[i].TransactionID+'"><i class="fa fa-pencil"></i> view </a></td>';
                 ret += '   </tr >';
             }
 
