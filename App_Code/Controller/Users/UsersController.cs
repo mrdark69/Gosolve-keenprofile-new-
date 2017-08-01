@@ -285,4 +285,12 @@ public class UsersController
     {
         return q.AddnewCJF(q);
     }
+
+
+    //User TRSANSACTION
+    public static IList<Model_UsersTransaction> getUserTransaction(Model_UsersTransaction ts)
+    {
+        return ts.getTsListl_Paging(ts);
+    }
+
 }

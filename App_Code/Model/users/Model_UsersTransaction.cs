@@ -22,9 +22,16 @@ public class Model_UsersTransaction: BaseModel<Model_UsersTransaction>
     public DateTime DateSubmit { get; set; }
     public int DownloadCount { get; set; }
     public bool Status { get; set; }
-   
+
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+  
+    public string Email { get; set; }
+    public int TotalRows { get; set; }
+    public int RowNum { get; set; }
 
 
+    public DTParameters PagingParam { get; set; }
     public Model_UsersTransaction()
     {
         //
@@ -94,6 +101,118 @@ public class Model_UsersTransaction: BaseModel<Model_UsersTransaction>
             cn.Open();
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }
+    }
+
+
+
+    public IList<Model_UsersTransaction> getTsListl_Paging(Model_UsersTransaction mu)
+    {
+
+        string search = (mu.PagingParam.Search != null ? mu.PagingParam.Search.Value : "");
+        string sortOrder = mu.PagingParam.SortOrder;
+        int start = mu.PagingParam.Start;
+        int length = mu.PagingParam.Length;
+        //List<string> columnFilters = DataTablesJS<Model_Users>.getcolumnSearch(mu.PagingParam);
+
+        List<DTCustomSerach> custom = mu.PagingParam.CustomSearchList;
+
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            
+         
+            SqlCommand cmd = new SqlCommand();
+
+            string cfilter = string.Empty;
+            if (custom.Count > 0)
+            {
+                foreach (DTCustomSerach f in custom)
+                {
+                    if (f.Key == "Search")
+                    {
+                        cfilter += (!string.IsNullOrEmpty(f.Value) ? " AND (FirstName LIKE '%'+@CustomKeyValue+'%' OR LastName LIKE '%'+@CustomKeyValue+'%' OR Email LIKE '%'+@CustomKeyValue+'%' OR MobileNumber LIKE '%'+@CustomKeyValue+'%')" : "");
+                        cmd.Parameters.Add("@CustomKeyValue", SqlDbType.NVarChar).Value = f.Value;
+                    }
+
+                    if (f.Key == "caseissue")
+                    {
+                        if (!string.IsNullOrEmpty(f.Value))
+                        {
+                            switch (f.Value)
+                            {
+                                //Paid account
+                                case "1":
+                                    cfilter += " AND u.Ispaid = 1 ";
+                                    break;
+                                //Free account
+                                case "2":
+                                    cfilter += " AND u.Ispaid = 0 ";
+                                    break;
+                                //Waiting for verify email
+                                case "3":
+                                    cfilter += " AND u.EmailVerify = 0 ";
+                                    break;
+                                //Email verified EmailVerify
+                                case "4":
+                                    cfilter += " AND u.EmailVerify = 1 ";
+                                    break;
+                                //Assessment expired
+                                case "5":
+                                    break;
+                                //Incomplete Profile
+                                case "6":
+                                    cfilter += " AND (u.FirstName IS NULL OR u.LastName IS NULL OR u.DateofBirth IS NULL OR u.Gender IS NULL OR u.Nationality IS NULL OR u.MobileNumber IS NULL)";
+                                    break;
+                            }
+                        }
+
+                    }
+                }
+            }
+           
+            string strcmd = @"
+                ;WITH UserAssTransaction_cte AS (
+                SELECT u.*,ur.FirstName,ur.Lastname,ur.Email
+                FROM dbo.UserAssTransaction u
+                LEFT JOIN Users ur ON ur.UserID =u.UserID  
+                WHERE u.TransactionID > 0 " + cfilter +
+
+                @"
+            )
+
+            SELECT 
+                db.*,
+                tCountOrders.CountOrders AS TotalRows
+            FROM UserAssTransaction_cte db
+                CROSS JOIN (SELECT Count(*) AS CountOrders FROM UserAssTransaction_cte) AS tCountOrders
+            ORDER BY  " +(!string.IsNullOrEmpty(sortOrder)? sortOrder: " TransactionID ASC ") + @"
+             OFFSET @Start ROWS
+            FETCH NEXT @Size ROWS ONLY;
+            ";
+
+            // ORDER BY UserID, " + sortOrder + @"
+           
+            cmd.Parameters.Add("@Start", SqlDbType.Int).Value = start;
+            cmd.Parameters.Add("@Size", SqlDbType.Int).Value = length;
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                string searchTerm = string.Format("%{0}%", search);
+                cmd.Parameters.Add(new SqlParameter("@search", searchTerm));
+                //cmd.Parameters.Add("@search", SqlDbType.NVarChar).Value = searchTerm;
+            }
+
+           
+
+            cmd.CommandText = strcmd;
+            cmd.Connection = cn;
+            cn.Open();
+
+
+
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+
+        }
+
     }
 
 }

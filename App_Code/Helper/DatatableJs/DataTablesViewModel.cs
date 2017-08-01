@@ -113,8 +113,10 @@ namespace MVCDatatableApp
         {
             get
             {
-                return Columns != null && Order != null && Order.Length > 0
-                    ? (Columns[Order[0].Column].Data + (Order[0].Dir == DTOrderDir.DESC ? " " + Order[0].Dir : string.Empty))
+                //return Columns != null && Order != null && Order.Length > 0
+                //? (Columns[Order[0].Column].Data + (Order[0].Dir == DTOrderDir.DESC ? " " + Order[0].Dir : string.Empty))
+                return Order != null && Order.Length > 0
+                    ? (Order[0].Column + (Order[0].Dir == DTOrderDir.DESC ? " " + Order[0].Dir : string.Empty))
                     : null;
             }
         }
@@ -164,7 +166,7 @@ namespace MVCDatatableApp
         /// Column to which ordering should be applied.
         /// This is an index reference to the columns array of information that is also submitted to the server.
         /// </summary>
-        public int Column { get; set; }
+        public string Column { get; set; }
 
         /// <summary>
         /// Ordering direction for this column.

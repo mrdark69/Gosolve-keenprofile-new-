@@ -506,7 +506,7 @@ LEFT JOIN UsersRole ur ON ur.UsersRoleId =u.UsersRoleId WHERE u.UserCatId = @Use
                 {
                     if(f.Key == "Search")
                     {
-                        cfilter += (!string.IsNullOrEmpty(f.Value) ? " AND FirstName LIKE '%'+@CustomKeyValue+'%' OR LastName LIKE '%'+@CustomKeyValue+'%' OR Email LIKE '%'+@CustomKeyValue+'%' OR MobileNumber LIKE '%'+@CustomKeyValue+'%'" : "");
+                        cfilter += (!string.IsNullOrEmpty(f.Value) ? " AND (FirstName LIKE '%'+@CustomKeyValue+'%' OR LastName LIKE '%'+@CustomKeyValue+'%' OR Email LIKE '%'+@CustomKeyValue+'%' OR MobileNumber LIKE '%'+@CustomKeyValue+'%')" : "");
                         cmd.Parameters.Add("@CustomKeyValue", SqlDbType.NVarChar).Value = f.Value;
                     }
 
@@ -537,7 +537,7 @@ LEFT JOIN UsersRole ur ON ur.UsersRoleId =u.UsersRoleId WHERE u.UserCatId = @Use
                                     break;
                                 //Incomplete Profile
                                 case "6":
-                                    cfilter += " AND u.FirstName IS NULL OR u.LastName IS NULL OR u.DateofBirth IS NULL OR u.Genfer IS NULL OR u.Nationality IS NULL OR u.MobileNumber IS NULL";
+                                    cfilter += " AND (u.FirstName IS NULL OR u.LastName IS NULL OR u.DateofBirth IS NULL OR u.Gender IS NULL OR u.Nationality IS NULL OR u.MobileNumber IS NULL)";
                                     break;
                             }
                         }
@@ -570,7 +570,7 @@ LEFT JOIN UsersRole ur ON ur.UsersRoleId =u.UsersRoleId WHERE u.UserCatId = @Use
                 tCountOrders.CountOrders AS TotalRows
             FROM Users_cte db
                 CROSS JOIN (SELECT Count(*) AS CountOrders FROM Users_cte) AS tCountOrders
-            ORDER BY UserID 
+            ORDER BY  " + (!string.IsNullOrEmpty(sortOrder) ? sortOrder : " UserID ASC ") + @" 
             OFFSET @Start ROWS
             FETCH NEXT @Size ROWS ONLY;
             ";

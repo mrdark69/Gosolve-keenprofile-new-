@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="UsersList.aspx.cs" Inherits="Users_UsersList" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Transaction.aspx.cs" Inherits="Users_Transaction" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderScript" runat="server">
     <style>
       th.dt-center,td.dt-center{
@@ -85,11 +85,7 @@
                                     <div class="input-group"><input type="text" onkeypress="return clickButton(event,'btn_search')" id="input-search" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
                                         <button type="button" id="btn_search" class="btn btn-sm btn-primary"> Go!</button> </span></div>
                                 </div>
-                              <%--  <div class="col-sm-6" >
-                                    <label><strong>Search:</strong></label> 
-                                    <asp:TextBox ID="Search" style="display: inline-block;" CssClass="form-control" Width="300" ClientIDMode="Static" runat="server" placeholder="Name and Email"></asp:TextBox>
-                                 
-                                </div>--%>
+                             
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -99,13 +95,14 @@
                                             <tr>
 
                                                 <%--<th></th>--%>
-                                                <th><a href="#" class="th_sort" data-sort="asc"  data-column="FirstName">Name <i class="fa fa-sort"></i></a> </th>
-                                                 <th><a href="#" class="th_sort" data-sort="asc"  data-column="MobileNumber">Phone <i class="fa fa-sort"></i></a></th>
-                                                 <th><a href="#" class="th_sort" data-sort="asc"  data-column="Email">Email <i class="fa fa-sort"></i></a> </th>
-                                                <th><a href="#" class="th_sort" data-sort="asc"  data-column="DateSubmit">Join Date <i class="fa fa-sort"></i></a> </th>
+                                                  <th> <a href="#" class="th_sort" data-sort="asc"  data-column="TransactionID"> TSID <i class="fa fa-sort"></i></a></th>
+                                                <th> <a href="#" class="th_sort" data-sort="asc"  data-column="FirstName"> Name <i class="fa fa-sort"></i></a></th>
+                                                  <th><a href="#" class="th_sort" data-sort="asc"  data-column="DateSubmit"> Date <i class="fa fa-sort"></i></a></th>
                                                
-                                                <th><a href="#" class="th_sort" data-sort="asc"  data-column="Ispaid">Paid <i class="fa fa-sort"></i></a></th>
-                                                <th><a href="#" class="th_sort" data-sort="asc"  data-column="EmailVerify">Verify <i class="fa fa-sort"></i></a></th>
+                                                <th><a href="#" class="th_sort" data-sort="asc"  data-column="DownloadCount">Download Count <i class="fa fa-sort"></i></a></th>
+                                                
+                                               
+                                                <th><a href="#" class="th_sort" data-sort="asc"  data-column="Status">Status <i class="fa fa-sort"></i></a></th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -119,12 +116,7 @@
                             </div>
                             
                             <div class="btn-group" id="pagination">
-                                <%--<button type="button" class="btn btn-white"><i class="fa fa-chevron-left"></i></button>
-                                <button class="btn btn-white">1</button>
-                                <button class="btn btn-white  active">2</button>
-                                <button class="btn btn-white">3</button>
-                                <button class="btn btn-white">4</button>
-                                <button type="button" class="btn btn-white"><i class="fa fa-chevron-right"></i> </button>--%>
+                               
                             </div>
                             <div id="list-total" class="list-total" style="float:right;">
 
@@ -165,13 +157,14 @@
                 return false;
             });
 
+
             $(".th_sort").on('click', function () {
                 $(".th_sort").removeClass('action');
                 // Get the current column clicked
                 var thisColumn = $(this).data('column');
                 var sort = $(this).data("sort");
                 var newsort = toggleSort(sort);
-
+                
 
 
 
@@ -183,6 +176,7 @@
                 return false;
 
             });
+            
            
         });
 
@@ -198,19 +192,10 @@
 
             return newsort;
         }
-        function clickButton(e, buttonid) {
-            var evt = e ? e : window.event;
-            var bt = document.getElementById(buttonid);
-            if (bt) {
-                if (evt.keyCode == 13) {
-                    bt.click();
-                    return false;
-                }
-            }
-        }
+
         function getList() {
 
-            var url = "<%= ResolveUrl("/admin/Users/ajax_webmethod_user.aspx/GetAll") %>";
+            var url = "<%= ResolveUrl("/admin/Users/ajax_webmethod_user.aspx/GetTsAll") %>";
             var ps = $('#droppagsize').val();
             var v = $('#input-search').val();
             var c = $('#dropcase').val();
@@ -226,7 +211,8 @@
             if ($(".th_sort.action").data('column') != null && $(".th_sort.action").data('sort') != null) {
                 Order.push(item);
             }
-
+            
+          
             //if (!v) { v = 0 };
 
             //if (!s) { v = 1 };
@@ -243,9 +229,9 @@
                Key: "caseissue",
                Value: c
            }
-           CustomSearchList.push(key1);
+           //CustomSearchList.push(key1);
             
-           CustomSearchList.push(caseissue);
+           //CustomSearchList.push(caseissue);
 
 
             store.set('Paging_now', s);
@@ -288,16 +274,22 @@
 
                 //<i class="fa fa-female"></i>
                 //
-
+                var txt = 'Active';
+                var bage = 'primary'
+                if (!data[i].Status) { txt = 'Inactive'; bage = 'default'; }
                 var day = moment(data[i].DateSubmit).format('DD-MMM-YYYY HH:mm');
                 ret += '<tr>';
+                ret += '   <td>TS' + data[i].TransactionID + '</td>';
                 //ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
                 ret += '   <td>' + gender + ' ' + (data[i].FirstName == null ? 'XXXX' : data[i].FirstName) + ' ' + (data[i].LastName == null ? 'XXXX' : data[i].LastName) + '</td>';
-                ret += '   <td>' + (data[i].MobileNumber == null ? 'XXX-XXX-XXXX' : data[i].MobileNumber) + '</td>';
-                ret += '   <td>' + data[i].Email + '</td>';
+                //ret += '   <td>' + (data[i].MobileNumber == null ? 'XXX-XXX-XXXX' : data[i].MobileNumber) + '</td>';
+                //ret += '   <td>' + data[i].Email + '</td>';
                 ret += '   <td>' + day + '</td>';
-                ret += '   <td>' + paid + '</td>';
-                ret += '   <td>' + verify +'</td>';
+                ret += '   <td style="text-align:left">' + data[i].DownloadCount + '</td>';
+
+                //ret += '   <td>' + paid + '</td>';
+                ret += '   <td style="text-align:left"><span class="label label-' + bage + '">' + txt + '</span></td>';
+                //ret += '   <td>' + verify +'</td>';
                 //ret += '   <td><span class="label label-primary">' + data[i].UserRoleName +'</span></td>';
                 ret += '   <td><a href="UserDetail?s=' + data[i].UserID+'"><i class="fa fa-pencil"></i> view </a></td>';
                 ret += '   </tr >';
@@ -342,6 +334,19 @@
               
             }
         }
+
+
+        function clickButton(e, buttonid) {
+            var evt = e ? e : window.event;
+            var bt = document.getElementById(buttonid);
+            if (bt) {
+                if (evt.keyCode == 13) {
+                    bt.click();
+                    return false;
+                }
+            }
+        }
+
 
     </script>
 
