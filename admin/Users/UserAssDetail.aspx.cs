@@ -49,7 +49,7 @@ public partial class Users_UserAssDetail : BasePage
                     Model_UsersAssChoice ch = new Model_UsersAssChoice();
                     List<Model_UsersAssChoice> chlist = ch.GetUserAssessmentChoiceByTsID(item.TASID);
 
-                    ret.Append("<td><input type=\"checkbox\" name=\"TASID\" checked=\"checked\" value=\"" + item.TASID + "\" /><input type=\"text\" class=\"form-control\" style=\"text-align:center;\" name=\"TASID_code_" + item.TASID + "\" value=\"" + item.Code + "\" /></td>");
+                    ret.Append("<td><input style=\"display:none\" type=\"checkbox\" name=\"TASID\" checked=\"checked\" value=\"" + item.TASID + "\" /><input type=\"text\" class=\"form-control\" style=\"text-align:center;\" name=\"TASID_code_" + item.TASID + "\" value=\"" + item.Code + "\" /></td>");
                     ret.Append("<td>" + item.Questions + "</td>");
                     ret.Append("<td>" + item.QuestionTypeTitle +  (item.QTID == 5?  " <br/><strong>[" + item .GroupName+ "]["+(item.Side == 1? "Left":"Right")+"]</strong>" : "" ) + "</td>");
                     ret.Append("<td>" + item.SectionTitle + "</td>");
@@ -78,7 +78,7 @@ public partial class Users_UserAssDetail : BasePage
                         foreach (Model_UsersAssChoice choice in chlist)
                         {
                             ret.Append("<tr>");
-                            ret.Append("<td><input type=\"checkbox\" name=\"TASCID\" checked=\"checked\" value=\"" + choice.TASCID + "\" /><input type=\"text\" class=\"form-control\" style=\"text-align:center;\" name=\"TASCID_code_" + choice.TASCID + "\" value=\"" + choice.Code + "\" /></td>");
+                            ret.Append("<td><input style=\"display:none\"  type=\"checkbox\" name=\"TASCID\" checked=\"checked\" value=\"" + choice.TASCID + "\" /><input type=\"text\" class=\"form-control\" style=\"text-align:center;\" name=\"TASCID_code_" + choice.TASCID + "\" value=\"" + choice.Code + "\" /></td>");
                             ret.Append("<td>" + choice.Questions + "</td>");
                             ret.Append("<td>" + choice.SubSectionTitle + "</td>");
                             ret.Append("<td><input type=\"text\" name=\"TASCID_score_" + choice.TASCID + "\" class=\"form-control\" style=\"text-align:center;\" value=\"" + choice.Score + "\" /></td>");
