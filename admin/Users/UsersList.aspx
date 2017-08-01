@@ -248,7 +248,7 @@
 
             //if (!s) { v = 1 };
             var s = store.get('Paging_now');
-
+            if (!s) { s = 1 };
             //add custom filter 
             var CustomSearchList = [];
            var key1 = {
