@@ -130,8 +130,8 @@ public partial class Users_UserAssDetail : BasePage
                 {
                     // TASID,int Score, string Code
                     int TASID = int.Parse(item);
-                    int Score = int.Parse(Request.Form["TASID_code_"+ item]);
-                    string Code = Request.Form["TASID_score_"+ item].ToString();
+                    int Score = int.Parse(Request.Form["TASID_score_" + item]);
+                    string Code = Request.Form["TASID_code_" + item].ToString();
                     assUser.UpdateUserAssbyID(TASID, Score, Code);
                 }
             }
@@ -150,14 +150,17 @@ public partial class Users_UserAssDetail : BasePage
                 {
                     //TASCID, int Score, string Code
                     int TASCID = int.Parse(item);
-                    int Score = int.Parse(Request.Form["TASCID_code_" + item]);
-                    string Code = Request.Form["TASCID_score_" + item].ToString();
-                    assUser.UpdateUserAssbyID(TASCID, Score, Code);
+                    int Score = int.Parse(Request.Form["TASCID_score_" + item]);
+                    string Code = Request.Form["TASCID_code_" + item].ToString();
+                    choice.UpdateUserAssChoicebyID(TASCID, Score, Code);
                 }
             }
 
 
-
+            
         }
+        Response.Redirect(Request.Url.ToString());
+
+
     }
 }

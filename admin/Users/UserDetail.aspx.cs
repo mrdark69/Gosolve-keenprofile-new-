@@ -129,6 +129,93 @@ public partial class Users_UserDetail : BasePage
 
     protected void btnDownload_Click(object sender, EventArgs e)
     {
-        
+        int UserId = int.Parse(Request.QueryString["s"]);
+        string FirstName = Request.Form["ctl00$MainContent$firstName"];
+        string LastName = Request.Form["ctl00$MainContent$LastName"];
+
+        string bytGender = Request.Form["ctl00$MainContent$dropGender"];
+
+        string Nationality = Request.Form["ctl00$MainContent$dropNation"];
+        string DatBirth = Request.Form["ctl00$MainContent$day"];
+
+        string Phone = Request.Form["ctl00$MainContent$txtPhon"];
+
+        Model_Users us = new Model_Users
+        {
+            Email = txtEmail.Text.Trim(),
+            UserID = UserId,
+            FirstName = FirstName,
+            LastName = LastName,
+            DateofBirth = DatBirth.DateSplitYear('-'),
+            Gender = byte.Parse(bytGender),
+            Nationality = int.Parse(Nationality),
+            MobileNumber = Phone
+        };
+
+        int ret = us.UpdateUserProfileUserEdit(us);
+
+        if (ret > 0)
+        {
+
+            string FCCheck = Request.Form["chckFC_form"];
+            if (!string.IsNullOrEmpty(FCCheck))
+            {
+                string[] arrfc = FCCheck.Split(',');
+                if (arrfc.Length > 0)
+                {
+                    List<Model_UserFC> list = new List<Model_UserFC>();
+
+                    foreach (string i in arrfc)
+                    {
+
+                        list.Add(new Model_UserFC
+                        {
+                            FCID = int.Parse(i),
+                            UserID = UserId
+                        });
+
+
+                    }
+                    Model_UserFC fc = new Model_UserFC();
+
+                    fc.AddUserFC(list, UserId);
+                }
+            }
+
+
+
+            //Current Job 
+
+            string CJFCheck = Request.Form["chckCJF_form"];
+
+            if (!string.IsNullOrEmpty(CJFCheck))
+            {
+                string[] arrcjf = CJFCheck.Split(',');
+                if (arrcjf.Length > 0)
+                {
+                    List<Model_UserCJF> list = new List<Model_UserCJF>();
+                    foreach (string i in arrcjf)
+                    {
+                        list.Add(new Model_UserCJF
+                        {
+                            CJFID = int.Parse(i),
+                            UserID = UserId
+                        });
+
+
+                    }
+                    Model_UserCJF cjf = new Model_UserCJF();
+                    cjf.AddUserCjf(list, UserId);
+                }
+            }
+
+
+
+            Response.Redirect(Request.Url.ToString());
+        }
+        else
+        {
+            lblError.Text = "The User Name is user already";
+        }
     }
 }

@@ -38,7 +38,7 @@ public class Model_UsersAssChoice: BaseModel<Model_UsersAssChoice>
         //
     }
 
-    public bool UpdateUserAssbyID(int TASCID, int Score, string Code)
+    public bool UpdateUserAssChoicebyID(int TASCID, int Score, string Code)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
