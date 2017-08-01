@@ -96,8 +96,10 @@
 
                                                 <%--<th></th>--%>
                                                   <th> <a href="#" class="th_sort" data-sort="asc"  data-column="TransactionID"> TSID <i class="fa fa-sort"></i></a></th>
+                                                    <th><a href="#" class="th_sort" data-sort="asc"  data-column="DateSubmit"> Date <i class="fa fa-sort"></i></a></th>
                                                 <th> <a href="#" class="th_sort" data-sort="asc"  data-column="FirstName"> Name <i class="fa fa-sort"></i></a></th>
-                                                  <th><a href="#" class="th_sort" data-sort="asc"  data-column="DateSubmit"> Date <i class="fa fa-sort"></i></a></th>
+                                                <th> <a href="#" class="th_sort" data-sort="asc"  data-column="Email"> Email <i class="fa fa-sort"></i></a></th>
+                                              
                                                
                                                 <th><a href="#" class="th_sort" data-sort="asc"  data-column="DownloadCount">Download Count <i class="fa fa-sort"></i></a></th>
                                                 
@@ -299,11 +301,12 @@
                 var day = moment(data[i].DateSubmit).format('DD-MMM-YYYY HH:mm');
                 ret += '<tr>';
                 ret += '   <td>TS' + data[i].TransactionID + '</td>';
+                ret += '   <td>' + day + '</td>';
                 //ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
                 ret += '   <td>' + gender + ' ' + (data[i].FirstName == null ? 'XXXX' : data[i].FirstName) + ' ' + (data[i].LastName == null ? 'XXXX' : data[i].LastName) + '</td>';
                 //ret += '   <td>' + (data[i].MobileNumber == null ? 'XXX-XXX-XXXX' : data[i].MobileNumber) + '</td>';
-                //ret += '   <td>' + data[i].Email + '</td>';
-                ret += '   <td>' + day + '</td>';
+                ret += '   <td>' + data[i].Email + '</td>';
+              
                 ret += '   <td style="text-align:left">' + data[i].DownloadCount + '</td>';
 
                 //ret += '   <td>' + paid + '</td>';

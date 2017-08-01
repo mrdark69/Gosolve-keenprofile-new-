@@ -41,11 +41,51 @@ public class Model_UsersAssessment: BaseModel<Model_UsersAssessment>
 
     public int Score { get; set; }
 
+
+    public string SectionTitle { get; set; }
+    public int SectionPriority { get; set; }
+
+    public string SubSectionTitle { get; set; }
+    public string QuestionTypeTitle { get; set; }
+
     public Model_UsersAssessment()
     {
         //
         // TODO: Add constructor logic here
         //
+    }
+
+    public bool UpdateUserAssbyID(int TASID,int Score, string Code)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("UPDATE UserAssessment SET Score=@Score,Code=@Code WHERE TASID=@TASID", cn);
+            cmd.Parameters.Add("@TASID", SqlDbType.Int).Value = TASID;
+            cmd.Parameters.Add("@Score", SqlDbType.Int).Value = Score;
+            cmd.Parameters.Add("@Code", SqlDbType.NVarChar).Value = Code;
+            cn.Open();
+            return ExecuteNonQuery(cmd) == 1;
+        }
+           
+    }
+    public List<Model_UsersAssessment> GetUserAssessmentByTsID(int TsID)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand(@"SELECT uss.*, ss.Title AS SectionTitle, 
+            ss.Priority AS SectionPriority , su.Title AS SubSectionTitle, qs.Title AS QuestionTypeTitle
+            FROM UserAssessment uss 
+            LEFT JOIN Section ss ON ss.SCID = uss.SCID
+            LEFT JOIN SubSection su ON su.SUCID = uss.SUCID
+            LEFT JOIN QuestionsType qs ON qs.QTID = uss.QTID
+            WHERE uss.TransactionID=@TransactionID
+            ORDER BY ss.SCID, ss.Priority ASC, uss.Priority ASC", cn);
+            cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = TsID;
+            cn.Open();
+
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+
+        }
     }
 
     public int InsertUserAssessment(Model_UsersAssessment uass)

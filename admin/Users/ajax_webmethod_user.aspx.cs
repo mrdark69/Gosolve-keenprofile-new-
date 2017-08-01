@@ -56,5 +56,14 @@ public partial class admin_Users_ajax_webmethod_user : System.Web.UI.Page
 
         AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
     }
+    [WebMethod]
+    public static void GetTsByUserID(Model_UsersTransaction parameters)
+    {
 
+
+        IList<Model_UsersTransaction> ret = UsersController.getUserTransactionByUserID(parameters);
+
+
+        AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
+    }
 }

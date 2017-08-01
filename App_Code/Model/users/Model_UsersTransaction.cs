@@ -85,7 +85,7 @@ public class Model_UsersTransaction: BaseModel<Model_UsersTransaction>
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM UserAssTransaction WHERE UserID=@UserID", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM UserAssTransaction WHERE UserID=@UserID ORDER BY DateSubmit DESC", cn);
             cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = UserID;
             cn.Open();
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
@@ -171,7 +171,7 @@ public class Model_UsersTransaction: BaseModel<Model_UsersTransaction>
            
             string strcmd = @"
                 ;WITH UserAssTransaction_cte AS (
-                SELECT u.*,ur.FirstName,ur.Lastname,ur.Email
+                SELECT u.*,ur.FirstName,ur.LastName,ur.Email
                 FROM dbo.UserAssTransaction u
                 LEFT JOIN Users ur ON ur.UserID =u.UserID  
                 WHERE u.TransactionID > 0 " + cfilter +

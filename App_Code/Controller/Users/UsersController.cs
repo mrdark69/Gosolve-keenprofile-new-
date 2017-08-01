@@ -293,4 +293,9 @@ public class UsersController
         return ts.getTsListl_Paging(ts);
     }
 
+    public static IList<Model_UsersTransaction> getUserTransactionByUserID(Model_UsersTransaction ts)
+    {
+        return ts.getTsListByUserID(ts.UserID);
+    }
+
 }

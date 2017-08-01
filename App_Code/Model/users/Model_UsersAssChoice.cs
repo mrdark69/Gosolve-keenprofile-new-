@@ -30,7 +30,7 @@ public class Model_UsersAssChoice: BaseModel<Model_UsersAssChoice>
 
     public int Score { get; set; }
 
-
+    public string SubSectionTitle { get; set; }
     public Model_UsersAssChoice()
     {
         //
@@ -38,6 +38,33 @@ public class Model_UsersAssChoice: BaseModel<Model_UsersAssChoice>
         //
     }
 
+    public bool UpdateUserAssbyID(int TASCID, int Score, string Code)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("UPDATE UserAssessmentChoice SET Score=@Score,Code=@Code WHERE TASCID=@TASCID", cn);
+            cmd.Parameters.Add("@TASCID", SqlDbType.Int).Value = TASCID;
+            cmd.Parameters.Add("@Score", SqlDbType.Int).Value = Score;
+            cmd.Parameters.Add("@Code", SqlDbType.NVarChar).Value = Code;
+            cn.Open();
+            return ExecuteNonQuery(cmd) == 1;
+        }
+
+    }
+    public List<Model_UsersAssChoice> GetUserAssessmentChoiceByTsID(int uASIS)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand(@"SELECT uss.*,su.Title AS SubSectionTitle FROM UserAssessmentChoice uss 
+LEFT JOIN SubSection su ON su.SUCID = uss.SUCID 
+WHERE uss.TASID=@TASID ORDER BY Priority ASC", cn);
+            cmd.Parameters.Add("@TASID", SqlDbType.Int).Value = uASIS;
+            cn.Open();
+
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+
+        }
+    }
 
     public int InsertUserAssessmentChoice(Model_UsersAssChoice uass)
     {
