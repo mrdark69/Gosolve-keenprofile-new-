@@ -176,7 +176,24 @@
                 return false;
 
             });
-            
+
+
+            if ($('#hd_listTotal')) {
+                //alert($('#hd_listTotal').val());
+
+                $('#pagination').bootpag().on("page", function (event, num) {
+                    store.set('Paging_now', num);
+
+                    console.log(num);
+
+                    getList();
+                    //$("#content").html("Page " + num); // or some ajax content loading...
+                    //// ... after content load -> change total to 10
+                    //$(this).bootpag({ total: 10, maxVisible: 10 });
+                });
+            }
+
+        
            
         });
 
@@ -247,7 +264,9 @@
               //  console.log(data);
                 var h = GenlistAll(data);
                 $('#body_list').html(h);
-               
+                var totalS = data[0].TotalRows;
+                $('<input type="hidden" id="hd_listTotal" value="' + totalS + '" />').appendTo("body");
+                paging(data);
             });
         }
 
@@ -296,7 +315,7 @@
             }
 
            
-            paging(data);
+           
 
             return ret;
         }
@@ -320,14 +339,7 @@
                         page: s,            // default page
                         maxVisible: 5,     // visible pagination
                         leaps: true         // next/prev leaps through maxVisible
-                    }).on("page", function (event, num) {
-                        store.set('Paging_now', num);
-                       
-                        getList();
-                        //$("#content").html("Page " + num); // or some ajax content loading...
-                        //// ... after content load -> change total to 10
-                        //$(this).bootpag({ total: 10, maxVisible: 10 });
-                        });
+                    })
                 } else {
                     $('#pagination').html('');
                 }
