@@ -365,8 +365,8 @@ public partial class _Assessment : BasePage
         //}
 
 
-        Model_AsSection secs = AssessmentController.getSectionByID(intSCID);
-        txtCode.Text = secs.Code.ToString();
+        //Model_AsSection secs = AssessmentController.getSectionByID(intSCID);
+        //txtCode.Text = secs.Code.ToString();
     }
 
     
