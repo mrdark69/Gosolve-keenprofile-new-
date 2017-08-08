@@ -61,13 +61,12 @@
                              <%--   <asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
                                 <asp:Label ID="lblsms" runat="server"></asp:Label>
 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                                    <ContentTemplate>
+                                               
 
                                                          <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="dropSection" CssClass="col-md-2 control-label">Section</asp:Label>
                                     <div class="col-md-10">
-                                        <asp:DropDownList ID="dropSection" OnSelectedIndexChanged="dropSection_SelectedIndexChanged" AutoPostBack="true" runat="server" CssClass="form-control"></asp:DropDownList>
+                                        <asp:DropDownList ID="dropSection"   runat="server" CssClass="form-control"></asp:DropDownList>
                                     </div>
                                 </div>
                                    <div class="form-group">
@@ -88,9 +87,6 @@
                                             CssClass="text-danger" Display="Dynamic" ErrorMessage="The  field is required." />
                                     </div>
                                 </div>
-                                                    </ContentTemplate>
-
-                                                </asp:UpdatePanel>
                                    
 
 
@@ -352,10 +348,11 @@
                     var q = arr[0];
                     var code = arr[1];
                     var SUCID = arr[2];
+                    var pri = arr[3];
 
                     var chk = '<input type="checkbox" name="chk_choice" checked="checked" value="' + uuid + '" style="display:none;" />';
                     var txtbox1 = '<input class="form-control" type="textbox"  id="question_s_' + uuid + '" name="question_s_' + uuid + '" value="' + q +'" />'
-                    var txtbox = '<input class="form-control" type="textbox" value="1" id="pri_s_' + uuid + '" name="pri_s_' + uuid + '" value="' + val + '"  />'
+                    var txtbox = '<input class="form-control" type="textbox"  id="pri_s_' + uuid + '" name="pri_s_' + uuid + '" value="' + pri + '"  />'
 
 
                     var drop = '<select id="sel_sub_' + uuid + '" name="sel_sub_' + uuid + '" class="form-control">' + dropsub + '</select>'
@@ -423,7 +420,7 @@
                 var bage = 'primary'
                 if (!data[i].Status) { txt = 'Inactive'; bage = 'default'; }
                 ret += '   <td style="text-align:center"><span class="label label-' + bage + '">' + txt + '</span></td>';
-                ret += '   <td style="text-align:center"><a href="Assessment?ass=' + data[i].ASID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
+                ret += '   <td style="text-align:center"><a href="Assessment?ass=' + data[i].ASID + '&Section=' + data[i].SCID+'"><i class="fa fa-pencil"></i> Edit </a></td>';
                 ret += '   </tr >';
 
                 count++;

@@ -32,7 +32,7 @@ public class Model_Assessment_Choice : BaseModel<Model_Assessment_Choice>
     {
         get
         {
-            return this.Questions + "," + this.Code + "," + this.SUCID;
+            return this.Questions + "," + this.Code + "," + this.SUCID + "," + this.Priority;
         }
     }
 
@@ -45,7 +45,7 @@ public class Model_Assessment_Choice : BaseModel<Model_Assessment_Choice>
     {
         using(SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM AssessmentChoice WHERE ASID=@ASID AND Status = 1 ORDER BY Priority DESC", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM AssessmentChoice WHERE ASID=@ASID AND Status = 1 ORDER BY Priority ASC", cn);
             cmd.Parameters.Add("@ASID", SqlDbType.Int).Value = ASID;
             cn.Open();
 

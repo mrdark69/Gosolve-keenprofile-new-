@@ -8,6 +8,13 @@ using System.Web.UI.WebControls;
 
 public partial class _Assessment : BasePage
 {
+    public string qSection {
+
+    get
+        {
+            return Request.QueryString["Section"];
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!this.Page.IsPostBack)
@@ -35,7 +42,7 @@ public partial class _Assessment : BasePage
 
 
             Model_AsSection secs = AssessmentController.getSectionByID(int.Parse(dropSection.SelectedValue));
-            txtCode.Text = secs.Code.ToString();
+            //txtCode.Text = secs.Code.ToString();
 
             Model_AsSubSection ss = new Model_AsSubSection
             {
@@ -67,7 +74,12 @@ public partial class _Assessment : BasePage
                         dropChoice_ret.DataTextField = "CombindValue";
                         dropChoice_ret.DataValueField = "Priority";
                         dropChoice_ret.DataBind();
+
+
+                        
                     }
+
+                    dropside.SelectedValue = ass.Side.ToString();
 
                     QuestionTitle.Text = ass.Questions;
                     txtCode.Text = ass.Code;
@@ -76,6 +88,7 @@ public partial class _Assessment : BasePage
                     txtpri.Text = ass.Priority.ToString();
                     txtStartRank.Text = ass.StartRank.ToString();
                     txtEndRank.Text = ass.EndRank.ToString();
+                    status.SelectedValue = ass.Status.ToString();
 
                     Model_AsSubSection sss = new Model_AsSubSection
                     {
@@ -89,7 +102,11 @@ public partial class _Assessment : BasePage
                     dropsub.DataBind();
 
                     dropSection.SelectedValue = ass.SCID.ToString();
-                    dropsecs.SelectedValue = ass.SCID.ToString();
+
+
+                    dropsecs.SelectedValue = (string.IsNullOrEmpty(this.qSection) ? ass.SCID.ToString() : this.qSection);
+
+
                     dropsub.SelectedValue = ass.SUCID.ToString();
 
 
@@ -288,7 +305,8 @@ public partial class _Assessment : BasePage
             ass.ASID = intID;
             if (AssessmentController.EditAssessment(ass))
             {
-                Response.Redirect("Assessment");
+                
+                Response.Redirect("Assessment?Section=" + dropSection.SelectedValue);
             }
         }
         else
@@ -296,9 +314,9 @@ public partial class _Assessment : BasePage
             int Assid = AssessmentController.AddAssessment(ass);
             if (Assid > 0)
             {
-
-                    //Model_Assessment_Choice
-                Response.Redirect(Request.Url.ToString());
+                Response.Redirect("Assessment?Section=" + dropSection.SelectedValue);
+                //Model_Assessment_Choice
+               // Response.Redirect(Request.Url.ToString());
             }
         }
 
