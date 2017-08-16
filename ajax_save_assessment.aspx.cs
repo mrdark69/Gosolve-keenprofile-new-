@@ -11,120 +11,122 @@ public partial class ajax_save_assessment : BasePageFront
     {
         if (!this.Page.IsPostBack)
         {
-
+            bool IsCom = false;
             if (!string.IsNullOrEmpty(Request.Form["ctl00$MainContent$heUserID"]))
             {
-                int UserId = int.Parse(Request.Form["ctl00$MainContent$heUserID"]);
-
-                //Profile Process
-
-                string FirstName = Request.Form["ctl00$MainContent$firstName"];
-                string LastName = Request.Form["ctl00$MainContent$LastName"];
-
-                string bytGender = Request.Form["ctl00$MainContent$dropGender"];
-
-                string Nationality = Request.Form["ctl00$MainContent$dropNation"];
-                string DatBirth = Request.Form["ctl00$MainContent$day"];
-
-                string Phone = Request.Form["ctl00$MainContent$txtPhon"];
-
-                Model_Users us = new Model_Users
+                try
                 {
-                    UserID = UserId,
-                    FirstName = FirstName,
-                    LastName = LastName,
-                    DateofBirth = DatBirth.DateSplitYear('-'),
-                    Gender = byte.Parse(bytGender),
-                    Nationality = int.Parse(Nationality),
-                    MobileNumber = Phone
-                };
+                    int UserId = int.Parse(Request.Form["ctl00$MainContent$heUserID"]);
 
-                us.UpdateUserProfileFront(us);
+                    //Profile Process
 
+                    string FirstName = Request.Form["ctl00$MainContent$firstName"];
+                    string LastName = Request.Form["ctl00$MainContent$LastName"];
 
-                //Fuction Competencies
+                    string bytGender = Request.Form["ctl00$MainContent$dropGender"];
 
-                string FCCheck = Request.Form["chckFC_form"];
+                    string Nationality = Request.Form["ctl00$MainContent$dropNation"];
+                    string DatBirth = Request.Form["ctl00$MainContent$day"];
 
+                    string Phone = Request.Form["ctl00$MainContent$txtPhon"];
 
-
-                if (!string.IsNullOrEmpty(FCCheck))
-                {
-                    string[] arrfc = FCCheck.Split(',');
-                    if (arrfc.Length > 0)
+                    Model_Users us = new Model_Users
                     {
-                        List<Model_UserFC> list = new List<Model_UserFC>();
+                        UserID = UserId,
+                        FirstName = FirstName,
+                        LastName = LastName,
+                        DateofBirth = DatBirth.DateSplitYear('-'),
+                        Gender = byte.Parse(bytGender),
+                        Nationality = int.Parse(Nationality),
+                        MobileNumber = Phone
+                    };
 
-                        foreach (string i in arrfc)
+                    us.UpdateUserProfileFront(us);
+
+
+                    //Fuction Competencies
+
+                    string FCCheck = Request.Form["chckFC_form"];
+
+
+
+                    if (!string.IsNullOrEmpty(FCCheck))
+                    {
+                        string[] arrfc = FCCheck.Split(',');
+                        if (arrfc.Length > 0)
                         {
+                            List<Model_UserFC> list = new List<Model_UserFC>();
 
-                            list.Add(new Model_UserFC
+                            foreach (string i in arrfc)
                             {
-                                FCID = int.Parse(i),
-                                UserID = UserId
-                            });
-                            
-                           
+
+                                list.Add(new Model_UserFC
+                                {
+                                    FCID = int.Parse(i),
+                                    UserID = UserId
+                                });
+
+
+                            }
+                            Model_UserFC fc = new Model_UserFC();
+
+                            fc.AddUserFC(list, UserId);
                         }
-                        Model_UserFC fc = new Model_UserFC();
-                       
-                        fc.AddUserFC(list, UserId);
                     }
-                }
 
 
 
-                //Current Job 
+                    //Current Job 
 
-                string CJFCheck = Request.Form["chckCJF_form"];
+                    string CJFCheck = Request.Form["chckCJF_form"];
 
-                if (!string.IsNullOrEmpty(CJFCheck))
-                {
-                    string[] arrcjf = CJFCheck.Split(',');
-                    if (arrcjf.Length > 0)
+                    if (!string.IsNullOrEmpty(CJFCheck))
                     {
-                        List<Model_UserCJF> list = new List<Model_UserCJF>();
-                        foreach (string i in arrcjf)
+                        string[] arrcjf = CJFCheck.Split(',');
+                        if (arrcjf.Length > 0)
                         {
-                            list.Add(new Model_UserCJF
+                            List<Model_UserCJF> list = new List<Model_UserCJF>();
+                            foreach (string i in arrcjf)
                             {
-                                CJFID = int.Parse(i),
-                                UserID = UserId
-                            });
-                            
-                           
+                                list.Add(new Model_UserCJF
+                                {
+                                    CJFID = int.Parse(i),
+                                    UserID = UserId
+                                });
+
+
+                            }
+                            Model_UserCJF cjf = new Model_UserCJF();
+                            cjf.AddUserCjf(list, UserId);
                         }
-                        Model_UserCJF cjf = new Model_UserCJF(); 
-                        cjf.AddUserCjf(list, UserId);
                     }
-                }
 
 
-                //UserAssessment Transaction
-                Model_UsersTransaction ts = new Model_UsersTransaction
-                {
-                    UserID = UserId
-
-                };
-
-                int tsid = ts.InsertUserTsAss(ts);
-
-                if (tsid > 0)
-                {
-                    //Score Process
-                    string ass = Request.Form["ass_fill_"];
-
-                    if (!string.IsNullOrEmpty(Request.Form["ass_fill_"]))
+                    //UserAssessment Transaction
+                    Model_UsersTransaction ts = new Model_UsersTransaction
                     {
-                        string[] arrAss = ass.Split(',');
-                        if (arrAss.Length > 0)
+                        UserID = UserId
+
+                    };
+
+                    int tsid = ts.InsertUserTsAss(ts);
+
+                    if (tsid > 0)
+                    {
+                        //Score Process
+                        string ass = Request.Form["ass_fill_"];
+
+                        if (!string.IsNullOrEmpty(Request.Form["ass_fill_"]))
                         {
-                            //List<Model_UsersAssessment> uslist = new List<Model_UsersAssessment>();
-                            foreach (string assItem in arrAss)
+                            string[] arrAss = ass.Split(',');
+                            if (arrAss.Length > 0)
                             {
-                                string assSCore = Request.Form["ass_fill_item_score_" + assItem];
-                                //if (!string.IsNullOrEmpty(assSCore))
-                               // {
+                                //List<Model_UsersAssessment> uslist = new List<Model_UsersAssessment>();
+                                foreach (string assItem in arrAss)
+                                {
+                                    string assSCore = Request.Form["ass_fill_item_score_" + assItem];
+                                    //if (!string.IsNullOrEmpty(assSCore))
+                                    // {
                                     int AssID = int.Parse(assItem);
 
 
@@ -132,14 +134,14 @@ public partial class ajax_save_assessment : BasePageFront
                                     if (!string.IsNullOrEmpty(assSCore))
                                         AssScore = int.Parse(assSCore);
 
-                                Model_UsersAssessment uass = new Model_UsersAssessment
+                                    Model_UsersAssessment uass = new Model_UsersAssessment
                                     {
                                         ASID = AssID,
                                         TransactionID = tsid,
                                         Score = AssScore
                                     };
 
-                                    int intTASID=   uass.InsertUserAssessment(uass);
+                                    int intTASID = uass.InsertUserAssessment(uass);
 
 
 
@@ -151,7 +153,7 @@ public partial class ajax_save_assessment : BasePageFront
 
                                         if (arrChoice.Length > 0)
                                         {
-                                          
+
                                             foreach (string choiceItem in arrChoice)
                                             {
                                                 string assChoiceScore = Request.Form["ass_fill_choice_score_" + assItem + "_" + choiceItem];
@@ -161,7 +163,7 @@ public partial class ajax_save_assessment : BasePageFront
                                                     int AssChoiceID = int.Parse(choiceItem);
                                                     int AssChoiceScore = int.Parse(assChoiceScore);
 
-                                                    Model_UsersAssChoice usch =  new Model_UsersAssChoice
+                                                    Model_UsersAssChoice usch = new Model_UsersAssChoice
                                                     {
                                                         ASID = AssID,
                                                         ASCID = AssChoiceID,
@@ -180,25 +182,33 @@ public partial class ajax_save_assessment : BasePageFront
                                     }
 
 
-                             //   }
+                                    //   }
 
+                                }
                             }
+
                         }
 
                     }
 
+                    // assessment is recorded!
+                    IsCom = true;
                 }
+                catch
+                {
+                    IsCom = false;
+                }
+
+
+                if (IsCom)
+                    IsCom = CalculationController.CalculateActionStart();
+
             }
             
 
            
 
-
-           
-
-
-
-            Response.Write("True");
+            Response.Write(IsCom.ToString());
             Response.End();
         }
     }
