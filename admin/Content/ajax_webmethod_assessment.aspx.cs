@@ -37,6 +37,24 @@ public partial class admin_Staff_ajax_webmethod_assessment : System.Web.UI.Page
         AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
     }
 
+    [WebMethod]
+    public static void GetReportSectionAll(Model_ReportSection parameters)
+    {
+        Model_ReportSection pr = new Model_ReportSection();
+        IList<Model_ReportSection> ret = pr.GetList();
+
+
+        AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
+    }
+    [WebMethod]
+    public static void GetReportSectionItemAll(Model_ReportSectionItem parameters)
+    {
+        Model_ReportSectionItem pr = new Model_ReportSectionItem();
+        IList<Model_ReportSectionItem> ret = pr.GetListItem(parameters.ResultSectionID);
+
+
+        AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
+    }
 
     [WebMethod]
     public static void GetAll(Model_Assessment parameters)

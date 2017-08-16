@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Assessmentoptionaddedit.aspx.cs" Inherits="_Assessmentoptionaddedit" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Reportcontent.aspx.cs" Inherits="_ReportContent" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderScript" runat="server">
     <style>
       th.dt-center,td.dt-center{
@@ -45,10 +45,9 @@ margin-right:5px;
                 <div class="col-lg-12">
                     <div class="tabs-container">
                         <ul class="nav nav-tabs">
-                            <li class="active" id="li_tab1" runat="server"><a href="Assessmentoptionaddedit" id="tab1" runat="server" aria-expanded="true"> Section</a></li>
-                            <li class="" id="li_tab2" runat="server"><a href="Assessmentoptionaddedit?tab=2" id="tab2" runat="server" aria-expanded="false">Sub section</a></li>
-                            <li class="" id="li_tab3" runat="server"><a  href="Assessmentoptionaddedit?tab=3" id="tab3" runat="server" aria-expanded="false">Question Type</a></li>
-                            <li class="" id="li_tab4" runat="server"><a  href="Assessmentoptionaddedit?tab=4" id="tab4" runat="server" aria-expanded="false">Assessment Intro</a></li>
+                            <li class="active" id="li_tab1" runat="server"><a href="Reportcontent" id="tab1" runat="server" aria-expanded="true"> Report Section</a></li>
+                            <li class="" id="li_tab2" runat="server"><a href="Reportcontent?tab=2" id="tab2" runat="server" aria-expanded="false">Report Section Item</a></li>
+                           
                         </ul>
                         <div class="tab-content">
                             <div id="tab_content1" runat="server" class="tab-pane active">
@@ -60,13 +59,13 @@ margin-right:5px;
                                              <div class="ibox float-e-margins" style="margin-bottom:0px;"  id="add_section" runat="server" visible="false">
                                                       <div class="ibox-content">
                                             <div class="form-horizontal">
-                                <h4 id="headsection_pan" runat="server">Create a new Section</h4>
+                                <h4 id="headsection_pan" runat="server">Create a new Report Section</h4>
                                 <hr />
                              <%--   <asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
                                 <asp:Label ID="lblsms" runat="server"></asp:Label>
 
                                 <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="SectionTitle" CssClass="col-md-2 control-label">Section Name</asp:Label>
+                                    <asp:Label runat="server" AssociatedControlID="SectionTitle" CssClass="col-md-2 control-label">Name</asp:Label>
                                     <div class="col-md-10">
                                         <asp:TextBox runat="server" ID="SectionTitle" CssClass="form-control" />
                                         <asp:RequiredFieldValidator runat="server" ControlToValidate="SectionTitle"
@@ -75,7 +74,7 @@ margin-right:5px;
                                 </div>
 
                                 <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="txtCode" CssClass="col-md-2 control-label">Section Code</asp:Label>
+                                    <asp:Label runat="server" AssociatedControlID="txtCode" CssClass="col-md-2 control-label">Code</asp:Label>
                                     <div class="col-md-10">
                                         <asp:TextBox runat="server" ID="txtCode" MaxLength="2" CssClass="form-control" />
                                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCode" Width="100"
@@ -90,7 +89,7 @@ margin-right:5px;
                                     </div>
                                 </div>
                                                  <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="txtintro" CssClass="col-md-2 control-label">Section Intro</asp:Label>
+                                    <asp:Label runat="server" AssociatedControlID="txtintro" CssClass="col-md-2 control-label">Calculation Detail</asp:Label>
                                     <div class="col-md-10">
                                         <asp:TextBox runat="server" ID="txtintro" CssClass="form-control" TextMode="MultiLine" Rows="5" />
                                        
@@ -154,7 +153,7 @@ margin-right:5px;
                                     </div>--%>
                                 </div>
                                 <div class="col-sm-3" style="text-align:right">
-                                    <asp:Button  runat="server" ID="btnAddnewSection" class="btn btn-w-m btn-success" OnClick="btnAddnewSection_Click" Text="Add New Section" />
+                                    <asp:Button  runat="server" ID="btnAddnewSection" class="btn btn-w-m btn-success" OnClick="btnAddnewSection_Click" Text="Add New Report Section" />
                                    <%-- <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
                                         <button type="button" class="btn btn-sm btn-primary"> Go!</button> </span></div>--%>
                                 </div>
@@ -164,14 +163,14 @@ margin-right:5px;
                                     <thead>
                                     <tr>
 
-                                        <th></th>
-                                      
+                                      <%--  <th></th>--%>
+                                        <th style="text-align:center">Code </th>
                                         <th >Title</th>
-                                         <th style="text-align:center">Code </th>
+                                       
                                           <th style="text-align:center"> Priority</th>
                                         <th style="text-align:center">Status </th>
 
-                                        <th style="text-align:center">Action</th>
+                                        <%--<th style="text-align:center">Action</th>--%>
                                     </tr>
                                     </thead>
                                     <tbody id="body_list">
@@ -205,6 +204,16 @@ margin-right:5px;
                                      
                                     </div>
                                 </div>
+
+                                                 <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="txtSubCode" CssClass="col-md-2 control-label">Code</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="txtSubCode" CssClass="form-control" />
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtSubTitle"
+                                            CssClass="text-danger" ErrorMessage="The  field is required." />
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="txtSubTitle" CssClass="col-md-2 control-label">Sub Section Name</asp:Label>
                                     <div class="col-md-10">
@@ -215,10 +224,10 @@ margin-right:5px;
                                 </div>
 
                                 <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="Combind" CssClass="col-md-2 control-label">Sub Section Combind</asp:Label>
+                                    <asp:Label runat="server" AssociatedControlID="subpri" CssClass="col-md-2 control-label">Priority</asp:Label>
                                     <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="Combind" CssClass="form-control" />
-                                        
+                                        <asp:TextBox runat="server" ID="subpri" CssClass="form-control" />
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="subpri" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                            
@@ -301,242 +310,9 @@ margin-right:5px;
                                 </div>
                             </div>
 
-                             <div id="tab_content3" runat="server" class="tab-pane active ">
-                                <div class="panel-body">
-
-
-                                             <div class="ibox float-e-margins" style="margin-bottom:0px;"  id="qType_pan" runat="server" visible="false">
-                                                      <div class="ibox-content">
-                                            <div class="form-horizontal">
-                                <h4 id="h2" runat="server">Create a new Question Type</h4>
-                                <hr />
-                             <%--   <asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
-                                <asp:Label ID="Label2" runat="server"></asp:Label>
-                               
-                                <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="txtQtitle" CssClass="col-md-2 control-label">Question Type Name</asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="txtQtitle" CssClass="form-control" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtQtitle"
-                                            CssClass="text-danger" ErrorMessage="The  field is required." />
-                                    </div>
-                                </div>
-
-                                
-                           
-     
-                                    <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="qstatus" CssClass="col-md-2 control-label"> Status</asp:Label>
-                                    <div class="col-md-10">
-                                      <asp:RadioButtonList ID="qstatus"  runat="server">
-                                          <asp:ListItem Text="Active" Selected="True" Value="True"  ></asp:ListItem>
-                                          <asp:ListItem Text="Inactive" Value="False"></asp:ListItem>
-                                      </asp:RadioButtonList>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">
-               
-                                       <asp:Button runat="server" ID="Button10"  OnClick="Button10_Click"  Text="Save" CssClass="btn btn-w-m btn-primary" />
-                                           <asp:Button runat="server" ID="Button11" CausesValidation="false" OnClick="Button11_Click"  Text="Cancel" CssClass="btn btn-w-m  btn-default" />
-                                    </div>
-                                </div>
-                            </div>
-                                             </div>
-                                            </div>
-                                   
-
                              
 
-                                    <div class="ibox float-e-margins">
-                        <div class="ibox-title" style="border:none;">
-                            <h5>Question Type List </h5>
-
-                        </div>
-                        <div class="ibox-content main-data">
-                             <div class="sk-spinner sk-spinner-wave">
-                                <div class="sk-rect1"></div>
-                                <div class="sk-rect2"></div>
-                                <div class="sk-rect3"></div>
-                                <div class="sk-rect4"></div>
-                                <div class="sk-rect5"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-5 m-b-xs">
-                                   <%--<strong>Role:</strong>--%> <%--<asp:DropDownList ID="dropRole" ClientIDMode="Static" runat="server" CssClass="input-sm form-control input-s-sm inline">
-
-                                    </asp:DropDownList>--%>
-                                   <%-- <select class="input-sm form-control input-s-sm inline">
-                                    <option value="0">Option 1</option>
-                                    <option value="1">Option 2</option>
-                                    <option value="2">Option 3</option>
-                                    <option value="3">Option 4</option>
-                                    </select>--%>
-                                </div>
-                                <div class="col-sm-4 m-b-xs">
-                                   <%-- <div data-toggle="buttons" class="btn-group">
-                                        <label class="btn btn-sm btn-white"> <input type="radio" id="option1" name="options"> Day </label>
-                                        <label class="btn btn-sm btn-white active"> <input type="radio" id="option2" name="options"> Week </label>
-                                        <label class="btn btn-sm btn-white"> <input type="radio" id="option3" name="options"> Month </label>
-                                    </div>--%>
-                                </div>
-                                <div class="col-sm-3" style="text-align:right">
-                                    <asp:Button  runat="server" ID="Button9" class="btn btn-w-m btn-success" OnClick="Button9_Click" Text="Add New " />
-                                   <%-- <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-primary"> Go!</button> </span></div>--%>
-                                </div>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-
-                                        <th></th>
-                                      
-                                        <th >Title</th>
-                                         <%--<th style="text-align:center">Code </th>
-                                          <th style="text-align:center"> Priority</th>--%>
-                                        <th style="text-align:center">Status </th>
-
-                                        <th style="text-align:center">Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="body_q_list">
-                                   <%-- <tr>
-                                        <td><input type="checkbox"  checked class="i-checks" name="input[]"></td>
-                                        <td>Project<small>This is example of project</small></td>
-                                        <td><span class="pie">0.52/1.561</span></td>
-                                        <td>20%</td>
-                                        <td>Jul 14, 2013</td>
-                                        <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                    </tr>--%>
-                                    
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-                                </div>
-                            </div>
-
-                            <div id="tab_content4" runat="server" class="tab-pane active">
-                                 <div class="panel-body">
-                                      <div class="ibox float-e-margins" style="margin-bottom:0px;"   runat="server" >
-
-                                          <div class="ibox-content">
-                                            <div class="form-horizontal">
-                                <h4 id="h1" runat="server">Create a new Question Type</h4>
-                                <hr />
-                             <%--   <asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
-                                <asp:Label ID="Label3" runat="server"></asp:Label>
-                               
-                                                 <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="txtIntroTitle" CssClass="col-md-2 control-label">Topic Title</asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="MainTitle" CssClass="form-control" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="MainTitle"
-                                            CssClass="text-danger" ErrorMessage="The  field is required." />
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="txtIntroTitle" CssClass="col-md-2 control-label">Title</asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="txtIntroTitle" CssClass="form-control" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtIntroTitle"
-                                            CssClass="text-danger" ErrorMessage="The  field is required." />
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="txtIntroContent" CssClass="col-md-2 control-label">Content </asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="txtIntroContent" CssClass="form-control"  TextMode="MultiLine" Rows="5" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtIntroContent"
-                                            CssClass="text-danger" ErrorMessage="The  field is required." />
-                                    </div>
-                                </div>
-
-
-
-
-                                <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="LastTitle" CssClass="col-md-2 control-label">Finished Title</asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="LastTitle" CssClass="form-control" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="LastTitle"
-                                            CssClass="text-danger" ErrorMessage="The  field is required." />
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="LastDes" CssClass="col-md-2 control-label">Finished Content </asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="LastDes" CssClass="form-control"  TextMode="MultiLine" Rows="5" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="LastDes"
-                                            CssClass="text-danger" ErrorMessage="The  field is required." />
-                                    </div>
-                                </div>
-                           
-
-
-                                <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="LastTitle" CssClass="col-md-2 control-label">Thanks Title</asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="ThanksTitle" CssClass="form-control" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="LastTitle"
-                                            CssClass="text-danger" ErrorMessage="The  field is required." />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="LastDes" CssClass="col-md-2 control-label">Thanks Content </asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="ThanksDes" CssClass="form-control"  TextMode="MultiLine" Rows="5" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="ThanksDes"
-                                            CssClass="text-danger" ErrorMessage="The  field is required." />
-                                    </div>
-                                </div>
-
-                                                <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="LastTitle" CssClass="col-md-2 control-label">Profile Title</asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="ProfileTitle" CssClass="form-control" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="ProfileTitle"
-                                            CssClass="text-danger" ErrorMessage="The  field is required." />
-                                    </div>
-                                </div>
-                                                <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="LastTitle" CssClass="col-md-2 control-label">Current Job Function Title</asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="ProfileCJFTitle" CssClass="form-control" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="ProfileCJFTitle"
-                                            CssClass="text-danger" ErrorMessage="The  field is required." />
-                                    </div>
-                                </div>
-                                                <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="LastTitle" CssClass="col-md-2 control-label">Functional Competencies Title</asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="ProfileFCTitle" CssClass="form-control" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="ProfileFCTitle"
-                                            CssClass="text-danger" ErrorMessage="The  field is required." />
-                                    </div>
-                                </div>
-
-                                   
-                                <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">
-               
-                                       <asp:Button runat="server" ID="Button14"  OnClick="Button14_Click"  Text="Save" CssClass="btn btn-w-m btn-primary" />
-                                       
-                                    </div>
-                                </div>
-                            </div>
-                                             </div>
-                                      </div>
-                                 </div>
-                            </div>
+                            
                         </div>
 
 
@@ -552,13 +328,9 @@ margin-right:5px;
         $(document).ready(function () {
             getList();
             getSectionList();
-            getQList();
+          
 
-            $('#dropRole').on('change', function () {
-
-                var v = $(this).val();
-                getList(v);
-            });
+           
 
             $('#dropsection2').on('change', function () {
 
@@ -568,13 +340,13 @@ margin-right:5px;
         });
 
 
-        function getList(v) {
+        function getList() {
 
             $('.main-data').toggleClass('sk-loading');
 
-            var url = "<%= ResolveUrl("/admin/Content/ajax_webmethod_assessment.aspx/GetSectionAll") %>";
-
-            if (!v) { v = 0 }
+            var url = "<%= ResolveUrl("/admin/Content/ajax_webmethod_assessment.aspx/GetReportSectionAll") %>";
+            var v = 0;
+            //if (!v) { v = 0 }
             var data = { UsersRoleId: v };
             var param = JSON.stringify({ parameters: data });
 
@@ -592,10 +364,10 @@ margin-right:5px;
         function getSectionList() {
             $('.main-data').toggleClass('sk-loading');
             var v = $('#dropsection2').val();
-            var url = "<%= ResolveUrl("/admin/Content/ajax_webmethod_assessment.aspx/GetSubSectionAll") %>";
+            var url = "<%= ResolveUrl("/admin/Content/ajax_webmethod_assessment.aspx/GetReportSectionItemAll") %>";
 
              if (!v) { v = 0 }
-             var data = { SCID: v };
+             var data = { ResultSectionID: v };
              var param = JSON.stringify({ parameters: data });
 
              AjaxPost(url, param, function () {
@@ -609,48 +381,7 @@ margin-right:5px;
              });
         }
 
-
-        function getQList(v) {
-            $('.main-data').toggleClass('sk-loading');
-            var url = "<%= ResolveUrl("/admin/Content/ajax_webmethod_assessment.aspx/GetQtAll") %>";
-
-             if (!v) { v = 0 }
-             var data = { SCID: v };
-             var param = JSON.stringify({ parameters: data });
-
-             AjaxPost(url, param, function () {
-
-             }, function (data) {
-
-                 //  console.log(data);
-                 var h = GenQlistAll(data);
-                 $('#body_q_list').html(h);
-                 $('.main-data').toggleClass('sk-loading');
-             });
-        }
-
-
-        function GenQlistAll(data) {
-            var ret = "";
-            for (var i in data) {
-
-                ret += '<tr>';
-                ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
-                ret += '   <td>' + data[i].Title + '</td>';
-                //ret += '   <td style="text-align:center">' + data[i].SectionTitle + '</td>';
-                //ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
-                //ret += '   <td>' + data[i].LastName + '</td>';
-                //ret += '   <td>' + data[i].UserName + '</td>';
-                var txt = 'Active';
-                var bage = 'primary'
-                if (!data[i].Status) { txt = 'Inactive'; bage = 'default'; }
-                ret += '   <td style="text-align:center"><span class="label label-' + bage + '">' + txt + '</span></td>';
-                ret += '   <td style="text-align:center"><a href="Assessmentoptionaddedit?tab=3&qt=' + data[i].QTID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
-                ret += '   </tr >';
-            }
-
-            return ret;
-        }
+        
 
         function GenSectionlistAll(data) {
             var ret = "";
@@ -658,8 +389,8 @@ margin-right:5px;
 
                 ret += '<tr>';
                 //ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
-                ret += '   <td>SU' + data[i].SUCID + '</td>';
-                ret += '   <td><a href="Assessmentoptionaddedit?tab=2&subsection=' + data[i].SUCID + '&section=' + data[i].SCID +'">' + data[i].Title + '</a></td>';
+                ret += '   <td><a href="ReportContent?tab=2&subsection=' + data[i].ResultItemID + '&section=' + data[i].ResultSectionID +'">' + data[i].Code + '</a></td>';
+                ret += '   <td><a href="ReportContent?tab=2&subsection=' + data[i].ResultItemID + '&section=' + data[i].ResultSectionID +'">' + data[i].Title + '</a></td>';
                 ret += '   <td style="text-align:center">' + data[i].SectionTitle + '</td>';
                 //ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
                 //ret += '   <td>' + data[i].LastName + '</td>';
@@ -679,9 +410,10 @@ margin-right:5px;
             for (var i in data) {
 
                 ret += '<tr>';
-                ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
-                ret += '   <td>' + data[i].Title + '</td>';
-                ret += '   <td style="text-align:center">' + data[i].Code + '</td>';
+                ret += '   <td style="text-align:center"><a href="ReportContent?section=' + data[i].ResultSectionID + '">' + data[i].Code + '</a></td>';
+               // ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
+                ret += '   <td><a href="ReportContent?section=' + data[i].ResultSectionID + '">' + data[i].Title + '</a></td>';
+                
                 ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
                 //ret += '   <td>' + data[i].LastName + '</td>';
                 //ret += '   <td>' + data[i].UserName + '</td>';
@@ -689,7 +421,7 @@ margin-right:5px;
                 var bage = 'primary'
                 if (!data[i].Status) { txt = 'Inactive'; bage = 'default'; }
                 ret += '   <td style="text-align:center"><span class="label label-' + bage+'">' + txt + '</span></td>';
-                ret += '   <td style="text-align:center"><a href="Assessmentoptionaddedit?section=' + data[i].SCID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
+                //ret += '   <td style="text-align:center"><a href="Assessmentoptionaddedit?section=' + data[i].SCID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
                 ret += '   </tr >';
             }
 

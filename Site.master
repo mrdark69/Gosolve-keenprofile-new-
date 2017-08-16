@@ -80,6 +80,7 @@
                            <li  <%=MenuActive("Assessment")%>><a href="<%= Page.ResolveClientUrl("~/admin/Content/Assessment") %>">Assessment</a></li>
                             <li  <%=MenuActive("Assessmentoptionaddedit")%>><a href="<%= Page.ResolveClientUrl("~/admin/Content/Assessmentoptionaddedit") %>">Assessment Option</a></li>
                          <li  <%=MenuActive("UsersContent")%>><a href="<%= Page.ResolveClientUrl("~/admin/Content/UsersContent") %>">Users Content Manage</a></li>
+                        <li  <%=MenuActive("ReportContent")%>><a href="<%= Page.ResolveClientUrl("~/admin/Content/ReportContent") %>">ReportContent Manage</a></li>
                      
                     </ul>
                 </li>
