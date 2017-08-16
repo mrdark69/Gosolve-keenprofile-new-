@@ -343,8 +343,8 @@ public partial class _AssessmentStep : BasePageFront
         ret.Append("<h1 class=\"step_count\"></h1>");
         ret.Append("<div class=\"step-content\">");
         ret.Append("<div class=\"text-center m-t-md\">");
-        ret.Append("<h2>"+sec.Title+"</h2>");
-        ret.Append("<p>" + convertcontent(sec.Intro) + "</p>");
+        //ret.Append("<h2>"+sec.Title+"</h2>");
+        ret.Append("<p class=\"intro-detail\">" + convertcontent(sec.Intro) + "</p>");
         ret.Append("</div>");
         ret.Append(" </div>");
 

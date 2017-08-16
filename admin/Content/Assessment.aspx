@@ -50,8 +50,6 @@
                             <div id="tab_content1" runat="server" class="tab-pane active">
                                 <div class="panel-body">
 
-
-                             
                               
                                              <div class="ibox float-e-margins" style="margin-bottom:0px;"  id="add_section" runat="server" visible="false">
                                                       <div class="ibox-content">
@@ -213,31 +211,27 @@
 
                                     <div class="ibox float-e-margins">
                         <div class="ibox-title" style="border:none;">
-                            <h5>Section List </h5>
-
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#">Config option 1</a>
-                                    </li>
-                                    <li><a href="#">Config option 2</a>
-                                    </li>
-                                </ul>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
+                            <h5>Assessment List </h5>
+                               <asp:Button  style="float:right" runat="server" ID="btnAddnewSection" class="btn btn-w-m btn-success" OnClick="btnAddnewSection_Click" Text="Add New Assessment" />
+                           
                         </div>
-                        <div class="ibox-content">
+                        <div class="ibox-content" id="main-data">
+                            <div class="sk-spinner sk-spinner-wave">
+                                <div class="sk-rect1"></div>
+                                <div class="sk-rect2"></div>
+                                <div class="sk-rect3"></div>
+                                <div class="sk-rect4"></div>
+                                <div class="sk-rect5"></div>
+                            </div>
                             <div class="row">
-                                <div class="col-sm-5 m-b-xs">
-                                   <strong>Section:</strong> <asp:DropDownList ID="dropsecs" ClientIDMode="Static" runat="server" CssClass="input-sm form-control input-s-sm inline">
 
+                                <div class="col-md-2 m-b-xs">
+                                   <label><strong>Pagesize:</strong></label>
+                                    <asp:DropDownList ID="droppagsize" ClientIDMode="Static" Width="50px" runat="server" CssClass="input-sm form-control input-s-sm inline">
+                                        <asp:ListItem Text="10" Value="10"></asp:ListItem>
+                                        <asp:ListItem Text="15" Value="15"></asp:ListItem>
+                                             <asp:ListItem Text="20" Value="20"></asp:ListItem>
+                                          <asp:ListItem Text="30" Value="30"></asp:ListItem>
                                     </asp:DropDownList>
                                    <%-- <select class="input-sm form-control input-s-sm inline">
                                     <option value="0">Option 1</option>
@@ -246,18 +240,19 @@
                                     <option value="3">Option 4</option>
                                     </select>--%>
                                 </div>
-                                <div class="col-sm-4 m-b-xs">
-                                   <%-- <div data-toggle="buttons" class="btn-group">
-                                        <label class="btn btn-sm btn-white"> <input type="radio" id="option1" name="options"> Day </label>
-                                        <label class="btn btn-sm btn-white active"> <input type="radio" id="option2" name="options"> Week </label>
-                                        <label class="btn btn-sm btn-white"> <input type="radio" id="option3" name="options"> Month </label>
-                                    </div>--%>
+                                <div class="col-md-6 m-b-xs">
+                                 <label>  <strong>Section:</strong> </label>
+                                    <asp:DropDownList ID="dropsecs" ClientIDMode="Static" style="width:400px;" runat="server" CssClass="input-sm form-control input-s-sm inline">
+
+                                    </asp:DropDownList>
+                                 
                                 </div>
-                                <div class="col-sm-3" style="text-align:right">
-                                    <asp:Button  runat="server" ID="btnAddnewSection" class="btn btn-w-m btn-success" OnClick="btnAddnewSection_Click" Text="Add New Assessment" />
-                                   <%-- <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-primary"> Go!</button> </span></div>--%>
+                                <div class="col-md-ภ">
+                                    <div class="input-group"><input type="text" onkeypress="return clickButton(event,'btn_search')" id="input-search" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
+                                        <button type="button" id="btn_search" class="btn btn-sm btn-primary"> Go!</button> </span></div>
                                 </div>
+                              
+                              
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-striped">
@@ -266,30 +261,38 @@
 
                                        <%-- <th></th>--%>
                                          <th style="text-align:center">No. </th>
-                                        <th style="text-align:center">Code </th>
-                                        <th >Title</th>
+                                        <th style="text-align:center">
+                                            <a href="#" class="th_sort" data-sort="asc"  data-column="Code">Code <i class="fa fa-sort"></i></a></th>
+                                        <th >
+                                            <a href="#" class="th_sort" data-sort="asc"  data-column="Questions">Title<i class="fa fa-sort"></i></a></th>
                                        
-                                         <th style="text-align:center"> Section</th>
-                                          <th style="text-align:center"> Priority</th>
-                                        <th style="text-align:center">Status </th>
+                                         <th style="text-align:center">
+                                             <a href="#" class="th_sort" data-sort="asc"  data-column="SCID"><a href="#" class="th_sort" data-sort="asc"  data-column="FirstName"> Section<i class="fa fa-sort"></i></a></th>
+                                          <th style="text-align:center">
+                                              <a href="#" class="th_sort" data-sort="asc"  data-column="Priority"> Priority<i class="fa fa-sort"></i></a></th>
+                                        <th style="text-align:center">
+                                            <a href="#" class="th_sort" data-sort="asc"  data-column="Status">Status <i class="fa fa-sort"></i></a></th>
 
-                                        <th style="text-align:center">Action</th>
+                                       <%-- <th style="text-align:center">Action</th>--%>
                                     </tr>
                                     </thead>
                                     <tbody id="body_list">
-                                   <%-- <tr>
-                                        <td><input type="checkbox"  checked class="i-checks" name="input[]"></td>
-                                        <td>Project<small>This is example of project</small></td>
-                                        <td><span class="pie">0.52/1.561</span></td>
-                                        <td>20%</td>
-                                        <td>Jul 14, 2013</td>
-                                        <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                    </tr>--%>
+                                   
                                     
                                     </tbody>
                                 </table>
                             </div>
+                              <div class="btn-group" id="pagination">
+                                <%--<button type="button" class="btn btn-white"><i class="fa fa-chevron-left"></i></button>
+                                <button class="btn btn-white">1</button>
+                                <button class="btn btn-white  active">2</button>
+                                <button class="btn btn-white">3</button>
+                                <button class="btn btn-white">4</button>
+                                <button type="button" class="btn btn-white"><i class="fa fa-chevron-right"></i> </button>--%>
+                            </div>
+                            <div id="list-total" class="list-total" style="float:right;">
 
+                            </div>
                         </div>
                     </div>
                                 </div>
@@ -311,16 +314,26 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            getList($('#dropsecs').val());
+            getList();
           
 
             $('#dropsecs').on('change', function () {
 
-                var v = $(this).val();
-                getList(v);
+                store.set('Paging_now', 1);
+                getList();
+            });
+            $('#btn_search').on('click', function () {
+                store.set('Paging_now', 1);
+                getList();
+
+                return false;
             });
 
+            $('#droppagsize').on('change', function () {
 
+                getList();
+                return false;
+            });
             $("#addchoice").on('click', function () {
                 var uuid = guid();
                 var dropsub = $('#dropsub').html();
@@ -377,12 +390,54 @@
 
             $("#row_s_" + id).remove(); return false;
         }
-        function getList(v) {
 
+
+        function getList() {
+            $('#main-data').toggleClass('sk-loading');
             var url = "<%= ResolveUrl("/admin/Content/ajax_webmethod_assessment.aspx/GetAssessment") %>";
+            var ps = $('#droppagsize').val();
+            var v = $('#input-search').val();
+            var c = $('#dropsecs').val();
 
-            if (!v) { v = 0 }
-            var data = { SCID: v };
+            //if (!v) { v = 0 }
+            //var data = { SCID: v };
+            var Order = [];
+
+            var item = {
+                Column: $(".th_sort.action").data('column'),
+                Dir: $(".th_sort.action").data('sort')
+            };
+
+            if ($(".th_sort.action").data('column') != null && $(".th_sort.action").data('sort') != null) {
+                Order.push(item);
+            }
+
+            //if (!v) { v = 0 };
+
+            //if (!s) { v = 1 };
+            var s = store.get('Paging_now');
+            if (!s) { s = 1 };
+            //add custom filter 
+            var CustomSearchList = [];
+            var key1 = {
+                Key: "Search",
+                Value: v
+            };
+
+            var caseissue = {
+                Key: "casesection",
+                Value: c
+            }
+
+            CustomSearchList.push(key1);
+
+            CustomSearchList.push(caseissue);
+
+
+            store.set('Paging_now', s);
+            var offset = (s - 1) * ps;
+            var PagingParam = { Start: offset, Length: ps, CustomSearchList: CustomSearchList, Order: Order };
+            var data = { UsersRoleId: 0, UserCatId: 1, PagingParam: PagingParam };
             var param = JSON.stringify({ parameters: data });
 
             AjaxPost(url, param, function () {
@@ -392,7 +447,13 @@
                 //  console.log(data);
                 var h = GenlistAll(data);
                 $('#body_list').html(h);
-
+                if (data.length > 0) {
+                    var totalS = data[0].TotalRows;
+                    $('<input type="hidden" id="hd_listTotal" value="' + totalS + '" />').appendTo("body");
+                    paging(data);
+                }
+               
+                $('#main-data').toggleClass('sk-loading');
             });
         }
 
@@ -416,7 +477,7 @@
                 ret += '   <td style="text-align:center">' + data[i].Code + ' ' + flag+'</td>';
                 ret += '   <td>' + data[i].Questions + '</td>';
              
-                ret += '   <td style="text-align:center">' + data[i].SectionTitle + '</td>';
+                ret += '   <td style="text-align:center"><a href="Assessment?ass=' + data[i].ASID + '&Section=' + data[i].SCID + '">' + data[i].SectionTitle + '</a></td>';
                 ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
                 //ret += '   <td>' + data[i].LastName + '</td>';
                 //ret += '   <td>' + data[i].UserName + '</td>';
@@ -424,7 +485,7 @@
                 var bage = 'primary'
                 if (!data[i].Status) { txt = 'Inactive'; bage = 'default'; }
                 ret += '   <td style="text-align:center"><span class="label label-' + bage + '">' + txt + '</span></td>';
-                ret += '   <td style="text-align:center"><a href="Assessment?ass=' + data[i].ASID + '&Section=' + data[i].SCID+'"><i class="fa fa-pencil"></i> Edit </a></td>';
+                //ret += '   <td style="text-align:center"><a href="Assessment?ass=' + data[i].ASID + '&Section=' + data[i].SCID+'"><i class="fa fa-pencil"></i> Edit </a></td>';
                 ret += '   </tr >';
 
                 count++;
@@ -432,7 +493,89 @@
 
             return ret;
         }
+        function paging(data) {
+            if (data.length > 0) {
+                //store.set('Paging_now', 1);
+                var totalS = data[0].TotalRows;
 
+
+
+                var pagesize = $('#droppagsize').val();
+                var s = (store.get('Paging_now') == null ? 1 : store.get('Paging_now'));
+                var tp = Math.ceil(totalS / pagesize);
+
+                $('#list-total').html("Showing " + (((s - 1) * pagesize) + 1) + " to " + ((s * pagesize) > totalS ? totalS : (s * pagesize)) + " of " + totalS + " entries");
+
+                if (tp > 1) {
+                    $('#pagination').bootpag({
+                        total: tp,          // total pages
+                        page: s,            // default page
+                        maxVisible: 5,     // visible pagination
+                        leaps: true         // next/prev leaps through maxVisible
+                    })
+                } else {
+                    $('#pagination').html('');
+                }
+
+            }
+        }
+        $(".th_sort").on('click', function () {
+            $(".th_sort").removeClass('action');
+            // Get the current column clicked
+            var thisColumn = $(this).data('column');
+            var sort = $(this).data("sort");
+            var newsort = toggleSort(sort);
+
+
+
+
+            $(this).data('sort', newsort);
+            $(this).addClass('action');
+
+
+            getList();
+            return false;
+
+        });
+
+
+        if ($('#hd_listTotal')) {
+            //alert($('#hd_listTotal').val());
+
+            $('#pagination').bootpag().on("page", function (event, num) {
+                store.set('Paging_now', num);
+
+                console.log(num);
+
+                getList();
+                //$("#content").html("Page " + num); // or some ajax content loading...
+                //// ... after content load -> change total to 10
+                //$(this).bootpag({ total: 10, maxVisible: 10 });
+            });
+        }
+        function clickButton(e, buttonid) {
+            var evt = e ? e : window.event;
+            var bt = document.getElementById(buttonid);
+            if (bt) {
+                if (evt.keyCode == 13) {
+                    bt.click();
+                    return false;
+                }
+            }
+        }
+
+        function toggleSort(sort) {
+            var newsort = "";
+            if (sort == "asc") {
+                newsort = "desc";
+            }
+
+            if (sort == "desc") {
+                newsort = "asc";
+            }
+
+            return newsort;
+        }
     </script>
 
   

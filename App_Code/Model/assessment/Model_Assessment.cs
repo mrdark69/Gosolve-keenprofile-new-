@@ -135,6 +135,14 @@ public class Model_Assessment : BaseModel<Model_Assessment>
     public string RigthScaleTitle { get; set; }
 
     public string SectionTitle { get; set; }
+
+
+
+    public int TotalRows { get; set; }
+    public int RowNum { get; set; }
+
+
+    public DTParameters PagingParam { get; set; }
     private List<Model_Assessment_Choice> _asschoice = null;
     public List<Model_Assessment_Choice> AssChoice {
 
@@ -295,7 +303,114 @@ INNER JOIN Section ur ON ur.SCID =u.SCID " + w  + " ORDER BY Status DESC, Priori
         }
     }
 
+    public List<Model_Assessment> GetAssessment_paging(Model_Assessment mu)
+    {
 
-   
+        string search = (mu.PagingParam.Search != null ? mu.PagingParam.Search.Value : "");
+        string sortOrder = mu.PagingParam.SortOrder;
+        int start = mu.PagingParam.Start;
+        int length = mu.PagingParam.Length;
+        //List<string> columnFilters = DataTablesJS<Model_Users>.getcolumnSearch(mu.PagingParam);
+
+        List<DTCustomSerach> custom = mu.PagingParam.CustomSearchList;
+
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+
+
+            //string[] filerName = { "", "", "FirstName", "LastName", "Email" };
+            //StringBuilder strfilter = new StringBuilder();
+
+
+
+            //for (int i = 0; i < columnFilters.Count; i++)
+            //{
+            //    if (!string.IsNullOrEmpty(columnFilters[i]))
+            //    {
+            //        strfilter.Append(" AND LOWER(" + filerName[i] + ") LIKE @filer_" + i);
+
+            //    }
+
+            //}
+            SqlCommand cmd = new SqlCommand();
+
+            string cfilter = string.Empty;
+            if (custom.Count > 0)
+            {
+                foreach (DTCustomSerach f in custom)
+                {
+                    if (f.Key == "Search")
+                    {
+                        cfilter += (!string.IsNullOrEmpty(f.Value) ? " AND (u.Code LIKE '%'+@CustomKeyValue+'%' OR u.Questions LIKE '%'+@CustomKeyValue+'%')" : "");
+                        cmd.Parameters.Add("@CustomKeyValue", SqlDbType.NVarChar).Value = f.Value;
+                    }
+
+                    if (f.Key == "casesection")
+                    {
+                        if (!string.IsNullOrEmpty(f.Value))
+                        {
+
+                            cfilter += " AND  u.SCID =@SCID ";
+                            cmd.Parameters.Add("@SCID", SqlDbType.Int).Value = int.Parse(f.Value);
+                        }
+
+                    }
+                }
+            }
+//            cText.Append(@"SELECT u.*,ur.Title AS SectionTitle FROM  Assessment u 
+//INNER JOIN Section ur ON ur.SCID =u.SCID " + w + " ORDER BY Status DESC, Priority ASC");
+            string strcmd = @"
+                ;WITH Assessment_cte AS (
+                SELECT u.*,ur.Title AS SectionTitle
+                FROM dbo.Assessment u
+                INNER JOIN Section ur ON ur.SCID =u.SCID  
+                WHERE u.ASID >0 " + cfilter +
+                //(string.IsNullOrEmpty(search) ? "" : "AND  (FirstName LIKE @search  OR LastName LIKE @search OR Email LIKE @search) ") +
+                
+                //(columnFilters.Count > 0 ? strfilter.ToString() : "")
+                //OR LastName LIKE '%@CustomKeyValue%' OR Email LIKE '%@CustomKeyValue%'
+                @"
+            )
+
+            SELECT 
+                db.*,
+                tCountOrders.CountOrders AS TotalRows
+            FROM Assessment_cte db
+                CROSS JOIN (SELECT Count(*) AS CountOrders FROM Assessment_cte) AS tCountOrders
+            ORDER BY  " + (!string.IsNullOrEmpty(sortOrder) ? sortOrder : " Status DESC, Priority ASC ") + @" 
+            OFFSET @Start ROWS
+            FETCH NEXT @Size ROWS ONLY;
+            ";
+
+            // ORDER BY UserID, " + sortOrder + @"
+            //cmd.Parameters.Add("@UserCatId", SqlDbType.TinyInt).Value = mu.UserCatId;
+            cmd.Parameters.Add("@Start", SqlDbType.Int).Value = start;
+            cmd.Parameters.Add("@Size", SqlDbType.Int).Value = length;
+
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                string searchTerm = string.Format("%{0}%", search);
+                cmd.Parameters.Add(new SqlParameter("@search", searchTerm));
+                //cmd.Parameters.Add("@search", SqlDbType.NVarChar).Value = searchTerm;
+            }
+
+            
+
+
+            cmd.CommandText = strcmd;
+            cmd.Connection = cn;
+            cn.Open();
+
+
+
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+
+        }
+
+    }
+
+
+
 
 }

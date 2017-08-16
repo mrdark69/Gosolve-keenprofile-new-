@@ -98,7 +98,7 @@ public class AssessmentController
     public static List<Model_Assessment> GetAssessmentList(Model_Assessment ass)
     {
 
-        return ass.GetAssessment(ass);
+        return ass.GetAssessment_paging(ass);
     }
 
 

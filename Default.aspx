@@ -23,16 +23,16 @@
                                             </p>
 <%--                                            <img src="http://rscard.px-lab.com/img/uploads/rs-photo-v1.jpg" alt="Robert Smith">--%>
 
-                                              <a class="btn btn-lg btn-border ripple" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;"   target="_blank" href="Assessmentstep.aspx"> Download Now</a>
+                                              <a class="btn btn-lg btn-border ripple" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;"   target="_blank" href="Assessmentstep.aspx"> Do Assessment Now</a>
 										</div>
 									</div>
 									<div class="col-xs-7">
 										<div class="profile-info">
 											<div class="profile-preword"><span>Hello</span></div>
-											<h1 class="profile-title"><span>I'm</span><asp:Literal ID="name" runat="server"></asp:Literal> </h1>
+											<h1 class="profile-title"><span>I'm </span> <asp:Literal ID="name" runat="server"></asp:Literal> </h1>
                                               <a class="btn btn-lg btn-border ripple" style="float:right;top:-20px;font-size:11px;    background-color: #fff;
-    padding: 5px;" target="_blank" href="ProfileUpdate">Update Profile </a>
-											<h2 class="profile-position"><asp:Literal ID="cjf" runat="server"></asp:Literal></h2></div>
+    padding: 5px;"  href="ProfileUpdate">Update Profile </a>
+											<%--<h2 class="profile-position"><asp:Literal ID="cjf" runat="server"></asp:Literal></h2></div>--%>
                                       
                                             <ul class="profile-list">
                                                 <li class="clearfix">
@@ -55,10 +55,10 @@
                                                     <strong class="title">Phone</strong>
                                                     <span class="cont"><a href="tel:<% Response.Write(UserActive.MobileNumber); %>"><% Response.Write(UserActive.MobileNumber); %></a></span>
                                                 </li>
-                                                <li class="clearfix">
+                                                <%--<li class="clearfix">
                                                     <strong class="title" >Functional Competencies</strong>
                                                     <span class="cont"><asp:Literal ID="fc" runat="server"></asp:Literal></span>
-                                                </li>
+                                                </li>--%>
                                             <%--     <li class="clearfix">
                                                     <strong class="title">Current Job Function</strong>
                                                     <span class="cont">till April 15, 2016</span>

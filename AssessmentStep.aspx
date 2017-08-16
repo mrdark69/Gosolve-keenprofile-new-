@@ -65,6 +65,15 @@
    
     
 }
+    .intro-detail{
+        font-size:18px;
+        color:#fff !important;
+        padding-top:40px;
+    }
+
+    .intro-detail strong{
+         color:#fff !important;
+    }
 /* Show the tooltip text when you mouse over the tooltip container */
 /*.tooltip:hover .tooltiptext {
     visibility: visible;
@@ -123,7 +132,7 @@
                             <div class="step-content">
                                 <div class="text-center m-t-md">
                                 <h2><asp:Literal ID="IntroTitle" runat="server"></asp:Literal></h2>
-                                <p>
+                                <p class="intro-detail">
                                     <asp:Literal ID="IntroDetail" runat="server"></asp:Literal>
                                 </p>
                                     
