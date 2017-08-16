@@ -64,6 +64,15 @@ public partial class _Assessmentoptionaddedit : BasePage
                 Model_AsSubSection sub = AssessmentController.getSubByID(subid);
                 dropSection.SelectedValue = sub.SCID.ToString();
                 txtSubTitle.Text = sub.Title;
+
+                string comret = string.Empty;
+                if (!string.IsNullOrEmpty(sub.Combind))
+                {
+                    string[] arrcom = sub.Combind.Split(',');
+                    comret = string.Join(",", arrcom.Select(i => "SU" + i).ToArray());
+                }
+                
+                Combind.Text = comret;
                 radioSubStatus.Text = sub.Status.ToString();
 
 
@@ -114,7 +123,10 @@ public partial class _Assessmentoptionaddedit : BasePage
                     tab_content4.Visible = false;
 
 
-
+                    if (!string.IsNullOrEmpty(Request.QueryString["section"]))
+                    {
+                        dropsection2.SelectedValue = Request.QueryString["section"];
+                    }
 
 
 
@@ -238,11 +250,21 @@ public partial class _Assessmentoptionaddedit : BasePage
 
         string strtitle = txtSubTitle.Text.Trim();
         bool Status = bool.Parse(radioSubStatus.SelectedValue);
+
+        string combind = Combind.Text;
+        string combindRet = string.Empty;
+
+        if (!string.IsNullOrEmpty(combind))
+        {
+            string[] arrc = combind.Split(',');
+            combindRet = string.Join(",", arrc.Select(i => i.Substring(2)).ToArray());
+        }
         Model_AsSubSection sub = new Model_AsSubSection
         {
             SCID = secID,
             Title = strtitle,
             Status = Status,
+            Combind = combindRet
 
         };
 
@@ -269,12 +291,17 @@ public partial class _Assessmentoptionaddedit : BasePage
 
     protected void Button4_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Assessmentoptionaddedit?tab=2");
+        Response.Redirect("Assessmentoptionaddedit?tab=2&section=" + dropsection2.SelectedValue);
         //sub_pan.Visible  = false;
     }
 
     protected void Button5_Click(object sender, EventArgs e)
     {
+
+        if(int.Parse(dropsection2.SelectedValue) > 0)
+        {
+            dropSection.SelectedValue = dropsection2.SelectedValue;
+        }
         sub_pan.Visible = true;
     }
 

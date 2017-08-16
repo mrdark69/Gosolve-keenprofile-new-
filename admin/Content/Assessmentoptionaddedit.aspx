@@ -184,15 +184,7 @@ margin-right:5px;
                                     </tr>
                                     </thead>
                                     <tbody id="body_list">
-                                   <%-- <tr>
-                                        <td><input type="checkbox"  checked class="i-checks" name="input[]"></td>
-                                        <td>Project<small>This is example of project</small></td>
-                                        <td><span class="pie">0.52/1.561</span></td>
-                                        <td>20%</td>
-                                        <td>Jul 14, 2013</td>
-                                        <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                    </tr>--%>
-                                    
+                                 
                                     </tbody>
                                 </table>
                             </div>
@@ -231,7 +223,13 @@ margin-right:5px;
                                     </div>
                                 </div>
 
-                                
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="Combind" CssClass="col-md-2 control-label">Sub Section Combind</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="Combind" CssClass="form-control" />
+                                        
+                                    </div>
+                                </div>
                            
      
                                     <div class="form-group">
@@ -261,23 +259,6 @@ margin-right:5px;
                         <div class="ibox-title" style="border:none;">
                             <h5>Sub Section List </h5>
 
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#">Config option 1</a>
-                                    </li>
-                                    <li><a href="#">Config option 2</a>
-                                    </li>
-                                </ul>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
                         </div>
                         <div class="ibox-content">
                             <div class="row">
@@ -285,19 +266,10 @@ margin-right:5px;
                                    <strong>Section:</strong> <asp:DropDownList ID="dropsection2" ClientIDMode="Static" runat="server" CssClass="input-sm form-control input-s-sm inline">
 
                                     </asp:DropDownList>
-                                   <%-- <select class="input-sm form-control input-s-sm inline">
-                                    <option value="0">Option 1</option>
-                                    <option value="1">Option 2</option>
-                                    <option value="2">Option 3</option>
-                                    <option value="3">Option 4</option>
-                                    </select>--%>
+                                   
                                 </div>
                                 <div class="col-sm-4 m-b-xs">
-                                   <%-- <div data-toggle="buttons" class="btn-group">
-                                        <label class="btn btn-sm btn-white"> <input type="radio" id="option1" name="options"> Day </label>
-                                        <label class="btn btn-sm btn-white active"> <input type="radio" id="option2" name="options"> Week </label>
-                                        <label class="btn btn-sm btn-white"> <input type="radio" id="option3" name="options"> Month </label>
-                                    </div>--%>
+                                   
                                 </div>
                                 <div class="col-sm-3" style="text-align:right">
                                     <asp:Button  runat="server" ID="Button5" class="btn btn-w-m btn-success" OnClick="Button5_Click" Text="Add New " />
@@ -310,26 +282,18 @@ margin-right:5px;
                                     <thead>
                                     <tr>
 
-                                        <th></th>
+                                        <th>Code</th>
                                       
                                         <th >Title</th>
                                          <th style="text-align:center">Section </th>
                                           <%--<th style="text-align:center"> Priority</th>--%>
                                         <th style="text-align:center">Status </th>
 
-                                        <th style="text-align:center">Action</th>
+                                        <%--<th style="text-align:center">Action</th>--%>
                                     </tr>
                                     </thead>
                                     <tbody id="body_section_list">
-                                   <%-- <tr>
-                                        <td><input type="checkbox"  checked class="i-checks" name="input[]"></td>
-                                        <td>Project<small>This is example of project</small></td>
-                                        <td><span class="pie">0.52/1.561</span></td>
-                                        <td>20%</td>
-                                        <td>Jul 14, 2013</td>
-                                        <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                    </tr>--%>
-                                    
+                                  
                                     </tbody>
                                 </table>
                             </div>
@@ -343,8 +307,6 @@ margin-right:5px;
                                 <div class="panel-body">
 
 
-                             
-                              
                                              <div class="ibox float-e-margins" style="margin-bottom:0px;"  id="qType_pan" runat="server" visible="false">
                                                       <div class="ibox-content">
                                             <div class="form-horizontal">
@@ -392,23 +354,6 @@ margin-right:5px;
                         <div class="ibox-title" style="border:none;">
                             <h5>Question Type List </h5>
 
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#">Config option 1</a>
-                                    </li>
-                                    <li><a href="#">Config option 2</a>
-                                    </li>
-                                </ul>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
                         </div>
                         <div class="ibox-content">
                             <div class="row">
@@ -612,13 +557,15 @@ margin-right:5px;
 
             $('#dropsection2').on('change', function () {
 
-                var v = $(this).val();
-                getSectionList(v);
+           
+                getSectionList();
             });
         });
 
 
         function getList(v) {
+
+        
 
             var url = "<%= ResolveUrl("/admin/Content/ajax_webmethod_assessment.aspx/GetSectionAll") %>";
 
@@ -637,8 +584,8 @@ margin-right:5px;
             });
         }
 
-        function getSectionList(v) {
-
+        function getSectionList() {
+            var v = $('#dropsection2').val();
             var url = "<%= ResolveUrl("/admin/Content/ajax_webmethod_assessment.aspx/GetSubSectionAll") %>";
 
              if (!v) { v = 0 }
@@ -704,8 +651,9 @@ margin-right:5px;
             for (var i in data) {
 
                 ret += '<tr>';
-                ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
-                ret += '   <td>' + data[i].Title + '</td>';
+                //ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
+                ret += '   <td>SU' + data[i].SUCID + '</td>';
+                ret += '   <td><a href="Assessmentoptionaddedit?tab=2&subsection=' + data[i].SUCID + '">' + data[i].Title + '</a></td>';
                 ret += '   <td style="text-align:center">' + data[i].SectionTitle + '</td>';
                 //ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
                 //ret += '   <td>' + data[i].LastName + '</td>';
@@ -714,7 +662,7 @@ margin-right:5px;
                 var bage = 'primary'
                 if (!data[i].Status) { txt = 'Inactive'; bage = 'default'; }
                 ret += '   <td style="text-align:center"><span class="label label-' + bage + '">' + txt + '</span></td>';
-                ret += '   <td style="text-align:center"><a href="Assessmentoptionaddedit?tab=2&subsection=' + data[i].SUCID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
+               // ret += '   <td style="text-align:center"><a href="Assessmentoptionaddedit?tab=2&subsection=' + data[i].SUCID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
                 ret += '   </tr >';
             }
 

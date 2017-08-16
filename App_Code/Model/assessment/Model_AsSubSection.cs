@@ -19,7 +19,8 @@ public class Model_AsSubSection : BaseModel<Model_AsSubSection>
     public int SUCID { get; set; }
     public int SCID { get; set; }
     public string Title { get; set; }
- 
+    public string Combind { get; set; }
+
 
     public bool Status { get; set; }
 
@@ -79,10 +80,11 @@ INNER JOIN Section ur ON ur.SCID =u.SCID AND ur.Status = 1" + w + " ORDER BY ur.
     {
         using(SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("INSERT INTO SubSection (SCID,Title,Status) VALUES(@SCID,@Title,@Status)", cn);
+            SqlCommand cmd = new SqlCommand("INSERT INTO SubSection (SCID,Title,Status,Combind) VALUES(@SCID,@Title,@Status,@Combind)", cn);
             cmd.Parameters.Add("@SCID", SqlDbType.Int).Value = mu.SCID;
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = mu.Title;
             cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = mu.Status;
+            cmd.Parameters.Add("@Combind", SqlDbType.VarChar).Value = mu.Combind;
             cn.Open();
             return ExecuteNonQuery(cmd);
         }
@@ -92,10 +94,11 @@ INNER JOIN Section ur ON ur.SCID =u.SCID AND ur.Status = 1" + w + " ORDER BY ur.
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("UPDATE SubSection SET Title=@Title ,Status=@Status ,SCID=@SCID WHERE SUCID=@SUCID", cn);
+            SqlCommand cmd = new SqlCommand("UPDATE SubSection SET Title=@Title ,Status=@Status ,SCID=@SCID ,Combind=@Combind WHERE SUCID=@SUCID", cn);
             cmd.Parameters.Add("@SCID", SqlDbType.Int).Value = mu.SCID;
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = mu.Title;
             cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = mu.Status;
+            cmd.Parameters.Add("@Combind", SqlDbType.VarChar).Value = mu.Combind;
             cmd.Parameters.Add("@SUCID", SqlDbType.Int).Value = mu.SUCID;
             cn.Open();
             return ExecuteNonQuery(cmd) == 1;

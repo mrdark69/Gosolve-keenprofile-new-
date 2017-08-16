@@ -264,12 +264,12 @@
                                         <th style="text-align:center">
                                             <a href="#" class="th_sort" data-sort="asc"  data-column="Code">Code <i class="fa fa-sort"></i></a></th>
                                         <th >
-                                            <a href="#" class="th_sort" data-sort="asc"  data-column="Questions">Title<i class="fa fa-sort"></i></a></th>
+                                            <a href="#" class="th_sort" data-sort="asc"  data-column="Questions">Title <i class="fa fa-sort"></i></a></th>
                                        
                                          <th style="text-align:center">
-                                             <a href="#" class="th_sort" data-sort="asc"  data-column="SCID"><a href="#" class="th_sort" data-sort="asc"  data-column="FirstName"> Section<i class="fa fa-sort"></i></a></th>
+                                             <a href="#" class="th_sort" data-sort="asc"  data-column="SCID"> Section <i class="fa fa-sort"></i></a></th>
                                           <th style="text-align:center">
-                                              <a href="#" class="th_sort" data-sort="asc"  data-column="Priority"> Priority<i class="fa fa-sort"></i></a></th>
+                                              <a href="#" class="th_sort" data-sort="asc"  data-column="Priority"> Priority <i class="fa fa-sort"></i></a></th>
                                         <th style="text-align:center">
                                             <a href="#" class="th_sort" data-sort="asc"  data-column="Status">Status <i class="fa fa-sort"></i></a></th>
 
@@ -474,10 +474,10 @@
                 ret += '<tr>';
                 //ret += '   <td><input type="checkbox" checked class="i-checks" disabled="disabled" name="input[]"></td>';
                 ret += '   <td style="text-align:center">' + count + '</td>';
-                ret += '   <td style="text-align:center">' + data[i].Code + ' ' + flag+'</td>';
-                ret += '   <td>' + data[i].Questions + '</td>';
+                ret += '   <td style="text-align:center"><a href="Assessment?ass=' + data[i].ASID + '&Section=' + data[i].SCID + '">' + data[i].Code + ' ' + flag +'</a></td>';
+                ret += '   <td><a href="Assessment?ass=' + data[i].ASID + '&Section=' + data[i].SCID + '">' + data[i].Questions + '</a></td>';
              
-                ret += '   <td style="text-align:center"><a href="Assessment?ass=' + data[i].ASID + '&Section=' + data[i].SCID + '">' + data[i].SectionTitle + '</a></td>';
+                ret += '   <td style="text-align:center">' + data[i].SectionTitle + '</td>';
                 ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
                 //ret += '   <td>' + data[i].LastName + '</td>';
                 //ret += '   <td>' + data[i].UserName + '</td>';
