@@ -653,7 +653,7 @@ margin-right:5px;
                 ret += '<tr>';
                 //ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
                 ret += '   <td>SU' + data[i].SUCID + '</td>';
-                ret += '   <td><a href="Assessmentoptionaddedit?tab=2&subsection=' + data[i].SUCID + '">' + data[i].Title + '</a></td>';
+                ret += '   <td><a href="Assessmentoptionaddedit?tab=2&subsection=' + data[i].SUCID + '&section=' + data[i].SCID +'">' + data[i].Title + '</a></td>';
                 ret += '   <td style="text-align:center">' + data[i].SectionTitle + '</td>';
                 //ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
                 //ret += '   <td>' + data[i].LastName + '</td>';

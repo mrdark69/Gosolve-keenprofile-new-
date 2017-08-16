@@ -277,7 +277,7 @@ public partial class _Assessmentoptionaddedit : BasePage
 
             if (AssessmentController.EditSubSection(sub))
             {
-                Response.Redirect("Assessmentoptionaddedit?tab=2");
+                Response.Redirect("Assessmentoptionaddedit?tab=2&section=" + dropsection2.SelectedValue);
             }
         }
         else
