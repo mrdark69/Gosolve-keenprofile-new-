@@ -30,6 +30,8 @@ public class Model_UsersAssChoice: BaseModel<Model_UsersAssChoice>
 
     public int Score { get; set; }
 
+    public string SubCombind { get; set; }
+
     public string SubSectionTitle { get; set; }
     public Model_UsersAssChoice()
     {
@@ -79,8 +81,8 @@ WHERE uss.TASID=@TASID ORDER BY Priority ASC", cn);
 
 
 
-            SqlCommand cmd = new SqlCommand(@"INSERT INTO UserAssessmentChoice (TASID,ASCID,ASID,Code,SUCID,Questions,Status,Priority,Score) 
-                            VALUES (@TASID,@ASCID,@ASID,@Code,@SUCID,@Questions,@Status,@Priority,@Score)", cn);
+            SqlCommand cmd = new SqlCommand(@"INSERT INTO UserAssessmentChoice (TASID,ASCID,ASID,Code,SUCID,Questions,Status,Priority,Score,Combind) 
+                            VALUES (@TASID,@ASCID,@ASID,@Code,@SUCID,@Questions,@Status,@Priority,@Score,@Combind)", cn);
 
                 cn.Open();
 
@@ -95,7 +97,7 @@ WHERE uss.TASID=@TASID ORDER BY Priority ASC", cn);
                 cmd.Parameters.Add("@Questions", SqlDbType.NVarChar).Value = ass.Questions;
                 cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = ass.Status;
                 cmd.Parameters.Add("@Priority", SqlDbType.Int).Value = ass.Priority;
-
+                cmd.Parameters.Add("@Combind", SqlDbType.VarChar).Value = ass.SubCombind;
 
                 ret = ExecuteNonQuery(cmd);
                 

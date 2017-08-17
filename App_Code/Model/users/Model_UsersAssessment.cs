@@ -48,6 +48,9 @@ public class Model_UsersAssessment: BaseModel<Model_UsersAssessment>
     public string SubSectionTitle { get; set; }
     public string QuestionTypeTitle { get; set; }
 
+
+    public string Combind { get; set; }
+
     public Model_UsersAssessment()
     {
         //
@@ -100,9 +103,9 @@ public class Model_UsersAssessment: BaseModel<Model_UsersAssessment>
             using (SqlConnection cn = new SqlConnection(this.ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand(@"INSERT INTO UserAssessment (TransactionID,Score,ASID,Code,Questions,SCID,SUCID,Status,IsHide,QTID,Priority,
-                                    StartRank,EndRank,GroupName,Side,LeftScaleTitle,RigthScaleTitle) 
+                                    StartRank,EndRank,GroupName,Side,LeftScaleTitle,RigthScaleTitle,Combind) 
                             VALUES (@TransactionID,@Score,@ASID,@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,
-                    @StartRank,@EndRank,@GroupName,@Side,@LeftScaleTitle,@RigthScaleTitle);SET @TASID = SCOPE_IDENTITY();", cn);
+                    @StartRank,@EndRank,@GroupName,@Side,@LeftScaleTitle,@RigthScaleTitle,@Combind);SET @TASID = SCOPE_IDENTITY();", cn);
 
                 cn.Open();
 
@@ -125,6 +128,8 @@ public class Model_UsersAssessment: BaseModel<Model_UsersAssessment>
                 cmd.Parameters.Add("@Side", SqlDbType.TinyInt).Value = ass.Side;
                 cmd.Parameters.Add("@LeftScaleTitle", SqlDbType.NVarChar).Value = ass.LeftScaleTitle;
                 cmd.Parameters.Add("@RigthScaleTitle", SqlDbType.NVarChar).Value = ass.RigthScaleTitle;
+
+                cmd.Parameters.Add("@Combind", SqlDbType.VarChar).Value = ass.SubCombind;
 
 
                 cmd.Parameters.Add("@TASID", SqlDbType.Int).Direction = ParameterDirection.Output;

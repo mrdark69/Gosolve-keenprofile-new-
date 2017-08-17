@@ -27,6 +27,7 @@ public class Model_Assessment_Choice : BaseModel<Model_Assessment_Choice>
     public bool Status { get; set; }
     public int Priority { get; set; }
 
+    public string SubCombind { get; set; }
 
     public string CombindValue
     {
@@ -57,7 +58,8 @@ public class Model_Assessment_Choice : BaseModel<Model_Assessment_Choice>
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM AssessmentChoice WHERE ASCID=@ASCID ", cn);
+            SqlCommand cmd = new SqlCommand(@"SELECT ach.*, su.Combind AS SubCombind AS FROM AssessmentChoice ach 
+INNER JOIN SubSection ON su.SUCID = ach.SUCID WHERE ach.ASCID=@ASCID ", cn);
             cmd.Parameters.Add("@ASCID", SqlDbType.Int).Value = ASCID;
             cn.Open();
 
@@ -136,7 +138,7 @@ public class Model_Assessment : BaseModel<Model_Assessment>
 
     public string SectionTitle { get; set; }
 
-
+    public string SubCombind { get; set; }
 
     public int TotalRows { get; set; }
     public int RowNum { get; set; }
@@ -255,7 +257,8 @@ VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Assessment WHERE ASID= @ASID", cn);
+            SqlCommand cmd = new SqlCommand(@"SELECT ach.*,su.Combind FROM Assessment ach 
+INNER JOIN SubSection ON su.SUCID = ach.SUCID WHERE ASID= @ASID", cn);
             cmd.Parameters.Add("@ASID", SqlDbType.Int).Value = ASID;
             cn.Open();
 
@@ -270,7 +273,8 @@ VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Assessment WHERe Status =1", cn);
+            SqlCommand cmd = new SqlCommand(@"SELECT ach.*,su.Combind FROM Assessment ach
+INNER JOIN SubSection ON su.SUCID = ach.SUCID WHERe ach.Status =1", cn);
             cn.Open();
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }

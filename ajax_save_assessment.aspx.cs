@@ -128,7 +128,7 @@ public partial class ajax_save_assessment : BasePageFront
                                     //if (!string.IsNullOrEmpty(assSCore))
                                     // {
                                     int AssID = int.Parse(assItem);
-
+                                     
 
                                     int AssScore = 0;
                                     if (!string.IsNullOrEmpty(assSCore))
