@@ -59,7 +59,7 @@ public class Model_Assessment_Choice : BaseModel<Model_Assessment_Choice>
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand(@"SELECT ach.*, su.Combind AS SubCombind AS FROM AssessmentChoice ach 
-INNER JOIN SubSection ON su.SUCID = ach.SUCID WHERE ach.ASCID=@ASCID ", cn);
+INNER JOIN SubSection su ON su.SUCID = ach.SUCID WHERE ach.ASCID=@ASCID ", cn);
             cmd.Parameters.Add("@ASCID", SqlDbType.Int).Value = ASCID;
             cn.Open();
 
@@ -258,7 +258,7 @@ VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand(@"SELECT ach.*,su.Combind FROM Assessment ach 
-INNER JOIN SubSection ON su.SUCID = ach.SUCID WHERE ASID= @ASID", cn);
+INNER JOIN SubSection su ON su.SUCID = ach.SUCID WHERE ach.ASID= @ASID", cn);
             cmd.Parameters.Add("@ASID", SqlDbType.Int).Value = ASID;
             cn.Open();
 
