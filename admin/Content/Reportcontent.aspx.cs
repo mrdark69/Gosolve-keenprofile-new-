@@ -162,7 +162,7 @@ public partial class _ReportContent : BasePage
         {
             byte bytID = byte.Parse(Request.QueryString["section"]);
 
-            
+            cr.ResultSectionID = bytID;
             if (cr.Update(cr))
             {
                 Response.Redirect("Reportcontent");

@@ -97,7 +97,7 @@ margin-right:5px;
                                 </div>
      
 <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="status" CssClass="col-md-2 control-label">Role Status</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="status" CssClass="col-md-2 control-label">Status</asp:Label>
             <div class="col-md-10">
               <asp:RadioButtonList ID="status"  runat="server">
                   <asp:ListItem Text="Active" Selected="True" Value="True"  ></asp:ListItem>
