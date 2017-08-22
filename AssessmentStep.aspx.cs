@@ -267,7 +267,7 @@ public partial class _AssessmentStep : BasePageFront
             ret.Append("</tr><tr>");
             for (int i = ass.StartRank; i <= ass.EndRank; i++)
             {
-                ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"ass_fill_item_score_" + ass.ASID + "\" value=\"" + i + "\" /></td>");
+                ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"ass_fill_i_sc_" + ass.ASID + "\" value=\"" + i + "\" /></td>");
             }
             //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
             //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
@@ -297,7 +297,7 @@ public partial class _AssessmentStep : BasePageFront
             ret.Append("</tr><tr>");
             for (int i = ass.StartRank; i <= ass.EndRank; i++)
             {
-                ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"ass_fill_item_score_" + ass.ASID + "\" value=\"" + i + "\" /></td>");
+                ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"ass_fill_i_sc_" + ass.ASID + "\" value=\"" + i + "\" /></td>");
             }
             //    ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
             //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
@@ -384,7 +384,7 @@ public partial class _AssessmentStep : BasePageFront
 
         for (int i = ass.StartRank; i <= ass.EndRank; i++)
         {
-            ret.Append("<td><input type=\"radio\"   name=\"ass_fill_item_score_"+ass.ASID+"\" value=\""+i+"\" /></td>");
+            ret.Append("<td><input type=\"radio\"   name=\"ass_fill_i_sc_" + ass.ASID+"\" value=\""+i+"\" /></td>");
         }
            
         ret.Append("</tr>");
@@ -444,12 +444,12 @@ public partial class _AssessmentStep : BasePageFront
             foreach(Model_Assessment_Choice ch in choice)
             {
                 ret.Append("<tr>");
-                ret.Append("<input type=\"hidden\" name=\"ass_fill_choice_"+ ass.ASID + "\"  value=\"" + ch.ASCID + "\" />");
+                ret.Append("<input type=\"hidden\" name=\"ass_fill_ch_"+ ass.ASID + "\"  value=\"" + ch.ASCID + "\" />");
                 ret.Append("<td class=\"question\">"+ch.Questions+"</td>");
 
                 for (int i = ass.StartRank; i <= ass.EndRank; i++)
                 {
-                    ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_choice_score_" + ass.ASID + "_"+ ch.ASCID+ "\" value=\"" + i + "\" /></td>");
+                    ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_ch_sc_" + ass.ASID + "_"+ ch.ASCID+ "\" value=\"" + i + "\" /></td>");
                 }
                
                 ret.Append("</tr>");

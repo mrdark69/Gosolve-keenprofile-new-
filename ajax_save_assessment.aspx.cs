@@ -124,7 +124,7 @@ public partial class ajax_save_assessment : BasePageFront
                                 //List<Model_UsersAssessment> uslist = new List<Model_UsersAssessment>();
                                 foreach (string assItem in arrAss)
                                 {
-                                    string assSCore = Request.Form["ass_fill_item_score_" + assItem];
+                                    string assSCore = Request.Form["ass_fill_i_sc_" + assItem];
                                     //if (!string.IsNullOrEmpty(assSCore))
                                     // {
                                     int AssID = int.Parse(assItem);
@@ -145,7 +145,7 @@ public partial class ajax_save_assessment : BasePageFront
 
 
 
-                                    string asssChoice = Request.Form["ass_fill_choice_" + assItem];
+                                    string asssChoice = Request.Form["ass_fill_ch_" + assItem];
 
                                     if (!string.IsNullOrEmpty(asssChoice))
                                     {
@@ -156,7 +156,7 @@ public partial class ajax_save_assessment : BasePageFront
 
                                             foreach (string choiceItem in arrChoice)
                                             {
-                                                string assChoiceScore = Request.Form["ass_fill_choice_score_" + assItem + "_" + choiceItem];
+                                                string assChoiceScore = Request.Form["ass_fill_ch_sc_" + assItem + "_" + choiceItem];
 
                                                 if (!string.IsNullOrEmpty(assChoiceScore))
                                                 {
@@ -198,8 +198,9 @@ public partial class ajax_save_assessment : BasePageFront
                     if (IsCom)
                         IsCom = CalculationController.CalculateActionStart(tsid);
                 }
-                catch
+                catch(Exception ex)
                 {
+                    string ee = ex.Message + ex.StackTrace;
                     IsCom = false;
                 }
 

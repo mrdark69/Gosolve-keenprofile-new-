@@ -51,7 +51,7 @@ public class Model_ReportSectionItem : BaseModel<Model_ReportSectionItem>
     public string Title { get; set; }
     public bool Status { get; set; }
     public int Priority { get; set; }
-    public int SUCID { get; set; }
+    public string SUCID { get; set; }
     public string SectionTitle { get; set; }
 
     public Model_ReportSectionItem()
@@ -134,7 +134,7 @@ VALUES(@ResultSectionID,@Title,@Priority,@Code,@SUCID) SET @ResultItemID = SCOPE
             cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = pr.ResultSectionID;
             cmd.Parameters.Add("@Code", SqlDbType.NVarChar).Value = pr.Code;
             cmd.Parameters.Add("@Priority", SqlDbType.Int).Value = pr.Priority;
-            cmd.Parameters.Add("@SUCID", SqlDbType.Int).Value = pr.SUCID;
+            cmd.Parameters.Add("@SUCID", SqlDbType.VarChar).Value = pr.SUCID;
             cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Direction = ParameterDirection.Output;
             cn.Open();
             if (ExecuteNonQuery(cmd) > 0)
@@ -161,7 +161,7 @@ Priority=@Priority, Status=@Status , SUCID=@SUCID WHERE ResultItemID=@ResultItem
             cmd.Parameters.Add("@Priority", SqlDbType.Int).Value = pr.Priority;
             cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = pr.Status;
             cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = pr.ResultItemID;
-            cmd.Parameters.Add("@SUCID", SqlDbType.Int).Value = pr.SUCID;
+            cmd.Parameters.Add("@SUCID", SqlDbType.VarChar).Value = pr.SUCID;
             cn.Open();
             return ExecuteNonQuery(cmd) == 1;
         }

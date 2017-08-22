@@ -51,11 +51,11 @@ public partial class _ReportContent : BasePage
                 int subid = int.Parse(Request.QueryString["subsection"]);
                 Model_ReportSectionItem sub = new Model_ReportSectionItem();
                 sub = sub.GetReportSectionItemByID(subid);
-                dropSection.SelectedValue = sub.ResultItemID.ToString();
+                dropSection.SelectedValue = sub.ResultSectionID.ToString();
                 txtSubTitle.Text = sub.Title;
                 txtSubCode.Text = sub.Code;
                 subpri.Text = sub.Priority.ToString();
-                txtSubsectionID.Text = sub.SUCID.ToString();
+                txtSubsectionID.Text = sub.SUCID;
                 //string comret = string.Empty;
                 //if (!string.IsNullOrEmpty(sub.Combind))
                 //{
@@ -206,7 +206,7 @@ public partial class _ReportContent : BasePage
             Status = Status,
             Priority = int.Parse(subpri.Text),
             Code = txtSubCode.Text,
-            SUCID = int.Parse(txtSubsectionID.Text)
+            SUCID = txtSubsectionID.Text
 
         };
 

@@ -217,7 +217,7 @@ margin-right:5px;
                                                    <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="txtSubsectionID" CssClass="col-md-2 control-label">Sub Section Mapping</asp:Label>
                                     <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="txtSubsectionID" MaxLength="2" CssClass="form-control" />
+                                        <asp:TextBox runat="server" ID="txtSubsectionID" MaxLength="100" CssClass="form-control" />
                                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtSubsectionID" Width="100"
                                             CssClass="text-danger" ErrorMessage="The  field is required." />
                                     </div>

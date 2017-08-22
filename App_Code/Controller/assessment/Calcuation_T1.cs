@@ -54,34 +54,14 @@ public class Calculation_T1
 
         foreach (Model_ReportSectionItem item in rsslist)
         {
-
-            decimal score = list.Where(o => o.SUCID == item.SUCID).Sum(t => t.Score);
-
-            foreach(Model_UsersAssessment com in list.Where(o => !string.IsNullOrEmpty(o.Combind)))
+            string map = item.SUCID;
+            string[] arrmap = map.Split(',');
+            decimal score = 0;
+            foreach (string  m in arrmap)
             {
-               
-                string[] arrcombind = com.Combind.Split(',');
-
-
-                foreach (string c in arrcombind)
-                {
-                    Regex rgx = new Regex("[^0-9 -]");
-                    string cnew = rgx.Replace(c, "");
-
-                    if(item.SUCID == int.Parse(cnew))
-                    {
-                        score = score + com.Score;
-                    }
-
-
-                }
-
+                 score  = score + list.Where(o => o.SUCID == int.Parse(m)).Sum(t => t.Score);
+                
             }
-
-
-
-            //foreach
-
             rlist.Add(new Model_ReportItemResult
             {
                 ResultSectionID = this.ResultSectionID,
@@ -90,61 +70,12 @@ public class Calculation_T1
                 TransactionID = this.TransactionID,
                 Score = score
             });
+
+
         }
 
-
-        //List<Model_AsSubSection> listSub = sub.getSubBySectionID(section.SCID);
-
-        //foreach(Model_AsSubSection s in listSub)
-        //{
-          
-        //    if(s.Title.ToLower() != "n/a")
-        //    {
-        //        ArrayList r = new ArrayList();
-        //        r.Add(s.SCID);
-        //        r.Add(s.Title);
-        //        r.Add(list.Where(o => o.SUCID == s.SUCID).Sum(t => t.Score));
-        //        r.Add(s.Combind);
-        //        r.Add(s.SUCID);
-        //        ret.Add(r);
-        //    }
-           
-        //}
-
-       
-   
-        //foreach (ArrayList s in ret)
-        //{
-        //    int index = 0;
-        //    if (!string.IsNullOrEmpty((string)s[3]))
-        //    {
-                
-        //        raw.Add(s);
-        //        string combind = (string)s[3];
-        //        string[] arrcombind = combind.Split(',');
-
-        //        foreach(string c in arrcombind)
-        //        {
-        //           // Regex rgx = new Regex("[^0-9 -]");
-        //           //string cnew = rgx.Replace(c, "");
-
-        //           // ret.RemoveAt(index);
-        //           //( (ArrayList)ret.Where(o => (int)o[4] == int.Parse(cnew)).SingleOrDefault()).se
-        //           // decimal scoreold = (decimal)ret.Where(o => (int)o[4] == int.Parse(cnew)).SingleOrDefault()[3];
-        //           // decimal scorenew = (decimal)c[3];
-
-        //        }
-               
-        //    }
-
-        //    index = index + 1;
-        //}
-            //decimal innovation = 0;
-            //decimal service = 0;
-            //decimal Cost = 0;
-
-
-            return rlist;
+        
+        return rlist;
     }
 
     public  bool Calnow()
