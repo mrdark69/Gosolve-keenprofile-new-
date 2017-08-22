@@ -55,7 +55,7 @@ public partial class _ReportContent : BasePage
                 txtSubTitle.Text = sub.Title;
                 txtSubCode.Text = sub.Code;
                 subpri.Text = sub.Priority.ToString();
-
+                txtSubsectionID.Text = sub.SUCID.ToString();
                 //string comret = string.Empty;
                 //if (!string.IsNullOrEmpty(sub.Combind))
                 //{
@@ -205,7 +205,8 @@ public partial class _ReportContent : BasePage
             Title = strtitle,
             Status = Status,
             Priority = int.Parse(subpri.Text),
-            Code = txtSubCode.Text
+            Code = txtSubCode.Text,
+            SUCID = int.Parse(txtSubsectionID.Text)
 
         };
 

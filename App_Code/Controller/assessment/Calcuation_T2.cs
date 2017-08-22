@@ -15,10 +15,12 @@ using System.Web.SessionState;
 public class Calculation_T2
 {
     public int ResultSectionID { get; set; }
-    public Calculation_T2(int intResultSectionID)
+    public int TransactionID { get; set; }
+    public Calculation_T2(int intResultSectionID, int TransactionID)
     {
 
         this.ResultSectionID = intResultSectionID;
+        this.TransactionID = TransactionID;
         //
         // TODO: Add constructor logic here
         //

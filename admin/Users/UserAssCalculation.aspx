@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="UserAssDetail.aspx.cs" Inherits="Users_UserAssDetail" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="UserAssCalculation.aspx.cs" Inherits="Users_UserAssCalculation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderScript" runat="server">
     <style>
       th.dt-center,td.dt-center{
@@ -55,26 +55,37 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>User Profile <%--<small>With custom checbox and radion elements.</small>--%></h5>
-                          <asp:Button ID="calview" runat="server" style="    display: inline-block;margin-left: 20px;float: left;margin-top: -8px;" OnClick="calview_Click" CssClass="btn btn-primary" Text="View Calculation" />
+                            <h5>User Calculation <%--<small>With custom checbox and radion elements.</small>--%></h5>
+                          
                         </div>
                          <div class="ibox-content">
                        
                             <asp:Label ID="lblError" runat="server" style="color: red;text-align: center;margin: 0 auto;display: block;"></asp:Label>
                             <div class="q-form-bio form-horizontal">
+                                <div>
+                                    <h1>" F" Section Result</h1>
+                                     <asp:Literal ID="data" runat="server"></asp:Literal>
+                                </div>
 
-                                <asp:Literal ID="data" runat="server"></asp:Literal>
-                                 
-                                        
+                                <div>
+                                    <h1>"H" Section Result</h1>
+                                     <asp:Literal ID="datah2" runat="server"></asp:Literal>
+                                </div>
+
+                                 <div>
+                                      <h1>"T1" Section Result</h1>
+                                      <asp:Literal ID="dataf2" runat="server"></asp:Literal>  
+                                 </div>
+                              
 
                                 <div class="form-group">
                                     <%--<label class="col-sm-2 control-label"></label>--%>
                                     <div class="col-sm-12" style="padding:0 0px 0 15px">
-                                      <asp:Button ID="btnDownload"  CssClass="btn btn-w-m btn-success" runat="server" OnClientClick="return submitbtn();" OnClick="btnDownload_Click"  Text="Update Now" />
+                                      <asp:Button ID="btnRecal"  CssClass="btn btn-w-m btn-success" runat="server" OnClick="btnRecal_Click"  Text="Re Calculate" />
                                         </div>
                                 </div>          
 
-                                    </div>
+                            </div>
                            
                         
                         </div>

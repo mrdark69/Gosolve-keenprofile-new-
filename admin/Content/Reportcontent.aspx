@@ -81,6 +81,7 @@ margin-right:5px;
                                             CssClass="text-danger" ErrorMessage="The  field is required." />
                                     </div>
                                 </div>
+                                             
                             <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="txtintro" CssClass="col-md-2 control-label">Priority</asp:Label>
                                     <div class="col-md-10">
@@ -210,6 +211,14 @@ margin-right:5px;
                                     <div class="col-md-10">
                                         <asp:TextBox runat="server" ID="txtSubCode" CssClass="form-control" />
                                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtSubTitle"
+                                            CssClass="text-danger" ErrorMessage="The  field is required." />
+                                    </div>
+                                </div>
+                                                   <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="txtSubsectionID" CssClass="col-md-2 control-label">Sub Section Mapping</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="txtSubsectionID" MaxLength="2" CssClass="form-control" />
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtSubsectionID" Width="100"
                                             CssClass="text-danger" ErrorMessage="The  field is required." />
                                     </div>
                                 </div>

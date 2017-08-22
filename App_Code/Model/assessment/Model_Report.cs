@@ -24,6 +24,8 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
     public decimal Score { get; set; }
 
 
+    public string ResultItemTitle { get; set; }
+
     public int InsertReportItemResult(Model_ReportItemResult re)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
@@ -49,7 +51,9 @@ public class Model_ReportSectionItem : BaseModel<Model_ReportSectionItem>
     public string Title { get; set; }
     public bool Status { get; set; }
     public int Priority { get; set; }
+    public int SUCID { get; set; }
     public string SectionTitle { get; set; }
+
     public Model_ReportSectionItem()
     {
 
@@ -82,6 +86,25 @@ public class Model_ReportSectionItem : BaseModel<Model_ReportSectionItem>
         }
     }
 
+    public List<Model_ReportSectionItem> GetListItemBySectionID(int intResultSectionID)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand();
+            string query = string.Empty;
+            string w = string.Empty;
+           
+            query = @"SELECT u.* FROM ReportSectionItem u WHERE u.ResultSectionID =@ResultSectionID AND Status = 1 ORDER BY Priority ASC";
+            cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = intResultSectionID;
+
+            cmd.CommandText = query;
+            cmd.Connection = cn;
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+
+        }
+    }
+
     public Model_ReportSectionItem GetReportSectionItemByID(int intResultItemID)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
@@ -104,14 +127,14 @@ public class Model_ReportSectionItem : BaseModel<Model_ReportSectionItem>
         int ret = 0;
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportSectionItem (ResultSectionID,Title,Priority,Code) 
-VALUES(@ResultSectionID,@Title,@Priority,@Code) SET @ResultItemID = SCOPE_IDENTITY()", cn);
+            SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportSectionItem (ResultSectionID,Title,Priority,Code,SUCID) 
+VALUES(@ResultSectionID,@Title,@Priority,@Code,@SUCID) SET @ResultItemID = SCOPE_IDENTITY()", cn);
 
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = pr.Title;
             cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = pr.ResultSectionID;
             cmd.Parameters.Add("@Code", SqlDbType.NVarChar).Value = pr.Code;
             cmd.Parameters.Add("@Priority", SqlDbType.Int).Value = pr.Priority;
-
+            cmd.Parameters.Add("@SUCID", SqlDbType.Int).Value = pr.SUCID;
             cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Direction = ParameterDirection.Output;
             cn.Open();
             if (ExecuteNonQuery(cmd) > 0)
@@ -130,7 +153,7 @@ VALUES(@ResultSectionID,@Title,@Priority,@Code) SET @ResultItemID = SCOPE_IDENTI
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand(@"UPDATE ReportSectionItem SET ResultSectionID=@ResultSectionID,Title=@Title,Code=@code,
-Priority=@Priority, Status=@Status  WHERE ResultItemID=@ResultItemID ", cn);
+Priority=@Priority, Status=@Status , SUCID=@SUCID WHERE ResultItemID=@ResultItemID ", cn);
 
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = pr.Title;
             cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = pr.ResultSectionID;
@@ -138,6 +161,7 @@ Priority=@Priority, Status=@Status  WHERE ResultItemID=@ResultItemID ", cn);
             cmd.Parameters.Add("@Priority", SqlDbType.Int).Value = pr.Priority;
             cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = pr.Status;
             cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = pr.ResultItemID;
+            cmd.Parameters.Add("@SUCID", SqlDbType.Int).Value = pr.SUCID;
             cn.Open();
             return ExecuteNonQuery(cmd) == 1;
         }

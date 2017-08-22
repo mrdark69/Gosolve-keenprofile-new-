@@ -193,6 +193,10 @@ public partial class ajax_save_assessment : BasePageFront
 
                     // assessment is recorded!
                     IsCom = true;
+
+
+                    if (IsCom)
+                        IsCom = CalculationController.CalculateActionStart(tsid);
                 }
                 catch
                 {
@@ -200,8 +204,7 @@ public partial class ajax_save_assessment : BasePageFront
                 }
 
 
-                if (IsCom)
-                    IsCom = CalculationController.CalculateActionStart();
+               
 
             }
             

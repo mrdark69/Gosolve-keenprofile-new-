@@ -76,6 +76,17 @@ INNER JOIN Section ur ON ur.SCID =u.SCID AND ur.Status = 1" + w + " ORDER BY ur.
         }
     }
 
+    public List<Model_AsSubSection> getSubBySectionID(int SCID)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM SubSection WHERE SCID=@SCID AND Status = 1", cn);
+            cmd.Parameters.Add("@SCID", SqlDbType.Int).Value = SCID;
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+        }
+    }
+
     public int AddnewSub(Model_AsSubSection mu)
     {
         using(SqlConnection cn = new SqlConnection(this.ConnectionString))
