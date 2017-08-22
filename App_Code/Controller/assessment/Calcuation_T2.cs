@@ -26,7 +26,7 @@ public class Calculation_T2
 
     public  bool Calnow()
     {
-        return false;
+        return true;
     }
 
 
