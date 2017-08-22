@@ -274,7 +274,7 @@ INNER JOIN SubSection su ON su.SUCID = ach.SUCID WHERE ach.ASID= @ASID", cn);
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand(@"SELECT ach.*,su.Combind FROM Assessment ach
-INNER JOIN SubSection ON su.SUCID = ach.SUCID WHERe ach.Status =1", cn);
+INNER JOIN SubSection su ON su.SUCID = ach.SUCID WHERe ach.Status =1", cn);
             cn.Open();
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }
