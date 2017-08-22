@@ -22,6 +22,24 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
     public int ResultItemID { get; set; }
     public int TransactionID { get; set; }
     public decimal Score { get; set; }
+
+
+    public int InsertReportItemResult(Model_ReportItemResult re)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score) 
+                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score)", cn);
+            cn.Open();
+            cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = re.ResultSectionID;
+            cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = re.ResultItemID;
+            cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = re.TransactionID;
+            cmd.Parameters.Add("@Score", SqlDbType.Decimal).Value = re.Score;
+            cn.Open();
+
+            return ExecuteNonQuery(cmd);
+        }
+    }
 }
 public class Model_ReportSectionItem : BaseModel<Model_ReportSectionItem>
 {
@@ -155,7 +173,16 @@ public class Model_ReportSection : BaseModel<Model_ReportSection>
            
         }
     }
+    public List<Model_ReportSection> GetListActive()
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM ReportSection WHERE Status = 1 ORDER BY Priority ASC", cn);
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
 
+        }
+    }
     public Model_ReportSection GetReportSectionByID(int intResultSectionID)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))

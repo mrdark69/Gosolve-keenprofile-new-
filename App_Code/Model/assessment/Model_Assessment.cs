@@ -138,7 +138,25 @@ public class Model_Assessment : BaseModel<Model_Assessment>
 
     public string SectionTitle { get; set; }
 
-    public string SubCombind { get; set; }
+
+    private string _sub_combind = string.Empty;
+    public string SubCombind {
+        get
+        {
+            if (string.IsNullOrEmpty(this._sub_combind))
+            {
+                _sub_combind = string.Empty;
+            }
+            return _sub_combind;
+        }
+        set
+        {
+            _sub_combind = value;
+        }
+
+       }
+
+
 
     public int TotalRows { get; set; }
     public int RowNum { get; set; }
@@ -257,7 +275,7 @@ VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand(@"SELECT ach.*,su.Combind FROM Assessment ach 
+            SqlCommand cmd = new SqlCommand(@"SELECT ach.*,su.Combind AS SubCombind FROM Assessment ach 
 INNER JOIN SubSection su ON su.SUCID = ach.SUCID WHERE ach.ASID= @ASID", cn);
             cmd.Parameters.Add("@ASID", SqlDbType.Int).Value = ASID;
             cn.Open();
@@ -273,7 +291,7 @@ INNER JOIN SubSection su ON su.SUCID = ach.SUCID WHERE ach.ASID= @ASID", cn);
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand(@"SELECT ach.*,su.Combind FROM Assessment ach
+            SqlCommand cmd = new SqlCommand(@"SELECT ach.*,su.Combind AS SubCombind FROM Assessment ach
 INNER JOIN SubSection su ON su.SUCID = ach.SUCID WHERe ach.Status =1", cn);
             cn.Open();
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
