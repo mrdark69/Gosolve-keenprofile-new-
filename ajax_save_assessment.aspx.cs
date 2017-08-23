@@ -166,6 +166,7 @@ public partial class ajax_save_assessment : BasePageFront
                                                     Model_UsersAssChoice usch = new Model_UsersAssChoice
                                                     {
                                                         ASID = AssID,
+                                                        TransactionID = tsid,
                                                         ASCID = AssChoiceID,
                                                         TASID = intTASID,
                                                         Score = AssChoiceScore

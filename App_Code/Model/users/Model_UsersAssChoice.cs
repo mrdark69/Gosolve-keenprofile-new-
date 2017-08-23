@@ -18,7 +18,7 @@ public class Model_UsersAssChoice: BaseModel<Model_UsersAssChoice>
 {
     public int TASCID { get; set; }
     public int TASID { get; set; }
-
+    public int TransactionID { get; set; }
     public int ASCID { get; set; }
     public int ASID { get; set; }
 
@@ -84,6 +84,21 @@ WHERE uss.TASID=@TASID ORDER BY Priority ASC", cn);
         }
     }
 
+    public List<Model_UsersAssChoice> GetUserAssessmentChoiceByTransactionID(int transID)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand(@"SELECT uss.*,su.Title AS SubSectionTitle FROM UserAssessmentChoice uss 
+LEFT JOIN SubSection su ON su.SUCID = uss.SUCID 
+WHERE uss.TransactionID=@TransactionID ORDER BY Priority ASC", cn);
+            cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = transID;
+            cn.Open();
+
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+
+        }
+    }
+
     public int InsertUserAssessmentChoice(Model_UsersAssChoice uass)
     {
         int ret = 0;
@@ -97,12 +112,13 @@ WHERE uss.TASID=@TASID ORDER BY Priority ASC", cn);
 
 
 
-            SqlCommand cmd = new SqlCommand(@"INSERT INTO UserAssessmentChoice (TASID,ASCID,ASID,Code,SUCID,Questions,Status,Priority,Score,Combind) 
-                            VALUES (@TASID,@ASCID,@ASID,@Code,@SUCID,@Questions,@Status,@Priority,@Score,@Combind)", cn);
+            SqlCommand cmd = new SqlCommand(@"INSERT INTO UserAssessmentChoice (TASID,TransactionID,ASCID,ASID,Code,SUCID,Questions,Status,Priority,Score,Combind) 
+                            VALUES (@TASID,@TransactionID,@ASCID,@ASID,@Code,@SUCID,@Questions,@Status,@Priority,@Score,@Combind)", cn);
 
                 cn.Open();
 
                 cmd.Parameters.Add("@TASID", SqlDbType.Int).Value = uass.TASID;
+                cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = uass.TransactionID;
                 cmd.Parameters.Add("@ASID", SqlDbType.Int).Value = uass.ASID;
                 cmd.Parameters.Add("@ASCID", SqlDbType.Int).Value = uass.ASCID;
                 cmd.Parameters.Add("@Score", SqlDbType.Int).Value = uass.Score;

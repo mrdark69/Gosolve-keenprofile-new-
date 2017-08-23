@@ -19,7 +19,7 @@ public partial class Users_UserAssCalculation : BasePage
 
                 Calculation_T1 T1 = new Calculation_T1(1, tsID);
 
-                List<Model_UsersAssessment> T1list = T1.GetUserAss('f');
+                //List<Model_UsersAssessment> T1list = T1.GetUserAss('f');
                 StringBuilder ret = new StringBuilder();
 
                 ret.Append("<table>");
@@ -27,7 +27,7 @@ public partial class Users_UserAssCalculation : BasePage
                 ret.Append("<td>");
                     ret.Append("<table class='table'>");
                    
-                    foreach (Model_UsersAssessment item in T1list.Where(o=>o.Side == 1))
+                    foreach (Model_UsersAssessment item in T1.R_UserAss_F.Where(o=>o.Side == 1))
                     {
                         ret.Append("<tr>");
                         ret.Append("<td style='text-align:left'>");
@@ -49,7 +49,7 @@ public partial class Users_UserAssCalculation : BasePage
 
                     ret.Append("<table class='table '>");
                    
-                    foreach (Model_UsersAssessment item in T1list.Where(o => o.Side == 2))
+                    foreach (Model_UsersAssessment item in T1.R_UserAss_F.Where(o => o.Side == 2))
                     {
                         ret.Append("<tr>");
                         ret.Append("<td>");
@@ -72,27 +72,27 @@ public partial class Users_UserAssCalculation : BasePage
 
                 StringBuilder retchH = new StringBuilder();
 
-                List<Model_UsersAssessment> T1list_h = T1.GetUserAss('h');
-                List<Model_UsersAssChoice> T1list_h_c = T1.GetUserAssChoice('h');
+                List<Model_UsersAssessment> T1list_h = T1.R_UserAss_H;
+                List<Model_UsersAssChoice> T1list_h_c = T1.R_UserAssChoice_H;
 
                 foreach (Model_UsersAssessment cc in T1list_h)
                 {
                     retchH.Append("<div style='margin-bottom:10px;'>");
                     retchH.Append("<p>"+cc.Questions+"</p>");
-                    ret.Append("<table class='table table-strip'>");
+                    retchH.Append("<table class='table table-strip'>");
 
                     foreach(Model_UsersAssChoice ch in T1list_h_c.Where(o=>o.TASID == cc.TASID))
                     {
-                        ret.Append("<tr>");
-                        ret.Append("<td>"+ch.Questions+"</td>");
-                     
-                        ret.Append("<td>"+ch.Score+"</td>");
-                      
-                        ret.Append("</tr>");
+                        retchH.Append("<tr>");
+                        retchH.Append("<td>"+ch.Questions+"</td>");
+                        retchH.Append("<td>" + ch.SubSectionTitle + "</td>");
+                        retchH.Append("<td>"+ch.Score+"</td>");
+
+                        retchH.Append("</tr>");
                     }
 
 
-                    ret.Append("</table>");
+                    retchH.Append("</table>");
 
                     retchH.Append("</div>");
                 }
@@ -102,7 +102,7 @@ public partial class Users_UserAssCalculation : BasePage
 
                 StringBuilder retF2 = new StringBuilder();
 
-                List<Model_ReportItemResult> fscore = T1.Code_F_SumValueBySubSection(T1list);
+                List<Model_ReportItemResult> fscore = T1.Code_F_SumValueBySubSection();
 
 
                 retF2.Append("<table class='table'>");

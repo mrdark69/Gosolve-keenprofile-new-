@@ -18,14 +18,27 @@ public class Calculation_T1
 {
     public int ResultSectionID { get; set; }
     public int TransactionID { get; set; }
+
+    public List<Model_UsersAssessment> R_UserAss_F { get; set; }
+    public List<Model_UsersAssessment> R_UserAss_H { get; set; }
+    public List<Model_UsersAssChoice> R_UserAssChoice_H { get; set; }
+
     public Calculation_T1(int intResultSectionID, int TransactionID)
     {
 
         this.ResultSectionID = intResultSectionID;
         this.TransactionID = TransactionID;
-        //
-        // TODO: Add constructor logic here
-        //
+
+
+
+        //Step retrive f code list of assessment result
+        this.R_UserAss_F = GetUserAss('f');
+
+        this.R_UserAss_H = GetUserAss('h');
+
+        //Step retrive H code list of assessment choice result
+        this.R_UserAssChoice_H = GetUserAssChoice('h');
+        
     }
 
     //Get Subsection F and H
@@ -33,7 +46,7 @@ public class Calculation_T1
    
 
 
-    public List<Model_ReportItemResult> Code_F_SumValueBySubSection(List<Model_UsersAssessment> list)
+    public List<Model_ReportItemResult> Code_F_SumValueBySubSection()
     {
 
         //Cdoe F = Section 7;
@@ -53,8 +66,14 @@ public class Calculation_T1
             decimal score = 0;
             foreach (string  m in arrmap)
             {
-                 score  = score + list.Where(o => o.SUCID == int.Parse(m)).Sum(t => t.Score);
+                 score  = score + this.R_UserAss_F.Where(o => o.SUCID == int.Parse(m)).Sum(t => t.Score);
                 
+            }
+
+            foreach (string m in arrmap)
+            {
+                score = score + this.R_UserAssChoice_H.Where(o => o.SUCID == int.Parse(m)).Sum(t => t.Score);
+
             }
             rlist.Add(new Model_ReportItemResult
             {
@@ -75,13 +94,8 @@ public class Calculation_T1
     public  bool Calnow()
     {
 
-        //Step retrive f code list of assessment result
-        List<Model_UsersAssessment> F = GetUserAss('f');
 
-        //Step retrive H code list of assessment choice result
-        List<Model_UsersAssChoice> H = GetUserAssChoice('h');
-
-        List<Model_ReportItemResult> fscore = Code_F_SumValueBySubSection(F);
+        List<Model_ReportItemResult> fscore = Code_F_SumValueBySubSection();
 
         return true;
     }
@@ -97,7 +111,7 @@ public class Calculation_T1
     public List<Model_UsersAssChoice> GetUserAssChoice(char code)
     {
         Model_UsersAssChoice uss = new Model_UsersAssChoice();
-        List<Model_UsersAssChoice> ussList = uss.GetUserAssessmentChoiceByTsID(this.TransactionID).Where(o => o.Code.Trim().ToLower()[0] == code).ToList();
+        List<Model_UsersAssChoice> ussList = uss.GetUserAssessmentChoiceByTransactionID(this.TransactionID).Where(o => o.Code.Trim().ToLower()[0] == code).ToList();
 
         return ussList;
     }

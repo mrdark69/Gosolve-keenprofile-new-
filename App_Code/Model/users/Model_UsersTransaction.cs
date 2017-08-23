@@ -184,7 +184,7 @@ public class Model_UsersTransaction: BaseModel<Model_UsersTransaction>
                 tCountOrders.CountOrders AS TotalRows
             FROM UserAssTransaction_cte db
                 CROSS JOIN (SELECT Count(*) AS CountOrders FROM UserAssTransaction_cte) AS tCountOrders
-            ORDER BY  " +(!string.IsNullOrEmpty(sortOrder)? sortOrder: " TransactionID ASC ") + @"
+            ORDER BY  " +(!string.IsNullOrEmpty(sortOrder)? sortOrder: " DateSubmit DESC ") + @"
              OFFSET @Start ROWS
             FETCH NEXT @Size ROWS ONLY;
             ";

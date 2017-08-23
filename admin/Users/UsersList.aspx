@@ -144,7 +144,7 @@
 
         $(document).ready(function () {
 
-
+            store.remove('Paging_now');
             getList();
 
             $('#droppagsize').on('change', function () {

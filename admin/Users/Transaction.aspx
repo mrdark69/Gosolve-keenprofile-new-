@@ -96,7 +96,7 @@
 
                                                 <%--<th></th>--%>
                                                   <th> <a href="#" class="th_sort" data-sort="asc"  data-column="TransactionID"> TSID <i class="fa fa-sort"></i></a></th>
-                                                    <th><a href="#" class="th_sort" data-sort="asc"  data-column="DateSubmit"> Date <i class="fa fa-sort"></i></a></th>
+                                                    <th><a href="#" class="th_sort" data-sort="desc"  data-column="DateSubmit"> Date <i class="fa fa-sort"></i></a></th>
                                                 <th> <a href="#" class="th_sort" data-sort="asc"  data-column="FirstName"> Name <i class="fa fa-sort"></i></a></th>
                                                 <th> <a href="#" class="th_sort" data-sort="asc"  data-column="Email"> Email <i class="fa fa-sort"></i></a></th>
                                               
