@@ -30,7 +30,23 @@ public class Model_UsersAssChoice: BaseModel<Model_UsersAssChoice>
 
     public int Score { get; set; }
 
-    public string SubCombind { get; set; }
+    private string _sub_combind = string.Empty;
+    public string SubCombind
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(this._sub_combind))
+            {
+                _sub_combind = string.Empty;
+            }
+            return _sub_combind;
+        }
+        set
+        {
+            _sub_combind = value;
+        }
+
+    }
 
     public string SubSectionTitle { get; set; }
     public Model_UsersAssChoice()

@@ -27,7 +27,23 @@ public class Model_Assessment_Choice : BaseModel<Model_Assessment_Choice>
     public bool Status { get; set; }
     public int Priority { get; set; }
 
-    public string SubCombind { get; set; }
+    private string _sub_combind = string.Empty;
+    public string SubCombind
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(this._sub_combind))
+            {
+                _sub_combind = string.Empty;
+            }
+            return _sub_combind;
+        }
+        set
+        {
+            _sub_combind = value;
+        }
+
+    }
 
     public string CombindValue
     {
@@ -58,7 +74,7 @@ public class Model_Assessment_Choice : BaseModel<Model_Assessment_Choice>
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand(@"SELECT ach.*, su.Combind AS SubCombind AS FROM AssessmentChoice ach 
+            SqlCommand cmd = new SqlCommand(@"SELECT ach.*, su.Combind AS SubCombind  FROM AssessmentChoice ach 
 INNER JOIN SubSection su ON su.SUCID = ach.SUCID WHERE ach.ASCID=@ASCID ", cn);
             cmd.Parameters.Add("@ASCID", SqlDbType.Int).Value = ASCID;
             cn.Open();

@@ -70,9 +70,34 @@ public partial class Users_UserAssCalculation : BasePage
 
 
 
+                StringBuilder retchH = new StringBuilder();
+
+                List<Model_UsersAssessment> T1list_h = T1.GetUserAss('h');
+                List<Model_UsersAssChoice> T1list_h_c = T1.GetUserAssChoice('h');
+
+                foreach (Model_UsersAssessment cc in T1list_h)
+                {
+                    retchH.Append("<div style='margin-bottom:10px;'>");
+                    retchH.Append("<p>"+cc.Questions+"</p>");
+                    ret.Append("<table class='table table-strip'>");
+
+                    foreach(Model_UsersAssChoice ch in T1list_h_c.Where(o=>o.TASID == cc.TASID))
+                    {
+                        ret.Append("<tr>");
+                        ret.Append("<td>"+ch.Questions+"</td>");
+                     
+                        ret.Append("<td>"+ch.Score+"</td>");
+                      
+                        ret.Append("</tr>");
+                    }
 
 
-                datah2.Text = "Under construction!!!";
+                    ret.Append("</table>");
+
+                    retchH.Append("</div>");
+                }
+
+                datah2.Text = retchH.ToString();
 
 
                 StringBuilder retF2 = new StringBuilder();

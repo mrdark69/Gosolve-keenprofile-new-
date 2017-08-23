@@ -14,8 +14,8 @@ public partial class ajax_save_assessment : BasePageFront
             bool IsCom = false;
             if (!string.IsNullOrEmpty(Request.Form["ctl00$MainContent$heUserID"]))
             {
-                try
-                {
+                //try
+                //{
                     int UserId = int.Parse(Request.Form["ctl00$MainContent$heUserID"]);
 
                     //Profile Process
@@ -197,12 +197,12 @@ public partial class ajax_save_assessment : BasePageFront
 
                     if (IsCom)
                         IsCom = CalculationController.CalculateActionStart(tsid);
-                }
-                catch(Exception ex)
-                {
-                    string ee = ex.Message + ex.StackTrace;
-                    IsCom = false;
-                }
+                //}
+                //catch(Exception ex)
+                //{
+                //    string ee = ex.Message + ex.StackTrace;
+                //    IsCom = false;
+                //}
 
 
                

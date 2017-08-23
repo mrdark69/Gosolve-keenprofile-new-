@@ -410,32 +410,33 @@ public partial class _AssessmentStep : BasePageFront
     {
       
         StringBuilder ret = new StringBuilder();
-        ret.Append("<h1 class=\"step_count\"></h1>");
-        ret.Append("<div class=\"step-content\">");
-        ret.Append("<input type=\"hidden\" name=\"ass_fill_\"  value=\"" + ass.ASID + "\" />");
+        ret.Append("<h1 class=\"step_count\"></h1>\r\n");
+        ret.Append("<div class=\"step-content\">\r\n");
+        ret.Append("<input type=\"hidden\" name=\"ass_fill_\"  value=\"" + ass.ASID + "\" />\r\n");
 
-        ret.Append("<div class=\"text-center m-t-md\">");
-        ret.Append("<h2>"+ass.Questions+"</h2>");
+        ret.Append("<div class=\"text-center m-t-md\">\r\n");
+        ret.Append("<h2>"+ass.Questions+"</h2>\r\n");
 
         
-        ret.Append("<div class=\"question-type q-type-rank-scale-choice\">");
-        ret.Append("<div class=\"col-md-12 tbl-rank-scale\" >");
+        ret.Append("<div class=\"question-type q-type-rank-scale-choice\">\r\n");
+        ret.Append("<div class=\"col-md-12 tbl-rank-scale\" >\r\n");
 
-        ret.Append("<table>");
-        ret.Append("<tr>");
-        ret.Append("<td class=\"question\"></td>");
+        ret.Append("<table>\r\n");
+        ret.Append("<tr>\r\n");
+        ret.Append("<td class=\"question\"></td>\r\n");
+        ret.Append("<input type=\"hidden\"   name=\"ass_fill_i_sc_" + ass.ASID + "\" value=\"0\" />");
         for (int i = ass.StartRank; i <= ass.EndRank; i++)
         {
            
             if (i == ass.StartRank)
-                ret.Append("<td class=\"choice\">" + i + "<br /><span>" + ass.LeftScaleTitle + "</span></td>");
+                ret.Append("<td class=\"choice\">" + i + "<br /><span>" + ass.LeftScaleTitle + "</span></td>\r\n");
             else if (i == ass.EndRank)
-                ret.Append("<td class=\"choice\">" + i + "<br /> <span>" + ass.RigthScaleTitle + "</span>  </td>");
+                ret.Append("<td class=\"choice\">" + i + "<br /> <span>" + ass.RigthScaleTitle + "</span>  </td>\r\n");
             else
-                ret.Append("<td class=\"choice\">" + i + "</td>");
+                ret.Append("<td class=\"choice\">" + i + "</td>\r\n");
         }
            
-        ret.Append(" </tr>");
+        ret.Append(" </tr>\r\n");
 
         List<Model_Assessment_Choice> choice = ass.AssChoice;
 
@@ -443,30 +444,30 @@ public partial class _AssessmentStep : BasePageFront
         {
             foreach(Model_Assessment_Choice ch in choice)
             {
-                ret.Append("<tr>");
-                ret.Append("<input type=\"hidden\" name=\"ass_fill_ch_"+ ass.ASID + "\"  value=\"" + ch.ASCID + "\" />");
-                ret.Append("<td class=\"question\">"+ch.Questions+"</td>");
+                ret.Append("<tr>\r\n");
+                ret.Append("<input type=\"hidden\" name=\"ass_fill_ch_"+ ass.ASID + "\"  value=\"" + ch.ASCID + "\" />\r\n");
+                ret.Append("<td class=\"question\">"+ch.Questions+"</td>\r\n");
 
                 for (int i = ass.StartRank; i <= ass.EndRank; i++)
                 {
-                    ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_ch_sc_" + ass.ASID + "_"+ ch.ASCID+ "\" value=\"" + i + "\" /></td>");
+                    ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_ch_sc_" + ass.ASID + "_"+ ch.ASCID+ "\" value=\"" + i + "\" /></td>\r\n");
                 }
                
-                ret.Append("</tr>");
+                ret.Append("</tr>\r\n");
             }
            
         }
         
 
 
-        ret.Append("</table>");
-        ret.Append("</div>");
-        ret.Append("</div>");
+        ret.Append("</table>\r\n");
+        ret.Append("</div>\r\n");
+        ret.Append("</div>\r\n");
 
 
 
-        ret.Append("</div>");
-        ret.Append("</div>");
+        ret.Append("</div>\r\n");
+        ret.Append("</div>\r\n");
 
         return ret.ToString();
 

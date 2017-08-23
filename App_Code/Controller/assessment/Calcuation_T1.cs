@@ -30,13 +30,7 @@ public class Calculation_T1
 
     //Get Subsection F and H
 
-    public List<Model_UsersAssessment> GetUserAss(char code)
-    {
-        Model_UsersAssessment uss = new Model_UsersAssessment();
-        List<Model_UsersAssessment> ussList = uss.GetUserAssessmentByTsID(this.TransactionID).Where(o => o.Code.Trim().ToLower()[0] == code).ToList();
-
-        return ussList;
-    }
+   
 
 
     public List<Model_ReportItemResult> Code_F_SumValueBySubSection(List<Model_UsersAssessment> list)
@@ -84,13 +78,30 @@ public class Calculation_T1
         //Step retrive f code list of assessment result
         List<Model_UsersAssessment> F = GetUserAss('f');
 
+        //Step retrive H code list of assessment choice result
+        List<Model_UsersAssChoice> H = GetUserAssChoice('h');
 
         List<Model_ReportItemResult> fscore = Code_F_SumValueBySubSection(F);
 
         return true;
     }
 
-   
-   
+    public List<Model_UsersAssessment> GetUserAss(char code)
+    {
+        Model_UsersAssessment uss = new Model_UsersAssessment();
+        List<Model_UsersAssessment> ussList = uss.GetUserAssessmentByTsID(this.TransactionID).Where(o => o.Code.Trim().ToLower()[0] == code).ToList();
+
+        return ussList;
+    }
+
+    public List<Model_UsersAssChoice> GetUserAssChoice(char code)
+    {
+        Model_UsersAssChoice uss = new Model_UsersAssChoice();
+        List<Model_UsersAssChoice> ussList = uss.GetUserAssessmentChoiceByTsID(this.TransactionID).Where(o => o.Code.Trim().ToLower()[0] == code).ToList();
+
+        return ussList;
+    }
+
+
 
 }
