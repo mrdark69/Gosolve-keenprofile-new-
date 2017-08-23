@@ -62,24 +62,33 @@ public partial class Users_UserAssCalculation : BasePage
 
             StringBuilder ret = new StringBuilder();
 
-
-            for(int i = 0; i < (int)cycle; i++){
-                ret.Append("<div style='margin-bottom:10px;'>");
-
-                ret.Append("<table class='table table-strip'>");
-
-                foreach(Model_ReportSectionItem f in Rp)
-                {
+            int row = 1;
+            ret.Append("<table class='table table-strip'>");
+            foreach (Model_UsersAssessment ass in userAss)
+            {
+               
                     ret.Append("<tr>");
-             
-                    ret.Append("<td>" + f.Title + "</td>");
-                    //ret.Append("<td>" + ch.Score + "</td>");
-                }
+                    ret.Append("<td>" + ass.SubSectionTitle + "</td>");
+                    ret.Append("<td>" + ass.Score + "</td>");
+                    ret.Append("</tr>");
 
-                ret.Append("</table>");
+                if(row   == TotalFocus)
+                {
+                    ret.Append("<tr >");
+                    ret.Append("<td colspan='2' style='text-align:center;' >-------------- end --------------------</td>");
+                    ret.Append("</tr>");
 
-                ret.Append("</div>");
+                    row = 1;
+                }else
+                    row = row + 1;
+
+
+
+
             }
+            ret.Append("</table>");
+
+           
 
             //foreach (Model_UsersAssessment cc in T1list_h)
             //{
