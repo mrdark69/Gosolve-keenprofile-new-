@@ -21,6 +21,24 @@ public class Calculation_T3
 
     public List<Model_ReportSectionItem> ReportSectionItem { get; set; }
 
+    public decimal SD { get; set; }
+    public decimal AVG  { get; set; }
+
+    public decimal Above {
+
+    get
+        {
+            return this.SD + this.AVG;
+        }
+    }
+    public decimal Below {
+        get
+        {
+            return this.AVG - this.SD;
+
+        }
+    }
+
 
     public Calculation_T3(int intResultSectionID, int TransactionID)
     {
@@ -50,7 +68,8 @@ public class Calculation_T3
         //Cdoe F = Section 7;
         List<Model_ReportItemResult> rlist = new List<Model_ReportItemResult>();
 
-       
+        
+
 
         foreach (Model_ReportSectionItem item in this.ReportSectionItem)
         {
@@ -59,7 +78,11 @@ public class Calculation_T3
             decimal score = 0;
             foreach (string m in arrmap)
             {
-                score = score + this.R_UserAss_B.Where(o => o.SUCID == int.Parse(m)).Sum(t => t.Score);
+                List<Model_UsersAssessment> ass = this.R_UserAss_B.Where(o => o.SUCID == int.Parse(m)).ToList();
+
+
+                score = score + ass.Take(3).Sum(t => t.Score);
+                score = score - ass.Skip(3).Sum(t => t.Score);
 
             }
 
@@ -77,7 +100,17 @@ public class Calculation_T3
         }
 
 
-        return rlist;
+        //cal avg 
+
+        //this.AVG = rlist.Sum(t => t.Score) / rlist.Count();
+        this.AVG = (decimal)Math.Round(rlist.Average(o => o.Score), MidpointRounding.AwayFromZero);
+
+        IEnumerable<double> result = rlist.Select(v => (double)v.Score);
+        //.CalculateStdDev();
+        double  ret = CalculateStdDev(result);
+        this.SD = (decimal)Math.Round(ret);
+
+        return rlist.OrderByDescending(o => o.Score).ToList();
     }
 
     public bool Calnow()
@@ -103,6 +136,21 @@ public class Calculation_T3
         List<Model_UsersAssChoice> ussList = uss.GetUserAssessmentChoiceByTransactionID(this.TransactionID).Where(o => o.Code.Trim().ToLower()[0] == code).ToList();
 
         return ussList;
+    }
+
+    private double CalculateStdDev(IEnumerable<double> values)
+    {
+        double ret = 0;
+        if (values.Count() > 0)
+        {
+            //Compute the Average      
+            double avg = values.Average();
+            //Perform the Sum of (value-avg)_2_2      
+            double sum = values.Sum(d => Math.Pow(d - avg, 2));
+            //Put it all together      
+            ret = Math.Sqrt((sum) / (values.Count() - 1));
+        }
+        return ret;
     }
 
 }

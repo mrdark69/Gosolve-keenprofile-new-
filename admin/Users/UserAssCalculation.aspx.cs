@@ -119,9 +119,7 @@ public partial class Users_UserAssCalculation : BasePage
 
             StringBuilder retchH = new StringBuilder();
 
-           //cal step 2
-
-            datab2.Text = retchH.ToString();
+           
 
 
 
@@ -149,6 +147,21 @@ public partial class Users_UserAssCalculation : BasePage
 
             retF2.Append("</table>");
 
+
+
+
+            retchH.Append("<table class='table table-strip'>");
+            retchH.Append("<tr>");
+            retchH.Append("<td>SD</td><td>AVG</td><td>Above</td><td>Below</td>");
+            retchH.Append("</tr>");
+
+            retchH.Append("<tr>");
+            retchH.Append("<td>" + T3.SD + "</td><td>" + T3.AVG + "</td><td>" + T3.Above + "</td><td>" + T3.Below + "</td>");
+            retchH.Append("</tr>");
+
+            retchH.Append("</table>");
+
+            datab2.Text = retchH.ToString();
 
             datab3.Text = retF2.ToString();
 
@@ -400,4 +413,7 @@ public partial class Users_UserAssCalculation : BasePage
 
         }
     }
+
+
+    
 }
