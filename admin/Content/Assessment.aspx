@@ -313,7 +313,7 @@
 <asp:Content ID="FooterScript" ContentPlaceHolderID="ContentFooter" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
-
+            store.remove('Paging_now');
             getList();
           
 
