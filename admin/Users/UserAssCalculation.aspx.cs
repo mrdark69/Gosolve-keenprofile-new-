@@ -45,10 +45,41 @@ public partial class Users_UserAssCalculation : BasePage
         {
             int tsID = int.Parse(Request.QueryString["ts"]);
 
-            Calculation_T3 T1 = new Calculation_T3(1, tsID);
+            Calculation_T3 T3 = new Calculation_T3(3, tsID);
 
             //List<Model_UsersAssessment> T1list = T1.GetUserAss('f');
+
+
+            List<Model_UsersAssessment> userAss = T3.R_UserAss_B;
+
+            List<Model_ReportSectionItem> Rp = T3.ReportSectionItem;
+
+            int TotalFocus = Rp.Count();
+
+            int Totalret = userAss.Count();
+
+            decimal cycle = Math.Ceiling((decimal)Totalret / TotalFocus);
+
             StringBuilder ret = new StringBuilder();
+
+
+            for(int i = 0; i < (int)cycle; i++){
+                ret.Append("<div style='margin-bottom:10px;'>");
+
+                ret.Append("<table class='table table-strip'>");
+
+                foreach(Model_ReportSectionItem f in Rp)
+                {
+                    ret.Append("<tr>");
+             
+                    ret.Append("<td>" + f.Title + "</td>");
+                    //ret.Append("<td>" + ch.Score + "</td>");
+                }
+
+                ret.Append("</table>");
+
+                ret.Append("</div>");
+            }
 
             //foreach (Model_UsersAssessment cc in T1list_h)
             //{
@@ -90,7 +121,7 @@ public partial class Users_UserAssCalculation : BasePage
 
             StringBuilder retF2 = new StringBuilder();
 
-            List<Model_ReportItemResult> fscore = T1.Code_SumValueBySubSection();
+            List<Model_ReportItemResult> fscore = T3.Code_SumValueBySubSection();
 
 
             retF2.Append("<table class='table'>");

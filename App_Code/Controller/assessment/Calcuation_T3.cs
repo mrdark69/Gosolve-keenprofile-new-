@@ -19,7 +19,7 @@ public class Calculation_T3
 
     public List<Model_UsersAssessment> R_UserAss_B { get; set; }
 
-   
+    public List<Model_ReportSectionItem> ReportSectionItem { get; set; }
 
 
     public Calculation_T3(int intResultSectionID, int TransactionID)
@@ -31,9 +31,11 @@ public class Calculation_T3
 
 
         //Step retrive f code list of assessment result
-        this.R_UserAss_B = GetUserAss('b');
+        this.R_UserAss_B = GetUserAss('b').OrderBy(o => o.Priority).ToList();
 
-        
+        Model_ReportSectionItem rss = new Model_ReportSectionItem();
+
+        this.ReportSectionItem = rss.GetListItemBySectionID(this.ResultSectionID);
 
     }
 
@@ -48,14 +50,9 @@ public class Calculation_T3
         //Cdoe F = Section 7;
         List<Model_ReportItemResult> rlist = new List<Model_ReportItemResult>();
 
-        Model_ReportSectionItem rss = new Model_ReportSectionItem();
+       
 
-        List<Model_ReportSectionItem> rsslist = rss.GetListItemBySectionID(this.ResultSectionID);
-
-
-
-
-        foreach (Model_ReportSectionItem item in rsslist)
+        foreach (Model_ReportSectionItem item in this.ReportSectionItem)
         {
             string map = item.SUCID;
             string[] arrmap = map.Split(',');
