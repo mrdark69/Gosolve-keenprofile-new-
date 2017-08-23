@@ -53,43 +53,99 @@
     <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
+
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>User Calculation <%--<small>With custom checbox and radion elements.</small>--%></h5>
-                          
+                            <h5>User Calculation</h5>
+                            
                         </div>
-                         <div class="ibox-content">
-                       
-                            <asp:Label ID="lblError" runat="server" style="color: red;text-align: center;margin: 0 auto;display: block;"></asp:Label>
-                            <div class="q-form-bio form-horizontal">
-                                <div>
-                                    <h1>" F" Section Result</h1>
-                                     <asp:Literal ID="data" runat="server"></asp:Literal>
+                        <div class="ibox-content">
+                            <div class="panel-body">
+                                <div class="panel-group" id="accordion">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h5 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">[T1] - Working Philosophies
+</a>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                            <div class="panel-body">
+                                             <div>
+                                                    <h1>" F" Section Result</h1>
+                                                     <asp:Literal ID="data" runat="server"></asp:Literal>
+                                                </div>
+
+                                                <div>
+                                                    <h1>"H" Section Result</h1>
+                                                     <asp:Literal ID="datah2" runat="server"></asp:Literal>
+                                                </div>
+
+                                                 <div>
+                                                      <h1>"T1" Section Result</h1>
+                                                      <asp:Literal ID="dataf2" runat="server"></asp:Literal>  
+                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed" aria-expanded="false">[T2] - Working Traits 
+</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                            <div class="panel-body">
+                                               <div>
+                                                    <h1>"D" Section Result</h1>
+                                                     <asp:Literal ID="dataD" runat="server"></asp:Literal>
+                                                </div>
+
+                                                <div>
+                                                    <h1>"E" Section Result</h1>
+                                                     <asp:Literal ID="DAtaE" runat="server"></asp:Literal>
+                                                </div>
+
+                                                 <div>
+                                                      <h1>"T2" Section Result</h1>
+                                                      <asp:Literal ID="dataT2" runat="server"></asp:Literal>  
+                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" aria-expanded="false">[T3] - Working Geniuses
+</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                            <div class="panel-body">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div>
-                                    <h1>"H" Section Result</h1>
-                                     <asp:Literal ID="datah2" runat="server"></asp:Literal>
-                                </div>
 
-                                 <div>
-                                      <h1>"T1" Section Result</h1>
-                                      <asp:Literal ID="dataf2" runat="server"></asp:Literal>  
-                                 </div>
-                              
 
-                                <div class="form-group">
+                                 <div class="form-group">
                                     <%--<label class="col-sm-2 control-label"></label>--%>
                                     <div class="col-sm-12" style="padding:0 0px 0 15px">
                                       <asp:Button ID="btnRecal"  CssClass="btn btn-w-m btn-success" runat="server" OnClick="btnRecal_Click"  Text="Re Calculate" />
                                         </div>
-                                </div>          
+                                </div>  
 
                             </div>
-                           
-                        
                         </div>
                     </div>
+
+
+
+
+
                 </div>
             </div>
 
