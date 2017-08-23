@@ -89,7 +89,7 @@ public partial class Users_UserAssCalculation : BasePage
                 ret.Append("</td>");
                 ret.Append("<td>");
                 int score_r = T2.R_UserAss_SumGroup_D_RealScore.SingleOrDefault(o => o.SUCID == item.SUCID).Score;
-                ret.Append("<p style='background-color:#fff202'>" + score_r + "         x2 = <strong>"+(score_r*2)+"</strong></p>");
+                ret.Append("<p style='background-color:#fff202'>" + score_r + "         x2 = <strong>"+(score_r)+"</strong></p>");
                 ret.Append("</td>");
                 ret.Append("</tr>");
             }

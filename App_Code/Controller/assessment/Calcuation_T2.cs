@@ -60,16 +60,38 @@ public class Calculation_T2
         List<Model_UsersAssessment> real = new List<Model_UsersAssessment>();
 
         int topScore = this.R_UserAss_SumGroup_D.Count();
+        int c_score = topScore;
+        int position = topScore;
+      
+        int raw = 0;
         foreach (Model_UsersAssessment group in this.R_UserAss_SumGroup_D)
         {
+
+            if (raw != group.Score)
+            {
+                raw = group.Score;
+                topScore = position;
+
+            }
+            else
+            {
+                topScore = position + 1;
+            }
+
             real.Add(new Model_UsersAssessment {
                 SUCID = group.SUCID,
 
                 SubSectionTitle = group.SubSectionTitle,
-                Score = topScore
+                Score = topScore *2
             });
 
-            topScore = topScore - 1;
+
+            position = position - 1;
+
+
+
+
+
         }
 
         this.R_UserAss_SumGroup_D_RealScore = real;
@@ -101,7 +123,7 @@ public class Calculation_T2
             decimal score = 0;
             foreach (string m in arrmap)
             {
-                score = score + this.R_UserAss_D.Where(o => o.SUCID == int.Parse(m)).Sum(t => t.Score);
+                score = score + this.R_UserAss_SumGroup_D_RealScore.Where(o => o.SUCID == int.Parse(m)).Sum(t => t.Score);
 
             }
 
