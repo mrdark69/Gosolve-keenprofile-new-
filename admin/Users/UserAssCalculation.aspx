@@ -97,7 +97,7 @@
                                         </div>
                                         <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                             <div class="panel-body">
-                                               <div>
+                                              <div>
                                                     <h1>"D" Section Result</h1>
                                                      <asp:Literal ID="dataD" runat="server"></asp:Literal>
                                                 </div>
@@ -110,7 +110,7 @@
                                                  <div>
                                                       <h1>"T2" Section Result</h1>
                                                       <asp:Literal ID="dataT2" runat="server"></asp:Literal>  
-                                                 </div>
+                                                 </div> 
                                             </div>
                                         </div>
                                     </div>
@@ -123,7 +123,20 @@
                                         </div>
                                         <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
                                             <div class="panel-body">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                                <div>
+                                                    <h1>"B" Section Result</h1>
+                                                     <asp:Literal ID="datab1" runat="server"></asp:Literal>
+                                                </div>
+
+                                                <div>
+                                                    <h1>"B" Summary Section Result</h1>
+                                                     <asp:Literal ID="datab2" runat="server"></asp:Literal>
+                                                </div>
+
+                                                 <div>
+                                                      <h1>"T3" Section Result</h1>
+                                                      <asp:Literal ID="datab3" runat="server"></asp:Literal>  
+                                                 </div>
                                             </div>
                                         </div>
                                     </div>

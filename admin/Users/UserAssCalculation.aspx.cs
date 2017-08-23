@@ -16,6 +16,7 @@ public partial class Users_UserAssCalculation : BasePage
 
             T1Cal();
             T2Cal();
+            T3Cal();
         }
     }
 
@@ -35,6 +36,83 @@ public partial class Users_UserAssCalculation : BasePage
         }
 
           
+    }
+
+
+    public void T3Cal()
+    {
+        if (!string.IsNullOrEmpty(Request.QueryString["ts"]))
+        {
+            int tsID = int.Parse(Request.QueryString["ts"]);
+
+            Calculation_T3 T1 = new Calculation_T3(1, tsID);
+
+            //List<Model_UsersAssessment> T1list = T1.GetUserAss('f');
+            StringBuilder ret = new StringBuilder();
+
+            //foreach (Model_UsersAssessment cc in T1list_h)
+            //{
+            //    ret.Append("<div style='margin-bottom:10px;'>");
+            //    ret.Append("<p>" + cc.Questions + "</p>");
+            //    ret.Append("<table class='table table-strip'>");
+
+            //    foreach (Model_UsersAssChoice ch in T1list_h_c.Where(o => o.TASID == cc.TASID))
+            //    {
+            //        ret.Append("<tr>");
+            //        ret.Append("<td>" + ch.Questions + "</td>");
+            //        ret.Append("<td>" + ch.SubSectionTitle + "</td>");
+            //        ret.Append("<td>" + ch.Score + "</td>");
+
+            //        ret.Append("</tr>");
+            //    }
+
+
+            //    ret.Append("</table>");
+
+            //    ret.Append("</div>");
+            //}
+
+
+            datab1.Text = ret.ToString();
+
+
+
+            StringBuilder retchH = new StringBuilder();
+
+           //cal step 2
+
+            datab2.Text = retchH.ToString();
+
+
+
+
+
+
+            StringBuilder retF2 = new StringBuilder();
+
+            List<Model_ReportItemResult> fscore = T1.Code_SumValueBySubSection();
+
+
+            retF2.Append("<table class='table'>");
+
+            foreach (Model_ReportItemResult i in fscore)
+            {
+                retF2.Append("<tr>");
+                retF2.Append("<td>");
+                retF2.Append("<p>" + i.ResultItemTitle + "</p>");
+                retF2.Append("</td>");
+                retF2.Append("<td>");
+                retF2.Append("<p>" + i.Score + "</p>");
+                retF2.Append("</td>");
+                retF2.Append("</tr>");
+            }
+
+            retF2.Append("</table>");
+
+
+            datab3.Text = retF2.ToString();
+
+        }
     }
 
     public void T2Cal()
