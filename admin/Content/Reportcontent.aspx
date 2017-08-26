@@ -239,6 +239,22 @@ margin-right:5px;
                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="subpri" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                                     </div>
                                 </div>
+
+                                                 <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="subpri" CssClass="col-md-2 control-label">Short Title</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="txtShort" CssClass="form-control" />
+                                    
+                                    </div>
+                                </div>
+
+                                    <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="subpri" CssClass="col-md-2 control-label">Detail</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="txtDetail" CssClass="form-control" TextMode="MultiLine" Rows="4" />
+                                       
+                                    </div>
+                                </div>
                            
      
                                     <div class="form-group">

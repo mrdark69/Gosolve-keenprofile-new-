@@ -28,7 +28,7 @@ public class CalculationController
 
         List<Model_ReportSection> Rslist = Rs.GetListActive();
 
-
+     
         if(Rslist.Count > 0)
         {
             foreach(Model_ReportSection item in Rslist)
@@ -58,6 +58,8 @@ public class CalculationController
         }
 
 
+       
+        
 
         return ret;
     }

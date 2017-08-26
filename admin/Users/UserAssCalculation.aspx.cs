@@ -130,7 +130,7 @@ public partial class Users_UserAssCalculation : BasePage
 
             List<Model_ReportItemResult> fscore = T3.Code_SumValueBySubSection();
 
-
+           
             retF2.Append("<table class='table'>");
 
             foreach (Model_ReportItemResult i in fscore)
@@ -165,6 +165,8 @@ public partial class Users_UserAssCalculation : BasePage
 
             datab3.Text = retF2.ToString();
 
+
+            T3.RecordResult(fscore);
         }
     }
 
@@ -295,6 +297,8 @@ public partial class Users_UserAssCalculation : BasePage
 
             dataT2.Text = retF2.ToString();
 
+            T2.RecordResult(fscore);
+
         }
     }
 
@@ -410,6 +414,8 @@ public partial class Users_UserAssCalculation : BasePage
 
 
             dataf2.Text = retF2.ToString();
+
+            T1.RecordResult(fscore);
 
         }
     }

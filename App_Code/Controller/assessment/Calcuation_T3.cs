@@ -116,10 +116,23 @@ public class Calculation_T3
     public bool Calnow()
     {
 
-
         List<Model_ReportItemResult> fscore = Code_SumValueBySubSection();
+        
 
-        return true;
+        return RecordResult(fscore);
+    }
+
+
+    public bool RecordResult(List<Model_ReportItemResult> result)
+    {
+        bool ret = false;
+        if (result.Count > 0)
+        {
+            Model_ReportItemResult me = new Model_ReportItemResult();
+            ret = me.InsertReportItemResultBulk(result);
+        }
+      
+        return ret;
     }
 
     public List<Model_UsersAssessment> GetUserAss(char code)

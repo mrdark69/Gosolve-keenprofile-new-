@@ -22,9 +22,41 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
     public int ResultItemID { get; set; }
     public int TransactionID { get; set; }
     public decimal Score { get; set; }
+    public bool IsAbove { get; set; } = false;
+    public bool IsBelow { get; set; } = false;
 
 
     public string ResultItemTitle { get; set; }
+
+    public bool InsertReportItemResultBulk(List<Model_ReportItemResult> reList)
+    {
+        bool ret = false;
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            cn.Open();
+            foreach (Model_ReportItemResult re in reList)
+            {
+                SqlCommand cmd = new SqlCommand(@"DELETE FROM ReportItemResult WHERE ResultSectionID=@ResultSectionID AND ResultItemID=@ResultItemID AND TransactionID=@TransactionID;
+                INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow) 
+                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow)", cn);
+               
+                cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = re.ResultSectionID;
+                cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = re.ResultItemID;
+                cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = re.TransactionID;
+             
+                cmd.Parameters.Add("@Score", SqlDbType.Decimal).Value = re.Score;
+                cmd.Parameters.Add("@IsAbove", SqlDbType.Bit).Value = re.IsAbove;
+                cmd.Parameters.Add("@IsBelow", SqlDbType.Bit).Value = re.IsBelow;
+
+                ret = ExecuteNonQuery(cmd) == 1;
+            }
+
+
+
+
+            return ret;
+        }
+    }
 
     public int InsertReportItemResult(Model_ReportItemResult re)
     {
@@ -52,6 +84,10 @@ public class Model_ReportSectionItem : BaseModel<Model_ReportSectionItem>
     public bool Status { get; set; }
     public int Priority { get; set; }
     public string SUCID { get; set; }
+
+    public string Short { get; set; }
+    public string Detail { get; set; }
+
     public string SectionTitle { get; set; }
 
     public Model_ReportSectionItem()
@@ -127,14 +163,17 @@ public class Model_ReportSectionItem : BaseModel<Model_ReportSectionItem>
         int ret = 0;
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportSectionItem (ResultSectionID,Title,Priority,Code,SUCID) 
-VALUES(@ResultSectionID,@Title,@Priority,@Code,@SUCID) SET @ResultItemID = SCOPE_IDENTITY()", cn);
+            SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportSectionItem (ResultSectionID,Title,Priority,Code,SUCID,Short,Detail) 
+VALUES(@ResultSectionID,@Title,@Priority,@Code,@SUCID,@Short,@Detail) SET @ResultItemID = SCOPE_IDENTITY()", cn);
 
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = pr.Title;
             cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = pr.ResultSectionID;
             cmd.Parameters.Add("@Code", SqlDbType.NVarChar).Value = pr.Code;
             cmd.Parameters.Add("@Priority", SqlDbType.Int).Value = pr.Priority;
             cmd.Parameters.Add("@SUCID", SqlDbType.VarChar).Value = pr.SUCID;
+
+            cmd.Parameters.Add("@Short", SqlDbType.NVarChar).Value = pr.Short;
+            cmd.Parameters.Add("@Detail", SqlDbType.NVarChar).Value = pr.Detail;
             cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Direction = ParameterDirection.Output;
             cn.Open();
             if (ExecuteNonQuery(cmd) > 0)
@@ -153,7 +192,7 @@ VALUES(@ResultSectionID,@Title,@Priority,@Code,@SUCID) SET @ResultItemID = SCOPE
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand(@"UPDATE ReportSectionItem SET ResultSectionID=@ResultSectionID,Title=@Title,Code=@code,
-Priority=@Priority, Status=@Status , SUCID=@SUCID WHERE ResultItemID=@ResultItemID ", cn);
+Priority=@Priority, Status=@Status , SUCID=@SUCID , Short=@short, Detail=@Detail WHERE ResultItemID=@ResultItemID ", cn);
 
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = pr.Title;
             cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = pr.ResultSectionID;
@@ -161,6 +200,8 @@ Priority=@Priority, Status=@Status , SUCID=@SUCID WHERE ResultItemID=@ResultItem
             cmd.Parameters.Add("@Priority", SqlDbType.Int).Value = pr.Priority;
             cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = pr.Status;
             cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = pr.ResultItemID;
+            cmd.Parameters.Add("@Short", SqlDbType.NVarChar).Value = pr.Short;
+            cmd.Parameters.Add("@Detail", SqlDbType.NVarChar).Value = pr.Detail;
             cmd.Parameters.Add("@SUCID", SqlDbType.VarChar).Value = pr.SUCID;
             cn.Open();
             return ExecuteNonQuery(cmd) == 1;
