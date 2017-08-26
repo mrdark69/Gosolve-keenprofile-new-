@@ -122,27 +122,8 @@ public partial class _AssessmentStep : BasePageFront
                     strfc.Append("</div>");
 
                     chckCJF.Text = strcjf.ToString();
-                    checkFC.Text = strfc.ToString();
-                    //chckCJF.DataSource = cjflist;
-                    //chckCJF.DataTextField = "Title";
-                    //chckCJF.DataValueField = "CJFID";
-                    //chckCJF.DataBind();
-
-                    //checkFC.DataSource = fclist;
-                    //checkFC.DataTextField = "Title";
-                    //checkFC.DataValueField = "FCID";
-                    //checkFC.DataBind();
-
-                    //checkFC.Attributes.Add("class", "{roles: true}");
-
-
-                    //foreach (ListItem i in checkFC.Items)
-                    //{
-
-                    //    i.Attributes.Add("class", "{roles: true}");
-                    //}
-                    //stepprofile_head.Visible = false;
-                    //stepprofile.Visible = false;
+                   // checkFC.Text = strfc.ToString();
+                   
 
 
 
@@ -156,7 +137,7 @@ public partial class _AssessmentStep : BasePageFront
 
 
                     profiletitle.Text = intro.ProfileTitle;
-                    fctitle.Text = intro.ProfileFCTitle;
+                    //fctitle.Text = intro.ProfileFCTitle;
                     cjftitle.Text = intro.ProfileCJFTitle;
 
                     StringBuilder ret = new StringBuilder();

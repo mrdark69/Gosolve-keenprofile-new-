@@ -195,18 +195,18 @@
                                 </div>
                             </div>
 
-                             <h1 id="H1" runat="server" class="step_count"></h1>
+                             <%--<h1 id="H1" runat="server" class="step_count"></h1>
                              <div class="step-content" id="Div2" runat="server" data-valid="checkcount">
                                 <div class="text-center m-t-md">
                                 <h2><asp:Literal ID="fctitle" runat="server"></asp:Literal></h2>
                                
                                     <div class="q-form-bio form-horizontal">
-                                        <div class="form-group"><%--<label class="col-sm-2 control-label">Current Job Function name:</label>--%>
+                                        <div class="form-group">
 
                                             <div class="col-sm-12" style="padding:0 30px 0 30px">
                                                 
                                                 <asp:Literal ID="checkFC" runat="server"></asp:Literal>
-                                        <%--    <asp:CheckBoxList ID="checkFC" runat="server" CssClass="checkitem" RepeatLayout="Table"  RepeatDirection="Horizontal"></asp:CheckBoxList>--%>
+                                      
 
                                             </div>
                                         </div>
@@ -214,7 +214,7 @@
                                     </div>
                                     
                                 </div>
-                            </div>
+                            </div>--%>
 
                              <h1 id="stepprofile_CJF" runat="server" class="step_count"></h1>
                              <div class="step-content" id="Div1" runat="server" data-valid="checkcount">
@@ -262,192 +262,7 @@
                                 </div>
                             </div>
 
-                           <%-- <h1></h1>
-                            <div class="step-content">
-                                <div class="text-center m-t-md">
-                                    <h2>Working Geniuses Assessment</h2>
-                                    <p>
-                                        ขอให้คุณอ่านข้อคำถามแต่ละข้อต่อไปนี้ <br />
-                                        แล้วตอบโดยใช้คะแนนตั้งแต่ 0 - 10 <br />
-                                        เมื่อ 0 หมายถึง <strong>"ไม่ใช่ตัวตนของฉันเลย"</strong> และ 10 หมายถึง <strong>"เป็นตัวตนของฉันมากที่สุด"</strong> <br />
-                                    </p>
-                                </div>
-                            </div>
-
-                            <h1></h1>
-                            <div class="step-content">
-                                <div class="text-center m-t-md">
-                                    <h2>ไอเดียมากมายพรั่งพรูเข้ามาในหัวของฉันโดยที่ฉันไม่ได้ตั้งใจ </h2>
-                                    <div class="question-type q-type-scale">
-                                        <div class="col-md-3 left-ele" >ไม่ใช่ตัวตน ของฉันเลย </div>
-                                          <div class="col-md-6 choice-ele">
-                                              <table>
-                                                  <tr>
-                                                      <td>0</td> <td>1</td> <td>2</td> <td>3</td> <td>4</td> <td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                     
-                                                  </tr>
-                                              </table>
-                                          </div>
-                                          <div class="col-md-3 right-ele"> เป็นตัวตนของ ฉันมากที่สุด </div>
-
-                                    </div>
-                                        
-                                   
-                                </div>
-                            </div>
-                           
-                            <h1></h1>
-                            <div class="step-content">
-                                <div class="text-center m-t-md">
-                                    <h2>ระดมสมองกับคนอื่นอยู่บ่อยๆ เพื่อคิดค้นไอเดียใหม่ๆ ให้กับงาน</h2>
-                                   <div class="question-type q-type-scale">
-                                        <div class="col-md-3 left-ele" >ไม่ได้ทํางานแบบนี้เลย  0% </div>
-                                          <div class="col-md-6 choice-ele">
-                                              <table>
-                                                  <tr>
-                                                    <td>1</td> <td>2</td> <td>3</td> <td>4</td> <td>5</td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                      <td><input type="radio"  name="1ss" /></td>
-                                                     <td><input type="radio"  name="1ss" /></td>
-                                                     
-                                                  </tr>
-                                              </table>
-                                          </div>
-                                          <div class="col-md-3 right-ele"> ทํางานแบบนี้ ทุกวัน  100%</div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <h1></h1>
-                            <div class="step-content">
-                                <div class="text-center m-t-md">
-                                    <h2>ความสามารถแบบใดที่อธิบายตัวคุณได้ดีที่สุด </h2>
-                                   <div class="question-type q-type-rank-scale-choice">
-                                        <div class="col-md-12 tbl-rank-scale"   >
-
-                                            <table>
-                                                  <tr>
-                                                      <td class="question"></td>
-                                                    <td class="choice">1<br /><span>เห็นด้วยน้อยที่สุด</span></td>
-                                                      <td class="choice">2</td>
-                                                      <td class="choice">3</td> 
-                                                      <td class="choice"> 4 <br /> <span>เห็นด้วยมากที่สุด</span>  </td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="question">1. คนที่สามารถสร้างสิ่งต่างๆมากมายที่มีความหมายเพื่อผู้คนรอบข้าง </td>
-                                                      <td  class="choice"><input type="radio"  name="1ss" /></td>
-                                                      <td class="choice"><input type="radio"  name="1ss" /></td>
-                                                      <td class="choice"><input type="radio"  name="1ss" /></td>
-                                                      <td class="choice"><input type="radio"  name="1ss" /></td>
-                                                  
-                                                     
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="question">2. คนที่สามารถทําให้ผู้้คนมองเห็นคุณค่าและความ  อัศจรรย์ในทุกสิ่งทุกอย่างตามที่คุณต้องการ  </td>
-                                                      <td  class="choice"><input type="radio"  name="1ss" /></td>
-                                                      <td class="choice"><input type="radio"  name="1ss" /></td>
-                                                      <td class="choice"><input type="radio"  name="1ss" /></td>
-                                                      <td class="choice"><input type="radio"  name="1ss" /></td>
-                                                  
-                                                     
-                                                  </tr>
-                                                  <tr>
-                                                      <td class="question">3. คนที่สามารถเปลี่ยนสิ่งธรรมดาให้กลายเป็นสิ่งที่พิเศษได้ </td>
-                                                      <td  class="choice"><input type="radio"  name="1ss" /></td>
-                                                      <td class="choice"><input type="radio"  name="1ss" /></td>
-                                                      <td class="choice"><input type="radio"  name="1ss" /></td>
-                                                      <td class="choice"><input type="radio"  name="1ss" /></td>
-                                                  
-                                                     
-                                                  </tr>
-                                                 <tr>
-                                                      <td class="question">4. คนที่สามารถควบคุมผู้คนเพื่อพาพวกเขาบรรลุเป้าหมายที่ท้าทายได้  </td>
-                                                      <td  class="choice"><input type="radio"  name="1ss" /></td>
-                                                      <td class="choice"><input type="radio"  name="1ss" /></td>
-                                                      <td class="choice"><input type="radio"  name="1ss" /></td>
-                                                      <td class="choice"><input type="radio"  name="1ss" /></td>
-                                                  
-                                                     
-                                                  </tr>
-                                              </table>
-
-                                        </div>
-                                       
-                                        
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                             <h1></h1>
-                            <div class="step-content">
-                                <div class="text-center m-t-md">
-                                    <h2>ความสามารถแบบใดที่อธิบายตัวคุณได้ดีที่สุด </h2>
-                                   <div class="question-type q-type-rank-scale-lr">
-                                        <div class="col-md-5 tbl-rank-scale-lr"   >
-
-                                            <table>
-                                                <tr><td colspan="5" class="question left">ทุ่มเททํางาน อย่างหนัก </td></tr>
-                                                <tr><td class="choice">1</td><td class="choice">2</td><td class="choice">3</td><td class="choice">4</td>
-                                                    <td class="choice">5</td></tr>
-                                                 <tr>
-                                                     <td class="choice"><input type="radio" name="le" /></td>
-                                                     <td class="choice"><input type="radio" name="le" /></td>
-                                                     <td class="choice"><input type="radio" name="le" /></td>
-                                                     <td class="choice"><input type="radio" name="le" /></td>
-                                                     <td class="choice"><input type="radio" name="le" /></td>
-                                                 </tr>
-                                            </table>
-
-                                        </div>
-
-                                          <div class="col-md-2"></div>
-                                       <div class="col-md-5 tbl-rank-scale-lr"   >
-
-                                            <table>
-                                                <tr><td colspan="5" class="question right">ทุ่มเททํางาน อย่างหนัก </td></tr>
-                                                <tr><td class="choice">1</td><td class="choice">2</td><td class="choice">3</td><td class="choice">4</td>
-                                                    <td class="choice">5</td></tr>
-                                                 <tr>
-                                                     <td class="choice"><input type="radio" name="le" /></td>
-                                                     <td class="choice"><input type="radio" name="le" /></td>
-                                                     <td class="choice"><input type="radio" name="le" /></td>
-                                                     <td class="choice"><input type="radio" name="le" /></td>
-                                                     <td class="choice"><input type="radio" name="le" /></td>
-                                                 </tr>
-                                            </table>
-
-                                        </div>
-                                        
-                                            
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>--%>
+                          
 
 
                         </div>
