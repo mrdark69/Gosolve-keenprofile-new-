@@ -248,6 +248,10 @@ border-color: #fffee6 transparent transparent transparent;
     margin-left: -70px;
      margin-right: -50px;
 }
+.block-home-structure .poles-mini{
+    margin-top: 10px;
+     margin-left: 70px;
+}
 .block-home-structure .poles div{
     margin:0;
     padding: 0;
@@ -263,7 +267,22 @@ border-color: #fffee6 transparent transparent transparent;
     margin-right: 122.5px;
 
 }
+.block-home-structure .poles-mini div{
+    margin:0;
+    padding: 0;
+    background-color: #363636;
+    display: inline-block;
+    
+    text-align: center;
+    font-size: 10px;
+    height: 60px;
+    width: 60px;
+    vertical-align: middle;
+    line-height: 60px;
+    margin-right: 70px;
+    
 
+}
 
 .block-home-structure .poles .lvp-1{
     
@@ -277,7 +296,9 @@ border-color: #fffee6 transparent transparent transparent;
 .block-home-structure .poles .lvp-4{
     margin-right: -50px;
 }
-
+.block-home-structure .poles-mini .lvp-4{
+    margin-right: -50px;
+}
 
 .block-home-structure .base{
     margin: 0;
@@ -285,6 +306,14 @@ border-color: #fffee6 transparent transparent transparent;
      margin-top: 5px;
  margin-left: -69px;
      margin-right: -60px;
+
+}
+.block-home-structure .base-mini{
+    margin: 0;
+    padding: 0;
+     margin-top: 5px;
+margin-left: 10px;
+    
 
 }
 .block-home-structure .base .base-group{
@@ -295,22 +324,54 @@ border-color: #fffee6 transparent transparent transparent;
       text-align: center;
     /*background-color: #363636;*/
 }
-
+.block-home-structure .base-mini .base-group{
+    margin: 0;
+    padding: 0;
+    width: 200px;
+      display: inline-block;
+      text-align: center;
+    /*background-color: #363636;*/
+}
 
 .block-home-structure .base .base-group.last{
   margin-right: -70px;
+}
+.block-home-structure .base-mini .base-group.last{
+  /*margin-right: -70px;*/
 }
 .block-home-structure .base .base-group .base-item-group{
     margin: 0;
     padding: 0;
 }
-
+.block-home-structure .base-mini .base-group .base-item-group{
+    margin: 0;
+    padding: 0;
+}
 .block-home-structure .base .base-group .base-item-group .base-item{
     background-color: #363636;
     vertical-align: middle;
     height: 50px;
     line-height: 10px;
     width: 72.9px;
+    display: inline-block;
+    font-size: 8px;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+
+    margin-top: 4px;
+    margin-right: 1px;
+    padding-top: 15px;
+    padding-right: 2px;
+    padding-left: 2px;
+    
+}
+.block-home-structure .base-mini .base-group .base-item-group .base-item{
+    background-color: #363636;
+    vertical-align: middle;
+    height: 40px;
+    line-height: 10px;
+    width: 62.9px;
     display: inline-block;
     font-size: 8px;
     font-weight: 300;
@@ -333,5 +394,16 @@ border-color: #fffee6 transparent transparent transparent;
        font-size: 12px;
        line-height: 25px;
        margin-top: 3px;
+       font-style: italic;
 }
-
+.block-home-structure .base-mini .base-group  .base-item-line-group{
+    margin: 0;
+    padding: 0;
+    background-color: #363636;
+     width: 199.5px;
+       height: 25px;
+       font-size: 10px;
+       line-height: 25px;
+       margin-top: 3px;
+       font-style: italic;
+}
