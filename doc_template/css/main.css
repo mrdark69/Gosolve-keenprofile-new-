@@ -1,0 +1,337 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FAFAFA;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12pt;
+    color: #fffee6;
+}
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.page {
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 2cm;
+    margin: 1cm auto;
+    /*border: 1px #D3D3D3 solid;*/
+    /*border-radius: 5px;*/
+    /*background: white;*/
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.page_big {
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 1cm;
+    margin: 0.5cm auto;
+    /*border: 1px #D3D3D3 solid;*/
+    /*border-radius: 5px;*/
+    /*background: white;*/
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.subpage {
+    position: relative;
+    padding: 1cm;
+    /*border: 5px red solid;*/
+    height: 256mm;
+    
+
+    /*outline: 2cm #FFEAEA solid;*/
+}
+.subpage_big {
+    position: relative;
+    padding: 0.5cm;
+    /*border: 5px red solid;*/
+    height: 256mm;
+    
+
+    /*outline: 2cm #FFEAEA solid;*/
+}
+@page {
+    size: A4;
+    margin: 0;
+}
+@media print {
+    .page {
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+    }
+
+}
+.bg-cream .footer{
+    color: #000;
+}
+.footer{
+    color: #fffee6;
+    font-size: 12px;
+   
+    position: absolute;
+ left: 50%;
+ margin-left: -100px;
+    top: 1000px;
+}
+@media print {
+
+}
+.bg-grey{
+    background-color: #37353a;
+}
+.bg-cream{
+    background-color: #fffee6;
+  
+ 
+
+}
+.txt-color-cream{
+    color: #fffee6 !important;
+}
+.txt-color-white{
+    color: #fff !important;
+}
+.bg{
+    background-image:url('http://cdn2.editmysite.com/images/editor/theme-background/stock/Skyscrapers.jpg');
+    height: 500px;
+    background-size: cover;
+    margin-top: -3cm;
+    margin-left: -3cm;
+    margin-right: -3cm;
+ 
+
+
+    background-repeat: no-repeat ;
+    background-position: 50% 50% ;
+    background-size: 100% ;
+    background-color: transparent ;
+    background-size: cover;
+ 
+}
+
+.bg-trans{
+     background: rgba(24,24,24,0.7);
+      height: 500px;
+      padding-top: 125px;
+
+}
+
+
+
+
+.block-home-structure {
+ color: #fff;
+}
+.block-home-structure .triangle{
+    text-align: center;
+    position: relative;
+     
+       margin-left: -70px;
+         margin-right: -50px;
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 0 350px 130px 350px;
+border-color: transparent transparent #363636 transparent;
+
+/*overflow: hidden;*/
+}
+
+.block-home-structure .triangle-mini{
+    text-align: center;
+    position: relative;
+     
+     margin-left: 35px;
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 0 280px 110px 280px;
+border-color: transparent transparent #363636 transparent;
+
+/*overflow: hidden;*/
+}
+
+/*.block-home-structure .triangle:before{
+    top: 0;
+    left: -700px;
+    position: absolute;
+     content: "";
+   
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 130px 350px 0 350px;
+border-color: #fffee6 transparent transparent transparent;
+}
+.block-home-structure .triangle:after{
+    top: 0;
+    right:  -700px;
+    position: absolute;
+     content: "";
+   
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 130px 350px 0 350px;
+border-color: #fffee6 transparent transparent transparent;
+}*/
+
+.block-home-structure .triangle div{
+    margin-top: 10px;
+    font-size: 12px;
+    width: 700px;
+
+    /*padding-top: 25px;*/
+    border-bottom:  1px solid #6c6c6c;
+    text-align: center;
+    margin-left: -350px;
+     padding-bottom: 10px;
+    vertical-align:middle; 
+   
+}
+.block-home-structure .triangle-mini div{
+    margin-top: 10px;
+    font-size: 12px;
+    width: 700px;
+
+    /*padding-top: 25px;*/
+    border-bottom:  1px solid #6c6c6c;
+    text-align: center;
+    margin-left: -350px;
+     padding-bottom: 5px;
+    vertical-align:middle; 
+   
+}
+.block-home-structure .triangle div.lv1{
+  padding-top: 25px;
+
+  width: 280px;
+ margin-left: -140px;
+    
+}
+.block-home-structure .triangle-mini div.lv1{
+  padding-top: 20px;
+
+  width: 210px;
+ margin-left: -105px;
+    
+}
+.block-home-structure .triangle div.lv2{
+ width: 483px;
+ margin-left: -242px;
+
+    
+}
+.block-home-structure .triangle-mini div.lv2{
+ width: 380px;
+ margin-left: -190px;
+
+    
+}
+.block-home-structure .triangle div.lv3{
+
+     border-bottom:  0;
+}
+
+.block-home-structure .triangle-mini div.lv3{
+
+     border-bottom:  0;
+}
+
+
+.block-home-structure .poles{
+    margin-top: 10px;
+    margin-left: -70px;
+     margin-right: -50px;
+}
+.block-home-structure .poles div{
+    margin:0;
+    padding: 0;
+    background-color: #363636;
+    display: inline-block;
+    
+    text-align: center;
+    font-size: 12px;
+    height: 100px;
+    width: 80px;
+    vertical-align: middle;
+    line-height: 100px;
+    margin-right: 122.5px;
+
+}
+
+
+.block-home-structure .poles .lvp-1{
+    
+}
+.block-home-structure .poles .lvp-2{
+    
+}
+.block-home-structure .poles .lvp-3{
+    
+}
+.block-home-structure .poles .lvp-4{
+    margin-right: -50px;
+}
+
+
+.block-home-structure .base{
+    margin: 0;
+    padding: 0;
+     margin-top: 5px;
+ margin-left: -69px;
+     margin-right: -60px;
+
+}
+.block-home-structure .base .base-group{
+    margin: 0;
+    padding: 0;
+    width: 230px;
+      display: inline-block;
+      text-align: center;
+    /*background-color: #363636;*/
+}
+
+
+.block-home-structure .base .base-group.last{
+  margin-right: -70px;
+}
+.block-home-structure .base .base-group .base-item-group{
+    margin: 0;
+    padding: 0;
+}
+
+.block-home-structure .base .base-group .base-item-group .base-item{
+    background-color: #363636;
+    vertical-align: middle;
+    height: 50px;
+    line-height: 10px;
+    width: 72.9px;
+    display: inline-block;
+    font-size: 8px;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+
+    margin-top: 4px;
+    margin-right: 1px;
+    padding-top: 15px;
+    padding-right: 2px;
+    padding-left: 2px;
+    
+}
+.block-home-structure .base .base-group  .base-item-line-group{
+    margin: 0;
+    padding: 0;
+    background-color: #363636;
+     width: 230px;
+       height: 25px;
+       font-size: 12px;
+       line-height: 25px;
+       margin-top: 3px;
+}
+
