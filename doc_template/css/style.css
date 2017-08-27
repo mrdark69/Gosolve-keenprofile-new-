@@ -4,7 +4,7 @@ body {
     background-color: #FAFAFA;
     font-family: 'Open Sans', sans-serif;
     font-size: 12pt;
-    
+    color: #fffee6;
 }
 * {
     box-sizing: border-box;
@@ -48,7 +48,7 @@ body {
 
 }
 .footer{
-    color: #fff;
+    color: #fffee6;
     font-size: 12px;
    
     position: absolute;
@@ -72,6 +72,9 @@ body {
 }
 .bg-grey{
     background-color: #37353a;
+}
+.bg-cream{
+    background-color: #fffee6;
 }
 .txt-color-cream{
     color: #fffee6 !important;
@@ -156,7 +159,7 @@ font-weight: 300;
 
 .page-2-des{
     padding-top: 350px;
-color: #fff;
+/*color: #fff;*/
     font-weight: normal;
 }
 .page-2-des h1{
@@ -174,7 +177,7 @@ text-align: right;
 
 .page-3-des{
 
-color: #fff;
+/*color: #fff;*/
 font-weight: normal;
 
 }
@@ -221,7 +224,8 @@ font-weight: normal;
 
 /*page4*/
 .page-4-des{
-
+/*color: #fff;*/
+font-weight: normal;
 }
 .vertical-text {
 
@@ -255,3 +259,178 @@ text-align: center;
     min-height: 29.6cm;
     z-index: 0;
 }
+
+.page-4-des h3{
+font-size: 34px;
+}
+.page-4-des h2{
+    padding-right: 100px;
+    
+}
+
+/*page5*/
+.page-5-des{
+/*color: #fff;*/
+font-weight: normal;
+}
+
+/*363636*/
+
+.page-5-des h1{
+    color: #000;
+    text-align: center;
+    margin-top: -30px;
+     margin-left: -30px;
+     margin-right: -30px;
+    font-size: 48px;
+    font-weight: 300;
+     letter-spacing: 2px;
+}
+.block-home-structure {
+
+}
+.block-home-structure .triangle{
+    position: relative;
+     
+       margin-left: -70px;
+         margin-right: -50px;
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 0 350px 130px 350px;
+border-color: transparent transparent #363636 transparent;
+
+/*overflow: hidden;*/
+}
+
+.block-home-structure .triangle:before{
+    top: 0;
+    left: -700px;
+    position: absolute;
+     content: "";
+   
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 130px 350px 0 350px;
+border-color: #fffee6 transparent transparent transparent;
+}
+.block-home-structure .triangle:after{
+    top: 0;
+    right:  -700px;
+    position: absolute;
+     content: "";
+   
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 130px 350px 0 350px;
+border-color: #fffee6 transparent transparent transparent;
+}
+
+.block-home-structure .triangle div{
+    margin-top: 10px;
+    font-size: 12px;
+    width: 700px;
+
+    /*padding-top: 25px;*/
+    border-bottom:  1px solid #6c6c6c;
+    text-align: center;
+    margin-left: -350px;
+     padding-bottom: 10px;
+    vertical-align:middle; 
+   
+}
+
+
+
+.block-home-structure .triangle div.lv1{
+  padding-top: 25px;
+
+    
+}
+.block-home-structure .triangle div.lv3{
+
+     border-bottom:  0;
+}
+
+
+.block-home-structure .poles{
+    margin-top: 10px;
+    margin-left: -70px;
+     margin-right: -50px;
+}
+.block-home-structure .poles div{
+    margin:0;
+    padding: 0;
+    background-color: #363636;
+    display: inline-block;
+    
+    text-align: center;
+    font-size: 12px;
+    height: 100px;
+    width: 80px;
+    vertical-align: middle;
+    line-height: 100px;
+    margin-right: 122.5px;
+
+}
+.block-home-structure .poles .lvp-1{
+    
+}
+.block-home-structure .poles .lvp-2{
+    
+}
+.block-home-structure .poles .lvp-3{
+    
+}
+.block-home-structure .poles .lvp-4{
+    margin-right: -50px;
+}
+
+
+.block-home-structure .base{
+    margin: 0;
+    padding: 0;
+     margin-top: 5px;
+ margin-left: -69px;
+     margin-right: -60px;
+
+}
+.block-home-structure .base .base-group{
+    margin: 0;
+    padding: 0;
+    width: 230px;
+      display: inline-block;
+      text-align: center;
+    /*background-color: #363636;*/
+}
+.block-home-structure .base .base-group.last{
+  margin-right: -70px;
+}
+.block-home-structure .base .base-group .base-item-group{
+    margin: 0;
+    padding: 0;
+}
+
+.block-home-structure .base .base-group .base-item-group .base-item{
+    background-color: #363636;
+    height: 60px;
+    line-height: 60px;
+    width: 72.9px;
+    display: inline-block;
+    font-size: 6px;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+
+    margin-top: 4px;
+    margin-right: 1px;
+    
+}
+.block-home-structure .base .base-group .base-item-group .base-item-line-group{
+    margin: 0;
+    padding: 0;
+}
+
+
