@@ -88,6 +88,10 @@ public class Model_ReportSectionItem : BaseModel<Model_ReportSectionItem>
     public string Short { get; set; }
     public string Detail { get; set; }
 
+    public string PeopleTxt { get; set; } = string.Empty;
+    public string CultureTxt { get; set; } = string.Empty;
+    public string CompetitionTxt { get; set; } = string.Empty;
+
     public string SectionTitle { get; set; }
 
     public Model_ReportSectionItem()
@@ -157,14 +161,14 @@ public class Model_ReportSectionItem : BaseModel<Model_ReportSectionItem>
 
         }
     }
-
+    
     public int Insert(Model_ReportSectionItem pr)
     {
         int ret = 0;
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportSectionItem (ResultSectionID,Title,Priority,Code,SUCID,Short,Detail) 
-VALUES(@ResultSectionID,@Title,@Priority,@Code,@SUCID,@Short,@Detail) SET @ResultItemID = SCOPE_IDENTITY()", cn);
+            SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportSectionItem (ResultSectionID,Title,Priority,Code,SUCID,Short,Detail,PeopleTxt,CultureTxt,CompetitionTxt) 
+VALUES(@ResultSectionID,@Title,@Priority,@Code,@SUCID,@Short,@Detail,@PeopleTxt,@CultureTxt,@CompetitionTxt) SET @ResultItemID = SCOPE_IDENTITY()", cn);
 
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = pr.Title;
             cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = pr.ResultSectionID;
@@ -174,6 +178,10 @@ VALUES(@ResultSectionID,@Title,@Priority,@Code,@SUCID,@Short,@Detail) SET @Resul
 
             cmd.Parameters.Add("@Short", SqlDbType.NVarChar).Value = pr.Short;
             cmd.Parameters.Add("@Detail", SqlDbType.NVarChar).Value = pr.Detail;
+
+            cmd.Parameters.Add("@PeopleTxt", SqlDbType.NVarChar).Value = pr.PeopleTxt;
+            cmd.Parameters.Add("@CultureTxt", SqlDbType.NVarChar).Value = pr.CultureTxt;
+            cmd.Parameters.Add("@CompetitionTxt", SqlDbType.NVarChar).Value = pr.CompetitionTxt;
             cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Direction = ParameterDirection.Output;
             cn.Open();
             if (ExecuteNonQuery(cmd) > 0)
@@ -192,7 +200,7 @@ VALUES(@ResultSectionID,@Title,@Priority,@Code,@SUCID,@Short,@Detail) SET @Resul
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand(@"UPDATE ReportSectionItem SET ResultSectionID=@ResultSectionID,Title=@Title,Code=@code,
-Priority=@Priority, Status=@Status , SUCID=@SUCID , Short=@short, Detail=@Detail WHERE ResultItemID=@ResultItemID ", cn);
+Priority=@Priority, Status=@Status , SUCID=@SUCID , Short=@short, Detail=@Detail ,PeopleTxt=@PeopleTxt,CultureTxt=@CultureTxt, CompetitionTxt=@CompetitionTxt WHERE ResultItemID=@ResultItemID ", cn);
 
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = pr.Title;
             cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = pr.ResultSectionID;
@@ -202,6 +210,11 @@ Priority=@Priority, Status=@Status , SUCID=@SUCID , Short=@short, Detail=@Detail
             cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = pr.ResultItemID;
             cmd.Parameters.Add("@Short", SqlDbType.NVarChar).Value = pr.Short;
             cmd.Parameters.Add("@Detail", SqlDbType.NVarChar).Value = pr.Detail;
+
+            cmd.Parameters.Add("@PeopleTxt", SqlDbType.NVarChar).Value = pr.PeopleTxt;
+            cmd.Parameters.Add("@CultureTxt", SqlDbType.NVarChar).Value = pr.CultureTxt;
+            cmd.Parameters.Add("@CompetitionTxt", SqlDbType.NVarChar).Value = pr.CompetitionTxt;
+
             cmd.Parameters.Add("@SUCID", SqlDbType.VarChar).Value = pr.SUCID;
             cn.Open();
             return ExecuteNonQuery(cmd) == 1;

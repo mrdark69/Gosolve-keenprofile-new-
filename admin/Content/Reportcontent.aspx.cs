@@ -60,6 +60,11 @@ public partial class _ReportContent : BasePage
 
                 txtDetail.Text = sub.Detail;
                 txtShort.Text = sub.Short;
+
+                txtPeople.Text = sub.PeopleTxt;
+                txtCulture.Text = sub.CultureTxt;
+                txtCompetition.Text = sub.CompetitionTxt;
+
                 //string comret = string.Empty;
                 //if (!string.IsNullOrEmpty(sub.Combind))
                 //{
@@ -212,9 +217,13 @@ public partial class _ReportContent : BasePage
             Code = txtSubCode.Text,
             SUCID = txtSubsectionID.Text,
             Short = txtShort.Text,
-            Detail= txtDetail.Text
+            Detail= txtDetail.Text,
+            PeopleTxt = txtDetail.Text,
+            CultureTxt = txtCulture.Text,
+            CompetitionTxt = txtCompetition.Text
 
         };
+
 
         Button btn = (Button)sender;
 

@@ -1,0 +1,257 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FAFAFA;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12pt;
+    
+}
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.page {
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 2cm;
+    margin: 1cm auto;
+    /*border: 1px #D3D3D3 solid;*/
+    /*border-radius: 5px;*/
+    /*background: white;*/
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.subpage {
+    position: relative;
+    padding: 1cm;
+    /*border: 5px red solid;*/
+    height: 256mm;
+    
+
+    /*outline: 2cm #FFEAEA solid;*/
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+@media print {
+    .page {
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+    }
+
+}
+.footer{
+    color: #fff;
+    font-size: 12px;
+   
+    position: absolute;
+ left: 50%;
+ margin-left: -100px;
+    top: 1000px;
+}
+
+/*.bg:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    height: inherit;
+    background: rgba(24,24,24,0.7);
+}*/
+@media print {
+
+}
+.bg-grey{
+    background-color: #37353a;
+}
+.txt-color-cream{
+    color: #fffee6 !important;
+}
+.txt-color-white{
+    color: #fff !important;
+}
+.bg{
+    background-image:url('http://cdn2.editmysite.com/images/editor/theme-background/stock/Skyscrapers.jpg');
+    height: 500px;
+    background-size: cover;
+    margin-top: -3cm;
+    margin-left: -3cm;
+    margin-right: -3cm;
+ 
+
+
+    background-repeat: no-repeat ;
+    background-position: 50% 50% ;
+    background-size: 100% ;
+    background-color: transparent ;
+    background-size: cover;
+ 
+}
+
+.bg-trans{
+     background: rgba(24,24,24,0.7);
+      height: 500px;
+      padding-top: 125px;
+
+}
+.paper-title{
+     background: rgba(24,24,24,0.5);
+     text-align: center;
+     padding: 70px 0 70px 0;
+
+}
+.paper-title h1{
+    font-size: 45px;
+}
+
+.paper-title h1,.paper-title h2{
+ margin: 0px;
+ padding: 0px;
+ font-family: 'Lato', sans-serif;
+font-weight: 300;
+    line-height: normal;
+
+}
+.paper-title h2{
+    margin-top: 20px;
+     font-size: 30px;
+}
+
+
+
+.first-page-des{
+    text-align: center;
+    padding-top: 200px
+    
+}
+.first-page-des h1{
+    margin: 0px;
+    padding: 0px;
+    font-size: 40px;
+}
+.first-page-des h2{
+        font-size: 30px;
+       margin: 0px;
+    padding: 0px;
+    margin-top: 40px;
+}
+.first-page-des h3{
+    font-style: italic;
+    font-size: 30px;
+     margin: 0px;
+    padding: 0px;
+
+}
+
+/*page 2 */
+
+.page-2-des{
+    padding-top: 350px;
+color: #fff;
+    font-weight: normal;
+}
+.page-2-des h1{
+    
+      font-style: italic;
+      font-size: 18px;
+      text-align: center;
+}
+.page-2-des h2{
+font-size: 18px;
+text-align: right;
+}
+
+/*page3*/
+
+.page-3-des{
+
+color: #fff;
+font-weight: normal;
+
+}
+.page-3-des h1{
+     font-family: 'Lato', sans-serif;
+     font-weight: 300;
+     margin-top: -3cm;
+    margin-left: -3cm;
+    margin-right: -3cm;
+    background-color: #000;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    font-size: 40px;
+}
+.page-3-des p{
+     margin-bottom: 40px;
+    font-size: 22px;
+}
+.page-3-des p span.num{
+    color: #d0e53d;
+    width: 200px;
+    text-align: center;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+
+    font-size: 30px;
+
+}
+.page-3-des p.p3-title{
+    margin-top: 80px;
+     color: #d0e53d;
+     font-size: 30px;
+}
+.page-3-des p.p3-title-2{
+     color: #d0e53d;
+      font-size: 30px;
+}
+
+
+
+/**/
+
+/*page4*/
+.page-4-des{
+
+}
+.vertical-text {
+
+    /*transform-origin: left top 0;*/
+}
+.page-4-des h1{
+    position: relative;
+     font-family: 'Lato', sans-serif;
+     font-weight: 300;
+    padding: 0px;
+    margin: 0px;
+text-align: center;
+       
+        color: #fff;
+        transform: rotate(-90deg);
+    width: 29.5cm;
+    height: 93px;
+          margin-top: 10.05cm;
+          /*margin-left: 500px;*/
+         
+          font-size: 73px;
+          line-height: 167px;
+           z-index: 999;
+}
+.page-4-des .page-4-right{
+    position: absolute;
+    right: -76px;
+    top: -75px;
+ background-color: #000;
+  width: 4cm;
+    min-height: 29.6cm;
+    z-index: 0;
+}

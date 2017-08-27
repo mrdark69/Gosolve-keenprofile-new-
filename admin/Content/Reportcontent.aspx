@@ -255,6 +255,31 @@ margin-right:5px;
                                        
                                     </div>
                                 </div>
+
+
+                                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="subpri" CssClass="col-md-2 control-label">People</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="txtPeople" CssClass="form-control" TextMode="MultiLine" Rows="4" />
+                                       
+                                    </div>
+                                </div>
+
+                                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="subpri" CssClass="col-md-2 control-label">Culture</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="txtCulture" CssClass="form-control" TextMode="MultiLine" Rows="4" />
+                                       
+                                    </div>
+                                </div>
+
+                                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="subpri" CssClass="col-md-2 control-label">Competition</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="txtCompetition" CssClass="form-control" TextMode="MultiLine" Rows="4" />
+                                       
+                                    </div>
+                                </div>
                            
      
                                     <div class="form-group">
