@@ -142,6 +142,9 @@ public partial class Users_UserAssCalculation : BasePage
                 retF2.Append("<td>");
                 retF2.Append("<p>" + i.Score + "</p>");
                 retF2.Append("</td>");
+                retF2.Append("<td>");
+                retF2.Append("<p>" + i.Score_new + "</p>");
+                retF2.Append("</td>");
                 retF2.Append("</tr>");
             }
 

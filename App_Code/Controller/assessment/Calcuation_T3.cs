@@ -39,6 +39,8 @@ public class Calculation_T3
         }
     }
 
+    public bool IsDup { get; set; }
+
 
     public Calculation_T3(int intResultSectionID, int TransactionID)
     {
@@ -76,14 +78,21 @@ public class Calculation_T3
             string map = item.SUCID;
             string[] arrmap = map.Split(',');
             decimal score = 0;
+            int TASID = 0;
+            string strDetail = string.Empty;
             foreach (string m in arrmap)
             {
                 List<Model_UsersAssessment> ass = this.R_UserAss_B.Where(o => o.SUCID == int.Parse(m)).ToList();
 
-
+                TASID = ass.Select(r => r.ASID).First();
                 score = score + ass.Take(3).Sum(t => t.Score);
                 score = score - ass.Skip(3).Sum(t => t.Score);
 
+
+                strDetail = ass.Skip(0).Take(1).Select(t => t.Score).FirstOrDefault() +
+                    "," + ass.Skip(1).Take(1).Select(t => t.Score).FirstOrDefault() +
+                    "," + ass.Skip(2).Take(1).Select(t => t.Score).FirstOrDefault() +
+                    "," + ass.Skip(3).Take(1).Select(t => t.Score).FirstOrDefault();
             }
 
            
@@ -93,7 +102,10 @@ public class Calculation_T3
                 ResultItemID = item.ResultItemID,
                 ResultItemTitle = item.Title,
                 TransactionID = this.TransactionID,
-                Score = score
+                Score = score,
+                Score_new  = score,
+                TASID = TASID,
+                Detail = strDetail
             });
 
 
@@ -110,7 +122,7 @@ public class Calculation_T3
         double  ret = CalculateStdDev(result);
         this.SD = (decimal)Math.Round(ret);
 
-        return rlist.OrderByDescending(o => o.Score).ToList();
+        return ReviewResultDup(rlist).OrderByDescending(o => o.Score).ToList();
     }
 
     public bool Calnow()
@@ -134,6 +146,121 @@ public class Calculation_T3
       
         return ret;
     }
+
+
+
+    public List<Model_ReportItemResult> ReviewResultDup(List<Model_ReportItemResult> rlist)
+    {
+        //var query = rlist.GroupBy(x => x.Score)
+        //     .Where(g => g.Count() > 1)
+        //     .Select(y => new { Element = y.Key, Counter = y.Count() })
+        //     .ToList();
+        List<Model_ReportItemResult> newlist = new List<Model_ReportItemResult>();
+
+        Dictionary<decimal, int> query = rlist.GroupBy(x => x.Score)
+              .Where(g => g.Count() > 1)
+              .ToDictionary(x => x.Key, y => y.Count());
+
+
+
+       List<Model_ReportSectionItem> item =   this.ReportSectionItem;
+
+       List<Model_UsersAssessment> usr = this.R_UserAss_B;
+
+        List<Model_ReportItemResult> dupwinList = new List<Model_ReportItemResult>();
+
+        foreach (KeyValuePair<decimal,int> q in query)
+        {
+
+            decimal scoredup = q.Key;
+            int totaldup = q.Value;
+
+
+            List<Model_ReportItemResult> dup = rlist.Where(d => d.Score == q.Key).ToList();
+
+            int[,] arr = new int[totaldup, 4];
+            for (int i = 0; i < totaldup; i++)
+            {
+
+                string dd = dup[i].Detail;
+                string[] arrde = dd.Split(',');
+               
+                for (int y = 0; y < arrde.Length; y++)
+                {
+                    arr[i, y] = int.Parse(arrde[y]);
+                }
+            }
+
+            int intdexdup = 0;
+            int intdex = 0;
+
+            for (int i = 0; i < totaldup; i++)
+            {
+
+                for (int ii = 0; i < totaldup; ii++)
+                {
+                   if( arr[i, 3] != arr[ii, 3] )
+                   {
+                        intdexdup = arr[i, 3] < arr[ii, 3] ? i : ii;
+                        intdex = 3;
+                        break;
+                   }
+                    if (arr[i, 0] != arr[ii, 0])
+                    {
+                        intdexdup = arr[i, 0] < arr[ii, 0] ? i : ii;
+                        intdex = 0;
+                        break;
+                    }
+                    if (arr[i, 1] != arr[ii, 1])
+                    {
+                        intdexdup = arr[i, 1] < arr[ii, 1] ? i : ii;
+                        intdex = 1;
+                        break;
+                    }
+                    if (arr[i, 2] != arr[ii, 2])
+                    {
+                        intdexdup = arr[i, 2] < arr[ii, 2] ? i : ii;
+                        intdex = 2;
+                        break;
+                    }
+                }
+                   
+            }
+
+            Model_ReportItemResult dupwin = dup[intdexdup];
+            dupwinList.Add(dupwin);
+        }
+
+
+
+        foreach(Model_ReportItemResult i in rlist)
+        {
+            newlist.Add(new Model_ReportItemResult
+            {
+                ResultSectionID = this.ResultSectionID,
+                ResultItemID = i.ResultItemID,
+                ResultItemTitle = i.ResultItemTitle,
+                TransactionID = this.TransactionID,
+                Score = i.Score,
+                Score_new = i.Score,
+                TASID = i.TASID,
+                Detail = i.Detail
+            });
+        }
+        //if (query.Count > 0)
+        //{
+        //    this.IsDup = true;
+        //    return fscore;
+        //}
+        //else
+        //{
+        //    return fscore;
+        //}
+
+        return newlist;
+    }
+
+
 
     public List<Model_UsersAssessment> GetUserAss(char code)
     {

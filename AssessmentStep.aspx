@@ -414,6 +414,12 @@
                     //alert(currentIndex);
                     progress(currentIndex);
                 },
+              
+                labels:
+                {
+                   
+                    finish: "ดำเนินการต่อ",
+                },
                 onStepChanging: function (event, currentIndex, newIndex) {
 
                     if (currentIndex > newIndex) {
@@ -509,9 +515,11 @@
                  if (data == "True") {
                      window.location.href = "Assessmentstep.aspx?success=done";
                  }
-                 if (data == "method_invalid") {
-                     staffAuthenMethod();
+
+                 if (data == "dup") {
+
                  }
+
              });
          }
          function progress(current) {
