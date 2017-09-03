@@ -35,6 +35,8 @@ public partial class Users_UserAssCalculation : BasePage
                 Response.Redirect(Request.Url.ToString());
         }
 
+        Response.Redirect(Request.Url.ToString());
+
           
     }
 
@@ -67,7 +69,7 @@ public partial class Users_UserAssCalculation : BasePage
             foreach (Model_UsersAssessment ass in userAss)
             {
                
-                    ret.Append("<tr>");
+                    ret.Append("<tr class=\"focuss\" data-fo=\""+ ass.SubSectionTitle + "\">");
                     ret.Append("<td>" + ass.SubSectionTitle + "</td>");
                     ret.Append("<td>" + ass.Score + "</td>");
                     ret.Append("</tr>");
@@ -136,6 +138,9 @@ public partial class Users_UserAssCalculation : BasePage
             foreach (Model_ReportItemResult i in fscore)
             {
                 retF2.Append("<tr>");
+                retF2.Append("<td>");
+                retF2.Append("<p><input type=\"checkbox\" class=\"check_focus\" value=\""+ i.ResultItemTitle + "\" /></p>");
+                retF2.Append("</td>");
                 retF2.Append("<td>");
                 retF2.Append("<p>" + i.ResultItemTitle + "</p>");
                 retF2.Append("</td>");

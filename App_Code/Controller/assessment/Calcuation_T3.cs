@@ -84,7 +84,7 @@ public class Calculation_T3
             {
                 List<Model_UsersAssessment> ass = this.R_UserAss_B.Where(o => o.SUCID == int.Parse(m)).ToList();
 
-                TASID = ass.Select(r => r.ASID).First();
+                TASID = ass.Select(r => r.TASID).First();
                 score = score + ass.Take(3).Sum(t => t.Score);
                 score = score - ass.Skip(3).Sum(t => t.Score);
 
@@ -122,7 +122,7 @@ public class Calculation_T3
         double  ret = CalculateStdDev(result);
         this.SD = (decimal)Math.Round(ret);
 
-        return ReviewResultDup(rlist).OrderByDescending(o => o.Score).ToList();
+        return ReviewResultDup_new(rlist).OrderByDescending(o => o.Score_new).ToList();
     }
 
     public bool Calnow()
@@ -147,7 +147,177 @@ public class Calculation_T3
         return ret;
     }
 
+    public List<Model_ReportItemResult> ReviewResultDup_new(List<Model_ReportItemResult> rlist)
+    {
 
+
+        //Group Dup list
+        Dictionary<decimal, int> GroupDup = rlist.GroupBy(x => (decimal)x.Score_new)
+             .Where(g => g.Count() > 1)
+             .ToDictionary(x => x.Key, y => y.Count());
+
+    
+
+        //int GroupDupCount = GroupDup.Count;
+       // int factorcheck = rlist.Where(o => !o.Factor.HasValue).ToList().Count();
+        if (GroupDup.Count > 0 )
+        {
+            // assign IsDup = true;
+            this.IsDup = true;
+           // List<Model_ReportItemResult> newlist_raw = rlist;
+
+            int GroupDupCount = GroupDup.Count;
+          
+            int totalReview = 1;
+            decimal num = 0.99M;
+            while (GroupDupCount > 0 && totalReview < 18)
+            {
+                List<Model_ReportItemResult> dupwinList = new List<Model_ReportItemResult>();
+               
+               
+                //loop all dup group
+                foreach (KeyValuePair<decimal, int> q in GroupDup)
+                {
+                    decimal scoredup = q.Key;
+                    int totaldup = q.Value;
+
+                    // define result each dup group to list
+                    List<Model_ReportItemResult> dupfocus = rlist.Where(d => d.Score_new == q.Key).OrderByDescending(r => r.Score_new).ToList();
+                    
+
+                    bool onprocess = true;
+                    //check g4
+                    // List<Model_ReportItemResult> listnew = new List<Model_ReportItemResult>();
+
+                    if (onprocess)
+                    {
+                       // decimal num = 0.99M;
+                        foreach (Model_ReportItemResult dup in dupfocus.OrderBy(d => int.Parse(d.G4)))
+                        {
+                            int min = int.Parse(dupfocus.Min(m => m.G4));
+                            int count = dupfocus.Where(o => (int.Parse(o.G4)) == min).Count();
+                            if (count != dupfocus.Count())
+                            {
+                                if (min == int.Parse(dup.G4))
+                                {
+                                    Model_ReportItemResult gg = dup;
+                                    gg.Factor = num;
+                                    //int v = int.Parse(dup.G4);
+                                    dupwinList.Add(gg);
+                                    onprocess = false;
+                                    //break;
+                                }
+                            }
+
+                            num = num - (decimal)0.01;
+                        }
+                    }
+
+                    if (onprocess)
+                    {
+                       // decimal num = 0.99M;
+                        foreach (Model_ReportItemResult dup in dupfocus.OrderByDescending(d => int.Parse(d.G1)))
+                        {
+                            int max = int.Parse(dupfocus.Max(m => m.G1));
+                            int count = dupfocus.Where(o => (int.Parse(o.G1)) == max).Count();
+                            if (count != dupfocus.Count())
+                            {
+                                if (max == int.Parse(dup.G1))
+                                {
+                                    Model_ReportItemResult gg = dup;
+                                    gg.Factor = num;
+                                    //int v = int.Parse(dup.G4);
+                                    dupwinList.Add(gg);
+                                    onprocess = false;
+                                    //break;
+                                }
+                            }
+
+                            num = num - (decimal)0.01;
+                        }
+                    }
+
+                    if (onprocess)
+                    {
+                       // decimal num = 0.99M;
+                        foreach (Model_ReportItemResult dup in dupfocus.OrderByDescending(d => int.Parse(d.G2)))
+                        {
+                            int max = int.Parse(dupfocus.Max(m => m.G2));
+                            int count = dupfocus.Where(o => (int.Parse(o.G2)) == max).Count();
+                            if (count != dupfocus.Count())
+                            {
+                                if (max == int.Parse(dup.G2))
+                                {
+                                    Model_ReportItemResult gg = dup;
+                                    gg.Factor = num;
+                                    //int v = int.Parse(dup.G4);
+                                    dupwinList.Add(gg);
+                                    onprocess = false;
+                                    //break;
+                                }
+                            }
+
+                            num = num - (decimal)0.01;
+                        }
+                    }
+
+
+                    if (onprocess)
+                    {
+                        //decimal num = 0.99M;
+                        foreach (Model_ReportItemResult dup in dupfocus.OrderByDescending(d => int.Parse(d.G3)))
+                        {
+                            int max = int.Parse(dupfocus.Max(m => m.G3));
+                            int count = dupfocus.Where(o => (int.Parse(o.G3)) == max).Count();
+                            if (count != dupfocus.Count())
+                            {
+                                if (max == int.Parse(dup.G3))
+                                {
+                                    Model_ReportItemResult gg = dup;
+                                    gg.Factor = num;
+                                    //int v = int.Parse(dup.G4);
+                                    dupwinList.Add(gg);
+                                    onprocess = false;
+                                    //break;
+                                }
+                            }
+
+                            num = num - (decimal)0.01;
+                        }
+                    }
+
+
+
+                }
+
+
+
+                foreach (Model_ReportItemResult i in dupwinList)
+                {
+                   var obj = rlist.FirstOrDefault(o => o.ResultItemID == i.ResultItemID);
+                    if (obj != null) obj.Score_new = i.Score_new + (decimal)i.Factor;
+                }
+
+                // newlist_raw = newlist;
+                GroupDup = rlist.GroupBy(x => (decimal)x.Score_new)
+                     .Where(g => g.Count() > 1)
+                     .ToDictionary(x => x.Key, y => y.Count());
+                GroupDupCount = dupwinList.Count();
+                totalReview = totalReview + 1;
+                num = num - (decimal)0.01;
+                //if (GroupDupCount == 0 || totalReview == 18)
+                //{
+                //    result = newlist_raw;
+                //}
+            }
+           
+
+        }
+        
+
+
+        return rlist;
+    }
 
     public List<Model_ReportItemResult> ReviewResultDup(List<Model_ReportItemResult> rlist)
     {
@@ -177,57 +347,64 @@ public class Calculation_T3
 
 
             List<Model_ReportItemResult> dup = rlist.Where(d => d.Score == q.Key).ToList();
-
-            int[,] arr = new int[totaldup, 4];
-            for (int i = 0; i < totaldup; i++)
-            {
-
-                string dd = dup[i].Detail;
-                string[] arrde = dd.Split(',');
-               
-                for (int y = 0; y < arrde.Length; y++)
-                {
-                    arr[i, y] = int.Parse(arrde[y]);
-                }
-            }
-
             int intdexdup = 0;
             int intdex = 0;
 
-            for (int i = 0; i < totaldup; i++)
+            while (dup.Count > 1)
             {
-
-                for (int ii = 0; i < totaldup; ii++)
+                int[,] arr = new int[totaldup, 4];
+                for (int i = 0; i < totaldup; i++)
                 {
-                   if( arr[i, 3] != arr[ii, 3] )
-                   {
-                        intdexdup = arr[i, 3] < arr[ii, 3] ? i : ii;
-                        intdex = 3;
-                        break;
-                   }
-                    if (arr[i, 0] != arr[ii, 0])
+
+                    string dd = dup[i].Detail;
+                    string[] arrde = dd.Split(',');
+
+                    for (int y = 0; y < arrde.Length; y++)
                     {
-                        intdexdup = arr[i, 0] < arr[ii, 0] ? i : ii;
-                        intdex = 0;
-                        break;
-                    }
-                    if (arr[i, 1] != arr[ii, 1])
-                    {
-                        intdexdup = arr[i, 1] < arr[ii, 1] ? i : ii;
-                        intdex = 1;
-                        break;
-                    }
-                    if (arr[i, 2] != arr[ii, 2])
-                    {
-                        intdexdup = arr[i, 2] < arr[ii, 2] ? i : ii;
-                        intdex = 2;
-                        break;
+                        arr[i, y] = int.Parse(arrde[y]);
                     }
                 }
-                   
+
+               
+
+                for (int i = 0; i < totaldup; i++)
+                {
+
+                    for (int ii = 0; i < totaldup; ii++)
+                    {
+                        if (arr[i, 3] != arr[ii, 3])
+                        {
+                            intdexdup = arr[i, 3] < arr[ii, 3] ? i : ii;
+                            intdex = 3;
+                            break;
+                        }
+                        if (arr[i, 0] != arr[ii, 0])
+                        {
+                            intdexdup = arr[i, 0] > arr[ii, 0] ? i : ii;
+                            intdex = 0;
+                            break;
+                        }
+                        if (arr[i, 1] != arr[ii, 1])
+                        {
+                            intdexdup = arr[i, 1] > arr[ii, 1] ? i : ii;
+                            intdex = 1;
+                            break;
+                        }
+                        if (arr[i, 2] != arr[ii, 2])
+                        {
+                            intdexdup = arr[i, 2] > arr[ii, 2] ? i : ii;
+                            intdex = 2;
+                            break;
+                        }
+                    }
+
+                }
             }
 
+           
+
             Model_ReportItemResult dupwin = dup[intdexdup];
+            dup.RemoveAt(intdexdup);
             dupwinList.Add(dupwin);
         }
 
@@ -235,6 +412,10 @@ public class Calculation_T3
 
         foreach(Model_ReportItemResult i in rlist)
         {
+            decimal newScore = i.Score;
+            Model_ReportItemResult ff = dupwinList.FirstOrDefault(r => r.ResultItemID == i.ResultItemID);
+            if (ff != null)
+                newScore = ff.Score + (decimal)0.99;
             newlist.Add(new Model_ReportItemResult
             {
                 ResultSectionID = this.ResultSectionID,
@@ -242,7 +423,7 @@ public class Calculation_T3
                 ResultItemTitle = i.ResultItemTitle,
                 TransactionID = this.TransactionID,
                 Score = i.Score,
-                Score_new = i.Score,
+                Score_new = newScore,
                 TASID = i.TASID,
                 Detail = i.Detail
             });

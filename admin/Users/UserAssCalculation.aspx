@@ -174,6 +174,24 @@
         
         $(document).ready(function () {
 
+            $('.check_focus').on('click', function () {
+
+                if ($(this).is(':checked')) {
+                    var f = $('tr.focuss');
+                    var d = $(this).val();
+                    $.each(f, function () {
+                        if ($(this).data('fo') == d) {
+                            $(this).css('background-color', '#f1f442');
+                        }
+                    });
+                } else {
+                    $.each(f, function () {
+                        if ($(this).data('fo') == d) {
+                            $(this).removeAttr('style');
+                        }
+                    });
+                }
+            })
            
             $.validator.setDefaults({
                 onkeyup: function () {

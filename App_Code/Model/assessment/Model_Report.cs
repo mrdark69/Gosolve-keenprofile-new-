@@ -29,6 +29,29 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
 
     public string Detail { get; set; } = string.Empty;
 
+
+    private string[] arr_raw = null;
+    public string [] ArrRaw
+    {
+        get
+        {
+            if(arr_raw == null && !String.IsNullOrEmpty(this.Detail))
+            {
+                arr_raw = this.Detail.Trim().Split(',');
+            }
+
+            return arr_raw;
+        }
+    }
+
+    public string G1 { get { return this.ArrRaw[0]; } }
+    public string G2 { get { return this.ArrRaw[1]; } }
+    public string G3 { get { return this.ArrRaw[2]; } }
+    public string G4 { get { return this.ArrRaw[3]; } }
+
+    public decimal? Factor { get; set; }
+
+
     public string ResultItemTitle { get; set; }
 
     public bool InsertReportItemResultBulk(List<Model_ReportItemResult> reList)
