@@ -122,6 +122,25 @@ public class Calculation_T3
         double  ret = CalculateStdDev(result);
         this.SD = (decimal)Math.Round(ret);
 
+
+        //Supream logic
+        foreach (Model_ReportItemResult i in rlist)
+        {
+            if(i.Score > this.Above)
+            {
+                var obj = rlist.FirstOrDefault(o => o.ResultItemID == i.ResultItemID);
+                if (obj != null) obj.IsAbove = true;
+            }
+
+            if(i.Score < this.Below)
+            {
+                var obj = rlist.FirstOrDefault(o => o.ResultItemID == i.ResultItemID);
+                if (obj != null) obj.IsBelow = true;
+            }
+            
+        }
+
+
         return ReviewResultDup_new(rlist).OrderByDescending(o => o.Score_new).ToList();
     }
 

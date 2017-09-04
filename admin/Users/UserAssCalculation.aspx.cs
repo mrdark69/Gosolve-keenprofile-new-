@@ -137,7 +137,14 @@ public partial class Users_UserAssCalculation : BasePage
 
             foreach (Model_ReportItemResult i in fscore)
             {
-                retF2.Append("<tr>");
+                string c = string.Empty;
+                if(i.IsAbove)
+                    c = "Style=\"background-color:#d0c6ff;color:#0e014c\"";
+               
+                if(i.IsBelow)
+                    c = "Style=\"background-color:#d8b5a6;color:#7c1800\"";
+
+                retF2.Append("<tr "+c+">");
                 retF2.Append("<td>");
                 retF2.Append("<p><input type=\"checkbox\" class=\"check_focus\" value=\""+ i.ResultItemTitle + "\" /></p>");
                 retF2.Append("</td>");

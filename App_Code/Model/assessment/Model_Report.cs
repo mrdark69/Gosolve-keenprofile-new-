@@ -30,6 +30,8 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
     public string Detail { get; set; } = string.Empty;
 
 
+    public bool IsDup { get; set; } = false;
+
     private string[] arr_raw = null;
     public string [] ArrRaw
     {
@@ -63,8 +65,8 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
             foreach (Model_ReportItemResult re in reList)
             {
                 SqlCommand cmd = new SqlCommand(@"DELETE FROM ReportItemResult WHERE ResultSectionID=@ResultSectionID AND ResultItemID=@ResultItemID AND TransactionID=@TransactionID;
-                INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,Detail) 
-                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@Detail)", cn);
+                INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,Detail,Factor,IsDup) 
+                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@Detail,@Factor,@IsDup)", cn);
                
                 cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = re.ResultSectionID;
                 cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = re.ResultItemID;
@@ -81,6 +83,15 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                     cmd.Parameters.Add("@TASID", SqlDbType.Int).Value = re.TASID;
                 else
                     cmd.Parameters.AddWithValue("@TASID", DBNull.Value);
+
+
+                if (re.Factor.HasValue)
+                    cmd.Parameters.Add("@Factor", SqlDbType.Decimal).Value = re.Factor;
+                else
+                    cmd.Parameters.AddWithValue("@Factor", DBNull.Value);
+
+
+                cmd.Parameters.Add("@IsDup", SqlDbType.Int).Value = re.IsDup;
 
                 cmd.Parameters.Add("@IsAbove", SqlDbType.Bit).Value = re.IsAbove;
                 cmd.Parameters.Add("@IsBelow", SqlDbType.Bit).Value = re.IsBelow;
@@ -101,8 +112,8 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,Score_new,TASID,Detail) 
-                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@Score_new,@TASID,@Detail)", cn);
+            SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,Score_new,TASID,Detail,Factor,IsDup) 
+                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@Score_new,@TASID,@Detail,@Factor,@IsDup)", cn);
             cn.Open();
             cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = re.ResultSectionID;
             cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = re.ResultItemID;
@@ -117,6 +128,13 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                 cmd.Parameters.Add("@TASID", SqlDbType.Int).Value = re.TASID;
             else
                 cmd.Parameters.AddWithValue("@TASID", DBNull.Value);
+
+            if (re.Factor.HasValue)
+                cmd.Parameters.Add("@Factor", SqlDbType.Decimal).Value = re.Factor;
+            else
+                cmd.Parameters.AddWithValue("@Factor", DBNull.Value);
+
+            cmd.Parameters.Add("@IsDup", SqlDbType.Int).Value = re.IsDup;
 
 
             cmd.Parameters.Add("@Detail", SqlDbType.VarChar).Value = re.Detail;
