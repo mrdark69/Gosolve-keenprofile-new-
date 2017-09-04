@@ -181,8 +181,7 @@ public class Calculation_T3
        // int factorcheck = rlist.Where(o => !o.Factor.HasValue).ToList().Count();
         if (GroupDup.Count > 0 )
         {
-            // assign IsDup = true;
-            this.IsDup = true;
+           
            // List<Model_ReportItemResult> newlist_raw = rlist;
 
             int GroupDupCount = GroupDup.Count;
@@ -191,6 +190,8 @@ public class Calculation_T3
             decimal num = 0.99M;
             while (GroupDupCount > 0 && totalReview < 18)
             {
+                // assign IsDup = true;
+                this.IsDup = true;
                 List<Model_ReportItemResult> dupwinList = new List<Model_ReportItemResult>();
                
                
@@ -203,6 +204,12 @@ public class Calculation_T3
                     // define result each dup group to list
                     List<Model_ReportItemResult> dupfocus = rlist.Where(d => d.Score_new == q.Key).OrderByDescending(r => r.Score_new).ToList();
                     
+                    //Check Sup Flag
+                    foreach(Model_ReportItemResult dup in dupfocus)
+                    {
+                        var obj = dupfocus.FirstOrDefault(o => o.ResultItemID == dup.ResultItemID);
+                        if (obj != null) obj.IsDup = true;
+                    }
 
                     bool onprocess = true;
                     //check g4
@@ -221,6 +228,7 @@ public class Calculation_T3
                                 {
                                     Model_ReportItemResult gg = dup;
                                     gg.Factor = num;
+                                    gg.IsDup = false;
                                     //int v = int.Parse(dup.G4);
                                     dupwinList.Add(gg);
                                     onprocess = false;
@@ -245,6 +253,7 @@ public class Calculation_T3
                                 {
                                     Model_ReportItemResult gg = dup;
                                     gg.Factor = num;
+                                    gg.IsDup = false;
                                     //int v = int.Parse(dup.G4);
                                     dupwinList.Add(gg);
                                     onprocess = false;
@@ -269,6 +278,7 @@ public class Calculation_T3
                                 {
                                     Model_ReportItemResult gg = dup;
                                     gg.Factor = num;
+                                    gg.IsDup = false;
                                     //int v = int.Parse(dup.G4);
                                     dupwinList.Add(gg);
                                     onprocess = false;
@@ -294,6 +304,7 @@ public class Calculation_T3
                                 {
                                     Model_ReportItemResult gg = dup;
                                     gg.Factor = num;
+                                    gg.IsDup = false;
                                     //int v = int.Parse(dup.G4);
                                     dupwinList.Add(gg);
                                     onprocess = false;
@@ -322,6 +333,11 @@ public class Calculation_T3
                      .Where(g => g.Count() > 1)
                      .ToDictionary(x => x.Key, y => y.Count());
                 GroupDupCount = dupwinList.Count();
+                if (GroupDupCount > 0)
+                    this.IsDup = true;
+                else
+                    this.IsDup = false;
+
                 totalReview = totalReview + 1;
                 num = num - (decimal)0.01;
                 //if (GroupDupCount == 0 || totalReview == 18)
