@@ -12,6 +12,7 @@ public partial class ajax_save_assessment : BasePageFront
         if (!this.Page.IsPostBack)
         {
             bool IsCom = false;
+            int ret = 0;
             if (!string.IsNullOrEmpty(Request.Form["ctl00$MainContent$heUserID"]))
             {
                 //try
@@ -195,9 +196,9 @@ public partial class ajax_save_assessment : BasePageFront
                     // assessment is recorded!
                     IsCom = true;
 
-
+             
                     if (IsCom)
-                        IsCom = CalculationController.CalculateActionStart(tsid);
+                    ret = CalculationController.CalculateActionStart(tsid);
                 //}
                 //catch(Exception ex)
                 //{
@@ -209,9 +210,22 @@ public partial class ajax_save_assessment : BasePageFront
                
 
             }
-            
 
-           
+            string strRet = "True";
+            switch (ret)
+            {
+                case -1:
+                    strRet = "False";
+                    break;
+                case 0:
+                    strRet = "True";
+                    break;
+                default:
+                    strRet = ret.ToString();
+                    break;
+            }
+
+
 
             Response.Write(IsCom.ToString());
             Response.End();

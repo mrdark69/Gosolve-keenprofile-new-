@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.User1.Master" AutoEventWireup="true" CodeFile="AssessmentStep.aspx.cs" Inherits="_AssessmentStep" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.User1.Master" AutoEventWireup="true" CodeFile="AssessmentStepCheck.aspx.cs" Inherits="__AssessmentStepCheck" %>
 
 <asp:Content ID="HeaderScript" ContentPlaceHolderID="HeaderScript" runat="server">
     <style type="text/css">
@@ -514,11 +514,11 @@
              $.post("ajax_save_assessment.aspx", post, function (data) {
                  if (data == "True") {
                      window.location.href = "Assessmentstep.aspx?success=done";
-                 } else {
-                     window.location.href = "AssessmentStepCheck.aspx?ts=" + data;
                  }
 
-                
+                 if (data == "dup") {
+
+                 }
 
              });
          }

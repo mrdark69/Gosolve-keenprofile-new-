@@ -29,9 +29,9 @@ public partial class Users_UserAssCalculation : BasePage
         if (!string.IsNullOrEmpty(Request.QueryString["ts"]))
         {
             int tsID = int.Parse(Request.QueryString["ts"]);
-            bool IsCom = CalculationController.CalculateActionStart(tsID);
+            int IsCom = CalculationController.CalculateActionStart(tsID);
 
-            if (IsCom)
+            if (IsCom == 0)
                 Response.Redirect(Request.Url.ToString());
         }
 

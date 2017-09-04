@@ -21,9 +21,9 @@ public class CalculationController
         //
     }
 
-    public static bool CalculateActionStart(int intTransactionID)
+    public static int CalculateActionStart(int intTransactionID)
     {
-        bool ret = false;
+        int ret = -1;
         Model_ReportSection Rs = new Model_ReportSection();
 
         List<Model_ReportSection> Rslist = Rs.GetListActive();
@@ -38,17 +38,25 @@ public class CalculationController
                     //T1 Working Philosophies
                     case 1:
                         Calculation_T1 cal1 = new Calculation_T1(item.ResultSectionID , intTransactionID);
-                        ret = cal1.Calnow();
+                        if (cal1.Calnow())
+                            ret = 0;
                         break;
                     //T2 Working Traits
                     case 2:
                         Calculation_T2 cal2 = new Calculation_T2(item.ResultSectionID, intTransactionID);
-                        ret = cal2.Calnow();
+                    
+                        if (cal2.Calnow())
+                            ret = 0;
                         break;
                     //T3 Working Geniuses
                     case 3:
                         Calculation_T3 cal3 = new Calculation_T3(item.ResultSectionID, intTransactionID);
-                        ret = cal3.Calnow();
+                        if (cal3.Calnow())
+                            ret = 0;
+
+
+                        if (!cal3.IsDup)
+                            ret = cal3.TransactionID;
                         break;
                     //T4 nothing ???
                     case 4:
@@ -57,9 +65,7 @@ public class CalculationController
             }
         }
 
-
        
-        
 
         return ret;
     }
