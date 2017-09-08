@@ -145,6 +145,41 @@ public class Calculation_T2
         }
 
 
+
+
+        Dictionary<decimal, int> GroupDupRecheck = rlist.GroupBy(x => (decimal)x.Score)
+          .Where(g => g.Count() > 1)
+          .ToDictionary(x => x.Key, y => y.Count());
+
+        if (GroupDupRecheck.Count > 0)
+        {
+            Model_UsersAssessment hforcus = this.R_UserAss_E.OrderByDescending(o => o.Priority).FirstOrDefault();
+            List<Model_UsersAssChoice> chfocus = this.R_UserAssChoice_E.Where(o => o.TASID == hforcus.TASID).OrderByDescending(r => r.Score).ToList();
+
+            decimal startfactor = 0.99M;
+            foreach (KeyValuePair<decimal, int> q in GroupDupRecheck)
+            {
+                List<Model_ReportItemResult> dupfocus = rlist.Where(d => d.Score == q.Key).OrderByDescending(r => r.Score).ToList();
+
+                //foreach (Model_ReportItemResult item in dupfocus.Where(o => o.IsDup).OrderBy(o => o.UserRank))
+                //{
+                //    var obj = rlist.FirstOrDefault(o => o.ResultItemID == item.ResultItemID);
+                //    if (obj != null) obj.Score_new = obj.Score_new + startfactor;
+
+                //    startfactor = startfactor - (decimal)0.01;
+                //}
+                foreach (Model_UsersAssChoice item in chfocus)
+                {
+                    var obj = rlist.FirstOrDefault(o => o.TASCID == item.TASCID);
+                    if (obj != null) obj.Score_new = obj.Score_new + startfactor;
+                    startfactor = startfactor - (decimal)0.01;
+                }
+
+            }
+
+
+        }
+
         return rlist;
     }
 
