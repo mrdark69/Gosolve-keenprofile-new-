@@ -31,174 +31,109 @@ public partial class __AssessmentStepCheck : BasePageFront
                     
 
 
-                   
-                        
 
-                    //Get Main Intro
-                    Model_AssesIntro intro = new Model_AssesIntro();
-                    intro = intro.GetIntro();
-
-
-                    //Get Job Function
-                    Model_CJF cjf = new Model_CJF();
-                    List<Model_CJF> cjflist = cjf.GetCJFeAll();
-
-                    Model_UserCJF cjflistUser = new Model_UserCJF();
-                    List<Model_UserCJF> cjfuserChecked = cjflistUser.GetListUsercjf(u.UserID);
-
-                   //Get Functional Competencies
-                    Model_FC fc = new Model_FC();
-                    List<Model_FC> fclist = fc.GetFCAll();
-
-                    Model_UserFC fcuser = new Model_UserFC();
-                    List<Model_UserFC> fcuserchecked = fcuser.GetListUserFc(u.UserID);
-
-                    //Get Section 
-                    Model_AsSection section = new Model_AsSection();
-                    List<Model_AsSection> sectionlist = section.GetListSection(true);
-
-                    //Get Assessment
-                    Model_Assessment ass = new Model_Assessment();
-                    List<Model_Assessment> asslist = ass.GetAssessmentAll();
-
-                    //Get Country
-                    Model_Country c = new Model_Country();
-                    List<Model_Country> ccountry = c.GetAllCountry();
-
-
-                    dropNation.DataSource = ccountry;
-                    dropNation.DataTextField = "DropValue";
-                    dropNation.DataValueField = "ID";
-                    dropNation.DataBind();
-
-                    dropNation.SelectedValue = "211";
-
-
-                    StringBuilder strcjf  = new StringBuilder();
-                    StringBuilder strfc = new StringBuilder();
-
-
-                    strcjf.Append("<div  class=\"checkitem\">");
-                 
-
-                    foreach (Model_CJF i  in cjflist)
+                    if (!string.IsNullOrEmpty(Request.QueryString["ts"]))
                     {
+                        int intTs = int.Parse(Request.QueryString["ts"]);
+                        Model_ReportItemResult cr = new Model_ReportItemResult();
+                        Model_UsersAssessment us = new Model_UsersAssessment();
 
-                        string check = string.Empty;
-                        if(cjfuserChecked.Where(r=>r.CJFID == i.CJFID).Count() > 0)
-                            check = "Checked=\"Checked\"";
+                        List<Model_UsersAssessment> uss = us.GetUserAssessmentByTsID(intTs);
 
-
-                        strcjf.Append("<div class=\"item\">");
-
-
-                        strcjf.Append("<input  type=\"checkbox\" name=\"chckCJF_form\" "+ check + " class=\"role_cjf_valid\" value=\"" + i.CJFID+"\">");
-                        strcjf.Append("<label>" + i.Title + "</label>");
-                        strcjf.Append("</div>");
-                    }
+                        List<Model_ReportItemResult> crl = cr.GetItemReportByTransactionID(intTs);
 
 
-                    strcjf.Append("</div>");
+                        List<Model_ReportItemResult> dup = crl.Where(o => o.IsDup).ToList();
 
 
-
-                    strfc.Append("<div class=\"checkitem\">");
-              
-                    foreach (Model_FC i in fclist)
-                    {
-
-                        string check = string.Empty;
-                        if (fcuserchecked.Where(r => r.FCID == i.FCID).Count() > 0)
-                            check = "Checked=\"Checked\"";
-
-                        strfc.Append("<div class=\"item\">");
-                        strfc.Append("<input  type=\"checkbox\" name=\"chckFC_form\" "+check+" class=\"role_fc_valid\" value=\"" + i.FCID+"\">");
-                        strfc.Append("<label>"+i.Title+"</label>");
-                        strfc.Append("</div>");
-
-                        
-                    }
-                   
-                    strfc.Append("</div>");
-
-                    chckCJF.Text = strcjf.ToString();
-                   // checkFC.Text = strfc.ToString();
-                   
+                        Dictionary<decimal, int> GroupDup = dup.GroupBy(x => (decimal)x.Score_new)
+                        .Where(g => g.Count() > 1)
+                        .ToDictionary(x => x.Key, y => y.Count());
 
 
+                        int numStep = GroupDup.Count();
 
-                    IntroTitle.Text = intro.Title;
-                    IntroDetail.Text = convertcontent(intro.Description);
+                        StringBuilder ret = new StringBuilder();
 
-                    LastTitle.Text = intro.LastTitle;
-                    LastDes.Text = convertcontent(intro.LastDes);
-
-                    Maintitle.Text = intro.MainTitle;
-
-
-                    profiletitle.Text = intro.ProfileTitle;
-                    //fctitle.Text = intro.ProfileFCTitle;
-                    cjftitle.Text = intro.ProfileCJFTitle;
-
-                    StringBuilder ret = new StringBuilder();
-                    foreach (Model_AsSection sec in sectionlist)
-                    {
-                        //string sIntro = sec.Title;
-                        //string sDetail = convertcontent(sec.Intro);
-
-                        List<Model_Assessment> list = asslist.Where(r => r.SCID == sec.SCID).OrderBy(r => r.Priority).OrderBy(r => r.GroupName).ToList();
-                        if (list.Count > 0)
+                        int count = 1;
+                        foreach (KeyValuePair<decimal, int> q in GroupDup)
                         {
-                            ret.Append(GenSectionIntro(sec));
+
+                            List<Model_ReportItemResult> dupfocus = dup.Where(d => d.Score_new == q.Key).OrderByDescending(r => r.Score_new).ToList();
+
+                            ret.Append("<h1 class=\"step_count\"></h1>\r\n");
+                            ret.Append("<div class=\"step-content\">\r\n");
+                            ret.Append("<input type=\"hidden\" name=\"ass_fill_\"  value=\"" + count + "\" />\r\n");
+
+                            ret.Append("<div class=\"text-center m-t-md\">\r\n");
+                            ret.Append("<h2>XXXXXXX</h2>\r\n");
 
 
-                            foreach (Model_Assessment asi in list)
+                            ret.Append("<div class=\"question-type q-type-rank-scale-choice\">\r\n");
+                            ret.Append("<div class=\"col-md-12 tbl-rank-scale\" >\r\n");
+
+                            ret.Append("<table>\r\n");
+                            ret.Append("<tr>\r\n");
+                            ret.Append("<td class=\"question\"></td>\r\n");
+                            //ret.Append("<input type=\"hidden\"   name=\"ass_fill_i_sc_" + ass.ASID + "\" value=\"0\" />");
+                            for (int i = 1; i <= dupfocus.Count; i++)
                             {
-                                string question = asi.Questions;
-                                int rs = asi.StartRank;
-                                int rd = asi.EndRank;
 
-                                byte questionType = asi.QTID;
+                                if (i == 1)
+                                    ret.Append("<td class=\"choice\">" + i + "<br /><span>XXXXX</span></td>\r\n");
+                                else if (i == dupfocus.Count)
+                                    ret.Append("<td class=\"choice\">" + i + "<br /> <span>XXXXX</span>  </td>\r\n");
+                                else
+                                    ret.Append("<td class=\"choice\">" + i + "</td>\r\n");
+                            }
 
+                            ret.Append(" </tr>\r\n");
 
+                            
 
-                                // 1   Scale
-                                //4   Ranking Scale
-                                //5   Left / Right Ranking
-                                switch (questionType)
+                            if (dupfocus.Count > 0)
+                            {
+                                foreach (Model_ReportItemResult ch in dupfocus)
                                 {
-                                    //Scale
-                                    case 1:
-                                        ret.Append(GenQuestionTypeScale(asi));
-                                        break;
-                                    //Ranking Scale
-                                    case 4:
-                                        ret.Append(GenQuestionTypeRankingScalChoice(asi));
-                                        break;
-                                    //Left / Right Ranking
-                                    case 5:
-                                        ret.Append(GenQuestionTypeRankLeftRigth(asi));
-                                        break;
+                                    Model_UsersAssessment assuser = uss.FirstOrDefault(o => o.TASID == ch.TASID);
+                                    if(assuser != null)
+                                    {
+                                        ret.Append("<tr>\r\n");
+                                        ret.Append("<input type=\"hidden\" name=\"ass_fill_ch_\"  value=\"" + ch.ResultID + "\" />\r\n");
+                                        ret.Append("<td class=\"question\">" + assuser.Questions + "</td>\r\n");
+
+                                        for (int i = 1; i <= dupfocus.Count; i++)
+                                        {
+                                            ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_ch_sc_" + ch.ResultID + "\" value=\"" + i + "\" /></td>\r\n");
+                                        }
+
+                                        ret.Append("</tr>\r\n");
+                                    }
+                                    
                                 }
 
                             }
+
+
+
+                            ret.Append("</table>\r\n");
+                            ret.Append("</div>\r\n");
+                            ret.Append("</div>\r\n");
+
+
+
+                            ret.Append("</div>\r\n");
+                            ret.Append("</div>\r\n");
+
+                            count = count + 1;
                         }
 
-
-
+                        Stepcontent.Text = ret.ToString();
                     }
 
-                    Stepcontent.Text = ret.ToString();
+                   
+                    
 
-
-                    //Binding profile (initial data)
-                    heUserID.Value = u.UserID.ToString();
-                    firstName.Text = (string.IsNullOrEmpty(u.FirstName) ? "" : u.FirstName);
-                    LastName.Text = (string.IsNullOrEmpty(u.LastName) ? "" : u.LastName);
-                    dropGender.SelectedValue = u.Gender.ToString();
-                    dropNation.SelectedValue = u.Nationality.ToString();
-                    day.Text = (u.DateofBirth !=null? u.DateofBirth.ToString("yyy-MM-dd"): "" ) ;
-                    txtPhon.Text = (string.IsNullOrEmpty(u.MobileNumber) ? "" : u.MobileNumber);
                 }
             }
            

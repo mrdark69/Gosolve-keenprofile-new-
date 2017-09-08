@@ -227,7 +227,7 @@ public partial class ajax_save_assessment : BasePageFront
 
 
 
-            Response.Write(IsCom.ToString());
+            Response.Write(strRet);
             Response.End();
         }
     }

@@ -515,7 +515,13 @@
                  if (data == "True") {
                      window.location.href = "Assessmentstep.aspx?success=done";
                  } else {
-                     window.location.href = "AssessmentStepCheck.aspx?ts=" + data;
+
+                     if (data == "False") {
+                         
+                     } else {
+                         window.location.href = "AssessmentStepCheck.aspx?ts=" + data;
+                     }
+                    
                  }
 
                 

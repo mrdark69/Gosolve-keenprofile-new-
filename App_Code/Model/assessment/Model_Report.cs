@@ -56,6 +56,17 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
 
     public string ResultItemTitle { get; set; }
 
+    public List<Model_ReportItemResult> GetItemReportByTransactionID(int TransactionId)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM ReportItemResult WHERE TransactionID=@TransactionID", cn);
+            cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = TransactionId;
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+        }
+    }
+
     public bool InsertReportItemResultBulk(List<Model_ReportItemResult> reList)
     {
         bool ret = false;

@@ -130,112 +130,17 @@
                            
                             <h1  class="step_count"></h1>
                             <div class="step-content">
-                                <div class="text-center m-t-md">
-                                <h2><asp:Literal ID="IntroTitle" runat="server"></asp:Literal></h2>
+                                <div class="text-center m-t-md"> 
+                                   <%-- <asp:Literal ID="IntroTitle" runat="server"></asp:Literal>--%>
+                                <h2> ระบบตรวจพบ คำตอบที่ไม่สามารถคำนวณ ผลลัพธ์ได้  </h2>
                                 <p class="intro-detail">
-                                    <asp:Literal ID="IntroDetail" runat="server"></asp:Literal>
+                                   ท่านสามารถ ตอบคำถามเราเพียง สั้นๆเพื่อคะแนนที่แม่นยำขึ้น 
                                 </p>
-                                    
+                                    <%--<asp:Literal ID="IntroDetail" runat="server"></asp:Literal>--%>
                                 </div>
                             </div>
 
 
-
-                            <h1 id="stepprofile_head" runat="server" class="step_count"></h1>
-                            <div class="step-content" id="stepprofile" runat="server">
-                                <div class="text-center m-t-md">
-                                <h2><asp:Literal ID="profiletitle" runat="server"></asp:Literal></h2>
-                               
-                                    <div class="q-form-bio form-horizontal">
-                                        <div class="form-group"><label class="col-sm-2 control-label">First name:</label>
-
-                                            <div class="col-sm-10">
-                                                <asp:TextBox ID="firstName" runat="server" CssClass="form-control required"></asp:TextBox>
-                                          
-
-                                            </div>
-                                        </div>
-                                        <div class="form-group"><label class="col-sm-2 control-label">Last name:</label>
-
-                                            <div class="col-sm-10">
-                                                    <asp:TextBox ID="LastName" runat="server" CssClass="form-control required"></asp:TextBox>
-                                               
-
-                                            </div>
-                                        </div>
-                                        <div class="form-group"><label class="col-sm-2 control-label">Gender:</label>
-
-                                            <div class="col-sm-10">
-                                                <asp:DropDownList ID="dropGender" CssClass="form-control" runat="server">
-                                                    <asp:ListItem Text="Male" Value="1"></asp:ListItem>
-                                                    <asp:ListItem Text="Female" Value="2"></asp:ListItem>
-                                                </asp:DropDownList>
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="form-group"><label class="col-sm-2 control-label">Nationality:</label>
-
-                                            <div class="col-sm-10">
-                                                <asp:DropDownList ID="dropNation" CssClass="form-control" runat="server"></asp:DropDownList>
-                                             
-                                            </div>
-                                        </div>
-                                        <div class="form-group"><label class="col-sm-2 control-label">Date of birth:</label>
-
-                                            <div class="col-sm-10" style="text-align:left">
-                                                <asp:TextBox ID="day" runat="server" MaxLengt="2" TextMode="Date" placeholder="Day" CssClass="form-control dob required"></asp:TextBox>
-                                                 
-
-                                            </div>
-                                        </div>
-
-                                          
-                                    </div>
-                                    
-                                </div>
-                            </div>
-
-                             <%--<h1 id="H1" runat="server" class="step_count"></h1>
-                             <div class="step-content" id="Div2" runat="server" data-valid="checkcount">
-                                <div class="text-center m-t-md">
-                                <h2><asp:Literal ID="fctitle" runat="server"></asp:Literal></h2>
-                               
-                                    <div class="q-form-bio form-horizontal">
-                                        <div class="form-group">
-
-                                            <div class="col-sm-12" style="padding:0 30px 0 30px">
-                                                
-                                                <asp:Literal ID="checkFC" runat="server"></asp:Literal>
-                                      
-
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                </div>
-                            </div>--%>
-
-                             <h1 id="stepprofile_CJF" runat="server" class="step_count"></h1>
-                             <div class="step-content" id="Div1" runat="server" data-valid="checkcount">
-                                <div class="text-center m-t-md">
-                                <h2><asp:Literal ID="cjftitle" runat="server"></asp:Literal></h2>
-                               
-                                    <div class="q-form-bio form-horizontal">
-                                        <div class="form-group"><%--<label class="col-sm-2 control-label">Current Job Function name:</label>--%>
-
-                                            <div class="col-sm-12" style="padding:0 30px 0 30px">
-                                                
-                                                <asp:Literal ID="chckCJF" runat="server"></asp:Literal>
-                                           <%-- <asp:CheckBoxList ID="chckCJF" runat="server" CssClass="checkitem" RepeatLayout="Table"  RepeatDirection="Horizontal"></asp:CheckBoxList>--%>
-
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                </div>
-                            </div>
 
                           
                          <asp:Literal ID="Stepcontent" runat="server"></asp:Literal>
@@ -244,21 +149,11 @@
                             <h1  class="step_count"></h1>
                             <div class="step-content">
                                 <div class="text-center m-t-md">
-                                <h2><asp:Literal ID="LastTitle" runat="server"></asp:Literal></h2>
+                                <h2>เรียบร้อย</h2>
                                 <p>
-                                    <asp:Literal ID="LastDes" runat="server"> </asp:Literal>
+                                    ขอบคุณสำหรับข้อมูล
                                 </p>
-                                    <div class="q-form-bio form-horizontal">
-                                        <div class="form-group"><%--<label class="col-sm-2 control-label">Current Job Function name:</label>--%>
-
-                                            <div class="col-sm-12" style="padding:0 30px 0 30px">
-                                                
-                                         <asp:TextBox ID="txtPhon" runat="server" ClientIDMode="Static" placeholder="###-###-####" CssClass="form-control required customphone" TextMode="Phone"></asp:TextBox>
-
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
+                                    
                                 </div>
                             </div>
 
