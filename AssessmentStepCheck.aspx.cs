@@ -80,12 +80,12 @@ public partial class __AssessmentStepCheck : BasePageFront
                             ret.Append("<tr>\r\n");
                             ret.Append("<td class=\"question\"></td>\r\n");
                             //ret.Append("<input type=\"hidden\"   name=\"ass_fill_i_sc_" + ass.ASID + "\" value=\"0\" />");
-                            for (int i = 1; i <= dupfocus.Count; i++)
+                            for (int i = 1; i <= (dupfocus.Count < 3 ? 3 : dupfocus.Count); i++)
                             {
 
                                 if (i == 1)
                                     ret.Append("<td class=\"choice\">" + i + "<br /><span>XXXXX</span></td>\r\n");
-                                else if (i == dupfocus.Count)
+                                else if (i == (dupfocus.Count < 3 ? 3 : dupfocus.Count))
                                     ret.Append("<td class=\"choice\">" + i + "<br /> <span>XXXXX</span>  </td>\r\n");
                                 else
                                     ret.Append("<td class=\"choice\">" + i + "</td>\r\n");
@@ -106,7 +106,7 @@ public partial class __AssessmentStepCheck : BasePageFront
                                         ret.Append("<input type=\"hidden\" name=\"ass_fill_ch_\"  value=\"" + ch.ResultID + "\" />\r\n");
                                         ret.Append("<td class=\"question\">" + assuser.Questions + "</td>\r\n");
 
-                                        for (int i = 1; i <= dupfocus.Count; i++)
+                                        for (int i = 1; i <= (dupfocus.Count < 3? 3: dupfocus.Count); i++)
                                         {
                                             ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_ch_sc_" + ch.ResultID + "\" value=\"" + i + "\" /></td>\r\n");
                                         }
@@ -114,6 +114,34 @@ public partial class __AssessmentStepCheck : BasePageFront
                                         ret.Append("</tr>\r\n");
                                     }
                                     
+                                }
+
+                                
+                                if (dupfocus.Count < 3)
+                                {
+                                    List<Model_UsersAssessment> randomlist = new List<Model_UsersAssessment>();
+
+                                    foreach(Model_UsersAssessment i in uss)
+                                    {
+                                        foreach (Model_ReportItemResult ch in dupfocus)
+                                        {
+                                            if (i.TASID != ch.TASID)
+                                                randomlist.Add(i);
+                                        }
+                                    }
+
+                                    Model_UsersAssessment rd = randomlist.Skip(3).FirstOrDefault();
+                                    
+                                    ret.Append("<tr>\r\n");
+                                    //ret.Append("<input type=\"hidden\" name=\"ass_fill_ch_\"  value=\"" + rd.ResultID + "\" />\r\n");
+                                    ret.Append("<td class=\"question\">" + rd.Questions + "</td>\r\n");
+
+                                    for (int i = 1; i <= (dupfocus.Count < 3 ? 3 : dupfocus.Count); i++)
+                                    {
+                                        ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_ch_sc_\" value=\"" + i + "\" /></td>\r\n");
+                                    }
+
+                                    ret.Append("</tr>\r\n");
                                 }
 
                             }
