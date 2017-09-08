@@ -141,7 +141,57 @@ public class Calculation_T3
         }
 
 
-        return ReviewResultDup_new(rlist).OrderByDescending(o => o.Score_new).ToList();
+
+        List<Model_ReportItemResult> ListReview = ReviewResultDup_new(rlist).OrderByDescending(o => o.Score_new).ToList();
+
+        if(!IsDup)
+        {
+            Dictionary<decimal, int> GroupDup = ListReview.GroupBy(x => (decimal)x.Score_new)
+            .Where(g => g.Count() > 1)
+            .ToDictionary(x => x.Key, y => y.Count());
+
+            foreach (KeyValuePair<decimal, int> q in GroupDup)
+            {
+                List<Model_ReportItemResult> dupfocus = ListReview.Where(d => d.Score == q.Key).OrderByDescending(r => r.Score).ToList();
+                decimal startfactor = 0.99M;
+                decimal? factor = dupfocus.OrderBy(o=>o.Score_new).FirstOrDefault(o => o.Factor.HasValue).Factor;
+                if (factor.HasValue)
+                {
+                    startfactor = (decimal)factor - (decimal)0.01;
+
+                    foreach(Model_ReportItemResult item in dupfocus.Where(o=>o.IsDup).OrderBy(o=>o.UserRank))
+                    {
+                        var obj = ListReview.FirstOrDefault(o => o.ResultItemID == item.ResultItemID);
+                        if (obj != null) obj.Score_new = obj.Score_new + startfactor;
+
+                        startfactor = startfactor - (decimal)0.01;
+                    }
+                }
+                else
+                {
+                    foreach (Model_ReportItemResult item in dupfocus.Where(o => o.IsDup).OrderBy(o => o.UserRank))
+                    {
+                        var obj = ListReview.FirstOrDefault(o => o.ResultItemID == item.ResultItemID);
+                        if (obj != null) obj.Score_new = obj.Score_new + startfactor;
+
+                        startfactor = startfactor - (decimal)0.01;
+                    }
+                }
+
+            }
+        }
+
+
+        Dictionary<decimal, int> GroupDupRecheck = ListReview.GroupBy(x => (decimal)x.Score_new)
+            .Where(g => g.Count() > 1)
+            .ToDictionary(x => x.Key, y => y.Count());
+
+        if (GroupDupRecheck.Count > 0)
+            this.IsDup = false;
+        else
+            this.IsDup = true;
+
+        return ListReview;
     }
 
     public bool Calnow()

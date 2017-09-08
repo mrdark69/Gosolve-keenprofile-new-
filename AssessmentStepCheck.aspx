@@ -91,6 +91,7 @@
   
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
   <asp:HiddenField ID="heUserID" runat="server" />
+    <asp:HiddenField ID="hdTsID" runat="server" />
    <section id="about" class="section section-about">
        <div class="banner">
 				<div class="wsite-section-elements">
@@ -406,12 +407,16 @@
         
          function SendData() {
              var post = $("#form1").find("input,textarea,select,hidden").not("#__VIEWSTATE,#__EVENTVALIDATION").serialize();
-             $.post("ajax_save_assessment.aspx", post, function (data) {
+             $.post("ajax_save_assessment_extra.aspx", post, function (data) {
                  if (data == "True") {
                      window.location.href = "Assessmentstep.aspx?success=done";
-                 }
+                 } else {
 
-                 if (data == "dup") {
+                     if (data == "False") {
+
+                     } else {
+                         window.location.href = "AssessmentStepCheck.aspx?ts=" + data;
+                     }
 
                  }
 

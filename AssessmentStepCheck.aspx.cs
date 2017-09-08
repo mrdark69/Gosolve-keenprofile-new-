@@ -28,13 +28,16 @@ public partial class __AssessmentStepCheck : BasePageFront
                 Model_Users u = this.UserActive;
                 if (u != null)
                 {
-                    
+                    heUserID.Value = u.UserID.ToString();
 
 
 
                     if (!string.IsNullOrEmpty(Request.QueryString["ts"]))
                     {
                         int intTs = int.Parse(Request.QueryString["ts"]);
+
+                        hdTsID.Value = intTs.ToString();
+
                         Model_ReportItemResult cr = new Model_ReportItemResult();
                         Model_UsersAssessment us = new Model_UsersAssessment();
 
@@ -49,6 +52,7 @@ public partial class __AssessmentStepCheck : BasePageFront
                         Dictionary<decimal, int> GroupDup = dup.GroupBy(x => (decimal)x.Score_new)
                         .Where(g => g.Count() > 1)
                         .ToDictionary(x => x.Key, y => y.Count());
+
 
 
                         int numStep = GroupDup.Count();

@@ -32,6 +32,8 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
 
     public bool IsDup { get; set; } = false;
 
+    public int? UserRank { get; set; }
+
     private string[] arr_raw = null;
     public string [] ArrRaw
     {
@@ -67,6 +69,20 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
         }
     }
 
+
+    public bool UpdateUserRank(int intResultID, int Rank)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("UPDATE ReportItemResult SET UserRank=@UserRank WHERE ResultID=@ResultID", cn);
+            cmd.Parameters.Add("@UserRank", SqlDbType.Int).Value = Rank;
+            cmd.Parameters.Add("@ResultID", SqlDbType.Int).Value = intResultID;
+            cn.Open();
+            return ExecuteNonQuery(cmd) == 1;
+        }
+    }
+    
+
     public bool InsertReportItemResultBulk(List<Model_ReportItemResult> reList)
     {
         bool ret = false;
@@ -75,41 +91,86 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
             cn.Open();
             foreach (Model_ReportItemResult re in reList)
             {
-                SqlCommand cmd = new SqlCommand(@"DELETE FROM ReportItemResult WHERE ResultSectionID=@ResultSectionID AND ResultItemID=@ResultItemID AND TransactionID=@TransactionID;
-                INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,Detail,Factor,IsDup) 
-                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@Detail,@Factor,@IsDup)", cn);
-               
-                cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = re.ResultSectionID;
-                cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = re.ResultItemID;
-                cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = re.TransactionID;
-             
-                cmd.Parameters.Add("@Score", SqlDbType.Decimal).Value = re.Score;
+
+
+                SqlCommand cmdupdate = new SqlCommand(@"UPDATE  ReportItemResult SET Score=@Score,IsAbove=@IsAbove,IsBelow=@IsBelow,Score_new=@Score_new
+,TASID=@TASID,Detail=@Detail,Factor=@Factor,IsDup=@IsDup WHERE ResultSectionID=@ResultSectionID AND ResultItemID=@ResultItemID AND TransactionID=@TransactionID;
+                ", cn);
+
+                cmdupdate.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = re.ResultSectionID;
+                cmdupdate.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = re.ResultItemID;
+                cmdupdate.Parameters.Add("@TransactionID", SqlDbType.Int).Value = re.TransactionID;
+
+                cmdupdate.Parameters.Add("@Score", SqlDbType.Decimal).Value = re.Score;
 
                 if (re.Score_new.HasValue)
-                    cmd.Parameters.Add("@Score_new", SqlDbType.Decimal).Value = re.Score_new;
+                    cmdupdate.Parameters.Add("@Score_new", SqlDbType.Decimal).Value = re.Score_new;
                 else
-                    cmd.Parameters.AddWithValue("@Score_new", DBNull.Value);
+                    cmdupdate.Parameters.AddWithValue("@Score_new", DBNull.Value);
 
                 if (re.TASID.HasValue)
-                    cmd.Parameters.Add("@TASID", SqlDbType.Int).Value = re.TASID;
+                    cmdupdate.Parameters.Add("@TASID", SqlDbType.Int).Value = re.TASID;
                 else
-                    cmd.Parameters.AddWithValue("@TASID", DBNull.Value);
+                    cmdupdate.Parameters.AddWithValue("@TASID", DBNull.Value);
 
 
                 if (re.Factor.HasValue)
-                    cmd.Parameters.Add("@Factor", SqlDbType.Decimal).Value = re.Factor;
+                    cmdupdate.Parameters.Add("@Factor", SqlDbType.Decimal).Value = re.Factor;
                 else
-                    cmd.Parameters.AddWithValue("@Factor", DBNull.Value);
+                    cmdupdate.Parameters.AddWithValue("@Factor", DBNull.Value);
 
 
-                cmd.Parameters.Add("@IsDup", SqlDbType.Int).Value = re.IsDup;
+                cmdupdate.Parameters.Add("@IsDup", SqlDbType.Int).Value = re.IsDup;
 
-                cmd.Parameters.Add("@IsAbove", SqlDbType.Bit).Value = re.IsAbove;
-                cmd.Parameters.Add("@IsBelow", SqlDbType.Bit).Value = re.IsBelow;
+                cmdupdate.Parameters.Add("@IsAbove", SqlDbType.Bit).Value = re.IsAbove;
+                cmdupdate.Parameters.Add("@IsBelow", SqlDbType.Bit).Value = re.IsBelow;
 
-                cmd.Parameters.Add("@Detail", SqlDbType.VarChar).Value = re.Detail;
+                cmdupdate.Parameters.Add("@Detail", SqlDbType.VarChar).Value = re.Detail;
 
-                ret = ExecuteNonQuery(cmd) == 1;
+
+                //DELETE FROM ReportItemResult WHERE ResultSectionID = @ResultSectionID AND ResultItemID = @ResultItemID AND TransactionID = @TransactionID;
+                if (ExecuteNonQuery(cmdupdate) == 0)
+                {
+                    SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,Detail,Factor,IsDup) 
+                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@Detail,@Factor,@IsDup)", cn);
+
+                    cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = re.ResultSectionID;
+                    cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = re.ResultItemID;
+                    cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = re.TransactionID;
+
+                    cmd.Parameters.Add("@Score", SqlDbType.Decimal).Value = re.Score;
+
+                    if (re.Score_new.HasValue)
+                        cmd.Parameters.Add("@Score_new", SqlDbType.Decimal).Value = re.Score_new;
+                    else
+                        cmd.Parameters.AddWithValue("@Score_new", DBNull.Value);
+
+                    if (re.TASID.HasValue)
+                        cmd.Parameters.Add("@TASID", SqlDbType.Int).Value = re.TASID;
+                    else
+                        cmd.Parameters.AddWithValue("@TASID", DBNull.Value);
+
+
+                    if (re.Factor.HasValue)
+                        cmd.Parameters.Add("@Factor", SqlDbType.Decimal).Value = re.Factor;
+                    else
+                        cmd.Parameters.AddWithValue("@Factor", DBNull.Value);
+
+
+                    cmd.Parameters.Add("@IsDup", SqlDbType.Int).Value = re.IsDup;
+
+                    cmd.Parameters.Add("@IsAbove", SqlDbType.Bit).Value = re.IsAbove;
+                    cmd.Parameters.Add("@IsBelow", SqlDbType.Bit).Value = re.IsBelow;
+
+                    cmd.Parameters.Add("@Detail", SqlDbType.VarChar).Value = re.Detail;
+
+                    ret = ExecuteNonQuery(cmd) == 1;
+                }
+                else
+                    ret = true;
+
+
+
             }
 
 
