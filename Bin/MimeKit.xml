@@ -1242,12 +1242,13 @@
             Initializes a new instance of the <see cref="T:MimeKit.Cryptography.CryptographyContext"/> class.
             </summary>
             <remarks>
-            Creates a new <see cref="T:MimeKit.Cryptography.CryptographyContext"/>.
+            <para>Creates a new <see cref="T:MimeKit.Cryptography.CryptographyContext"/>.</para>
+            <para>By default, only the 3DES encryption algorithm and the SHA-1 digest algorithm are enabled.</para>
             </remarks>
         </member>
         <member name="P:MimeKit.Cryptography.CryptographyContext.SignatureProtocol">
             <summary>
-            Gets the signature protocol.
+            Get the signature protocol.
             </summary>
             <remarks>
             <para>The signature protocol is used by <see cref="T:MimeKit.Cryptography.MultipartSigned"/>
@@ -1258,7 +1259,7 @@
         </member>
         <member name="P:MimeKit.Cryptography.CryptographyContext.EncryptionProtocol">
             <summary>
-            Gets the encryption protocol.
+            Get the encryption protocol.
             </summary>
             <remarks>
             <para>The encryption protocol is used by <see cref="T:MimeKit.Cryptography.MultipartEncrypted"/>
@@ -1269,16 +1270,108 @@
         </member>
         <member name="P:MimeKit.Cryptography.CryptographyContext.KeyExchangeProtocol">
             <summary>
-            Gets the key exchange protocol.
+            Get the key exchange protocol.
             </summary>
             <remarks>
             <para>The key exchange protocol is really only used for OpenPGP.</para>
             </remarks>
             <value>The key exchange protocol.</value>
         </member>
+        <member name="P:MimeKit.Cryptography.CryptographyContext.EncryptionAlgorithmRank">
+            <summary>
+            Get the preferred rank order for the encryption algorithms; from the most preferred to the least.
+            </summary>
+            <remarks>
+            Gets the preferred rank order for the encryption algorithms; from the most preferred to the least.
+            </remarks>
+            <value>The preferred encryption algorithm ranking.</value>
+        </member>
+        <member name="P:MimeKit.Cryptography.CryptographyContext.EnabledEncryptionAlgorithms">
+            <summary>
+            Get the enabled encryption algorithms in ranked order.
+            </summary>
+            <remarks>
+            Gets the enabled encryption algorithms in ranked order.
+            </remarks>
+            <value>The enabled encryption algorithms.</value>
+        </member>
+        <member name="M:MimeKit.Cryptography.CryptographyContext.Enable(MimeKit.Cryptography.EncryptionAlgorithm)">
+            <summary>
+            Enable the encryption algorithm.
+            </summary>
+            <remarks>
+            Enables the encryption algorithm.
+            </remarks>
+            <param name="algorithm">The encryption algorithm.</param>
+        </member>
+        <member name="M:MimeKit.Cryptography.CryptographyContext.Disable(MimeKit.Cryptography.EncryptionAlgorithm)">
+            <summary>
+            Disable the encryption algorithm.
+            </summary>
+            <remarks>
+            Disables the encryption algorithm.
+            </remarks>
+            <param name="algorithm">The encryption algorithm.</param>
+        </member>
+        <member name="M:MimeKit.Cryptography.CryptographyContext.IsEnabled(MimeKit.Cryptography.EncryptionAlgorithm)">
+            <summary>
+            Check whether the specified encryption algorithm is enabled.
+            </summary>
+            <remarks>
+            Determines whether the specified encryption algorithm is enabled.
+            </remarks>
+            <returns><c>true</c> if the specified encryption algorithm is enabled; otherwise, <c>false</c>.</returns>
+            <param name="algorithm">The encryption algorithm.</param>
+        </member>
+        <member name="P:MimeKit.Cryptography.CryptographyContext.DigestAlgorithmRank">
+            <summary>
+            Get the preferred rank order for the digest algorithms; from the most preferred to the least.
+            </summary>
+            <remarks>
+            Gets the preferred rank order for the digest algorithms; from the most preferred to the least.
+            </remarks>
+            <value>The preferred encryption algorithm ranking.</value>
+        </member>
+        <member name="P:MimeKit.Cryptography.CryptographyContext.EnabledDigestAlgorithms">
+            <summary>
+            Get the enabled digest algorithms in ranked order.
+            </summary>
+            <remarks>
+            Gets the enabled digest algorithms in ranked order.
+            </remarks>
+            <value>The enabled encryption algorithms.</value>
+        </member>
+        <member name="M:MimeKit.Cryptography.CryptographyContext.Enable(MimeKit.Cryptography.DigestAlgorithm)">
+            <summary>
+            Enable the digest algorithm.
+            </summary>
+            <remarks>
+            Enables the digest algorithm.
+            </remarks>
+            <param name="algorithm">The digest algorithm.</param>
+        </member>
+        <member name="M:MimeKit.Cryptography.CryptographyContext.Disable(MimeKit.Cryptography.DigestAlgorithm)">
+            <summary>
+            Disable the digest algorithm.
+            </summary>
+            <remarks>
+            Disables the digest algorithm.
+            </remarks>
+            <param name="algorithm">The digest algorithm.</param>
+        </member>
+        <member name="M:MimeKit.Cryptography.CryptographyContext.IsEnabled(MimeKit.Cryptography.DigestAlgorithm)">
+            <summary>
+            Check whether the specified digest algorithm is enabled.
+            </summary>
+            <remarks>
+            Determines whether the specified digest algorithm is enabled.
+            </remarks>
+            <returns><c>true</c> if the specified digest algorithm is enabled; otherwise, <c>false</c>.</returns>
+            <param name="algorithm">The digest algorithm.</param>
+        </member>
         <member name="M:MimeKit.Cryptography.CryptographyContext.Supports(System.String)">
             <summary>
-            Checks whether or not the specified protocol is supported by the <see cref="T:MimeKit.Cryptography.CryptographyContext"/>.
+            Check whether or not the specified protocol is supported by the <see cref="T:MimeKit.Cryptography.CryptographyContext"/>.
             </summary>
             <remarks>
             Used in order to make sure that the protocol parameter value specified in either a multipart/signed
@@ -1292,7 +1385,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.CryptographyContext.GetDigestAlgorithmName(MimeKit.Cryptography.DigestAlgorithm)">
             <summary>
-            Gets the string name of the digest algorithm for use with the micalg parameter of a multipart/signed part.
+            Get the string name of the digest algorithm for use with the micalg parameter of a multipart/signed part.
             </summary>
             <remarks>
             Maps the <see cref="T:MimeKit.Cryptography.DigestAlgorithm"/> to the appropriate string identifier
@@ -1307,7 +1400,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.CryptographyContext.GetDigestAlgorithm(System.String)">
             <summary>
-            Gets the digest algorithm from the micalg parameter value in a multipart/signed part.
+            Get the digest algorithm from the micalg parameter value in a multipart/signed part.
             </summary>
             <remarks>
             Maps the micalg parameter value string back to the appropriate <see cref="T:MimeKit.Cryptography.DigestAlgorithm"/>.
@@ -1316,6 +1409,32 @@
             <param name="micalg">The micalg parameter value.</param>
             <exception cref="T:System.ArgumentNullException">
             <paramref name="micalg"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.CryptographyContext.CanSign(MimeKit.MailboxAddress)">
+            <summary>
+            Check whether or not a particular mailbox address can be used for signing.
+            </summary>
+            <remarks>
+            Checks whether or not as particular mailbocx address can be used for signing.
+            </remarks>
+            <returns><c>true</c> if the mailbox address can be used for signing; otherwise, <c>false</c>.</returns>
+            <param name="signer">The signer.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="signer"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.CryptographyContext.CanEncrypt(MimeKit.MailboxAddress)">
+            <summary>
+            Check whether or not the cryptography context can encrypt to a particular recipient.
+            </summary>
+            <remarks>
+            Checks whether or not the cryptography context can be used to encrypt to a particular recipient.
+            </remarks>
+            <returns><c>true</c> if the cryptography context can be used to encrypt to the designated recipient; otherwise, <c>false</c>.</returns>
+            <param name="mailbox">The recipient's mailbox address.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="mailbox"/> is <c>null</c>.
             </exception>
         </member>
         <member name="M:MimeKit.Cryptography.CryptographyContext.Sign(MimeKit.MailboxAddress,MimeKit.Cryptography.DigestAlgorithm,System.IO.Stream)">
@@ -1621,6 +1740,32 @@
             <param name="database">The certificate database.</param>
             <exception cref="T:System.ArgumentNullException">
             <paramref name="database"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.DefaultSecureMimeContext.CanSign(MimeKit.MailboxAddress)">
+            <summary>
+            Check whether or not a particular mailbox address can be used for signing.
+            </summary>
+            <remarks>
+            Checks whether or not as particular mailbocx address can be used for signing.
+            </remarks>
+            <returns><c>true</c> if the mailbox address can be used for signing; otherwise, <c>false</c>.</returns>
+            <param name="signer">The signer.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="signer"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.DefaultSecureMimeContext.CanEncrypt(MimeKit.MailboxAddress)">
+            <summary>
+            Check whether or not the cryptography context can encrypt to a particular recipient.
+            </summary>
+            <remarks>
+            Checks whether or not the cryptography context can be used to encrypt to a particular recipient.
+            </remarks>
+            <returns><c>true</c> if the cryptography context can be used to encrypt to the designated recipient; otherwise, <c>false</c>.</returns>
+            <param name="mailbox">The recipient's mailbox address.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="mailbox"/> is <c>null</c>.
             </exception>
         </member>
         <member name="M:MimeKit.Cryptography.DefaultSecureMimeContext.GetCertificate(Org.BouncyCastle.X509.Store.IX509Selector)">
@@ -4753,7 +4898,7 @@
         </member>
         <member name="P:MimeKit.Cryptography.OpenPgpContext.PublicKeyRingPath">
             <summary>
-            Gets the public keyring path.
+            Get the public keyring path.
             </summary>
             <remarks>
             Gets the public keyring path.
@@ -4762,7 +4907,7 @@
         </member>
         <member name="P:MimeKit.Cryptography.OpenPgpContext.SecretKeyRingPath">
             <summary>
-            Gets the secret keyring path.
+            Get the secret keyring path.
             </summary>
             <remarks>
             Gets the secret keyring path.
@@ -4771,7 +4916,7 @@
         </member>
         <member name="P:MimeKit.Cryptography.OpenPgpContext.PublicKeyRingBundle">
             <summary>
-            Gets the public keyring bundle.
+            Get the public keyring bundle.
             </summary>
             <remarks>
             Gets the public keyring bundle.
@@ -4780,7 +4925,7 @@
         </member>
         <member name="P:MimeKit.Cryptography.OpenPgpContext.SecretKeyRingBundle">
             <summary>
-            Gets the secret keyring bundle.
+            Get the secret keyring bundle.
             </summary>
             <remarks>
             Gets the secret keyring bundle.
@@ -4789,7 +4934,7 @@
         </member>
         <member name="P:MimeKit.Cryptography.OpenPgpContext.SignatureProtocol">
             <summary>
-            Gets the signature protocol.
+            Get the signature protocol.
             </summary>
             <remarks>
             <para>The signature protocol is used by <see cref="T:MimeKit.Cryptography.MultipartSigned"/>
@@ -4800,7 +4945,7 @@
         </member>
         <member name="P:MimeKit.Cryptography.OpenPgpContext.EncryptionProtocol">
             <summary>
-            Gets the encryption protocol.
+            Get the encryption protocol.
             </summary>
             <remarks>
             <para>The encryption protocol is used by <see cref="T:MimeKit.Cryptography.MultipartEncrypted"/>
@@ -4811,7 +4956,7 @@
         </member>
         <member name="P:MimeKit.Cryptography.OpenPgpContext.KeyExchangeProtocol">
             <summary>
-            Gets the key exchange protocol.
+            Get the key exchange protocol.
             </summary>
             <remarks>
             Gets the key exchange protocol.
@@ -4820,7 +4965,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.OpenPgpContext.Supports(System.String)">
             <summary>
-            Checks whether or not the specified protocol is supported.
+            Check whether or not the specified protocol is supported.
             </summary>
             <remarks>
             Used in order to make sure that the protocol parameter value specified in either a multipart/signed
@@ -4834,7 +4979,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.OpenPgpContext.GetDigestAlgorithmName(MimeKit.Cryptography.DigestAlgorithm)">
             <summary>
-            Gets the string name of the digest algorithm for use with the micalg parameter of a multipart/signed part.
+            Get the string name of the digest algorithm for use with the micalg parameter of a multipart/signed part.
             </summary>
             <remarks>
             <para>Maps the <see cref="T:MimeKit.Cryptography.DigestAlgorithm"/> to the appropriate string identifier
@@ -4862,7 +5007,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.OpenPgpContext.GetDigestAlgorithm(System.String)">
             <summary>
-            Gets the digest algorithm from the micalg parameter value in a multipart/signed part.
+            Get the digest algorithm from the micalg parameter value in a multipart/signed part.
             </summary>
             <remarks>
             Maps the micalg parameter value string back to the appropriate <see cref="T:MimeKit.Cryptography.DigestAlgorithm"/>.
@@ -4873,14 +5018,102 @@
             <paramref name="micalg"/> is <c>null</c>.
             </exception>
         </member>
-        <member name="M:MimeKit.Cryptography.OpenPgpContext.GetPublicKey(MimeKit.MailboxAddress)">
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.EnumeratePublicKeyRings">
             <summary>
-            Gets the public key associated with the mailbox address.
+            Enumerate all public keyrings.
             </summary>
             <remarks>
-            Gets the public key associated with the mailbox address.
+            Enumerates all public keyrings.
             </remarks>
-            <returns>The encryption key.</returns>
+            <returns>The list of available public keyrings.</returns>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.EnumeratePublicKeys">
+            <summary>
+            Enumerate all public keys.
+            </summary>
+            <remarks>
+            Enumerates all public keys.
+            </remarks>
+            <returns>The list of available public keys.</returns>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.EnumeratePublicKeyRings(MimeKit.MailboxAddress)">
+            <summary>
+            Enumerate the public keyrings for a particular mailbox.
+            </summary>
+            <remarks>
+            Enumerates all public keyrings for the specified mailbox.
+            </remarks>
+            <returns>The public keys.</returns>
+            <param name="mailbox">Mailbox.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="mailbox"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.EnumeratePublicKeys(MimeKit.MailboxAddress)">
+            <summary>
+            Enumerate the public keys for a particular mailbox.
+            </summary>
+            <remarks>
+            Enumerates all public keys for the specified mailbox.
+            </remarks>
+            <returns>The public keys.</returns>
+            <param name="mailbox">The mailbox address.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="mailbox"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.EnumerateSecretKeyRings">
+            <summary>
+            Enumerate all secret keyrings.
+            </summary>
+            <remarks>
+            Enumerates all secret keyrings.
+            </remarks>
+            <returns>The list of available secret keyrings.</returns>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.EnumerateSecretKeys">
+            <summary>
+            Enumerate all secret keys.
+            </summary>
+            <remarks>
+            Enumerates all secret keys.
+            </remarks>
+            <returns>The list of available secret keys.</returns>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.EnumerateSecretKeyRings(MimeKit.MailboxAddress)">
+            <summary>
+            Enumerate the secret keyrings for a particular mailbox.
+            </summary>
+            <remarks>
+            Enumerates all secret keyrings for the specified mailbox.
+            </remarks>
+            <returns>The secret keys.</returns>
+            <param name="mailbox">The mailbox address.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="mailbox"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.EnumerateSecretKeys(MimeKit.MailboxAddress)">
+            <summary>
+            Enumerate the secret keys for a particular mailbox.
+            </summary>
+            <remarks>
+            Enumerates all secret keys for the specified mailbox.
+            </remarks>
+            <returns>The public keys.</returns>
+            <param name="mailbox">The mailbox address.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="mailbox"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.GetPublicKey(MimeKit.MailboxAddress)">
+            <summary>
+            Get the public key associated with the mailbox address.
+            </summary>
+            <remarks>
+            Gets a valid public key associated with the mailbox address that can be used for encryption.
+            </remarks>
+            <returns>The public encryption key.</returns>
             <param name="mailbox">The mailbox.</param>
             <exception cref="T:System.ArgumentNullException">
             <paramref name="mailbox"/> is <c>null</c>.
@@ -4891,10 +5124,10 @@
         </member>
         <member name="M:MimeKit.Cryptography.OpenPgpContext.GetPublicKeys(System.Collections.Generic.IEnumerable{MimeKit.MailboxAddress})">
             <summary>
-            Gets the public keys for the specified mailbox addresses.
+            Get the public keys for the specified mailbox addresses.
             </summary>
             <remarks>
-            Gets the public keys for the specified mailbox addresses.
+            Gets a list of valid public keys for the specified mailbox addresses that can be used for encryption.
             </remarks>
             <returns>The encryption keys.</returns>
             <param name="mailboxes">The mailboxes.</param>
@@ -4907,7 +5140,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.OpenPgpContext.GetSigningKey(MimeKit.MailboxAddress)">
             <summary>
-            Gets the signing key associated with the mailbox address.
+            Get the signing key associated with the mailbox address.
             </summary>
             <remarks>
             Gets the signing key associated with the mailbox address.
@@ -4972,6 +5205,45 @@
             3 bad attempts were made to unlock the secret key.
             </exception>
         </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.GenerateKeyPair(MimeKit.MailboxAddress,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            Generate a new key pair.
+            </summary>
+            <remarks>
+            Generates a new RSA key pair.
+            </remarks>
+            <param name="mailbox">The mailbox to generate the key pair for.</param>
+            <param name="password">The password to be set on the secret key.</param>
+            <param name="expirationDate">The expiration date for the generated key pair.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <para><paramref name="mailbox"/> is <c>null</c>.</para>
+            <para>-or-</para>
+            <para><paramref name="password"/> is <c>null</c>.</para>
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            <paramref name="expirationDate"/> is not a date in the future.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.SignKey(Org.BouncyCastle.Bcpg.OpenPgp.PgpSecretKey,Org.BouncyCastle.Bcpg.OpenPgp.PgpPublicKey,MimeKit.Cryptography.DigestAlgorithm,MimeKit.Cryptography.OpenPgpKeyCertification)">
+            <summary>
+            Sign a public key.
+            </summary>
+            <remarks>
+            <para>Signs a public key using the specified secret key.</para>
+            <para>Most OpenPGP implementations use <see cref="F:MimeKit.Cryptography.OpenPgpKeyCertification.GenericCertification"/>
+            to make their "key signatures". Some implementations are known to use the other
+            certification types, but few differentiate between them.</para>
+            </remarks>
+            <param name="secretKey">The secret key to use for signing.</param>
+            <param name="publicKey">The public key to sign.</param>
+            <param name="digestAlgo">The digest algorithm.</param>
+            <param name="certification">The certification to give the signed key.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <para><paramref name="secretKey"/> is <c>null</c>.</para>
+            <para>-or-</para>
+            <para><paramref name="publicKey"/> is <c>null</c>.</para>
+            </exception>
+        </member>
         <member name="M:MimeKit.Cryptography.OpenPgpContext.GetHashAlgorithm(MimeKit.Cryptography.DigestAlgorithm)">
             <summary>
             Gets the equivalent <see cref="T:Org.BouncyCastle.Bcpg.HashAlgorithmTag"/> for the 
@@ -4987,6 +5259,32 @@
             </exception>
             <exception cref="T:System.NotSupportedException">
             <paramref name="digestAlgo"/> is not a supported digest algorithm.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.CanSign(MimeKit.MailboxAddress)">
+            <summary>
+            Check whether or not a particular mailbox address can be used for signing.
+            </summary>
+            <remarks>
+            Checks whether or not as particular mailbocx address can be used for signing.
+            </remarks>
+            <returns><c>true</c> if the mailbox address can be used for signing; otherwise, <c>false</c>.</returns>
+            <param name="signer">The signer.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="signer"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.CanEncrypt(MimeKit.MailboxAddress)">
+            <summary>
+            Check whether or not the cryptography context can encrypt to a particular recipient.
+            </summary>
+            <remarks>
+            Checks whether or not the cryptography context can be used to encrypt to a particular recipient.
+            </remarks>
+            <returns><c>true</c> if the cryptography context can be used to encrypt to the designated recipient; otherwise, <c>false</c>.</returns>
+            <param name="mailbox">The recipient's mailbox address.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="mailbox"/> is <c>null</c>.
             </exception>
         </member>
         <member name="M:MimeKit.Cryptography.OpenPgpContext.Sign(MimeKit.MailboxAddress,MimeKit.Cryptography.DigestAlgorithm,System.IO.Stream)">
@@ -5584,7 +5882,7 @@
             Exports the public keys for the specified mailboxes.
             </remarks>
             <returns>A new <see cref="T:MimeKit.MimePart"/> instance containing the exported public keys.</returns>
-            <param name="mailboxes">The mailboxes.</param>
+            <param name="mailboxes">The mailboxes associated with the public keys to export.</param>
             <exception cref="T:System.ArgumentNullException">
             <paramref name="mailboxes"/> is <c>null</c>.
             </exception>
@@ -5600,23 +5898,205 @@
             Exports the specified public keys.
             </remarks>
             <returns>A new <see cref="T:MimeKit.MimePart"/> instance containing the exported public keys.</returns>
-            <param name="keys">The keys.</param>
+            <param name="keys">The public keys to export.</param>
             <exception cref="T:System.ArgumentNullException">
             <paramref name="keys"/> is <c>null</c>.
             </exception>
         </member>
         <member name="M:MimeKit.Cryptography.OpenPgpContext.Export(Org.BouncyCastle.Bcpg.OpenPgp.PgpPublicKeyRingBundle)">
             <summary>
-            Exports the specified public keys.
+            Export the specified public keys.
             </summary>
             <remarks>
             Exports the specified public keys.
             </remarks>
             <returns>A new <see cref="T:MimeKit.MimePart"/> instance containing the exported public keys.</returns>
-            <param name="keys">The keys.</param>
+            <param name="keys">The public keys to export.</param>
             <exception cref="T:System.ArgumentNullException">
             <paramref name="keys"/> is <c>null</c>.
             </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.Export(System.Collections.Generic.IEnumerable{MimeKit.MailboxAddress},System.IO.Stream,System.Boolean)">
+            <summary>
+            Export the public keyrings for the specified mailboxes.
+            </summary>
+            <remarks>
+            Exports the public keyrings for the specified mailboxes.
+            </remarks>
+            <param name="keys">The public keys to export.</param>
+            <param name="stream">The output stream.</param>
+            <param name="armor"><c>true</c> if the output should be armored; otherwise, <c>false</c>.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <para><paramref name="mailboxes"/> is <c>null</c>.</para>
+            <para>-or-</para>
+            <para><paramref name="stream"/> is <c>null</c>.</para>
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurred.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.Export(System.Collections.Generic.IEnumerable{Org.BouncyCastle.Bcpg.OpenPgp.PgpPublicKey},System.IO.Stream,System.Boolean)">
+            <summary>
+            Export the specified public keys.
+            </summary>
+            <remarks>
+            Exports the specified public keys.
+            </remarks>
+            <returns>A new <see cref="T:MimeKit.MimePart"/> instance containing the exported public keys.</returns>
+            <param name="keys">The public keys to export.</param>
+            <param name="stream">The output stream.</param>
+            <param name="armor"><c>true</c> if the output should be armored; otherwise, <c>false</c>.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <para><paramref name="keys"/> is <c>null</c>.</para>
+            <para>-or-</para>
+            <para><paramref name="stream"/> is <c>null</c>.</para>
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurred.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.Export(Org.BouncyCastle.Bcpg.OpenPgp.PgpPublicKeyRingBundle,System.IO.Stream,System.Boolean)">
+            <summary>
+            Export the public keyring bundle.
+            </summary>
+            <remarks>
+            Exports the public keyring bundle.
+            </remarks>
+            <param name="keys">The public keyring bundle to export.</param>
+            <param name="stream">The output stream.</param>
+            <param name="armor"><c>true</c> if the output should be armored; otherwise, <c>false</c>.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <para><paramref name="keys"/> is <c>null</c>.</para>
+            <para>-or-</para>
+            <para><paramref name="stream"/> is <c>null</c>.</para>
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurred.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.Delete(Org.BouncyCastle.Bcpg.OpenPgp.PgpPublicKeyRing)">
+            <summary>
+            Delete a public pgp keyring.
+            </summary>
+            <remarks>
+            Deletes a public pgp keyring.
+            </remarks>
+            <param name="keyring">The pgp keyring.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="keyring"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpContext.Delete(Org.BouncyCastle.Bcpg.OpenPgp.PgpSecretKeyRing)">
+            <summary>
+            Delete a secret pgp keyring.
+            </summary>
+            <remarks>
+            Deletes a secret pgp keyring.
+            </remarks>
+            <param name="keyring">The pgp keyring.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="keyring"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="T:MimeKit.Cryptography.OpenPgpDataType">
+            <summary>
+            An enum expressing a type of OpenPGP data.
+            </summary>
+            <remarks>
+            An enum expressing a type of OpenPGP data.
+            </remarks>
+        </member>
+        <member name="F:MimeKit.Cryptography.OpenPgpDataType.None">
+            <summary>
+            No OpenPGP data detected.
+            </summary>
+        </member>
+        <member name="F:MimeKit.Cryptography.OpenPgpDataType.SignedMessage">
+            <summary>
+            The OpenPGP data is a signed message.
+            </summary>
+        </member>
+        <member name="F:MimeKit.Cryptography.OpenPgpDataType.EncryptedMessage">
+            <summary>
+            The OpenPGP data is an encrypted message.
+            </summary>
+        </member>
+        <member name="F:MimeKit.Cryptography.OpenPgpDataType.PublicKey">
+            <summary>
+            The OpenPGP data is a public key.
+            </summary>
+        </member>
+        <member name="F:MimeKit.Cryptography.OpenPgpDataType.PrivateKey">
+            <summary>
+            The OpenPGP data is a private key.
+            </summary>
+        </member>
+        <member name="T:MimeKit.Cryptography.OpenPgpDetectionFilter">
+            <summary>
+            A filter meant to aid in the detection of OpenPGP blocks.
+            </summary>
+            <remarks>
+            Detects OpenPGP block markers and their byte offsets.
+            </remarks>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpDetectionFilter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MimeKit.Cryptography.OpenPgpDetectionFilter"/> class.
+            </summary>
+            <remarks>
+            Creates a new <see cref="T:MimeKit.Cryptography.OpenPgpDetectionFilter"/>.
+            </remarks>
+        </member>
+        <member name="P:MimeKit.Cryptography.OpenPgpDetectionFilter.BeginOffset">
+            <summary>
+            Get the byte offset of the BEGIN marker, if available.
+            </summary>
+            <remarks>
+            Gets the byte offset of the BEGIN marker if available.
+            </remarks>
+            <value>The byte offset.</value>
+        </member>
+        <member name="P:MimeKit.Cryptography.OpenPgpDetectionFilter.EndOffset">
+            <summary>
+            Get the byte offset of the END marker, if available.
+            </summary>
+            <remarks>
+            Gets the byte offset of the END marker if available.
+            </remarks>
+            <value>The byte offset.</value>
+        </member>
+        <member name="P:MimeKit.Cryptography.OpenPgpDetectionFilter.DataType">
+            <summary>
+            Get the type of OpenPGP data detected.
+            </summary>
+            <remarks>
+            Gets the type of OpenPGP data detected.
+            </remarks>
+            <value>The type of OpenPGP data detected.</value>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpDetectionFilter.Filter(System.Byte[],System.Int32,System.Int32,System.Int32@,System.Int32@,System.Boolean)">
+            <summary>
+            Filter the specified input.
+            </summary>
+            <remarks>
+            Filters the specified input buffer starting at the given index,
+            spanning across the specified number of bytes.
+            </remarks>
+            <returns>The filtered output.</returns>
+            <param name="input">The input buffer.</param>
+            <param name="startIndex">The starting index of the input buffer.</param>
+            <param name="length">The length of the input buffer, starting at <paramref name="startIndex"/>.</param>
+            <param name="outputIndex">The output index.</param>
+            <param name="outputLength">The output length.</param>
+            <param name="flush">If set to <c>true</c>, all internally buffered data should be flushed to the output buffer.</param>
+        </member>
+        <member name="M:MimeKit.Cryptography.OpenPgpDetectionFilter.Reset">
+            <summary>
+            Resets the filter.
+            </summary>
+            <remarks>
+            Resets the filter.
+            </remarks>
         </member>
         <member name="T:MimeKit.Cryptography.OpenPgpDigitalCertificate">
             <summary>
@@ -5753,6 +6233,43 @@
             <exception cref="T:MimeKit.Cryptography.DigitalSignatureVerifyException">
             An error verifying the signature has occurred.
             </exception>
+        </member>
+        <member name="T:MimeKit.Cryptography.OpenPgpKeyCertification">
+            <summary>
+            An OpenPGP key certification.
+            </summary>
+            <remarks>
+            An OpenPGP key certification.
+            </remarks>
+        </member>
+        <member name="F:MimeKit.Cryptography.OpenPgpKeyCertification.GenericCertification">
+            <summary>
+            Generic certification of a User ID and Public-Key packet.
+            The issuer of this certification does not make any particular
+            assertion as to how well the certifier has checked that the owner
+            of the key is in fact the person described by the User ID.
+            </summary>
+        </member>
+        <member name="F:MimeKit.Cryptography.OpenPgpKeyCertification.PersonaCertification">
+            <summary>
+            Persona certification of a User ID and Public-Key packet.
+            The issuer of this certification has not done any verification of
+            the claim that the owner of this key is the User ID specified.
+            </summary>
+        </member>
+        <member name="F:MimeKit.Cryptography.OpenPgpKeyCertification.CasualCertification">
+            <summary>
+            Casual certification of a User ID and Public-Key packet.
+            The issuer of this certification has done some casual
+            verification of the claim of identity.
+            </summary>
+        </member>
+        <member name="F:MimeKit.Cryptography.OpenPgpKeyCertification.PositiveCertification">
+            <summary>
+            Positive certification of a User ID and Public-Key packet.
+            The issuer of this certification has done substantial
+            verification of the claim of identity.
+            </summary>
         </member>
         <member name="T:MimeKit.Cryptography.PrivateKeyNotFoundException">
             <summary>
@@ -6113,21 +6630,21 @@
             <remarks>
             <para>Enables the following encryption algorithms by default:</para>
             <list type="bullet">
-            <item><term><see cref="F:MimeKit.Cryptography.EncryptionAlgorithm.Camellia256"/></term></item>
-            <item><term><see cref="F:MimeKit.Cryptography.EncryptionAlgorithm.Camellia192"/></term></item>
-            <item><term><see cref="F:MimeKit.Cryptography.EncryptionAlgorithm.Camellia128"/></term></item>
             <item><term><see cref="F:MimeKit.Cryptography.EncryptionAlgorithm.Aes256"/></term></item>
             <item><term><see cref="F:MimeKit.Cryptography.EncryptionAlgorithm.Aes192"/></term></item>
             <item><term><see cref="F:MimeKit.Cryptography.EncryptionAlgorithm.Aes128"/></term></item>
-            <item><term><see cref="F:MimeKit.Cryptography.EncryptionAlgorithm.Cast5"/></term></item>
             <item><term><see cref="F:MimeKit.Cryptography.EncryptionAlgorithm.Idea"/></term></item>
+            <item><term><see cref="F:MimeKit.Cryptography.EncryptionAlgorithm.Cast5"/></term></item>
+            <item><term><see cref="F:MimeKit.Cryptography.EncryptionAlgorithm.Camellia256"/></term></item>
+            <item><term><see cref="F:MimeKit.Cryptography.EncryptionAlgorithm.Camellia192"/></term></item>
+            <item><term><see cref="F:MimeKit.Cryptography.EncryptionAlgorithm.Camellia128"/></term></item>
             <item><term><see cref="F:MimeKit.Cryptography.EncryptionAlgorithm.TripleDes"/></term></item>
             </list>
             </remarks>
         </member>
         <member name="P:MimeKit.Cryptography.SecureMimeContext.SignatureProtocol">
             <summary>
-            Gets the signature protocol.
+            Get the signature protocol.
             </summary>
             <remarks>
             <para>The signature protocol is used by <see cref="T:MimeKit.Cryptography.MultipartSigned"/>
@@ -6138,7 +6655,7 @@
         </member>
         <member name="P:MimeKit.Cryptography.SecureMimeContext.EncryptionProtocol">
             <summary>
-            Gets the encryption protocol.
+            Get the encryption protocol.
             </summary>
             <remarks>
             <para>The encryption protocol is used by <see cref="T:MimeKit.Cryptography.MultipartEncrypted"/>
@@ -6149,7 +6666,7 @@
         </member>
         <member name="P:MimeKit.Cryptography.SecureMimeContext.KeyExchangeProtocol">
             <summary>
-            Gets the key exchange protocol.
+            Get the key exchange protocol.
             </summary>
             <remarks>
             Gets the key exchange protocol.
@@ -6158,7 +6675,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.SecureMimeContext.Supports(System.String)">
             <summary>
-            Checks whether or not the specified protocol is supported by the <see cref="T:MimeKit.Cryptography.CryptographyContext"/>.
+            Check whether or not the specified protocol is supported by the <see cref="T:MimeKit.Cryptography.CryptographyContext"/>.
             </summary>
             <remarks>
             Used in order to make sure that the protocol parameter value specified in either a multipart/signed
@@ -6172,7 +6689,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.SecureMimeContext.GetDigestAlgorithmName(MimeKit.Cryptography.DigestAlgorithm)">
             <summary>
-            Gets the string name of the digest algorithm for use with the micalg parameter of a multipart/signed part.
+            Get the string name of the digest algorithm for use with the micalg parameter of a multipart/signed part.
             </summary>
             <remarks>
             <para>Maps the <see cref="T:MimeKit.Cryptography.DigestAlgorithm"/> to the appropriate string identifier
@@ -6196,7 +6713,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.SecureMimeContext.GetDigestAlgorithm(System.String)">
             <summary>
-            Gets the digest algorithm from the micalg parameter value in a multipart/signed part.
+            Get the digest algorithm from the micalg parameter value in a multipart/signed part.
             </summary>
             <remarks>
             Maps the micalg parameter value string back to the appropriate <see cref="T:MimeKit.Cryptography.DigestAlgorithm"/>.
@@ -6207,55 +6724,9 @@
             <paramref name="micalg"/> is <c>null</c>.
             </exception>
         </member>
-        <member name="P:MimeKit.Cryptography.SecureMimeContext.EncryptionAlgorithmRank">
-            <summary>
-            Gets the preferred rank order for the encryption algorithms; from the strongest to the weakest.
-            </summary>
-            <remarks>
-            Gets the preferred rank order for the encryption algorithms; from the strongest to the weakest.
-            </remarks>
-            <value>The preferred encryption algorithm ranking.</value>
-        </member>
-        <member name="P:MimeKit.Cryptography.SecureMimeContext.EnabledEncryptionAlgorithms">
-            <summary>
-            Gets the enabled encryption algorithms in ranked order.
-            </summary>
-            <remarks>
-            Gets the enabled encryption algorithms in ranked order.
-            </remarks>
-            <value>The enabled encryption algorithms.</value>
-        </member>
-        <member name="M:MimeKit.Cryptography.SecureMimeContext.Enable(MimeKit.Cryptography.EncryptionAlgorithm)">
-            <summary>
-            Enables the encryption algorithm.
-            </summary>
-            <remarks>
-            Enables the encryption algorithm.
-            </remarks>
-            <param name="algorithm">The encryption algorithm.</param>
-        </member>
-        <member name="M:MimeKit.Cryptography.SecureMimeContext.Disable(MimeKit.Cryptography.EncryptionAlgorithm)">
-            <summary>
-            Disables the encryption algorithm.
-            </summary>
-            <remarks>
-            Disables the encryption algorithm.
-            </remarks>
-            <param name="algorithm">The encryption algorithm.</param>
-        </member>
-        <member name="M:MimeKit.Cryptography.SecureMimeContext.IsEnabled(MimeKit.Cryptography.EncryptionAlgorithm)">
-            <summary>
-            Checks whether the specified encryption algorithm is enabled.
-            </summary>
-            <remarks>
-            Determines whether the specified encryption algorithm is enabled.
-            </remarks>
-            <returns><c>true</c> if the specified encryption algorithm is enabled; otherwise, <c>false</c>.</returns>
-            <param name="algorithm">Algorithm.</param>
-        </member>
         <member name="M:MimeKit.Cryptography.SecureMimeContext.GetCertificate(Org.BouncyCastle.X509.Store.IX509Selector)">
             <summary>
-            Gets the X.509 certificate matching the specified selector.
+            Get the X.509 certificate matching the specified selector.
             </summary>
             <remarks>
             Gets the first certificate that matches the specified selector.
@@ -6265,7 +6736,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.SecureMimeContext.GetPrivateKey(Org.BouncyCastle.X509.Store.IX509Selector)">
             <summary>
-            Gets the private key for the certificate matching the specified selector.
+            Get the private key for the certificate matching the specified selector.
             </summary>
             <remarks>
             Gets the private key for the first certificate that matches the specified selector.
@@ -6275,7 +6746,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.SecureMimeContext.GetTrustedAnchors">
             <summary>
-            Gets the trusted anchors.
+            Get the trusted anchors.
             </summary>
             <remarks>
             A trusted anchor is a trusted root-level X.509 certificate,
@@ -6285,7 +6756,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.SecureMimeContext.GetIntermediateCertificates">
             <summary>
-            Gets the intermediate certificates.
+            Get the intermediate certificates.
             </summary>
             <remarks>
             An intermediate certificate is any certificate that exists between the root
@@ -6296,7 +6767,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.SecureMimeContext.GetCertificateRevocationLists">
             <summary>
-            Gets the certificate revocation lists.
+            Get the certificate revocation lists.
             </summary>
             <remarks>
             A Certificate Revocation List (CRL) is a list of certificate serial numbers issued
@@ -6307,7 +6778,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.SecureMimeContext.GetCmsRecipient(MimeKit.MailboxAddress)">
             <summary>
-            Gets the <see cref="T:MimeKit.Cryptography.CmsRecipient"/> for the specified mailbox.
+            Get the <see cref="T:MimeKit.Cryptography.CmsRecipient"/> for the specified mailbox.
             </summary>
             <remarks>
             <para>Constructs a <see cref="T:MimeKit.Cryptography.CmsRecipient"/> with the appropriate certificate and
@@ -6324,7 +6795,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.SecureMimeContext.GetCmsRecipients(System.Collections.Generic.IEnumerable{MimeKit.MailboxAddress})">
             <summary>
-            Gets a collection of CmsRecipients for the specified mailboxes.
+            Get a collection of CmsRecipients for the specified mailboxes.
             </summary>
             <remarks>
             Gets a collection of CmsRecipients for the specified mailboxes.
@@ -6340,7 +6811,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.SecureMimeContext.GetCmsSigner(MimeKit.MailboxAddress,MimeKit.Cryptography.DigestAlgorithm)">
             <summary>
-            Gets the <see cref="T:MimeKit.Cryptography.CmsSigner"/> for the specified mailbox.
+            Get the <see cref="T:MimeKit.Cryptography.CmsSigner"/> for the specified mailbox.
             </summary>
             <remarks>
             <para>Constructs a <see cref="T:MimeKit.Cryptography.CmsSigner"/> with the appropriate signing certificate
@@ -6369,7 +6840,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.SecureMimeContext.GetDigestOid(MimeKit.Cryptography.DigestAlgorithm)">
             <summary>
-            Gets the OID for the digest algorithm.
+            Get the OID for the digest algorithm.
             </summary>
             <remarks>
             Gets the OID for the digest algorithm.
@@ -6552,7 +7023,7 @@
         </member>
         <member name="M:MimeKit.Cryptography.SecureMimeContext.GetDigitalSignatures(Org.BouncyCastle.Cms.CmsSignedDataParser)">
             <summary>
-            Gets the list of digital signatures.
+            Get the list of digital signatures.
             </summary>
             <remarks>
             <para>Gets the list of digital signatures.</para>
@@ -6621,12 +7092,12 @@
         </member>
         <member name="M:MimeKit.Cryptography.SecureMimeContext.GetPreferredEncryptionAlgorithm(MimeKit.Cryptography.CmsRecipientCollection)">
             <summary>
-            Gets the preferred encryption algorithm to use for encrypting to the specified recipients.
+            Get the preferred encryption algorithm to use for encrypting to the specified recipients.
             </summary>
             <remarks>
             <para>Gets the preferred encryption algorithm to use for encrypting to the specified recipients
             based on the encryption algorithms supported by each of the recipients, the
-            <see cref="P:MimeKit.Cryptography.SecureMimeContext.EnabledEncryptionAlgorithms"/>, and the <see cref="P:MimeKit.Cryptography.SecureMimeContext.EncryptionAlgorithmRank"/>.</para>
+            <see cref="!:EnabledEncryptionAlgorithms"/>, and the <see cref="!:EncryptionAlgorithmRank"/>.</para>
             <para>If the supported encryption algorithms are unknown for any recipient, it is assumed that
             the recipient supports at least the Triple-DES encryption algorithm.</para>
             </remarks>
@@ -7301,6 +7772,32 @@
             Creates a new <see cref="T:MimeKit.Cryptography.TemporarySecureMimeContext"/>.
             </remarks>
         </member>
+        <member name="M:MimeKit.Cryptography.TemporarySecureMimeContext.CanSign(MimeKit.MailboxAddress)">
+            <summary>
+            Check whether or not a particular mailbox address can be used for signing.
+            </summary>
+            <remarks>
+            Checks whether or not as particular mailbocx address can be used for signing.
+            </remarks>
+            <returns><c>true</c> if the mailbox address can be used for signing; otherwise, <c>false</c>.</returns>
+            <param name="signer">The signer.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="signer"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.TemporarySecureMimeContext.CanEncrypt(MimeKit.MailboxAddress)">
+            <summary>
+            Check whether or not the cryptography context can encrypt to a particular recipient.
+            </summary>
+            <remarks>
+            Checks whether or not the cryptography context can be used to encrypt to a particular recipient.
+            </remarks>
+            <returns><c>true</c> if the cryptography context can be used to encrypt to the designated recipient; otherwise, <c>false</c>.</returns>
+            <param name="mailbox">The recipient's mailbox address.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="mailbox"/> is <c>null</c>.
+            </exception>
+        </member>
         <member name="M:MimeKit.Cryptography.TemporarySecureMimeContext.GetCertificate(Org.BouncyCastle.X509.Store.IX509Selector)">
             <summary>
             Gets the X.509 certificate matching the specified selector.
@@ -7472,6 +7969,32 @@
             </remarks>
             <value>The store location.</value>
         </member>
+        <member name="M:MimeKit.Cryptography.WindowsSecureMimeContext.CanSign(MimeKit.MailboxAddress)">
+            <summary>
+            Check whether or not a particular mailbox address can be used for signing.
+            </summary>
+            <remarks>
+            Checks whether or not as particular mailbocx address can be used for signing.
+            </remarks>
+            <returns><c>true</c> if the mailbox address can be used for signing; otherwise, <c>false</c>.</returns>
+            <param name="signer">The signer.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="signer"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:MimeKit.Cryptography.WindowsSecureMimeContext.CanEncrypt(MimeKit.MailboxAddress)">
+            <summary>
+            Check whether or not the cryptography context can encrypt to a particular recipient.
+            </summary>
+            <remarks>
+            Checks whether or not the cryptography context can be used to encrypt to a particular recipient.
+            </remarks>
+            <returns><c>true</c> if the cryptography context can be used to encrypt to the designated recipient; otherwise, <c>false</c>.</returns>
+            <param name="mailbox">The recipient's mailbox address.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="mailbox"/> is <c>null</c>.
+            </exception>
+        </member>
         <member name="M:MimeKit.Cryptography.WindowsSecureMimeContext.GetCertificate(Org.BouncyCastle.X509.Store.IX509Selector)">
             <summary>
             Gets the X.509 certificate based on the selector.
@@ -7624,8 +8147,8 @@
             <remarks>
             <para>Gets the preferred encryption algorithm to use for encrypting to the specified recipients
             based on the encryption algorithms supported by each of the recipients, the
-            <see cref="P:MimeKit.Cryptography.SecureMimeContext.EnabledEncryptionAlgorithms"/>, and the
-            <see cref="P:MimeKit.Cryptography.SecureMimeContext.EncryptionAlgorithmRank"/>.</para>
+            <see cref="!:SecureMimeContext.EnabledEncryptionAlgorithms"/>, and the
+            <see cref="!:SecureMimeContext.EncryptionAlgorithmRank"/>.</para>
             <para>If the supported encryption algorithms are unknown for any recipient, it is assumed that
             the recipient supports at least the Triple-DES encryption algorithm.</para>
             </remarks>
@@ -13230,7 +13753,8 @@
             Get or set whether or not the converter should only output an HTML fragment.
             </summary>
             <remarks>
-            Gets or sets whether or not the converter should only output an HTML fragment.
+            Gets or sets whether or not the converter should only output an entire
+            HTML document or just a fragment of the HTML body content.
             </remarks>
             <value><c>true</c> if the converter should only output an HTML fragment; otherwise, <c>false</c>.</value>
         </member>
@@ -17518,7 +18042,8 @@
             Get or set whether or not the converter should only output an HTML fragment.
             </summary>
             <remarks>
-            Gets or sets whether or not the converter should only output an HTML fragment.
+            Gets or sets whether or not the converter should only output an entire
+            HTML document or just a fragment of the HTML body content.
             </remarks>
             <value><c>true</c> if the converter should only output an HTML fragment; otherwise, <c>false</c>.</value>
         </member>
@@ -33501,9 +34026,6 @@
             <para>-or-</para>
             <para><paramref name="address"/> is <c>null</c>.</para>
             </exception>
-            <exception cref="T:System.ArgumentException">
-            <paramref name="address"/> is an empty string.
-            </exception>
             <exception cref="T:MimeKit.ParseException">
             <paramref name="address"/> is malformed.
             </exception>
@@ -33523,9 +34045,6 @@
             <para>-or-</para>
             <para><paramref name="address"/> is <c>null</c>.</para>
             </exception>
-            <exception cref="T:System.ArgumentException">
-            <paramref name="address"/> is an empty string.
-            </exception>
             <exception cref="T:MimeKit.ParseException">
             <paramref name="address"/> is malformed.
             </exception>
@@ -33543,9 +34062,6 @@
             <para><paramref name="route"/> is <c>null</c>.</para>
             <para>-or-</para>
             <para><paramref name="address"/> is <c>null</c>.</para>
-            </exception>
-            <exception cref="T:System.ArgumentException">
-            <paramref name="address"/> is an empty string.
             </exception>
             <exception cref="T:MimeKit.ParseException">
             <paramref name="address"/> is malformed.
@@ -33567,9 +34083,6 @@
             <para>-or-</para>
             <para><paramref name="address"/> is <c>null</c>.</para>
             </exception>
-            <exception cref="T:System.ArgumentException">
-            <paramref name="address"/> is an empty string.
-            </exception>
             <exception cref="T:MimeKit.ParseException">
             <paramref name="address"/> is malformed.
             </exception>
@@ -33585,9 +34098,6 @@
             <param name="address">The address of the mailbox.</param>
             <exception cref="T:System.ArgumentNullException">
             <paramref name="address"/> is <c>null</c>.
-            </exception>
-            <exception cref="T:System.ArgumentException">
-            <paramref name="address"/> is an empty string.
             </exception>
             <exception cref="T:MimeKit.ParseException">
             <paramref name="address"/> is malformed.
@@ -33609,9 +34119,6 @@
             <param name="address">The address of the mailbox.</param>
             <exception cref="T:System.ArgumentNullException">
             <paramref name="address"/> is <c>null</c>.
-            </exception>
-            <exception cref="T:System.ArgumentException">
-            <paramref name="address"/> is an empty string.
             </exception>
             <exception cref="T:MimeKit.ParseException">
             <paramref name="address"/> is malformed.
@@ -33646,9 +34153,6 @@
             <value>The mailbox address.</value>
             <exception cref="T:System.ArgumentNullException">
             <paramref name="value"/> is <c>null</c>.
-            </exception>
-            <exception cref="T:System.ArgumentException">
-            <paramref name="value"/> is an empty string.
             </exception>
             <exception cref="T:MimeKit.ParseException">
             <paramref name="value"/> is malformed.
@@ -36111,6 +36615,29 @@
             <para><paramref name="constraint"/> is not a valid value.</para>
             </exception>
         </member>
+        <member name="M:MimeKit.MimeMessage.WriteTo(MimeKit.FormatOptions,System.IO.Stream,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Writes the message to the specified output stream.
+            </summary>
+            <remarks>
+            Writes the message to the output stream using the provided formatting options.
+            </remarks>
+            <param name="options">The formatting options.</param>
+            <param name="stream">The output stream.</param>
+            <param name="headersOnly"><c>true</c> if only the headers should be written; otherwise, <c>false</c>.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <para><paramref name="options"/> is <c>null</c>.</para>
+            <para>-or-</para>
+            <para><paramref name="stream"/> is <c>null</c>.</para>
+            </exception>
+            <exception cref="T:System.OperationCanceledException">
+            The operation was canceled via the cancellation token.
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurred.
+            </exception>
+        </member>
         <member name="M:MimeKit.MimeMessage.WriteTo(MimeKit.FormatOptions,System.IO.Stream,System.Threading.CancellationToken)">
             <summary>
             Writes the message to the specified output stream.
@@ -36125,6 +36652,26 @@
             <para><paramref name="options"/> is <c>null</c>.</para>
             <para>-or-</para>
             <para><paramref name="stream"/> is <c>null</c>.</para>
+            </exception>
+            <exception cref="T:System.OperationCanceledException">
+            The operation was canceled via the cancellation token.
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurred.
+            </exception>
+        </member>
+        <member name="M:MimeKit.MimeMessage.WriteTo(System.IO.Stream,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Writes the message to the specified output stream.
+            </summary>
+            <remarks>
+            Writes the message to the output stream using the default formatting options.
+            </remarks>
+            <param name="stream">The output stream.</param>
+            <param name="headersOnly"><c>true</c> if only the headers should be written; otherwise, <c>false</c>.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="stream"/> is <c>null</c>.
             </exception>
             <exception cref="T:System.OperationCanceledException">
             The operation was canceled via the cancellation token.

@@ -1,4 +1,4 @@
-﻿using Excel;
+﻿using ExcelDataReader;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -64,13 +64,13 @@ public class ExcelReader
     public DataSet GetDataSetspreadsheet()
     {
         DataSet result = null;
-        using (IExcelDataReader excelReader = CoreReader())
-        {
-            //Choose one of either 3, 4, or 5
-            //3. DataSet - The result of each spreadsheet will be created in the result.Tables
-           result = excelReader.AsDataSet();
-            excelReader.Close();
-        }
+        //using (IExcelDataReader excelReader = CoreReader())
+        //{
+        //    //Choose one of either 3, 4, or 5
+        //    //3. DataSet - The result of each spreadsheet will be created in the result.Tables
+        //   result = excelReader.a();
+        //    excelReader.Close();
+        //}
 
         return result;
     }
@@ -87,9 +87,9 @@ public class ExcelReader
         {
             //Choose one of either 3, 4, or 5
             ////4. DataSet - Create column names from first row
-            excelReader.IsFirstRowAsColumnNames = true;
-            result = excelReader.AsDataSet();
-            excelReader.Close();
+            //excelReader.IsFirstRowAsColumnNames = true;
+            //result = excelReader.AsDataSet();
+            //excelReader.Close();
         }
         
        

@@ -22785,6 +22785,15 @@
             </remarks>
             <value>The client SSL certificates.</value>
         </member>
+        <member name="P:MailKit.IMailService.CheckCertificateRevocation">
+            <summary>
+            Get or set whether connecting via SSL/TLS should check certificate revocation.
+            </summary>
+            <remarks>
+            Gets or sets whether connecting via SSL/TLS should check certificate revocation.
+            </remarks>
+            <value><c>true</c> certificate revocation should be checked; otherwise, <c>false</c>.</value>
+        </member>
         <member name="P:MailKit.IMailService.ServerCertificateValidationCallback">
             <summary>
             Get or sets a callback function to validate the server certificate.
@@ -39959,6 +39968,15 @@
             </remarks>
             <value>The client SSL certificates.</value>
         </member>
+        <member name="P:MailKit.MailService.CheckCertificateRevocation">
+            <summary>
+            Get or set whether connecting via SSL/TLS should check certificate revocation.
+            </summary>
+            <remarks>
+            Gets or sets whether connecting via SSL/TLS should check certificate revocation.
+            </remarks>
+            <value><c>true</c> certificate revocation should be checked; otherwise, <c>false</c>.</value>
+        </member>
         <member name="P:MailKit.MailService.ServerCertificateValidationCallback">
             <summary>
             Get or sets a callback function to validate the server certificate.
@@ -45681,7 +45699,7 @@
             </remarks>
             <param name="fileName">The file name.</param>
         </member>
-        <member name="M:MailKit.ProtocolLogger.#ctor(System.IO.Stream)">
+        <member name="M:MailKit.ProtocolLogger.#ctor(System.IO.Stream,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:MailKit.ProtocolLogger"/> class.
             </summary>
@@ -45689,6 +45707,7 @@
             Creates a new <see cref="T:MailKit.ProtocolLogger"/> to log to a specified stream.
             </remarks>
             <param name="stream">The stream.</param>
+            <param name="leaveOpen"><c>true</c> if the stream should be left open after the protocol logger is disposed.</param>
         </member>
         <member name="M:MailKit.ProtocolLogger.Finalize">
             <summary>

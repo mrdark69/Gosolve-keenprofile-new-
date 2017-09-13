@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -15,6 +16,11 @@ public static class StringUtility
     //    // TODO: Add constructor logic here
     //    //
     //}
+    public static string GetPDFTemplate(string name)
+    {
+        string text = File.ReadAllText(HttpContext.Current.Server.MapPath("/Theme/maintheme/inc/" + name + ".html"), Encoding.UTF8);
+        return text;
+    }
 
     public static string GetKeywordReplace(this string Content, string tagStart, string tagEnd)
     {
