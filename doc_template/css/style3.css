@@ -1,0 +1,268 @@
+.page-content-description{
+  color: #000;
+
+}
+.page-content-description h1{
+  margin-top: -70px;
+font-size: 48px;
+text-align: center;
+font-weight: 300;
+}
+.page-content-description h1.big{
+  margin-top: -20px;
+font-size: 48px;
+text-align: center;
+font-weight: 300;
+}
+.page-content-description h1.tri{
+  margin-top: -20px;
+font-size: 48px;
+text-align: center;
+font-weight: 300;
+margin-left: -30px;
+}
+.page-content-description h2{
+  font-size: 24px;
+  margin-left: -30px;
+    margin-right: -30px;
+}
+.page-content-description h2.tri{
+ font-size: 22px;
+ text-align: center;
+  margin-left: -50px;
+}
+.page-content-description .detail-mini{
+ font-size: 11px;
+ margin-left: -30px;
+ font-style: italic;
+}
+.page-content-description .desscription-body{
+  margin-left: -70px;
+  margin-right: -70px;
+}
+.page-content-description .desscription-body.big{
+  margin-bottom: 60px;
+  margin-top: 40px;
+}
+.page-content-description .desscription-body.big.tri{
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+
+.page-content-description .desscription-body .des-topic{
+ font-size: 12px;
+}
+.page-content-description .desscription-body  .des-topic p.topic{
+ font-weight: bold;
+ font-size: 12px;
+}
+.page-content-description .desscription-body  .des-topic p{
+
+}
+.page-content-description .desscription-body  .des-topic p span{
+ font-weight: bold;
+}
+.page-content-description .desscription-body .desscription-body-block{
+  display: inline-block;
+}
+.page-content-description .desscription-body .desscription-body-block.left{
+    width: 230px;
+    text-align: center;
+    vertical-align:top;
+}
+.page-content-description .desscription-body .desscription-body-block.left .square-block{
+ height: 70px;
+ width: 110px;
+  color: #fff;
+  font-size: 11px;
+  vertical-align: middle;
+  line-height: 15px;
+  margin-left: 20px;
+  margin-top: 17px;
+  padding-top: 20px;
+  border: 2px solid #eee;
+}
+.page-content-description .desscription-body .desscription-body-block.left .square-block.big{
+ height: 120px;
+   padding-top: 40px;
+     margin-top: 91px;
+}
+.page-content-description .desscription-body .desscription-body-block.left .triangle-block{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 90px 100px 90px;
+  border-color: transparent transparent #23366b transparent;
+  color: #fff;
+  font-size: 11px;
+  vertical-align: middle;
+  line-height: 15px;
+  margin-left: 20px;
+  margin-top: 66px;
+
+
+}
+.page-content-description .desscription-body .desscription-body-block.left .triangle-block span{
+  padding-top: 46px;
+  display: block;
+  margin-top: 30px;
+  height: 100px;
+  text-align: center;
+  margin-left: -48px;
+  width: 100px;
+}
+.page-content-description .desscription-body .desscription-body-block.right{
+  width: 450px;
+  font-size: 13px;
+}
+.page-content-description .desscription-body .desscription-body-block.right p{
+
+}
+.page-content-description .desscription-body .desscription-body-block.right span{
+font-weight: 600;
+}
+
+
+
+/*content-page-middle*/
+
+.content-page-middle{
+  background-color: #252528;
+  height: 400px;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: -113px;
+  margin-right: -113px;
+  margin-top: 200px;
+    color: #fffee6;
+    padding-top: 50px;
+}
+.content-page-middle p{
+  font-size: 24px;
+  font-weight: 300;
+}
+.content-page-middle p.big{
+  font-size: 30px;
+}
+
+
+
+/*page-content-des-info*/
+.page-content-des-info{
+ color: #000;
+}
+.page-content-des-info h1{
+ margin-left: -40px;
+ margin-right: -40px;
+  text-align: center;
+  font-weight: 300;
+  font-size: 38px;
+  margin-top: -70px;
+  margin-bottom: 0px;
+}
+.page-content-des-info h2{
+  margin-left: -40px;
+  margin-right: -40px;
+   text-align: center;
+     margin-top: 0px;
+       font-weight: 300;
+       font-style: italic;
+         font-size: 30px;
+}
+.page-content-des-info .des{
+  margin-left: -40px;
+  margin-right: -40px;
+  font-size: 14px;
+}
+
+.page-content-des-info  .body-content{
+  margin-left: -40px;
+  margin-right: -40px;
+}
+
+.page-content-des-info .body-content-1{
+ margin-top: 30px;
+}
+.page-content-des-info .body-content-1 p{
+font-weight: bold;
+}
+.page-content-des-info .body-content-1 table{
+  background-color: #252528;
+  width: 100%;
+  margin-left: 10px;
+}
+.page-content-des-info .body-content-1 table tr{
+
+}
+.page-content-des-info .body-content-1 table tr td{
+  background-color: #fffee6;
+  padding: 5px;
+  font-size: 12px;
+}
+.page-content-des-info .body-content-1 table tr td.left{
+  font-weight: bold;
+  padding-left: 5px;
+
+}
+.page-content-des-info .body-content-1 table tr td.right{
+  padding-left: 5px;
+
+}
+
+/*///*/
+.page-content-des-info .body-content-2{
+ margin-top: 60px;
+}
+.page-content-des-info .body-content-2 p{
+font-weight: bold;
+}
+.page-content-des-info .body-content-2 table{
+  background-color: #252528;
+  width: 100%;
+  margin-left: 10px;
+}
+.page-content-des-info .body-content-2 table tr{
+
+}
+.page-content-des-info .body-content-2 table tr td{
+  background-color: #fffee6;
+  padding: 10px;
+  font-size: 12px;
+
+}
+.page-content-des-info .body-content-2 table tr td.left{
+
+  padding-left: 5px;
+  width: 28%;
+  text-align: center;
+  font-weight: 400;
+
+}
+.page-content-des-info .body-content-2 table tr td.left span{
+  font-weight: bold;
+  padding-left: 5px;
+  display: block;
+  font-size: 16px;
+
+}
+.page-content-des-info .body-content-2 table tr td.right{
+  padding-left: 5px;
+
+}
+
+
+/*page-end*/
+
+.page-end {
+
+}
+
+.page-end .content-page-middle{
+  margin-left: 130px;
+  margin-right: 130px;
+}
+.page-end .content-page-middle p{
+  font-size: 42px;
+margin-top: 120px;
+}

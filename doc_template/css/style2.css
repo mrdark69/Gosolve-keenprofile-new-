@@ -1,0 +1,432 @@
+body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #FAFAFA;
+      font-family: 'Open Sans', sans-serif;
+      color: #fffee6;
+  }
+  * {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+  }
+  .page {
+     width: 794px;
+      min-height:1123px;
+
+      /*width: 794px;
+       min-height:1123.5px;*/
+      padding: 20mm;
+      margin:20px auto;
+       background: white;
+
+  }
+  .subpage {
+    position: relative;
+      padding: 1cm;
+      /*border: 5px red solid;*/
+      height: 257mm;
+      /*outline: 2cm #FFEAEA solid;*/
+  }
+
+  @page {
+      size: A4;
+      margin: 0;
+  }
+  @media print {
+      html, body {
+          width: 210mm;
+          height: 297mm;
+      }
+      .page {
+          margin: 0;
+          border: initial;
+          border-radius: initial;
+          width: initial;
+          min-height: initial;
+          box-shadow: initial;
+          background: initial;
+          page-break-after: always;
+      }
+  }
+
+
+  .bg-grey{
+      background-color: #37353a;
+  }
+  .bg-cream{
+      background-color: #fffee6;
+  }
+
+  .bg-red{
+      background-color: #592f2f;
+  }
+  .bg-blue{
+      background-color: #23366b;
+  }
+  .bg-smoke{
+      background-color: #3b3b40;
+  }
+
+  .page .footer {
+      color: #fffee6;
+      font-size: 12px;
+      position: absolute;
+      left: 50%;
+      margin-left: -100px;
+      top: 997px;
+  }
+
+  .color-black{
+    color: #000 !important;
+  }
+
+  .page-cover .bg{
+    background-image: url(http://cdn2.editmysite.com/images/editor/theme-background/stock/Skyscrapers.jpg);
+    margin-top: -3cm;
+    margin-left: -3cm;
+    margin-right: -3cm;
+    background-color: transparent;
+    background-size: cover;
+        height: 500px;
+  }
+
+  .page-cover .bg .bg-trans{
+    background: rgba(24,24,24,0.7);
+    height: 500px;
+    padding-top: 125px;
+  }
+  .page-cover .bg .bg-trans .cover-title{
+    background: rgba(24, 24, 24, 0.5);
+    text-align: center;
+    padding: 70px 0 70px 0;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+
+  }
+  .cover-title h1{
+    margin: 0px;
+    padding: 0px;
+    line-height: normal;
+    font-size: 45px;
+      font-weight: 300;
+  }
+  .cover-title h2{
+    margin-top: 20px;
+    font-size: 30px;
+      font-weight: 300;
+  }
+
+  .cover-page-des{
+    text-align: center;
+padding-top: 200px;
+color: #fffee6;
+
+  }
+  .cover-page-des h3 {
+    font-style: italic;
+    font-size: 30px;
+    margin: 0px;
+    padding: 0px;
+    font-weight: 300;
+    letter-spacing: 2px;
+
+}
+.cover-page-des h1 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+.cover-page-des h2 {
+    font-size: 30px;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 40px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+
+.page-front-cover {
+
+}
+.page-front-cover .front-cover-title{
+color: #fffee6;
+padding-top: 350px;
+}
+
+.page-front-cover .front-cover-title h1{
+  font-style: italic;
+      font-size: 18px;
+      text-align: center;
+      font-weight: 300;
+}
+.page-front-cover .front-cover-title h2{
+font-weight: 300;
+font-size: 18px;
+text-align: right;
+}
+
+.page-content .page-content-header{
+  font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      margin-top: -111px;
+      margin-left: -113px;
+      margin-right: -113px;
+      background-color: #000;
+      height: 150px;
+      line-height: 150px;
+      text-align: center;
+
+}
+.page-content .page-content-header h1{
+  color: #fffee6;
+      font-weight: 300;
+        font-size: 40px;
+        padding: 0px;
+    margin: 0px;
+}
+
+.page-content .page-content-table p{
+  margin-top: 60px;
+color: #d0e53d;
+font-size: 30px;
+}
+.page-content .page-content-table table{
+ border-collapse: collapse;
+ width: 120%;
+
+}
+.page-content .page-content-table table tr{
+
+}
+.page-content .page-content-table table tr td{
+  padding: 20px;
+}
+.page-content .page-content-table table tr td.col-1{
+color: #d0e53d;
+font-size: 30px;
+text-align: right;
+width: 20%;
+}
+.page-content .page-content-table table tr td.col-2{
+color: #fffee6;
+font-size: 22px;
+width: 80%;
+
+}
+
+
+/*page cover 1*/
+.page-cover-1{
+
+}
+.page-cover-1 .page-cover-1-content{
+
+}
+.page-cover-1 .page-cover-1-content .page-cover-1-bg-right{
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  right: -76px;
+  top: -76px;
+  background-color: #000;
+  width: 160px;
+  min-height: 1123px;
+  z-index: 0;
+}
+.page-cover-1 .page-cover-1-content h3{
+font-size: 30px;
+}
+.page-cover-1 .page-cover-1-content h2{
+padding-right: 100px;
+
+}
+.page-cover-1 .page-cover-1-content h1{
+  position: relative;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    color: #fff;
+    transform: rotate(-90deg);
+    width: 29.5cm;
+    height: 93px;
+    margin-top: 10.05cm;
+    /* margin-left: 500px; */
+    font-size: 73px;
+    line-height: 167px;
+    z-index: 999;
+}
+
+
+
+
+/*page-content-home*/
+.page-content-home h1{
+  color: #000;
+  text-align: center;
+  margin-top: -30px;
+  margin-left: -30px;
+  margin-right: -30px;
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 70px;
+}
+.page-content-home h3{
+  color: #000;
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 60px;
+}
+.page-content-home p
+{
+  font-size: 16px;
+    color: #000;
+    text-align: center;
+    line-height: 23px;
+}
+
+
+
+/*page-content mini*/
+
+.page-6-des {
+    color: #000;
+}
+
+.block-border-home {
+    border: 4px solid #23366b;
+    width: 124%;
+    padding: 20px;
+    margin-bottom: 40px;
+    margin-left: -70px;
+    margin-right: -50px;
+}
+
+.block-border-home p {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.block-border-home p.p-h1 {
+    margin-top: 20px;
+    font-size: 28px;
+}
+
+.block-border-home p.p-h2 {
+    text-align: center;
+}
+.page-6-des h1{
+  text-align: center;
+  margin-left:-70px;
+  margin-right:-50px;
+  font-size:40px;
+  margin-top:-50px;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+
+
+
+
+/*content home result*/
+.page-result h1{
+  margin-top: -75px;
+  margin-bottom: 0;
+}
+.page-result h2{
+  color: #000;
+  text-align: center;
+  font-size: 30px;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.page-result .result-body {
+color: #000;
+margin-left: -70px;
+  margin-right:-50px;
+}
+.result-body .result-body-row {
+clear: both;
+margin-bottom: 20px;
+}
+
+.result-body .result-body-row .detail{
+  width: 340px;
+  float: left;
+  text-align: left;
+  padding-left: 30px;
+}
+.result-body .result-body-row .detail.detail-full-width{
+  width: 100%;
+
+  text-align: left;
+  padding-left: 30px;
+}
+.result-body .result-body-row .detail.detail-full-width .detail-result-list{
+  text-align: left;
+}
+.result-body .result-body-row .detail.detail-full-width .detail-result-list .twin{
+  float: left;
+
+}
+.result-body .result-body-row .detail.detail-full-width .detail-result-list .twin.left{
+  width: 120px;
+
+}
+.result-body .result-body-row  .detail-result-list .twin.left span{
+  margin-right: 0;
+      width: 78px;
+}
+  .result-body .result-body-row .detail.detail-full-width .detail-result-list .twin.right{
+      width: 500px;
+      text-align: left;
+  }
+.result-body .result-body-row  .detail-result-list .twin ul{
+padding: 0;
+margin-top: 10px;
+}
+.result-body .result-body-row  .detail-result-list .twin ul li{
+  list-style: none;
+  display: inline-block;
+  font-size: 12px;
+  padding-left: 10px;
+}
+.result-body .result-body-row .detail.detail-full-width .detail-result-list p{
+ text-align: left;
+ font-size: 12px;
+}
+.result-body .result-body-row  .detail-result-list p span{
+ font-weight: 600;font-size: 12px;
+ margin-right: 40px;
+}
+.result-body .result-body-row .detail .topic{
+  text-align: left;
+  text-decoration: underline;
+  font-size: 13px;
+  font-weight: bold;
+}
+.result-body .result-body-row .detail .detail-body{
+  font-size: 12px;
+}
+.result-body .result-body-row .detail .detail-body p {
+text-align: left;
+font-size: 12px;
+}
+.result-body .result-body-row .detail .detail-body p span {
+  float: left;
+  display: block;
+  width: 50px;
+  height: 25px;
+  margin-right: 20px;
+}
