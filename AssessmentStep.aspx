@@ -80,11 +80,13 @@
 }*/
     </style>
     <link href="Content/animate.css" rel="stylesheet" />
-    <link href="Content/plugins/iCheck/custom.css" rel="stylesheet" />
+  
     <link href="Content/plugins/steps/jquery.steps.css" rel="stylesheet" />
     
     <link href="Content/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
-    <link href="Content/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+ <%--   <link href="Content/plugins/sweetalert/sweetalert.css" rel="stylesheet" />--%>
+    <link href="Theme/css/swal_custom.css" rel="stylesheet" />
+      <link href="Content/plugins/iCheck/custom.css" rel="stylesheet" />
    <%--     <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="css/plugins/steps/jquery.steps.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">--%>
