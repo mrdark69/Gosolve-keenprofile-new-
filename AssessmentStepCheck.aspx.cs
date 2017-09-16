@@ -66,7 +66,7 @@ public partial class __AssessmentStepCheck : BasePageFront
                             List<Model_ReportItemResult> dupfocus = dup.Where(d => d.Score_new == q.Key).OrderByDescending(r => r.Score_new).ToList();
 
                             ret.Append("<h1 class=\"step_count\"></h1>\r\n");
-                            ret.Append("<div class=\"step-content\">\r\n");
+                            ret.Append("<div class=\"step-content\" data-valid=\"check_choice\" data-count=\"" + (dupfocus.Count < 3 ? 3 : dupfocus.Count) + "\">\r\n");
                             ret.Append("<input type=\"hidden\" name=\"ass_fill_\"  value=\"" + count + "\" />\r\n");
 
                             ret.Append("<div class=\"text-center m-t-md\">\r\n");

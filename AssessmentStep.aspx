@@ -84,6 +84,7 @@
     <link href="Content/plugins/steps/jquery.steps.css" rel="stylesheet" />
     
     <link href="Content/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+    <link href="Content/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
    <%--     <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="css/plugins/steps/jquery.steps.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">--%>
@@ -328,11 +329,15 @@
     <!-- Jquery Validate -->
     <script src="Scripts/theme/plugins/validate/jquery.validate.min.js"></script>
     <%--<script src="js/plugins/validate/jquery.validate.min.js"></script>--%>
-
-
+    <%--<script src="Scripts/theme/plugins/sweetalert/sweetalert.min.js"></script>--%>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
      <script>
          $(document).ready(function () {
 
+             //$(document).on('click', '.rank_choice', function () {
+
+             //    alert('222');
+             //});
 
              $.validator.setDefaults({
                  onkeyup: function () {
@@ -436,10 +441,86 @@
 
                     if (valid == "checkcount") {
                         if ($("#wizard .body.current").find('input[type=checkbox]:checked').length == 0) {
-                            alert("You must select at least one!");
+                            //alert("You must select at least one!");
+
+                            swal({
+                                icon: "warning",
+                                title: "Alerts",
+                                text: "You must select at least one!"
+                               
+                            });
                             return false;
                         }
                     }
+
+                    if (valid == "check_rank1") {
+                        if ($("#wizard .body.current").find('input[type=radio]:checked').length == 0) {
+                            //alert("You must select at least one!");
+                            swal({
+                                icon: "warning",
+                                title: "Alerts",
+                                text: "You must select at least one!"
+                            });
+                            return false;
+                        }
+                    }
+
+                    if (valid == "check_choice") {
+                        if ($("#wizard .body.current").find('input[type=radio]:checked').length == 0) {
+                            //alert("You must select at least one!");
+
+                            swal({
+                                icon: "warning",
+                                title: "Alerts",
+                                text: "You must select at least one!"
+                            });
+                            return false;
+                        } else {
+
+                            var count = $("#wizard .body.current").data('count');
+                            if ($("#wizard .body.current").find('input[type=radio]:checked').length < count) {
+
+                                //alert("กรุณา เลือก ให้ครบ");
+                                swal({
+                                    icon: "warning",
+                                    title: "Alerts",
+                                    text: "ท่านยังเลือก คำตอบไม่ครบ"
+                                });
+                                return false;
+                            } else {
+                                var radio = $("#wizard .body.current").find('input[type=radio]:checked');
+                                var ret = true;
+                                $.each(radio, function () {
+                                    var _this = $(this);
+                                    var check = $.grep(radio, function (data, i) {
+
+                                        if ($(data).attr('name') != _this.attr('name')) {
+                                            return $(data).val() == _this.val();
+                                        }
+                                       
+                                    });
+
+                                    if (check.length > 0) {
+                                        ret = false;
+                                        return false;
+                                    }
+                                });
+
+                                if (!ret) {
+                                    //alert("ท่านเลือก คำตอบ ซ้ำกัน");
+                                    swal({
+                                        icon: "warning",
+                                        title: "Alerts",
+                                        text: "ท่านเลือก คำตอบ ซ้ำกัน"
+                                    });
+                                    return false;
+                                }
+                            }
+
+
+                        }
+                    }
+
                    
 
                     // Clean up if user went backward before
@@ -495,13 +576,27 @@
             }).validate({
                
                 errorPlacement: function (error, element) {
-                    element.before(error);
+                         if (element.attr("type") == "checkbox") {
+                             error.insertAfter($(element).closest('step-content').find('h2'));
+                    } else {
+                        element.before(error);
+                    }
+                   
                 },
                 rules: {
                     ctl00$MainContent$txtPhon: "customphone",
                    
                     confirm: {
                         equalTo: "#password"
+                    },
+                    chckCJF_form: function (element) {
+                        console.log(element);
+                    }
+                     
+                },
+                messages: {
+                    chckCJF_form: {
+                        required: 'กรุณา เลือกอย่างน้อย 1 ข้อ'
                     }
                 }
             });

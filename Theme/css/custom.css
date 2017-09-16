@@ -1132,9 +1132,11 @@ body {
 
         .q-type-rank-scale-lr .tbl-rank-scale-lr table tr td.question.left {
             text-align:left;
+            height:70px;
         }
         .q-type-rank-scale-lr .tbl-rank-scale-lr table tr td.question.right {
             text-align: right;
+            height: 70px;
         }
     .q-type-rank-scale-lr .tbl-rank-scale-lr table tr td.choice {
         color: #fff;
