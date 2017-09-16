@@ -22,6 +22,17 @@ public class AssessmentController
     }
 
 
+    public static string GetPaperReport1()
+    {
+        string ret = StringUtility.GetPDFTemplate("report1");
+        //string css1 = StringUtility.GetPDFTemplate_css("style2");
+        //string css2 = StringUtility.GetPDFTemplate_css("style3");
+        //string css3 = StringUtility.GetPDFTemplate_css("chart");
+
+        //ret = ret.Replace("<!--###StyePDF###-->", css1 + css2 + css3);
+        return ret;
+    }
+
     /// Assessment
     /// 
 

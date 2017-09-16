@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Utility;
 
 public partial class _Default : BasePageFront
 {
@@ -21,7 +22,29 @@ public partial class _Default : BasePageFront
                     " ("+(DatetimeHelper._UTCNow().Year - u.DateofBirth.Year).ToString() + ")": "XXXX");
                 gender.Text = (u.Gender == 1 ? "Male" : "Female");
 
-               // fc.Text = string.Join(", ", u.UserFC.Select(r => r.Title).ToArray());
+                // fc.Text = string.Join(", ", u.UserFC.Select(r => r.Title).ToArray());
+
+
+                //btnReport1 //btnReport3 //btnReport2
+
+                Model_UsersTransaction Uts = new Model_UsersTransaction();
+                List<Model_UsersTransaction> TSL = Uts.getTsListByUserID(u.UserID);
+                if(TSL.Count > 0)
+                {
+                    btnReport1.Text = "Download Now";
+                    btnReport2.Text = "Download Now";
+                    btnReport3.Text = "Contact Us now";
+                }
+                else
+                {
+                    btnReport1.Text = "Do Assessment Now";
+                    btnReport2.Text = "Do Assessment Now";
+                    btnReport3.Text = "Do Assessment Now";
+
+                    btnReport1.CommandArgument = "0";
+                    btnReport2.CommandArgument = "0";
+                    btnReport3.CommandArgument = "0";
+                }
             }
         }
     }
@@ -30,5 +53,31 @@ public partial class _Default : BasePageFront
     {
         Response.Write("sss");
         Response.End();
+    }
+
+    protected void btnReport1_Click(object sender, EventArgs e)
+    {
+        Button btn = (Button)sender;
+
+        int ReportType = btn.CommandArgument != string.Empty ? int.Parse(btn.CommandArgument) : 0;
+
+        switch (ReportType)
+        {
+            case 0:
+                Response.Redirect("Assessmentstep.aspx");
+                Response.End();
+                break;
+            case 1:
+
+                string report = AssessmentController.GetPaperReport1();
+                byte[] html = pdfgen.pdfGenerate(report);
+
+                pdfgen.ToClientSave(html, "KEENCareer-Finder-Report");
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
     }
 }

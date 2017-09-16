@@ -18,7 +18,12 @@ public static class StringUtility
     //}
     public static string GetPDFTemplate(string name)
     {
-        string text = File.ReadAllText(HttpContext.Current.Server.MapPath("/Theme/maintheme/inc/" + name + ".html"), Encoding.UTF8);
+        string text = File.ReadAllText(HttpContext.Current.Server.MapPath("/doc_template/" + name + ".html"), Encoding.UTF8);
+        return text;
+    }
+    public static string GetPDFTemplate_css(string name)
+    {
+        string text = File.ReadAllText(HttpContext.Current.Server.MapPath("/doc_template/css/" + name + ".css"), Encoding.UTF8);
         return text;
     }
 

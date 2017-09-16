@@ -92,6 +92,7 @@
                             <p>Hello! I’m Robert Smith. Senior Web Developer specializing in front end development. Experienced with all stages of the development cycle for dynamic web projects. Well-versed in numerous programming languages including JavaScript, SQL, and C. Stng background in project management and customer relations.</p>
                         </div>--%>
 					</div>	
+                        </div>
 				</section>
 
     <div class="divider">
@@ -100,25 +101,25 @@
 			<div class="col-md-4 col-sm-6">
 				<div class="divider-wrapper divider-one">
 					<i class="fa fa-star-o"></i>
-					<h2>The Career Pillar Calculation</h2>
+					<h2>KEENCareer Finder Report</h2>
 					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                    <asp:Button ID="btnReport1" runat="server" Text="Dowload Now" CssClass="btn_button" />
+                    <asp:Button ID="btnReport1" runat="server" Text="Dowload Now" CssClass="btn_button" OnClick="btnReport1_Click"  CommandArgument="1"/>
 				</div>
 			</div>
 			<div class="col-md-4 col-sm-6">
 				<div class="divider-wrapper divider-two">
 					<i class="fa fa-star-half-o"></i>
-					<h2>The Career Pillar Calculation</h2>
+					<h2>The Right Job Functions Report</h2>
 					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                     <asp:Button ID="btnReport2" runat="server" Text="Dowload Now" CssClass="btn_button" />
+                     <asp:Button ID="btnReport2" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="2" />
 				</div>
 			</div>
 			<div class="col-md-4 col-sm-12">
 				<div class="divider-wrapper divider-three">
 					<i class="fa fa-star"></i>
-					<h2>The Career Pillar Calculation</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-                     <asp:Button ID="btnReport3" runat="server" Text="Dowload Now" CssClass="btn_button" />
+					<h2>Your Current Job & Company Fit Report</h2>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam </p>
+                     <asp:Button ID="btnReport3" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="3" />
 				</div>
 			</div>
 		</div>

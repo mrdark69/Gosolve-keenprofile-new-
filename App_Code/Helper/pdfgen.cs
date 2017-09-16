@@ -30,11 +30,12 @@ namespace Utility
 
             // create the HTML to PDF converter
             HtmlToPdf htmlToPdfConverter = new HtmlToPdf();
-           // htmlToPdfConverter.SerialNumber = "jMTl3dzo-6sDl7v7t-/vW1orys-vay9rLi0-ur+sv72i-vb6itbW1-tQ==";
+            // htmlToPdfConverter.SerialNumber = "jMTl3dzo-6sDl7v7t-/vW1orys-vay9rLi0-ur+sv72i-vb6itbW1-tQ==";
 
 
             // set browser width
-            htmlToPdfConverter.BrowserWidth = 793;
+            htmlToPdfConverter.BrowserWidth = 794;
+            //htmlToPdfConverter.BrowserHeight = 3365;
             //htmlToPdfConverter.BrowserHeight = int.Parse(textBoxBrowserHeight.Text);
 
             // set browser height if specified, otherwise use the default
@@ -45,12 +46,12 @@ namespace Utility
             // set HTML Load timeout
             htmlToPdfConverter.HtmlLoadedTimeout = 120;
 
-            htmlToPdfConverter.Document.FitPageWidth = true;
-            htmlToPdfConverter.Document.ForceFitPageWidth = true;
+            //htmlToPdfConverter.Document.FitPageWidth = true;
+            //htmlToPdfConverter.Document.ForceFitPageWidth = true;
 
             // set PDF page size and orientation
-            htmlToPdfConverter.Document.PageSize = PdfPageSize.A4;
-            htmlToPdfConverter.Document.PageOrientation = PdfPageOrientation.Portrait;
+            //htmlToPdfConverter.Document.PageSize = PdfPageSize.A4;
+            //htmlToPdfConverter.Document.PageOrientation = PdfPageOrientation.Portrait;
 
             // set the PDF standard used by the document
             //htmlToPdfConverter.Document.PdfStandard = checkBoxPdfA.Checked ? PdfStandard.PdfA : PdfStandard.Pdf;
@@ -58,7 +59,7 @@ namespace Utility
             //htmlToPdfConverter.Document.P
             // set PDF page margins
 
-           // htmlToPdfConverter.Document.Margins = new PdfMargins(5);
+            // htmlToPdfConverter.Document.Margins = new PdfMargins(5);
 
 
 
