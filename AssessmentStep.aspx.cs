@@ -144,7 +144,7 @@ public partial class _AssessmentStep : BasePageFront
                         //string sIntro = sec.Title;
                         //string sDetail = convertcontent(sec.Intro);
 
-                        List<Model_Assessment> list = asslist.Where(r => r.SCID == sec.SCID).OrderBy(r => r.Priority).OrderBy(r => r.GroupName).ToList();
+                        List<Model_Assessment> list = asslist.Where(r => r.SCID == sec.SCID).OrderBy(r => r.Priority).ThenBy(r => r.GroupName).ToList();
                         if (list.Count > 0)
                         {
                             ret.Append(GenSectionIntro(sec));
