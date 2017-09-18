@@ -46,7 +46,7 @@ margin-right:5px;
                     <div class="tabs-container">
                         <ul class="nav nav-tabs">
                             <li class="active" id="li_tab1" runat="server"><a href="UsersContent" id="tab1" runat="server" aria-expanded="true">  Functional Competencies</a></li>
-                            <li class="" id="li_tab2" runat="server"><a href="UsersContent?tab=2" id="tab2" runat="server" aria-expanded="false">Current Job Function</a></li>
+                            <li class="" id="li_tab2" runat="server"><a href="UsersContent?tab=2" id="tab2" runat="server" aria-expanded="false">Job Level</a></li>
                            
                         </ul>
                         <div class="tab-content">
@@ -188,7 +188,7 @@ margin-right:5px;
                                              <div class="ibox float-e-margins" style="margin-bottom:0px;"  id="sub_pan" runat="server" visible="false">
                                                       <div class="ibox-content">
                                             <div class="form-horizontal">
-                                <h4 id="headsection_pan1" runat="server">Create a new Current Job Function</h4>
+                                <h4 id="headsection_pan1" runat="server">Create a new Job Level</h4>
                                 <hr />
                              <%--   <asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
                                 <asp:Label ID="Label1" runat="server"></asp:Label>
@@ -200,7 +200,7 @@ margin-right:5px;
                                     </div>
                                 </div>--%>
                                 <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="txtSubTitle" CssClass="col-md-2 control-label">Current Job Function</asp:Label>
+                                    <asp:Label runat="server" AssociatedControlID="txtSubTitle" CssClass="col-md-2 control-label">Job Level</asp:Label>
                                     <div class="col-md-10">
                                         <asp:TextBox runat="server" ID="txtSubTitle" CssClass="form-control" />
                                         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtSubTitle"
@@ -236,7 +236,7 @@ margin-right:5px;
 
                                     <div class="ibox float-e-margins">
                         <div class="ibox-title" style="border:none;">
-                            <h5>Current Job Function List </h5>
+                            <h5>Job Level List </h5>
 
                             <div class="ibox-tools">
                                 <a class="collapse-link">

@@ -81,7 +81,7 @@ public partial class _AssessmentStep : BasePageFront
                     strcjf.Append("<div  class=\"checkitem\">");
                  
 
-                    foreach (Model_CJF i  in cjflist)
+                    foreach (Model_CJF i  in cjflist.Where(r=>r.Status))
                     {
 
                         string check = string.Empty;
@@ -90,8 +90,6 @@ public partial class _AssessmentStep : BasePageFront
 
 
                         strcjf.Append("<div class=\"item\">");
-
-
                         strcjf.Append("<input  type=\"radio\" name=\"chckCJF_form\" " + check + " class=\"role_cjf_valid\" value=\"" + i.CJFID+"\">");
                         strcjf.Append("<label>" + i.Title + "</label>");
                         strcjf.Append("</div>");

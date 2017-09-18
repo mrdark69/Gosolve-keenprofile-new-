@@ -508,7 +508,7 @@ margin-right:5px;
                                     </div>
                                 </div>
                                                 <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="LastTitle" CssClass="col-md-2 control-label">Current Job Function Title</asp:Label>
+                                    <asp:Label runat="server" AssociatedControlID="LastTitle" CssClass="col-md-2 control-label">Job Level Title</asp:Label>
                                     <div class="col-md-10">
                                         <asp:TextBox runat="server" ID="ProfileCJFTitle" CssClass="form-control" />
                                         <asp:RequiredFieldValidator runat="server" ControlToValidate="ProfileCJFTitle"

@@ -37,7 +37,7 @@ public partial class _UserContent : BasePage
                 radioSubStatus.Text = sub.Status.ToString();
 
 
-                headsection_pan1.InnerHtml = "Edit Current Job Function";
+                headsection_pan1.InnerHtml = "Edit Job Level";
 
             }
         }
