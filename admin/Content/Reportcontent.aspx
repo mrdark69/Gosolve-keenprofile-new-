@@ -249,7 +249,7 @@ margin-right:5px;
                                 </div>
 
                                     <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="subpri" CssClass="col-md-2 control-label">Detail</asp:Label>
+                                    <asp:Label runat="server" ID="titleLabel_1" AssociatedControlID="subpri" CssClass="col-md-2 control-label">Detail</asp:Label>
                                     <div class="col-md-10">
                                         <asp:TextBox runat="server" ID="txtDetail" CssClass="form-control" TextMode="MultiLine" Rows="4" />
                                        
@@ -258,7 +258,7 @@ margin-right:5px;
 
 
                                                 <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="subpri" CssClass="col-md-2 control-label">People</asp:Label>
+                                    <asp:Label runat="server" ID="titleLabel_2" AssociatedControlID="subpri" CssClass="col-md-2 control-label">People</asp:Label>
                                     <div class="col-md-10">
                                         <asp:TextBox runat="server" ID="txtPeople" CssClass="form-control" TextMode="MultiLine" Rows="4" />
                                        

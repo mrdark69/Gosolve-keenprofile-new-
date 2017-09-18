@@ -74,6 +74,12 @@
     .intro-detail strong{
          color:#fff !important;
     }
+
+    .wizard > .content > .body input[type="radio"] {
+    display: inline-block;
+    margin-right: 3px;
+    margin-top:0px;
+}
 /* Show the tooltip text when you mouse over the tooltip container */
 /*.tooltip:hover .tooltiptext {
     visibility: visible;
@@ -336,10 +342,13 @@
      <script>
          $(document).ready(function () {
 
-             //$(document).on('click', '.rank_choice', function () {
+             $(document).on('click', '.rank_left_right', function () {
 
-             //    alert('222');
-             //});
+                 var parent = $(this).closest('.q-type-rank-scale-lr');
+
+                 parent.find('.rank_left_right').removeAttr('checked');
+                 $(this).prop('checked', true);
+             });
 
              $.validator.setDefaults({
                  onkeyup: function () {
@@ -442,7 +451,7 @@
                     var valid = $("#wizard .body.current").data('valid');
 
                     if (valid == "checkcount") {
-                        if ($("#wizard .body.current").find('input[type=checkbox]:checked').length == 0) {
+                        if ($("#wizard .body.current").find('input[type=radio]:checked').length == 0) {
                             //alert("You must select at least one!");
 
                             swal({

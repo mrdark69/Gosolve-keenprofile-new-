@@ -79,6 +79,15 @@ public partial class _ReportContent : BasePage
                 headsection_pan1.InnerHtml = "Edit Sub Section";
 
 
+                int id = int.Parse(Request.QueryString["section"]);
+
+                if(id == 3)
+                {
+                    titleLabel_1.Text = "Positive Detail";
+                    titleLabel_2.Text = "Nagative Detail";
+                }
+
+
             }
 
            

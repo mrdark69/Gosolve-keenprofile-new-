@@ -92,7 +92,7 @@ public partial class _AssessmentStep : BasePageFront
                         strcjf.Append("<div class=\"item\">");
 
 
-                        strcjf.Append("<input  type=\"checkbox\" name=\"chckCJF_form\" "+ check + " class=\"role_cjf_valid\" value=\"" + i.CJFID+"\">");
+                        strcjf.Append("<input  type=\"radio\" name=\"chckCJF_form\" " + check + " class=\"role_cjf_valid\" value=\"" + i.CJFID+"\">");
                         strcjf.Append("<label>" + i.Title + "</label>");
                         strcjf.Append("</div>");
                     }
@@ -248,7 +248,7 @@ public partial class _AssessmentStep : BasePageFront
             ret.Append("</tr><tr>");
             for (int i = ass.StartRank; i <= ass.EndRank; i++)
             {
-                ret.Append("<td class=\"choice\"><input type=\"radio\" class=\"rank_1\" name=\"ass_fill_i_sc_" + ass.ASID + "\" value=\"" + i + "\" /></td>");
+                ret.Append("<td class=\"choice\"><input type=\"radio\" class=\"rank_1 rank_left_right\" name=\"ass_fill_i_sc_" + ass.ASID + "\" value=\"" + i + "\" /></td>");
             }
             //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
             //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
@@ -278,7 +278,7 @@ public partial class _AssessmentStep : BasePageFront
             ret.Append("</tr><tr>");
             for (int i = ass.StartRank; i <= ass.EndRank; i++)
             {
-                ret.Append("<td class=\"choice\"><input type=\"radio\" class=\"rank_1\" name=\"ass_fill_i_sc_" + ass.ASID + "\" value=\"" + i + "\" /></td>");
+                ret.Append("<td class=\"choice\"><input type=\"radio\" class=\"rank_1 rank_left_right\" name=\"ass_fill_i_sc_" + ass.ASID + "\" value=\"" + i + "\" /></td>");
             }
             //    ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
             //ret.Append("<td class=\"choice\"><input type=\"radio\" name=\"le\" /></td>");
