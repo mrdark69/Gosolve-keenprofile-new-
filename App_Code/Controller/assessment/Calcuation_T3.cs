@@ -84,6 +84,7 @@ public class Calculation_T3
             {
                 List<Model_UsersAssessment> ass = this.R_UserAss_B.Where(o => o.SUCID == int.Parse(m)).ToList();
 
+                //Get Record from assement group 1 for case Extra duplicate
                 TASID = ass.Select(r => r.TASID).First();
                 score = score + ass.Take(3).Sum(t => t.Score);
                 score = score - ass.Skip(3).Sum(t => t.Score);

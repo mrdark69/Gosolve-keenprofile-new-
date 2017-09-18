@@ -64,15 +64,29 @@ public class Calculation_T1
             string map = item.SUCID;
             string[] arrmap = map.Split(',');
             decimal score = 0;
+            int TASCID = 0;
+            int TASID = 0;
+            string strDetail = string.Empty;
             foreach (string  m in arrmap)
             {
+
                  score  = score + this.R_UserAss_F.Where(o => o.SUCID == int.Parse(m)).Sum(t => t.Score);
                 
             }
 
             foreach (string m in arrmap)
             {
+                List<Model_UsersAssChoice> assch = this.R_UserAssChoice_H.Where(o => o.SUCID == int.Parse(m)).ToList();
+               
                 score = score + this.R_UserAssChoice_H.Where(o => o.SUCID == int.Parse(m)).Sum(t => t.Score);
+
+                if(assch.Count > 0)
+                {
+                    TASCID =assch.Select(r => r.TASCID).Last();
+                    TASID =  assch.Select(r => r.TASID).Last();
+                    strDetail = String.Join(",", assch.Select(t => t.Score).ToArray());
+                }
+               
 
             }
             rlist.Add(new Model_ReportItemResult
@@ -81,7 +95,11 @@ public class Calculation_T1
                 ResultItemID = item.ResultItemID,
                 ResultItemTitle = item.Title,
                 TransactionID = this.TransactionID,
-                Score = score
+                Score = score,
+                Score_new = score,
+                TASCID = TASCID,
+                TASID = TASID,
+                Detail = strDetail
             });
 
             
