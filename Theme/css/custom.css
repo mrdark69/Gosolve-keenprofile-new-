@@ -1228,7 +1228,7 @@ div.checkitem {
 }
 
     div.checkitem div.item {
-        display: inline-block;
+        /*display: inline-block;*/
         margin-left: 20px;
         padding: 5px;
     }
