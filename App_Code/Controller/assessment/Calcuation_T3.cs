@@ -176,7 +176,7 @@ public class Calculation_T3
                     //obj.IsDup = false;
                 }
 
-                plus = plus - (decimal)0.01;
+                //plus = plus - (decimal)0.01;
             }
         }
 
