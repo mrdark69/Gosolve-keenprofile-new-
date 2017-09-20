@@ -21,7 +21,8 @@ public partial class ajax_save_assessment_extra : BasePageFront
                 int tsid = int.Parse(Request.Form["ctl00$MainContent$hdTsID"]);
                 //Profile Process
 
-                Model_ReportItemResult cr = new Model_ReportItemResult();
+                //Model_ReportItemResult cr = new Model_ReportItemResult();
+                Model_UsersAssessment cr = new Model_UsersAssessment();
 
                 string resultID = Request.Form["ass_fill_ch_"];
                 if (!string.IsNullOrEmpty(resultID))
@@ -31,9 +32,9 @@ public partial class ajax_save_assessment_extra : BasePageFront
 
                     foreach(string r in arrResultID)
                     {
-                        int intResultID = int.Parse(r);
+                        int intTASID = int.Parse(r);
                         int RankVal = int.Parse(Request.Form["ass_fill_ch_sc_" + r]);
-                        IsCom = cr.UpdateUserRank(intResultID, RankVal);
+                        IsCom = cr.UpdateUserRank(intTASID, RankVal);
                     }
                 }
 

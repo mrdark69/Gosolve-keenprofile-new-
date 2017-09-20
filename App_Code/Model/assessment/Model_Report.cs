@@ -33,6 +33,10 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
     public bool IsDup { get; set; } = false;
 
     public int? UserRank { get; set; }
+    public int? AutoRank4 { get; set; }
+    public int? AutoRank1 { get; set; }
+    public int? AutoRank2 { get; set; }
+    public int? AutoRank3{ get; set; }
 
     private string[] arr_raw = null;
     public string [] ArrRaw
@@ -94,7 +98,8 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
 
 
                 SqlCommand cmdupdate = new SqlCommand(@"UPDATE  ReportItemResult SET Score=@Score,IsAbove=@IsAbove,IsBelow=@IsBelow,Score_new=@Score_new
-,TASID=@TASID, TASCID=@TASCID, Detail=@Detail,Factor=@Factor,IsDup=@IsDup WHERE ResultSectionID=@ResultSectionID AND ResultItemID=@ResultItemID AND TransactionID=@TransactionID;
+,TASID=@TASID, TASCID=@TASCID, Detail=@Detail,Factor=@Factor,IsDup=@IsDup ,AutoRank4=@AutoRank4,AutoRank1=@AutoRank1,AutoRank2=@AutoRank2,AutoRank3=@AutoRank3
+ WHERE ResultSectionID=@ResultSectionID AND ResultItemID=@ResultItemID AND TransactionID=@TransactionID;
                 ", cn);
 
                 cmdupdate.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = re.ResultSectionID;
@@ -118,6 +123,25 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                 else
                     cmdupdate.Parameters.AddWithValue("@TASCID", DBNull.Value);
 
+                if (re.AutoRank4.HasValue)
+                    cmdupdate.Parameters.Add("@AutoRank4", SqlDbType.Int).Value = re.AutoRank4;
+                else
+                    cmdupdate.Parameters.AddWithValue("@AutoRank4", DBNull.Value);
+
+                if (re.AutoRank1.HasValue)
+                    cmdupdate.Parameters.Add("@AutoRank1", SqlDbType.Int).Value = re.AutoRank1;
+                else
+                    cmdupdate.Parameters.AddWithValue("@AutoRank1", DBNull.Value);
+
+                if (re.AutoRank2.HasValue)
+                    cmdupdate.Parameters.Add("@AutoRank2", SqlDbType.Int).Value = re.AutoRank2;
+                else
+                    cmdupdate.Parameters.AddWithValue("@AutoRank2", DBNull.Value);
+
+                if (re.AutoRank3.HasValue)
+                    cmdupdate.Parameters.Add("@AutoRank3", SqlDbType.Int).Value = re.AutoRank3;
+                else
+                    cmdupdate.Parameters.AddWithValue("@AutoRank3", DBNull.Value);
 
 
                 if (re.Factor.HasValue)
@@ -137,8 +161,8 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                 //DELETE FROM ReportItemResult WHERE ResultSectionID = @ResultSectionID AND ResultItemID = @ResultItemID AND TransactionID = @TransactionID;
                 if (ExecuteNonQuery(cmdupdate) == 0)
                 {
-                    SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,TASCID,Detail,Factor,IsDup) 
-                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@TASCID,@Detail,@Factor,@IsDup)", cn);
+                    SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,TASCID,Detail,Factor,IsDup,AutoRank4,AutoRank1,AutoRank2,AutoRank3) 
+                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@TASCID,@Detail,@Factor,@IsDup,@AutoRank4,@AutoRank1,@AutoRank2,@AutoRank3)", cn);
 
                     cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = re.ResultSectionID;
                     cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = re.ResultItemID;
@@ -156,7 +180,25 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                     else
                         cmd.Parameters.AddWithValue("@TASID", DBNull.Value);
 
+                    if (re.AutoRank4.HasValue)
+                        cmdupdate.Parameters.Add("@AutoRank4", SqlDbType.Int).Value = re.AutoRank4;
+                    else
+                        cmdupdate.Parameters.AddWithValue("@AutoRank4", DBNull.Value);
 
+                    if (re.AutoRank1.HasValue)
+                        cmdupdate.Parameters.Add("@AutoRank1", SqlDbType.Int).Value = re.AutoRank1;
+                    else
+                        cmdupdate.Parameters.AddWithValue("@AutoRank1", DBNull.Value);
+
+                    if (re.AutoRank2.HasValue)
+                        cmdupdate.Parameters.Add("@AutoRank2", SqlDbType.Int).Value = re.AutoRank2;
+                    else
+                        cmdupdate.Parameters.AddWithValue("@AutoRank2", DBNull.Value);
+
+                    if (re.AutoRank3.HasValue)
+                        cmdupdate.Parameters.Add("@AutoRank3", SqlDbType.Int).Value = re.AutoRank3;
+                    else
+                        cmdupdate.Parameters.AddWithValue("@AutoRank3", DBNull.Value);
 
                     if (re.TASCID.HasValue)
                         cmd.Parameters.Add("@TASCID", SqlDbType.Int).Value = re.TASCID;

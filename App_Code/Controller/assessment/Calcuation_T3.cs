@@ -39,8 +39,9 @@ public class Calculation_T3
         }
     }
 
-    public bool IsDup { get; set; }
+    //public bool IsDup { get; set; }
 
+    public bool IsDupExtra { get; set; }
 
     public Calculation_T3(int intResultSectionID, int TransactionID)
     {
@@ -80,12 +81,14 @@ public class Calculation_T3
             decimal score = 0;
             int TASID = 0;
             string strDetail = string.Empty;
+            int? UserRank = null;
             foreach (string m in arrmap)
             {
                 List<Model_UsersAssessment> ass = this.R_UserAss_B.Where(o => o.SUCID == int.Parse(m)).ToList();
 
                 //Get Record from assement group 1 for case Extra duplicate
                 TASID = ass.Select(r => r.TASID).First();
+                UserRank = ass.Select(r => r.ScoreUserRank).First();
                 score = score + ass.Take(3).Sum(t => t.Score);
                 score = score - ass.Skip(3).Sum(t => t.Score);
 
@@ -106,7 +109,9 @@ public class Calculation_T3
                 Score = score,
                 Score_new  = score,
                 TASID = TASID,
-                Detail = strDetail
+                Detail = strDetail,
+                UserRank = UserRank
+
             });
 
 
@@ -143,56 +148,52 @@ public class Calculation_T3
 
 
 
-        List<Model_ReportItemResult> ListReview = ReviewResultDup_new(rlist).OrderByDescending(o => o.Score_new).ToList();
+        List<Model_ReportItemResult> ListReview = ReviewResultDup_newV2(rlist);
 
-        if(!IsDup)
+
+        //check UserRank
+        List<Model_ReportItemResult> listdup = ListReview.Where(o => o.IsDup).ToList();
+
+        foreach (Model_ReportItemResult dup in listdup)
         {
-            Dictionary<decimal, int> GroupDup = ListReview.GroupBy(x => (decimal)x.Score_new)
-            .Where(g => g.Count() > 1)
-            .ToDictionary(x => x.Key, y => y.Count());
-
-            foreach (KeyValuePair<decimal, int> q in GroupDup)
+            if (dup.UserRank.HasValue)
             {
-                List<Model_ReportItemResult> dupfocus = ListReview.Where(d => d.Score == q.Key).OrderByDescending(r => r.Score).ToList();
-                decimal startfactor = 0.99M;
-                decimal? factor = dupfocus.OrderBy(o=>o.Score_new).FirstOrDefault(o => o.Factor.HasValue).Factor;
-                if (factor.HasValue)
+                int countDup = listdup.Where(o => o.Score == dup.Score && o.IsDup).Count();
+                //check ranksore from user extra rank have not more than total dup
+                //int rank = (int)(dup.UserRank > countDup ? countDup : dup.UserRank);
+
+                //int intUserRank = (rank + (int)dup.AutoRank3);
+
+                int intUserRank = (int)(dup.UserRank > countDup ? countDup : dup.UserRank);
+                decimal plus = (decimal)((decimal)0.99 - ((decimal)0.01 * intUserRank));
+
+                var obj = ListReview.FirstOrDefault(o => o.ResultItemID == dup.ResultItemID);
+                if (obj != null)
                 {
-                    startfactor = (decimal)factor - (decimal)0.01;
-
-                    foreach(Model_ReportItemResult item in dupfocus.Where(o=>o.IsDup).OrderBy(o=>o.UserRank))
-                    {
-                        var obj = ListReview.FirstOrDefault(o => o.ResultItemID == item.ResultItemID);
-                        if (obj != null) obj.Score_new = obj.Score_new + startfactor;
-
-                        startfactor = startfactor - (decimal)0.01;
-                    }
-                }
-                else
-                {
-                    foreach (Model_ReportItemResult item in dupfocus.Where(o => o.IsDup).OrderBy(o => o.UserRank))
-                    {
-                        var obj = ListReview.FirstOrDefault(o => o.ResultItemID == item.ResultItemID);
-                        if (obj != null) obj.Score_new = obj.Score_new + startfactor;
-
-                        startfactor = startfactor - (decimal)0.01;
-                    }
+                    //decimal plus = (decimal)(1 - ((decimal)0.01 * i.AutoRank4));
+                    obj.Factor = plus;
+                    obj.Score_new = obj.Score + plus;
+                    //obj.IsDup = false;
                 }
 
+                plus = plus - (decimal)0.01;
             }
         }
 
 
+
+
+        //check IsdupExtra
         Dictionary<decimal, int> GroupDupRecheck = ListReview.GroupBy(x => (decimal)x.Score_new)
             .Where(g => g.Count() > 1)
             .ToDictionary(x => x.Key, y => y.Count());
 
         if (GroupDupRecheck.Count > 0)
-            this.IsDup = false;
+            this.IsDupExtra = true;
         else
-            this.IsDup = true;
+            this.IsDupExtra = false;
 
-        return ListReview;
+        return ListReview.OrderByDescending(o => o.Score_new).ToList();
     }
 
     public bool Calnow()
@@ -205,18 +206,199 @@ public class Calculation_T3
     }
 
 
-    public bool RecordResult(List<Model_ReportItemResult> result)
+   
+    public List<Model_ReportItemResult> ReviewResultDup_newV2(List<Model_ReportItemResult> rlist)
     {
-        bool ret = false;
-        if (result.Count > 0)
-        {
-            Model_ReportItemResult me = new Model_ReportItemResult();
-            ret = me.InsertReportItemResultBulk(result);
-        }
-      
-        return ret;
-    }
 
+
+        //Group Dup list
+        Dictionary<decimal, int> GroupDup = rlist.GroupBy(x => (decimal)x.Score_new)
+             .Where(g => g.Count() > 1)
+             .ToDictionary(x => x.Key, y => y.Count());
+
+
+        foreach(KeyValuePair<decimal,int> dup in GroupDup)
+        {
+            List<Model_ReportItemResult> ListDup = rlist.Where(o => o.Score_new == dup.Key).ToList();
+            int MaxRank = ListDup.Count;
+
+            int min = int.Parse(ListDup.Min(r => r.G4));
+
+
+           
+
+            //update item flag duplicate
+            foreach (Model_ReportItemResult i in ListDup)
+            {
+                var obj = rlist.FirstOrDefault(o => o.ResultItemID == i.ResultItemID);
+                if (obj != null) obj.IsDup = true;
+
+                var obj2 = ListDup.FirstOrDefault(o => o.ResultItemID == i.ResultItemID);
+                if (obj2 != null) obj2.IsDup = true;
+            }
+
+
+            var rankedDataG4 = ListDup.Where(o=>o.IsDup).Select(s => new {
+                ResultID = s.ResultID,
+                ResultItemID = s.ResultItemID,
+                Ranking = ListDup.Count(x => int.Parse(x.G4) < int.Parse(s.G4)) + 1,
+                Name = s.ResultItemTitle,
+                Score = s.Score_new
+            });
+
+
+            var rankedDataG1 = ListDup.Where(o => o.IsDup).Select(s => new {
+                ResultID = s.ResultID,
+                ResultItemID = s.ResultItemID,
+                Ranking = ListDup.Count(x => int.Parse(x.G1) > int.Parse(s.G1)) + 1,
+                Name = s.ResultItemTitle,
+                Score = s.Score_new
+            });
+
+            var rankedDataG2 = ListDup.Where(o => o.IsDup).Select(s => new {
+                ResultID = s.ResultID,
+                ResultItemID = s.ResultItemID,
+                Ranking = ListDup.Count(x => int.Parse(x.G2) > int.Parse(s.G2)) + 1,
+                Name = s.ResultItemTitle,
+                Score = s.Score_new
+            });
+
+            var rankedDataG3 = ListDup.Where(o => o.IsDup).Select(s => new {
+                ResultID = s.ResultID,
+                ResultItemID = s.ResultItemID,
+                Ranking = ListDup.Count(x => int.Parse(x.G3) > int.Parse(s.G3)) + 1,
+                Name = s.ResultItemTitle,
+                Score = s.Score_new
+            });
+
+            foreach (var g4 in rankedDataG4.OrderBy(o=>o.Ranking))
+            {
+                var obj = rlist.FirstOrDefault(o => o.ResultItemID == g4.ResultItemID);
+                if (obj != null) obj.AutoRank4 = g4.Ranking;
+
+                var obj2 = ListDup.FirstOrDefault(o => o.ResultItemID == g4.ResultItemID);
+                if (obj2 != null) obj.AutoRank4 = g4.Ranking;
+            }
+            foreach (var g1 in rankedDataG1.OrderBy(o => o.Ranking))
+            {
+                var obj = rlist.FirstOrDefault(o => o.ResultItemID == g1.ResultItemID);
+                if (obj != null) obj.AutoRank1 = g1.Ranking;
+
+                var obj2 = ListDup.FirstOrDefault(o => o.ResultItemID == g1.ResultItemID);
+                if (obj2 != null) obj.AutoRank1 = g1.Ranking;
+            }
+            foreach (var g2 in rankedDataG2.OrderBy(o => o.Ranking))
+            {
+                var obj = rlist.FirstOrDefault(o => o.ResultItemID == g2.ResultItemID);
+                if (obj != null) obj.AutoRank2 = g2.Ranking;
+
+                var obj2 = ListDup.FirstOrDefault(o => o.ResultItemID == g2.ResultItemID);
+                if (obj2 != null) obj.AutoRank2 = g2.Ranking;
+            }
+            foreach (var g3 in rankedDataG3.OrderBy(o => o.Ranking))
+            {
+                var obj = rlist.FirstOrDefault(o => o.ResultItemID == g3.ResultItemID);
+                if (obj != null) obj.AutoRank3 = g3.Ranking;
+
+                var obj2 = ListDup.FirstOrDefault(o => o.ResultItemID == g3.ResultItemID);
+                if (obj2 != null) obj.AutoRank3 = g3.Ranking;
+            }
+
+
+            foreach (Model_ReportItemResult i in ListDup.Where(o => o.IsDup).OrderBy(o=>o.AutoRank4))
+            {
+              
+                if (ListDup.Where(o=>o.AutoRank4 ==i.AutoRank4).Count() == 1)
+                {
+                    var obj = rlist.FirstOrDefault(o => o.ResultItemID == i.ResultItemID);
+                    if (obj != null) {
+                        decimal plus = (decimal)(1 - ((decimal)0.01 * i.AutoRank4));
+                        obj.Factor = plus;
+                        obj.Score_new = obj.Score + plus;
+                        obj.IsDup = false;
+                    }
+
+                    var obj2 = ListDup.FirstOrDefault(o => o.ResultItemID == i.ResultItemID);
+                    if (obj2 != null) obj2.IsDup = false;
+
+                }
+               
+                
+            }
+
+            foreach (Model_ReportItemResult i in ListDup.Where(o => o.IsDup).OrderBy(o => o.AutoRank1))
+            {
+                if (ListDup.Where(o => o.AutoRank1 == i.AutoRank1).Count() == 1)
+                {
+                    var obj = rlist.FirstOrDefault(o => o.ResultItemID == i.ResultItemID);
+                    if (obj != null)
+                    {
+                        decimal plus = (decimal)(1 - ((decimal)0.01 * (i.AutoRank1 + i.AutoRank4)));
+                        obj.Factor = plus;
+                        obj.Score_new = obj.Score + plus;
+                        obj.IsDup = false;
+                    }
+
+                    var obj2 = ListDup.FirstOrDefault(o => o.ResultItemID == i.ResultItemID);
+                    if (obj2 != null) obj2.IsDup = false;
+
+                }
+                
+
+            }
+
+
+            foreach (Model_ReportItemResult i in ListDup.Where(o => o.IsDup).OrderBy(o => o.AutoRank2))
+            {
+                if (ListDup.Where(o => o.AutoRank2 == i.AutoRank2).Count() == 1)
+                {
+                    var obj = rlist.FirstOrDefault(o => o.ResultItemID == i.ResultItemID);
+                    if (obj != null)
+                    {
+                        decimal plus = (decimal)(1 - ((decimal)0.01 * (i.AutoRank2 + i.AutoRank1)));
+                        obj.Factor = plus;
+                        obj.Score_new = obj.Score + plus;
+                        obj.IsDup = false;
+                    }
+
+                    var obj2 = ListDup.FirstOrDefault(o => o.ResultItemID == i.ResultItemID);
+                    if (obj2 != null) obj2.IsDup = false;
+
+                }
+                
+            }
+
+
+            foreach (Model_ReportItemResult i in ListDup.Where(o => o.IsDup).OrderBy(o => o.AutoRank3))
+            {
+                if (ListDup.Where(o => o.AutoRank3 == i.AutoRank3).Count() == 1)
+                {
+                    var obj = rlist.FirstOrDefault(o => o.ResultItemID == i.ResultItemID);
+                    if (obj != null)
+                    {
+                        decimal plus = (decimal)(1 - ((decimal)0.01 * (i.AutoRank3 + i.AutoRank2)));
+                        obj.Factor = plus;
+                        obj.Score_new = obj.Score + plus;
+                        obj.IsDup = false;
+                    }
+
+                    var obj2 = ListDup.FirstOrDefault(o => o.ResultItemID == i.ResultItemID);
+                    if (obj2 != null) obj2.IsDup = false;
+
+                }
+                
+            }
+
+
+            
+
+
+        }
+
+
+
+        return rlist;
+    }
     public List<Model_ReportItemResult> ReviewResultDup_new(List<Model_ReportItemResult> rlist)
     {
 
@@ -242,7 +424,7 @@ public class Calculation_T3
             while (GroupDupCount > 0 && totalReview < 18)
             {
                 // assign IsDup = true;
-                this.IsDup = true;
+                this.IsDupExtra = true;
                 List<Model_ReportItemResult> dupwinList = new List<Model_ReportItemResult>();
                
                
@@ -385,9 +567,9 @@ public class Calculation_T3
                      .ToDictionary(x => x.Key, y => y.Count());
                 GroupDupCount = dupwinList.Count();
                 if (GroupDupCount > 0)
-                    this.IsDup = true;
+                    this.IsDupExtra = true;
                 else
-                    this.IsDup = false;
+                    this.IsDupExtra = false;
 
                 totalReview = totalReview + 1;
                 num = num - (decimal)0.01;
@@ -528,7 +710,17 @@ public class Calculation_T3
     }
 
 
+    public bool RecordResult(List<Model_ReportItemResult> result)
+    {
+        bool ret = false;
+        if (result.Count > 0)
+        {
+            Model_ReportItemResult me = new Model_ReportItemResult();
+            ret = me.InsertReportItemResultBulk(result);
+        }
 
+        return ret;
+    }
     public List<Model_UsersAssessment> GetUserAss(char code)
     {
         Model_UsersAssessment uss = new Model_UsersAssessment();
@@ -560,4 +752,43 @@ public class Calculation_T3
         return ret;
     }
 
+
+
+
+    //if(!IsDup)
+    //{
+    //    Dictionary<decimal, int> GroupDup = ListReview.GroupBy(x => (decimal)x.Score_new)
+    //    .Where(g => g.Count() > 1)
+    //    .ToDictionary(x => x.Key, y => y.Count());
+
+    //    foreach (KeyValuePair<decimal, int> q in GroupDup)
+    //    {
+    //        List<Model_ReportItemResult> dupfocus = ListReview.Where(d => d.Score == q.Key).OrderByDescending(r => r.Score).ToList();
+    //        decimal startfactor = 0.99M;
+    //        decimal? factor = dupfocus.OrderBy(o=>o.Score_new).FirstOrDefault(o => o.Factor.HasValue).Factor;
+    //        if (factor.HasValue)
+    //        {
+    //            startfactor = (decimal)factor - (decimal)0.01;
+
+    //            foreach(Model_ReportItemResult item in dupfocus.Where(o=>o.IsDup).OrderBy(o=>o.UserRank))
+    //            {
+    //                var obj = ListReview.FirstOrDefault(o => o.ResultItemID == item.ResultItemID);
+    //                if (obj != null) obj.Score_new = obj.Score_new + startfactor;
+
+    //                startfactor = startfactor - (decimal)0.01;
+    //            }
+    //        }
+    //        else
+    //        {
+    //            foreach (Model_ReportItemResult item in dupfocus.Where(o => o.IsDup).OrderBy(o => o.UserRank))
+    //            {
+    //                var obj = ListReview.FirstOrDefault(o => o.ResultItemID == item.ResultItemID);
+    //                if (obj != null) obj.Score_new = obj.Score_new + startfactor;
+
+    //                startfactor = startfactor - (decimal)0.01;
+    //            }
+    //        }
+
+    //    }
+    //}
 }

@@ -48,6 +48,7 @@ public class Model_UsersAssessment: BaseModel<Model_UsersAssessment>
     public string SubSectionTitle { get; set; }
     public string QuestionTypeTitle { get; set; }
 
+    public int? ScoreUserRank { get; set; }
 
     public string Combind { get; set; }
 
@@ -71,6 +72,19 @@ public class Model_UsersAssessment: BaseModel<Model_UsersAssessment>
         }
            
     }
+
+    public bool UpdateUserRank(int intTASID, int Rank)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("UPDATE UserAssessment SET ScoreUserRank=@ScoreUserRank WHERE TASID=@TASID", cn);
+            cmd.Parameters.Add("@ScoreUserRank", SqlDbType.Int).Value = Rank;
+            cmd.Parameters.Add("@TASID", SqlDbType.Int).Value = intTASID;
+            cn.Open();
+            return ExecuteNonQuery(cmd) == 1;
+        }
+    }
+
     public List<Model_UsersAssessment> GetUserAssessmentByTsID(int TsID)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))

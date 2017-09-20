@@ -103,12 +103,13 @@ public partial class __AssessmentStepCheck : BasePageFront
                                     if(assuser != null)
                                     {
                                         ret.Append("<tr>\r\n");
-                                        ret.Append("<input type=\"hidden\" name=\"ass_fill_ch_\"  value=\"" + ch.ResultID + "\" />\r\n");
+                                        ret.Append("<input type=\"hidden\" name=\"ass_fill_ch_\"  value=\"" + ch.TASID + "\" />\r\n");
                                         ret.Append("<td class=\"question\">" + assuser.Questions + "</td>\r\n");
 
                                         for (int i = 1; i <= (dupfocus.Count < 3? 3: dupfocus.Count); i++)
                                         {
-                                            ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_ch_sc_" + ch.ResultID + "\" value=\"" + i + "\" /></td>\r\n");
+                                            //ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_ch_sc_" + ch.ResultID + "\" value=\"" + i + "\" /></td>\r\n");
+                                            ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_ch_sc_" + ch.TASID + "\" value=\"" + i + "\" /></td>\r\n");
                                         }
 
                                         ret.Append("</tr>\r\n");
@@ -138,7 +139,7 @@ public partial class __AssessmentStepCheck : BasePageFront
 
                                     for (int i = 1; i <= (dupfocus.Count < 3 ? 3 : dupfocus.Count); i++)
                                     {
-                                        ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_ch_sc_\" value=\"" + i + "\" /></td>\r\n");
+                                        ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_ch_sc_"+ rd.TASID+ "\" value=\"" + i + "\" /></td>\r\n");
                                     }
 
                                     ret.Append("</tr>\r\n");
