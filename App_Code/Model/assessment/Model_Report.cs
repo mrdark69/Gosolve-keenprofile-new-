@@ -30,7 +30,8 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
     public string Detail { get; set; } = string.Empty;
 
 
-    public bool IsDup { get; set; } = false;
+    public decimal IsDup { get; set; } = 0.0m;
+    public decimal Division { get; set; } = 0.0m;
 
     public int? UserRank { get; set; }
     public int? AutoRank4 { get; set; }
@@ -99,6 +100,7 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
 
                 SqlCommand cmdupdate = new SqlCommand(@"UPDATE  ReportItemResult SET Score=@Score,IsAbove=@IsAbove,IsBelow=@IsBelow,Score_new=@Score_new
 ,TASID=@TASID, TASCID=@TASCID, Detail=@Detail,Factor=@Factor,IsDup=@IsDup ,AutoRank4=@AutoRank4,AutoRank1=@AutoRank1,AutoRank2=@AutoRank2,AutoRank3=@AutoRank3
+,Division=@Division
  WHERE ResultSectionID=@ResultSectionID AND ResultItemID=@ResultItemID AND TransactionID=@TransactionID;
                 ", cn);
 
@@ -150,7 +152,9 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                     cmdupdate.Parameters.AddWithValue("@Factor", DBNull.Value);
 
 
-                cmdupdate.Parameters.Add("@IsDup", SqlDbType.Int).Value = re.IsDup;
+
+                cmdupdate.Parameters.Add("@Division", SqlDbType.Decimal).Value = re.Division;
+                cmdupdate.Parameters.Add("@IsDup", SqlDbType.Decimal).Value = re.IsDup;
 
                 cmdupdate.Parameters.Add("@IsAbove", SqlDbType.Bit).Value = re.IsAbove;
                 cmdupdate.Parameters.Add("@IsBelow", SqlDbType.Bit).Value = re.IsBelow;
@@ -161,8 +165,8 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                 //DELETE FROM ReportItemResult WHERE ResultSectionID = @ResultSectionID AND ResultItemID = @ResultItemID AND TransactionID = @TransactionID;
                 if (ExecuteNonQuery(cmdupdate) == 0)
                 {
-                    SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,TASCID,Detail,Factor,IsDup,AutoRank4,AutoRank1,AutoRank2,AutoRank3) 
-                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@TASCID,@Detail,@Factor,@IsDup,@AutoRank4,@AutoRank1,@AutoRank2,@AutoRank3)", cn);
+                    SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,TASCID,Detail,Factor,IsDup,AutoRank4,AutoRank1,AutoRank2,AutoRank3,Division) 
+                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@TASCID,@Detail,@Factor,@IsDup,@AutoRank4,@AutoRank1,@AutoRank2,@AutoRank3,@Division)", cn);
 
                     cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = re.ResultSectionID;
                     cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = re.ResultItemID;
@@ -210,8 +214,8 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                     else
                         cmd.Parameters.AddWithValue("@Factor", DBNull.Value);
 
-
-                    cmd.Parameters.Add("@IsDup", SqlDbType.Int).Value = re.IsDup;
+                    cmd.Parameters.Add("@Division", SqlDbType.Decimal).Value = re.Division;
+                    cmd.Parameters.Add("@IsDup", SqlDbType.Decimal).Value = re.IsDup;
 
                     cmd.Parameters.Add("@IsAbove", SqlDbType.Bit).Value = re.IsAbove;
                     cmd.Parameters.Add("@IsBelow", SqlDbType.Bit).Value = re.IsBelow;
@@ -234,41 +238,41 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
         }
     }
 
-    public int InsertReportItemResult(Model_ReportItemResult re)
-    {
-        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
-        {
-            SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,Score_new,TASID,Detail,Factor,IsDup) 
-                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@Score_new,@TASID,@Detail,@Factor,@IsDup)", cn);
-            cn.Open();
-            cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = re.ResultSectionID;
-            cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = re.ResultItemID;
-            cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = re.TransactionID;
-            cmd.Parameters.Add("@Score", SqlDbType.Decimal).Value = re.Score;
-            if (re.Score_new.HasValue)
-                cmd.Parameters.Add("@Score_new", SqlDbType.Decimal).Value = re.Score_new;
-            else
-                cmd.Parameters.AddWithValue("@Score_new", DBNull.Value);
+    //public int InsertReportItemResult(Model_ReportItemResult re)
+    //{
+    //    using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+    //    {
+    //        SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,Score_new,TASID,Detail,Factor,IsDup) 
+    //            VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@Score_new,@TASID,@Detail,@Factor,@IsDup)", cn);
+    //        cn.Open();
+    //        cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = re.ResultSectionID;
+    //        cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = re.ResultItemID;
+    //        cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = re.TransactionID;
+    //        cmd.Parameters.Add("@Score", SqlDbType.Decimal).Value = re.Score;
+    //        if (re.Score_new.HasValue)
+    //            cmd.Parameters.Add("@Score_new", SqlDbType.Decimal).Value = re.Score_new;
+    //        else
+    //            cmd.Parameters.AddWithValue("@Score_new", DBNull.Value);
 
-            if (re.TASID.HasValue)
-                cmd.Parameters.Add("@TASID", SqlDbType.Int).Value = re.TASID;
-            else
-                cmd.Parameters.AddWithValue("@TASID", DBNull.Value);
+    //        if (re.TASID.HasValue)
+    //            cmd.Parameters.Add("@TASID", SqlDbType.Int).Value = re.TASID;
+    //        else
+    //            cmd.Parameters.AddWithValue("@TASID", DBNull.Value);
 
-            if (re.Factor.HasValue)
-                cmd.Parameters.Add("@Factor", SqlDbType.Decimal).Value = re.Factor;
-            else
-                cmd.Parameters.AddWithValue("@Factor", DBNull.Value);
+    //        if (re.Factor.HasValue)
+    //            cmd.Parameters.Add("@Factor", SqlDbType.Decimal).Value = re.Factor;
+    //        else
+    //            cmd.Parameters.AddWithValue("@Factor", DBNull.Value);
 
-            cmd.Parameters.Add("@IsDup", SqlDbType.Int).Value = re.IsDup;
+    //        cmd.Parameters.Add("@IsDup", SqlDbType.Decimal).Value = re.IsDup;
 
 
-            cmd.Parameters.Add("@Detail", SqlDbType.VarChar).Value = re.Detail;
-            cn.Open();
+    //        cmd.Parameters.Add("@Detail", SqlDbType.VarChar).Value = re.Detail;
+    //        cn.Open();
 
-            return ExecuteNonQuery(cmd);
-        }
-    }
+    //        return ExecuteNonQuery(cmd);
+    //    }
+    //}
 }
 public class Model_ReportSectionItem : BaseModel<Model_ReportSectionItem>
 {
