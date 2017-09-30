@@ -31,7 +31,11 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
 
 
     public decimal IsDup { get; set; } = 0.0m;
-    public decimal Division { get; set; } = 0.0m;
+
+    public decimal? Division1 { get; set; } = 0.0m;
+    public decimal? Division2 { get; set; } = 0.0m;
+    public decimal? Division3 { get; set; } = 0.0m;
+    public decimal? Division4 { get; set; } = 0.0m;
 
     public int? UserRank { get; set; }
     public int? AutoRank4 { get; set; }
@@ -100,7 +104,7 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
 
                 SqlCommand cmdupdate = new SqlCommand(@"UPDATE  ReportItemResult SET Score=@Score,IsAbove=@IsAbove,IsBelow=@IsBelow,Score_new=@Score_new
 ,TASID=@TASID, TASCID=@TASCID, Detail=@Detail,Factor=@Factor,IsDup=@IsDup ,AutoRank4=@AutoRank4,AutoRank1=@AutoRank1,AutoRank2=@AutoRank2,AutoRank3=@AutoRank3
-,Division=@Division
+,Division1=@Division1,Division2=@Division2,Division3=@Division3,Division4=@Division4
  WHERE ResultSectionID=@ResultSectionID AND ResultItemID=@ResultItemID AND TransactionID=@TransactionID;
                 ", cn);
 
@@ -152,8 +156,27 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                     cmdupdate.Parameters.AddWithValue("@Factor", DBNull.Value);
 
 
+                if (re.Division1.HasValue)
+                    cmdupdate.Parameters.Add("@Division1", SqlDbType.Decimal).Value = re.Division1;
+                else
+                    cmdupdate.Parameters.AddWithValue("@Division1", DBNull.Value);
 
-                cmdupdate.Parameters.Add("@Division", SqlDbType.Decimal).Value = re.Division;
+                if (re.Division2.HasValue)
+                    cmdupdate.Parameters.Add("@Division2", SqlDbType.Decimal).Value = re.Division2;
+                else
+                    cmdupdate.Parameters.AddWithValue("@Division2", DBNull.Value);
+
+                if (re.Division3.HasValue)
+                    cmdupdate.Parameters.Add("@Division3", SqlDbType.Decimal).Value = re.Division3;
+                else
+                    cmdupdate.Parameters.AddWithValue("@Division3", DBNull.Value);
+
+                if (re.Division4.HasValue)
+                    cmdupdate.Parameters.Add("@Division4", SqlDbType.Decimal).Value = re.Division4;
+                else
+                    cmdupdate.Parameters.AddWithValue("@Division4", DBNull.Value);
+
+
                 cmdupdate.Parameters.Add("@IsDup", SqlDbType.Decimal).Value = re.IsDup;
 
                 cmdupdate.Parameters.Add("@IsAbove", SqlDbType.Bit).Value = re.IsAbove;
@@ -165,8 +188,8 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                 //DELETE FROM ReportItemResult WHERE ResultSectionID = @ResultSectionID AND ResultItemID = @ResultItemID AND TransactionID = @TransactionID;
                 if (ExecuteNonQuery(cmdupdate) == 0)
                 {
-                    SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,TASCID,Detail,Factor,IsDup,AutoRank4,AutoRank1,AutoRank2,AutoRank3,Division) 
-                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@TASCID,@Detail,@Factor,@IsDup,@AutoRank4,@AutoRank1,@AutoRank2,@AutoRank3,@Division)", cn);
+                    SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,TASCID,Detail,Factor,IsDup,AutoRank4,AutoRank1,AutoRank2,AutoRank3,Division1,Division2,Division3,Division4) 
+                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@TASCID,@Detail,@Factor,@IsDup,@AutoRank4,@AutoRank1,@AutoRank2,@AutoRank3,@Division1,@Division2,@Division3,@Division4)", cn);
 
                     cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = re.ResultSectionID;
                     cmd.Parameters.Add("@ResultItemID", SqlDbType.Int).Value = re.ResultItemID;
@@ -214,7 +237,26 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                     else
                         cmd.Parameters.AddWithValue("@Factor", DBNull.Value);
 
-                    cmd.Parameters.Add("@Division", SqlDbType.Decimal).Value = re.Division;
+                    if (re.Division1.HasValue)
+                        cmd.Parameters.Add("@Division1", SqlDbType.Decimal).Value = re.Division1;
+                    else
+                        cmd.Parameters.AddWithValue("@Division1", DBNull.Value);
+
+                    if (re.Division2.HasValue)
+                        cmd.Parameters.Add("@Division2", SqlDbType.Decimal).Value = re.Division2;
+                    else
+                        cmd.Parameters.AddWithValue("@Division2", DBNull.Value);
+
+                    if (re.Division3.HasValue)
+                        cmd.Parameters.Add("@Division3", SqlDbType.Decimal).Value = re.Division3;
+                    else
+                        cmd.Parameters.AddWithValue("@Division3", DBNull.Value);
+
+                    if (re.Division4.HasValue)
+                        cmd.Parameters.Add("@Division4", SqlDbType.Decimal).Value = re.Division4;
+                    else
+                        cmd.Parameters.AddWithValue("@Division4", DBNull.Value);
+
                     cmd.Parameters.Add("@IsDup", SqlDbType.Decimal).Value = re.IsDup;
 
                     cmd.Parameters.Add("@IsAbove", SqlDbType.Bit).Value = re.IsAbove;
