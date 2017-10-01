@@ -167,7 +167,7 @@ public class Calculation_T3
             decimal decfactor = (decimal)(1 - (item.Division4 * dec4) + (item.Division1 * dec1) + (item.Division2 * dec2) + (item.Division3 * dec3) + (item.UserRank * decUsr));
             item.Factor = decfactor;
 
-            item.Score_new = item.Score_new + decfactor;
+            item.Score_new = item.Score + decfactor;
 
             item.IsDup = 0.0m;
 
