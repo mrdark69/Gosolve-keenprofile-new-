@@ -153,7 +153,7 @@ public class Calculation_T3
 
         //check UserRank
 
-        foreach (Model_ReportItemResult item in ListReview.Where(o => o.Factor.HasValue && o.IsDup > 0 && o.UserRank.HasValue))
+        foreach (Model_ReportItemResult item in ListReview.Where(o => o.Factor.HasValue && o.IsDup > 0 && o.UserRank.HasValue && o.UserRank > 0))
         {
             decimal dec4 = 0.01m;
             decimal dec1 = 0.0001m;
