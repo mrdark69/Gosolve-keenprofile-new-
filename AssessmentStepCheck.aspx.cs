@@ -46,7 +46,7 @@ public partial class __AssessmentStepCheck : BasePageFront
                         List<Model_ReportItemResult> crl = cr.GetItemReportByTransactionID(intTs);
 
 
-                        List<Model_ReportItemResult> dup = crl.Where(o => o.IsDup).ToList();
+                        List<Model_ReportItemResult> dup = crl.Where(o => o.IsDup > 0).ToList();
 
 
                         Dictionary<decimal, int> GroupDup = dup.GroupBy(x => (decimal)x.Score_new)
