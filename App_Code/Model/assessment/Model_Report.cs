@@ -208,24 +208,24 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                         cmd.Parameters.AddWithValue("@TASID", DBNull.Value);
 
                     if (re.AutoRank4.HasValue)
-                        cmdupdate.Parameters.Add("@AutoRank4", SqlDbType.Int).Value = re.AutoRank4;
+                        cmd.Parameters.Add("@AutoRank4", SqlDbType.Int).Value = re.AutoRank4;
                     else
-                        cmdupdate.Parameters.AddWithValue("@AutoRank4", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@AutoRank4", DBNull.Value);
 
                     if (re.AutoRank1.HasValue)
-                        cmdupdate.Parameters.Add("@AutoRank1", SqlDbType.Int).Value = re.AutoRank1;
+                        cmd.Parameters.Add("@AutoRank1", SqlDbType.Int).Value = re.AutoRank1;
                     else
-                        cmdupdate.Parameters.AddWithValue("@AutoRank1", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@AutoRank1", DBNull.Value);
 
                     if (re.AutoRank2.HasValue)
-                        cmdupdate.Parameters.Add("@AutoRank2", SqlDbType.Int).Value = re.AutoRank2;
+                        cmd.Parameters.Add("@AutoRank2", SqlDbType.Int).Value = re.AutoRank2;
                     else
-                        cmdupdate.Parameters.AddWithValue("@AutoRank2", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@AutoRank2", DBNull.Value);
 
                     if (re.AutoRank3.HasValue)
-                        cmdupdate.Parameters.Add("@AutoRank3", SqlDbType.Int).Value = re.AutoRank3;
+                        cmd.Parameters.Add("@AutoRank3", SqlDbType.Int).Value = re.AutoRank3;
                     else
-                        cmdupdate.Parameters.AddWithValue("@AutoRank3", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@AutoRank3", DBNull.Value);
 
                     if (re.TASCID.HasValue)
                         cmd.Parameters.Add("@TASCID", SqlDbType.Int).Value = re.TASCID;
