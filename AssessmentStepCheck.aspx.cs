@@ -106,7 +106,8 @@ public partial class __AssessmentStepCheck : BasePageFront
                                         ret.Append("<input type=\"hidden\" name=\"ass_fill_ch_\"  value=\"" + ch.TASID + "\" />\r\n");
                                         ret.Append("<td class=\"question\">" + assuser.Questions + "</td>\r\n");
 
-                                        for (int i = 1; i <= (dupfocus.Count < 3? 3: dupfocus.Count); i++)
+                                        //for (int i = 1; i <= (dupfocus.Count < 3? 3: dupfocus.Count); i++)
+                                        for (int i = (dupfocus.Count < 3 ? 3 : dupfocus.Count); i >= 1; i--)
                                         {
                                             //ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_ch_sc_" + ch.ResultID + "\" value=\"" + i + "\" /></td>\r\n");
                                             ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_ch_sc_" + ch.TASID + "\" value=\"" + i + "\" /></td>\r\n");
@@ -137,7 +138,8 @@ public partial class __AssessmentStepCheck : BasePageFront
                                     //ret.Append("<input type=\"hidden\" name=\"ass_fill_ch_\"  value=\"" + rd.ResultID + "\" />\r\n");
                                     ret.Append("<td class=\"question\">" + rd.Questions + "</td>\r\n");
 
-                                    for (int i = 1; i <= (dupfocus.Count < 3 ? 3 : dupfocus.Count); i++)
+                                    //for (int i = 1; i <= (dupfocus.Count < 3 ? 3 : dupfocus.Count); i++)
+                                    for (int i = (dupfocus.Count < 3 ? 3 : dupfocus.Count); i >= 1; i--)
                                     {
                                         ret.Append("<td class=\"choice\"><input type=\"radio\"   name=\"ass_fill_ch_sc_"+ rd.TASID+ "\" value=\"" + i + "\" /></td>\r\n");
                                     }
