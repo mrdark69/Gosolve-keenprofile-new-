@@ -164,7 +164,7 @@ public class Calculation_T3
 
          
 
-            decimal decfactor = (decimal)(1 - (item.Division4 * dec4) + (item.Division1 * dec1) + (item.Division2 * dec2) + (item.Division3 * dec3) + (item.UserRank * decUsr));
+            decimal decfactor = (decimal)(1 - ((item.Division4 * dec4) + (item.Division1 * dec1) + (item.Division2 * dec2) + (item.Division3 * dec3) + (item.UserRank * decUsr)));
             item.Factor = decfactor;
 
             item.Score_new = item.Score + decfactor;
@@ -463,7 +463,7 @@ public class Calculation_T3
             decimal dec2 = 0.000001m;
             decimal dec3 = 0.00000001m;
 
-            decimal decfactor = (decimal)(1 - (item.Division4 * dec4) + (item.Division1 * dec1) + (item.Division2 * dec2) + (item.Division3 * dec3));
+            decimal decfactor = (decimal)(1 - ((item.Division4 * dec4) + (item.Division1 * dec1) + (item.Division2 * dec2) + (item.Division3 * dec3)));
             item.Factor = decfactor;
 
             item.Score_new = item.Score_new + decfactor;
