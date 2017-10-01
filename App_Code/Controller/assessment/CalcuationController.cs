@@ -55,7 +55,7 @@ public class CalculationController
                             ret = 0;
 
 
-                        if (!cal3.IsDupExtra)
+                        if (cal3.IsDupExtra)
                             ret = cal3.TransactionID;
                         break;
                     //T4 nothing ???
