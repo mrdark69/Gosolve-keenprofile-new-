@@ -60,7 +60,12 @@ public class CalculationController
                         break;
                     //T4 nothing ???
                     case 4:
+                        Calculation_T4 cal4 = new Calculation_T4(item.ResultSectionID, intTransactionID);
+                        if (cal4.Calnow())
+                            ret = ret > 0 ? ret : 0;
+
                         break;
+                       
                 }
             }
         }

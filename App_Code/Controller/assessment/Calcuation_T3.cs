@@ -28,13 +28,13 @@ public class Calculation_T3
 
     get
         {
-            return this.SD + this.AVG;
+            return Math.Round(this.SD + this.AVG);
         }
     }
     public decimal Below {
         get
         {
-            return this.AVG - this.SD;
+            return Math.Round(this.AVG - this.SD);
 
         }
     }
@@ -121,12 +121,13 @@ public class Calculation_T3
         //cal avg 
 
         //this.AVG = rlist.Sum(t => t.Score) / rlist.Count();
-        this.AVG = (decimal)Math.Round(rlist.Average(o => o.Score), MidpointRounding.AwayFromZero);
+        //Math.Round(rlist.Average(o => o.Score), MidpointRounding.AwayFromZero);
+        this.AVG = (decimal)rlist.Average(o => o.Score);
 
         IEnumerable<double> result = rlist.Select(v => (double)v.Score);
         //.CalculateStdDev();
         double  ret = CalculateStdDev(result);
-        this.SD = (decimal)Math.Round(ret);
+        this.SD = (decimal)ret;
 
 
         //Supream logic

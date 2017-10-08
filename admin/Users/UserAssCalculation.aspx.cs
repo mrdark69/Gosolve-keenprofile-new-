@@ -17,6 +17,7 @@ public partial class Users_UserAssCalculation : BasePage
             T1Cal();
             T2Cal();
             T3Cal();
+            T4Cal();
         }
     }
 
@@ -436,5 +437,77 @@ public partial class Users_UserAssCalculation : BasePage
     }
 
 
-    
+    public void T4Cal()
+    {
+        if (!string.IsNullOrEmpty(Request.QueryString["ts"]))
+        {
+            int tsID = int.Parse(Request.QueryString["ts"]);
+
+            Calculation_T4 T4 = new Calculation_T4(4, tsID);
+
+            //List<Model_UsersAssessment> T1list = T1.GetUserAss('f');
+
+            
+
+
+            StringBuilder retF2 = new StringBuilder();
+
+            List<Model_ReportItemResult> fscore = T4.Code_SumValueBySubSection();
+
+
+            retF2.Append("<table class='table'>");
+
+            retF2.Append("<tr>");
+            retF2.Append("<td></td>");
+            retF2.Append("<td></td>");
+            retF2.Append("<td>Score</td>");
+            retF2.Append("<td>Geniuses Type</td>");
+            retF2.Append("<td>Ideal Score</td>");
+           
+            retF2.Append("</tr>");
+            foreach (Model_ReportItemResult i in fscore)
+            {
+                string c = string.Empty;
+                if (i.IsAbove)
+                    c = "Style=\"background-color:#d0c6ff;color:#0e014c\"";
+
+                if (i.IsBelow)
+                    c = "Style=\"background-color:#d8b5a6;color:#7c1800\"";
+
+                retF2.Append("<tr " + c + ">");
+                retF2.Append("<td>");
+                retF2.Append("<p><input type=\"checkbox\" class=\"check_focus\" value=\"" + i.ResultItemTitle + "\" /></p>");
+                retF2.Append("</td>");
+                retF2.Append("<td>");
+                retF2.Append("<p>" + i.ResultItemTitle + "</p>");
+                retF2.Append("</td>");
+               
+                retF2.Append("<td>");
+                retF2.Append("<p>" + i.Score_new + "</p>");
+                retF2.Append("</td>");
+
+                retF2.Append("<td>");
+                retF2.Append("<p>" + i.GT + "</p>");
+                retF2.Append("</td>");
+
+                retF2.Append("<td>");
+                retF2.Append("<p>" + i.IdealScore + "</p>");
+                retF2.Append("</td>");
+
+                retF2.Append("</tr>");
+            }
+
+            retF2.Append("</table>");
+
+
+
+
+            Literal3.Text = retF2.ToString();
+
+
+            T4.RecordResult(fscore);
+        }
+    }
+
+
 }

@@ -140,6 +140,32 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="collapsed" aria-expanded="false">[T4] - Job Fit Score 
+</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseFour" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                            <div class="panel-body">
+                                                <%--<div>
+                                                    <h1>"B" Section Result</h1>
+                                                     <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+                                                </div>
+
+                                                <div>
+                                                    <h1>"B" Summary Section Result</h1>
+                                                     <asp:Literal ID="Literal2" runat="server"></asp:Literal>
+                                                </div>--%>
+
+                                                 <div>
+                                                      <h1>"T4" Section Result</h1>
+                                                      <asp:Literal ID="Literal3" runat="server"></asp:Literal>  
+                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
 
