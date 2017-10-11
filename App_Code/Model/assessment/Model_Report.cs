@@ -70,6 +70,8 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
     public decimal? ResultScore { get; set; }
     public string Result { get; set; }
 
+    public int? UseAtWork { get; set; }
+
 
     public string ResultItemTitle { get; set; }
 
@@ -123,7 +125,7 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
 
     SqlCommand cmdupdate = new SqlCommand(@"UPDATE  ReportItemResult SET Score=@Score,IsAbove=@IsAbove,IsBelow=@IsBelow,Score_new=@Score_new
 ,TASID=@TASID, TASCID=@TASCID, Detail=@Detail,Factor=@Factor,IsDup=@IsDup ,AutoRank4=@AutoRank4,AutoRank1=@AutoRank1,AutoRank2=@AutoRank2,AutoRank3=@AutoRank3
-,Division1=@Division1,Division2=@Division2,Division3=@Division3,Division4=@Division4,GT=@GT,IdealScore=@IdealScore,RqScore=@RqScore,ResultScore=@ResultScore,Result=@Result
+,Division1=@Division1,Division2=@Division2,Division3=@Division3,Division4=@Division4,GT=@GT,IdealScore=@IdealScore,RqScore=@RqScore,ResultScore=@ResultScore,Result=@Result,UseAtWork=@UseAtWork 
   WHERE ResultSectionID=@ResultSectionID AND ResultItemID=@ResultItemID AND TransactionID=@TransactionID;
                 ", cn);
 
@@ -217,11 +219,15 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                     cmdupdate.Parameters.AddWithValue("@ResultScore", DBNull.Value);
 
                 if (!string.IsNullOrEmpty(re.Result))
-                    cmdupdate.Parameters.Add("@Result", SqlDbType.Decimal).Value = re.Result;
+                    cmdupdate.Parameters.Add("@Result", SqlDbType.VarChar).Value = re.Result;
                 else
                     cmdupdate.Parameters.AddWithValue("@Result", DBNull.Value);
 
-               
+                if (re.UseAtWork.HasValue)
+                    cmdupdate.Parameters.Add("@UseAtWork", SqlDbType.Int).Value = re.UseAtWork;
+                else
+                    cmdupdate.Parameters.AddWithValue("@UseAtWork", DBNull.Value);
+
                 cmdupdate.Parameters.Add("@IsDup", SqlDbType.Decimal).Value = re.IsDup;
 
                 cmdupdate.Parameters.Add("@IsAbove", SqlDbType.Bit).Value = re.IsAbove;
@@ -233,8 +239,8 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                 //DELETE FROM ReportItemResult WHERE ResultSectionID = @ResultSectionID AND ResultItemID = @ResultItemID AND TransactionID = @TransactionID;
                 if (ExecuteNonQuery(cmdupdate) == 0)
                 {
-                    SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,TASCID,Detail,Factor,IsDup,AutoRank4,AutoRank1,AutoRank2,AutoRank3,Division1,Division2,Division3,Division4,GT,IdealScore,RqScore,ResultScore,Result) 
-                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@TASCID,@Detail,@Factor,@IsDup,@AutoRank4,@AutoRank1,@AutoRank2,@AutoRank3,@Division1,@Division2,@Division3,@Division4,@GT,@IdealScore,@RqScore,@ResultScore,@Result)", cn);
+                    SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,TASCID,Detail,Factor,IsDup,AutoRank4,AutoRank1,AutoRank2,AutoRank3,Division1,Division2,Division3,Division4,GT,IdealScore,RqScore,ResultScore,Result,UseAtWork) 
+                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@TASCID,@Detail,@Factor,@IsDup,@AutoRank4,@AutoRank1,@AutoRank2,@AutoRank3,@Division1,@Division2,@Division3,@Division4,@GT,@IdealScore,@RqScore,@ResultScore,@Result,@UseAtWork)", cn);
                     //             public int? GT { get; set; }
                     //public decimal? IdealScore { get; set; }
                     //public decimal? RqScore { get; set; }
@@ -332,6 +338,12 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                         cmd.Parameters.Add("@Result", SqlDbType.Decimal).Value = re.Result;
                     else
                         cmd.Parameters.AddWithValue("@Result", DBNull.Value);
+
+
+                    if (re.UseAtWork.HasValue)
+                        cmd.Parameters.Add("@UseAtWork", SqlDbType.Int).Value = re.UseAtWork;
+                    else
+                        cmd.Parameters.AddWithValue("@UseAtWork", DBNull.Value);
 
                     cmd.Parameters.Add("@IsDup", SqlDbType.Decimal).Value = re.IsDup;
 

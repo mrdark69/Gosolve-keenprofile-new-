@@ -154,15 +154,17 @@
                                                      <asp:Literal ID="Literal1" runat="server"></asp:Literal>
                                                 </div>
 
-                                                <div>
-                                                    <h1>"B" Summary Section Result</h1>
-                                                     <asp:Literal ID="Literal2" runat="server"></asp:Literal>
-                                                </div>--%>
+                                              --%>
 
                                                  <div>
                                                       <h1>"T4" Section Result</h1>
                                                       <asp:Literal ID="Literal3" runat="server"></asp:Literal>  
                                                  </div>
+
+                                                  <div>
+                                                    <h1>Summary T4 Result</h1>
+                                                     <asp:Literal ID="Literal2" runat="server"></asp:Literal>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

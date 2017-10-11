@@ -19,9 +19,13 @@ public class Calculation_T4
 
     public List<Model_Rule2> IdealScore { get; set; }
 
+    public List<Model_Rule1> RuleScore1 { get; set; }
+
+    public List<Model_Rule4> RuleScore4 { get; set; }
+
     public List<Model_ReportItemResult> ReportResultT3 { get; set; }
 
-   
+    public List<Model_UsersAssessment> R_UserAss_C { get; set; }
 
     public List<Model_ReportSectionItem> ReportSectionItem { get; set; }
 
@@ -43,12 +47,19 @@ public class Calculation_T4
 
         this.ReportSectionItem = rss.GetListItemBySectionID(this.ResultSectionID);
 
+        this.R_UserAss_C = GetUserAss('c').OrderBy(o => o.Priority).ToList();
 
         Model_ReportItemResult ret = new Model_ReportItemResult();
         this.ReportResultT3 = ret.GetItemReportByTransactionID(this.TransactionID,3);
 
         Model_Rule2 ideal = new Model_Rule2();
         this.IdealScore = ideal.GetAll();
+
+        Model_Rule1 r1 = new Model_Rule1();
+        this.RuleScore1 = r1.GetAll();
+
+        Model_Rule4 r4 = new Model_Rule4();
+        this.RuleScore4 = r4.GetAll();
 
     }
 
@@ -69,39 +80,66 @@ public class Calculation_T4
         foreach (Model_ReportSectionItem item in this.ReportSectionItem)
         {
             string map = item.SUCID;
-            string[] arrmap = map.Split(',');
-            decimal score = 0;
-            //int TASID = 0;
-            string strDetail = string.Empty;
-            bool bolAbove = false;
-            bool bolBelow = false;
-            //int? UserRank = null;
-            foreach (string m in arrmap)
+            string[] arrGroup = map.Split('#');
+            if(arrGroup.Length > 0)
             {
-                List<Model_ReportItemResult> ass = this.ReportResultT3.Where(o => o.ResultItemID == int.Parse(m)).ToList();
+                string[] arrmap = arrGroup[0].Split(',');
 
-                //Get Record from assement group 1 for case Extra duplicate
-              
-                score = (decimal)ass.Select(c => c.Score_new).First();
-                bolAbove = (bool)ass.Select(c => c.IsAbove).First();
-                bolBelow = (bool)ass.Select(c => c.IsBelow).First();
+                string[] arrmap_sub = arrGroup[1].Split(',');
 
+                decimal score = 0;
+                //int TASID = 0;
+                string strDetail = string.Empty;
+                bool bolAbove = false;
+                bool bolBelow = false;
+                decimal Req = 0.0m;
+                //int? UserRank = null;
+
+                if(arrmap.Length > 0)
+                {
+                    foreach (string m in arrmap)
+                    {
+                        List<Model_ReportItemResult> ass = this.ReportResultT3.Where(o => o.ResultItemID == int.Parse(m)).ToList();
+
+                        //Get Record from assement group 1 for case Extra duplicate
+
+                        score = (decimal)ass.Select(c => c.Score_new).First();
+                        bolAbove = (bool)ass.Select(c => c.IsAbove).First();
+                        bolBelow = (bool)ass.Select(c => c.IsBelow).First();
+
+                    }
+                }
+                
+
+                if(arrmap_sub.Length > 0)
+                {
+                    foreach (string m in arrmap_sub)
+                    {
+                        List<Model_UsersAssessment> ass = this.R_UserAss_C.Where(o => o.SUCID == int.Parse(m)).ToList();
+                        Req = (decimal)Math.Round(ass.Average(o => o.Score), 2);
+                    }
+                }
+                
+
+
+
+                rlist.Add(new Model_ReportItemResult
+                {
+                    ResultSectionID = this.ResultSectionID,
+                    ResultItemID = item.ResultItemID,
+                    ResultItemTitle = item.Title,
+                    TransactionID = this.TransactionID,
+                    Score = score,
+                    Score_new = score,
+                    IsAbove = bolAbove,
+                    IsBelow = bolBelow,
+                    RqScore = Req
+
+
+
+                });
             }
-
-
-            rlist.Add(new Model_ReportItemResult
-            {
-                ResultSectionID = this.ResultSectionID,
-                ResultItemID = item.ResultItemID,
-                ResultItemTitle = item.Title,
-                TransactionID = this.TransactionID,
-                Score = score,
-                Score_new = score,
-                IsAbove = bolAbove,
-                IsBelow = bolBelow
-
-
-            });
+            
 
 
         }
@@ -175,7 +213,65 @@ public class Calculation_T4
 
                 count = count + 1;
         }
-       
+
+        int count1 = 1;
+        foreach (Model_ReportItemResult list in rlist.OrderByDescending(o => o.Score_new))
+        {
+            Model_Rule1 r1 = this.RuleScore1.Where(s => s.Score == list.GT).FirstOrDefault();
+            decimal score = 0.0m;
+
+            if(r1 != null)
+            {
+                switch ((int)list.RqScore)
+                {
+                    case 1:
+                        score = r1.CJRRuleScore1;
+                        break;
+                    case 2:
+                        score = r1.CJRRuleScore2;
+                        break;
+                    case 3:
+                        score = r1.CJRRuleScore3;
+                        break;
+                    case 4:
+                        score = r1.CJRRuleScore4;
+                        break;
+                    case 5:
+                        score = r1.CJRRuleScore5;
+                        break;
+                }
+            }
+            list.ResultScore = score;
+
+            list.UseAtWork = (int)Math.Round((decimal)(list.RqScore * 100) / 5, 0);
+
+            if (count1 < 8)
+            {
+                Model_Rule4 r4 = this.RuleScore4.Where(o => o.Range_Start <= list.UseAtWork).Where(o=>o.Range_End >= list.UseAtWork).FirstOrDefault();
+                if (r4 != null)
+                    list.Result = r4.ValueTop;
+                //list.Result = this.RuleScore4.Where(o => o.Range_Start <= list.UseAtWork && o.Range_End >= list.UseAtWork).Select(r => r.ValueTop).First();
+            }
+                
+            if (count1 >= 8 && count1 <= 14)
+            {
+                Model_Rule4 r4 = this.RuleScore4.Where(o => o.Range_Start <= list.UseAtWork).Where(o => o.Range_End >= list.UseAtWork).FirstOrDefault();
+                if (r4 != null)
+                    list.Result = r4.ValueOther;
+               // list.Result = this.RuleScore4.Where(o => o.Range_Start <= list.UseAtWork && o.Range_End >= list.UseAtWork).Select(r => r.ValueOther).First();
+            }
+
+            if (count1 > 14)
+            {
+                Model_Rule4 r4 = this.RuleScore4.Where(o => o.Range_Start <= list.UseAtWork).Where(o => o.Range_End >= list.UseAtWork).FirstOrDefault();
+                if (r4 != null)
+                    list.Result = r4.ValueBottom;
+               // list.Result = this.RuleScore4.Where(o => o.Range_Start <= list.UseAtWork && o.Range_End >= list.UseAtWork).Select(r => r.ValueBottom).First();
+            }
+
+                count1 = count1 + 1;
+        }
+        //RuleScore1
 
 
         return rlist;

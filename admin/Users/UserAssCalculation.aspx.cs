@@ -462,9 +462,18 @@ public partial class Users_UserAssCalculation : BasePage
             retF2.Append("<td></td>");
             retF2.Append("<td>Score</td>");
             retF2.Append("<td>Geniuses Type</td>");
+            retF2.Append("<td>Requirement</td>");
+            retF2.Append("<td>Round Down</td>");
             retF2.Append("<td>Ideal Score</td>");
-           
+
+            retF2.Append("<td>Score</td>");
+            retF2.Append("<td>Use at Works</td>");
+
+            retF2.Append("<td>Result</td>");
             retF2.Append("</tr>");
+
+            Decimal SumScore = 0.0m;
+            decimal SumIdeal = 0.0m;
             foreach (Model_ReportItemResult i in fscore)
             {
                 string c = string.Empty;
@@ -485,16 +494,39 @@ public partial class Users_UserAssCalculation : BasePage
                 retF2.Append("<td>");
                 retF2.Append("<p>" + i.Score_new + "</p>");
                 retF2.Append("</td>");
-
+               
                 retF2.Append("<td>");
                 retF2.Append("<p>" + i.GT + "</p>");
+                retF2.Append("</td>");
+
+
+                retF2.Append("<td>");
+                retF2.Append("<p>" + i.RqScore + "</p>");
+                retF2.Append("</td>");
+                retF2.Append("<td>");
+                retF2.Append("<p>" + (int)i.RqScore + "</p>");
                 retF2.Append("</td>");
 
                 retF2.Append("<td>");
                 retF2.Append("<p>" + i.IdealScore + "</p>");
                 retF2.Append("</td>");
 
+                retF2.Append("<td>");
+                retF2.Append("<p>" + i.ResultScore + "</p>");
+                retF2.Append("</td>");
+
+                retF2.Append("<td>");
+                retF2.Append("<p>" + i.UseAtWork + "</p>");
+                retF2.Append("</td>");
+
+                retF2.Append("<td>");
+                retF2.Append("<p>" + i.Result + "</p>");
+                retF2.Append("</td>");
+
                 retF2.Append("</tr>");
+
+                SumScore =SumScore + (decimal)i.ResultScore;
+                SumIdeal = SumIdeal + (decimal)i.IdealScore;
             }
 
             retF2.Append("</table>");
@@ -504,6 +536,31 @@ public partial class Users_UserAssCalculation : BasePage
 
             Literal3.Text = retF2.ToString();
 
+            StringBuilder retchH = new StringBuilder();
+            retchH.Append("<table class='table table-strip'>");
+            retchH.Append("<tr>");
+            retchH.Append("<td>Sum Score</td><td>Ideal Score</td><td>Raw % Result</td><td>% Adjusted Result</td><td>Current Job Fit Score</td>");
+            retchH.Append("</tr>");
+
+            decimal RawResult = 0.0m;
+            decimal AdjustREsult = 0.0m;
+            decimal CurrentJobFitScore = 0.0m;
+
+            if (SumScore > 0)
+            {
+                RawResult = SumScore / SumIdeal;
+                AdjustREsult = RawResult + (decimal)0.1;
+
+                CurrentJobFitScore = Math.Round(AdjustREsult * 100, 0);
+            }
+
+            retchH.Append("<tr>");
+            retchH.Append("<td>" + SumScore + "</td><td>" + SumIdeal + "</td><td>" + RawResult + "</td><td>" + AdjustREsult + "</td><td>" + CurrentJobFitScore + "</td>");
+            retchH.Append("</tr>");
+
+            retchH.Append("</table>");
+
+            Literal2.Text = retchH.ToString();
 
             T4.RecordResult(fscore);
         }
