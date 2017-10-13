@@ -39,8 +39,22 @@ public partial class _Assessmentoptionaddedit : BasePage
             dropsection2.DataValueField = "SCID";
             dropsection2.DataBind();
 
+            dropsection_1.DataSource = seclist;
+            dropsection_1.DataTextField = "Title";
+            dropsection_1.DataValueField = "SCID";
+            dropsection_1.DataBind();
+
+
+            dropsection2_2.DataSource = seclist;
+            dropsection2_2.DataTextField = "Title";
+            dropsection2_2.DataValueField = "SCID";
+            dropsection2_2.DataBind();
+
             ListItem lis = new ListItem("All", "0");
             dropsection2.Items.Insert(0, lis);
+
+           
+            dropsection2_2.Items.Insert(0, lis);
 
             if (!string.IsNullOrEmpty(Request.QueryString["section"]))
             {
@@ -81,6 +95,30 @@ public partial class _Assessmentoptionaddedit : BasePage
 
             }
 
+            if (!string.IsNullOrEmpty(Request.QueryString["subsection2"]))
+            {
+                sub_pan.Visible = true;
+                int subid = int.Parse(Request.QueryString["subsection2"]);
+                Model_AsSubSection2 sub = AssessmentController.getSubByID2(subid);
+                dropSection.SelectedValue = sub.SCID.ToString();
+                txtSubTitle.Text = sub.Title;
+
+                string comret = string.Empty;
+                if (!string.IsNullOrEmpty(sub.Combind))
+                {
+                    string[] arrcom = sub.Combind.Split(',');
+                    comret = string.Join(",", arrcom.Select(i => "SU" + i).ToArray());
+                }
+
+                Combind.Text = comret;
+                radioSubStatus.Text = sub.Status.ToString();
+
+
+                headsection_pan1.InnerHtml = "Edit Sub Section";
+
+
+            }
+
             if (!string.IsNullOrEmpty(Request.QueryString["qt"]))
             {
                 qType_pan.Visible = true;
@@ -110,17 +148,20 @@ public partial class _Assessmentoptionaddedit : BasePage
                     tab2.Attributes.Add("aria-expanded", "true");
                     tab3.Attributes.Add("aria-expanded", "false");
                     tab4.Attributes.Add("aria-expanded", "false");
+                    tab5.Attributes.Add("aria-expanded", "false");
 
                     li_tab1.Attributes.Remove("class");
                     li_tab2.Attributes.Add("class", "active");
                     li_tab3.Attributes.Remove("class");
                     li_tab4.Attributes.Remove("class");
+                    li_tab5.Attributes.Remove("class");
 
 
                     tab_content1.Visible = false;
                     tab_content2.Visible = true;
                     tab_content3.Visible = false;
                     tab_content4.Visible = false;
+                    tab_content5.Visible = false;
 
 
                     if (!string.IsNullOrEmpty(Request.QueryString["section"]))
@@ -136,17 +177,19 @@ public partial class _Assessmentoptionaddedit : BasePage
                     tab2.Attributes.Add("aria-expanded", "false");
                     tab3.Attributes.Add("aria-expanded", "true");
                     tab4.Attributes.Add("aria-expanded", "false");
+                    tab5.Attributes.Add("aria-expanded", "false");
 
                     li_tab1.Attributes.Remove("class");
                     li_tab2.Attributes.Remove("class");
                     li_tab3.Attributes.Add("class", "active");
                     li_tab4.Attributes.Remove("class");
+                    li_tab5.Attributes.Remove("class");
 
                     tab_content1.Visible = false;
                     tab_content2.Visible = false;
                     tab_content3.Visible = true;
                     tab_content4.Visible = false;
-
+                    tab_content5.Visible = false;
 
 
                     break;
@@ -155,20 +198,46 @@ public partial class _Assessmentoptionaddedit : BasePage
                     tab2.Attributes.Add("aria-expanded", "false");
                     tab3.Attributes.Add("aria-expanded", "false");
                     tab4.Attributes.Add("aria-expanded", "true");
+                    tab4.Attributes.Add("aria-expanded", "false");
 
                     li_tab1.Attributes.Remove("class");
                     li_tab2.Attributes.Remove("class");
                     li_tab3.Attributes.Remove("class");
                     li_tab4.Attributes.Add("class", "active");
-
+                    li_tab5.Attributes.Remove("class");
 
                     tab_content1.Visible = false;
                     tab_content2.Visible = false;
                     tab_content3.Visible = false;
                     tab_content4.Visible = true;
+                    tab_content5.Visible = false;
 
 
-                   
+
+                    break;
+                case "5":
+                    tab1.Attributes.Add("aria-expanded", "false");
+                    tab2.Attributes.Add("aria-expanded", "false");
+                    tab3.Attributes.Add("aria-expanded", "false");
+                    tab4.Attributes.Add("aria-expanded", "false");
+                    tab5.Attributes.Add("aria-expanded", "true");
+
+                    li_tab1.Attributes.Remove("class");
+                    li_tab2.Attributes.Remove("class");
+                    li_tab3.Attributes.Remove("class");
+                    li_tab4.Attributes.Remove("class");
+                    li_tab5.Attributes.Add("class", "active");
+
+                    tab_content1.Visible = false;
+                    tab_content2.Visible = false;
+                    tab_content3.Visible = false;
+                    tab_content4.Visible = false;
+                    tab_content5.Visible = true;
+
+                    if (!string.IsNullOrEmpty(Request.QueryString["section"]))
+                    {
+                        dropsection2_2.SelectedValue = Request.QueryString["section"];
+                    }
 
                     break;
             }
@@ -295,6 +364,60 @@ public partial class _Assessmentoptionaddedit : BasePage
         //sub_pan.Visible  = false;
     }
 
+
+    protected void Button6_Click(object sender, EventArgs e)
+    {
+
+
+        int secID = int.Parse(dropsection_1.SelectedValue);
+
+        string strtitle = txtSubTitle2.Text.Trim();
+        bool Status = bool.Parse(radioSubStatus2.SelectedValue);
+
+        string combind = Combind2.Text;
+        string combindRet = string.Empty;
+
+        if (!string.IsNullOrEmpty(combind))
+        {
+            string[] arrc = combind.Split(',');
+            combindRet = string.Join(",", arrc.Select(i => i.Substring(2)).ToArray());
+        }
+        Model_AsSubSection2 sub = new Model_AsSubSection2
+        {
+            SCID = secID,
+            Title = strtitle,
+            Status = Status,
+            Combind = combindRet
+
+        };
+
+        Button btn = (Button)sender;
+
+        if (!string.IsNullOrEmpty(Request.QueryString["subsection"]))
+        {
+            int bytID = int.Parse(Request.QueryString["subsection"]);
+            sub.SUCID = bytID;
+
+            if (AssessmentController.EditSubSection2(sub))
+            {
+                Response.Redirect("Assessmentoptionaddedit?tab=5&section=" + dropsection2_2.SelectedValue);
+            }
+        }
+        else
+        {
+            if (AssessmentController.AddSubSection2(sub) > 0)
+            {
+                Response.Redirect(Request.Url.ToString());
+            }
+        }
+    }
+
+    protected void Button7_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Assessmentoptionaddedit?tab=2&section=" + dropsection2_2.SelectedValue);
+        //sub_pan.Visible  = false;
+    }
+
     protected void Button5_Click(object sender, EventArgs e)
     {
 
@@ -305,7 +428,15 @@ public partial class _Assessmentoptionaddedit : BasePage
         sub_pan.Visible = true;
     }
 
+    protected void Button8_Click(object sender, EventArgs e)
+    {
 
+        if (int.Parse(dropsection2_2.SelectedValue) > 0)
+        {
+            dropsection_1.SelectedValue = dropsection2_2.SelectedValue;
+        }
+        sub_pan2.Visible = true;
+    }
 
 
     protected void Button10_Click(object sender, EventArgs e)

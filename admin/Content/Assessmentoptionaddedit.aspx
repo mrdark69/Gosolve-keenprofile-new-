@@ -47,6 +47,7 @@ margin-right:5px;
                         <ul class="nav nav-tabs">
                             <li class="active" id="li_tab1" runat="server"><a href="Assessmentoptionaddedit" id="tab1" runat="server" aria-expanded="true"> Section</a></li>
                             <li class="" id="li_tab2" runat="server"><a href="Assessmentoptionaddedit?tab=2" id="tab2" runat="server" aria-expanded="false">Sub section</a></li>
+                             <li class="" id="li_tab5" runat="server"><a href="Assessmentoptionaddedit?tab=5" id="tab5" runat="server" aria-expanded="false">Sub section2</a></li>
                             <li class="" id="li_tab3" runat="server"><a  href="Assessmentoptionaddedit?tab=3" id="tab3" runat="server" aria-expanded="false">Question Type</a></li>
                             <li class="" id="li_tab4" runat="server"><a  href="Assessmentoptionaddedit?tab=4" id="tab4" runat="server" aria-expanded="false">Assessment Intro</a></li>
                         </ul>
@@ -291,6 +292,122 @@ margin-right:5px;
                                     </tr>
                                     </thead>
                                     <tbody id="body_section_list">
+                                  
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                                </div>
+                            </div>
+
+                            <div id="tab_content5" runat="server" class="tab-pane active">
+                                <div class="panel-body">
+
+
+                             
+                              
+                                             <div class="ibox float-e-margins" style="margin-bottom:0px;"  id="sub_pan2" runat="server" visible="false">
+                                                      <div class="ibox-content">
+                                            <div class="form-horizontal">
+                                <h4 id="h3" runat="server">Create a new Sub Section</h4>
+                                <hr />
+                             <%--   <asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
+                                <asp:Label ID="Label4" runat="server"></asp:Label>
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="dropsection_1" CssClass="col-md-2 control-label">Section </asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:DropDownList ID="dropsection_1" runat="server" CssClass="form-control"></asp:DropDownList>
+                                     
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="txtSubTitle2" CssClass="col-md-2 control-label">Sub Section Name</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="txtSubTitle2" CssClass="form-control" />
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtSubTitle"
+                                            CssClass="text-danger" ErrorMessage="The  field is required." />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="Combind2" CssClass="col-md-2 control-label">Sub Section Combind</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:TextBox runat="server" ID="Combind2" CssClass="form-control" />
+                                        
+                                    </div>
+                                </div>
+                           
+     
+                                    <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="radioSubStatus2" CssClass="col-md-2 control-label"> Status</asp:Label>
+                                    <div class="col-md-10">
+                                      <asp:RadioButtonList ID="radioSubStatus2"  runat="server">
+                                          <asp:ListItem Text="Active" Selected="True" Value="True"  ></asp:ListItem>
+                                          <asp:ListItem Text="Inactive" Value="False"></asp:ListItem>
+                                      </asp:RadioButtonList>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+               
+                                       <asp:Button runat="server" ID="Button6"  OnClick="Button6_Click"  Text="Save" CssClass="btn btn-w-m btn-primary" />
+                                           <asp:Button runat="server" ID="Button7" CausesValidation="false" OnClick="Button7_Click"  Text="Cancel" CssClass="btn btn-w-m  btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+                                             </div>
+                                            </div>
+                                   
+
+                             
+
+                                    <div class="ibox float-e-margins">
+                        <div class="ibox-title" style="border:none;">
+                            <h5>Sub Section List </h5>
+
+                        </div>
+                        <div class="ibox-content main-data2">
+                             <div class="sk-spinner sk-spinner-wave">
+                                <div class="sk-rect1"></div>
+                                <div class="sk-rect2"></div>
+                                <div class="sk-rect3"></div>
+                                <div class="sk-rect4"></div>
+                                <div class="sk-rect5"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 m-b-xs">
+                                   <strong>Section:</strong> <asp:DropDownList ID="dropsection2_2" ClientIDMode="Static" runat="server" CssClass="input-sm form-control input-s-sm inline">
+
+                                    </asp:DropDownList>
+                                   
+                                </div>
+                                <div class="col-sm-4 m-b-xs">
+                                   
+                                </div>
+                                <div class="col-sm-3" style="text-align:right">
+                                    <asp:Button  runat="server" ID="Button8" class="btn btn-w-m btn-success" OnClick="Button8_Click" Text="Add New " />
+                                   <%-- <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary"> Go!</button> </span></div>--%>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+
+                                        <th>Code</th>
+                                      
+                                        <th >Title</th>
+                                         <th style="text-align:center">Section </th>
+                                          <%--<th style="text-align:center"> Priority</th>--%>
+                                        <th style="text-align:center">Status </th>
+
+                                        <%--<th style="text-align:center">Action</th>--%>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="body_section_list2">
                                   
                                     </tbody>
                                 </table>
@@ -552,6 +669,7 @@ margin-right:5px;
         $(document).ready(function () {
             getList();
             getSectionList();
+            getSectionList2();
             getQList();
 
             $('#dropRole').on('change', function () {
@@ -565,6 +683,16 @@ margin-right:5px;
            
                 getSectionList();
             });
+
+
+            $('#dropsection2_2').on('change', function () {
+
+
+                getSectionList2();
+            });
+
+
+            
         });
 
 
@@ -607,6 +735,26 @@ margin-right:5px;
                  $('#body_section_list').html(h);
                  $('.main-data').toggleClass('sk-loading');
              });
+        }
+
+        function getSectionList2() {
+            $('.main-data2').toggleClass('sk-loading');
+            var v = $('#dropsection2_2').val();
+            var url = "<%= ResolveUrl("/admin/Content/ajax_webmethod_assessment.aspx/GetSubSectionAll2") %>";
+
+            if (!v) { v = 0 }
+            var data = { SCID: v };
+            var param = JSON.stringify({ parameters: data });
+
+            AjaxPost(url, param, function () {
+
+            }, function (data) {
+
+                //  console.log(data);
+                var h = GenSectionlistAll(data);
+                $('#body_section_list2').html(h);
+                $('.main-data2').toggleClass('sk-loading');
+            });
         }
 
 
@@ -652,14 +800,14 @@ margin-right:5px;
             return ret;
         }
 
-        function GenSectionlistAll(data) {
+        function GenSectionlistAll2(data) {
             var ret = "";
             for (var i in data) {
 
                 ret += '<tr>';
                 //ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
-                ret += '   <td>SU' + data[i].SUCID + '</td>';
-                ret += '   <td><a href="Assessmentoptionaddedit?tab=2&subsection=' + data[i].SUCID + '&section=' + data[i].SCID +'">' + data[i].Title + '</a></td>';
+                ret += '   <td>SU' + data[i].SUCID2 + '</td>';
+                ret += '   <td><a href="Assessmentoptionaddedit?tab=5&subsection2=' + data[i].SUCID2 + '&section=' + data[i].SCID +'">' + data[i].Title + '</a></td>';
                 ret += '   <td style="text-align:center">' + data[i].SectionTitle + '</td>';
                 //ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
                 //ret += '   <td>' + data[i].LastName + '</td>';
@@ -673,6 +821,28 @@ margin-right:5px;
             }
 
             return ret;
+        }
+        function GenSectionlistAll(data) {
+        var ret = "";
+        for (var i in data) {
+
+            ret += '<tr>';
+            //ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
+            ret += '   <td>SU' + data[i].SUCID + '</td>';
+            ret += '   <td><a href="Assessmentoptionaddedit?tab=2&subsection=' + data[i].SUCID + '&section=' + data[i].SCID + '">' + data[i].Title + '</a></td>';
+            ret += '   <td style="text-align:center">' + data[i].SectionTitle + '</td>';
+            //ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
+            //ret += '   <td>' + data[i].LastName + '</td>';
+            //ret += '   <td>' + data[i].UserName + '</td>';
+            var txt = 'Active';
+            var bage = 'primary'
+            if (!data[i].Status) { txt = 'Inactive'; bage = 'default'; }
+            ret += '   <td style="text-align:center"><span class="label label-' + bage + '">' + txt + '</span></td>';
+            // ret += '   <td style="text-align:center"><a href="Assessmentoptionaddedit?tab=2&subsection=' + data[i].SUCID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
+            ret += '   </tr >';
+        }
+
+        return ret;
         }
         function GenlistAll(data) {
             var ret = "";

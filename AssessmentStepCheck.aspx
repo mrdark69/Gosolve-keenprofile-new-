@@ -134,10 +134,10 @@
                             <div class="step-content">
                                 <div class="text-center m-t-md"> 
                                    <%-- <asp:Literal ID="IntroTitle" runat="server"></asp:Literal>--%>
-                                <h2> ระบบตรวจพบ คำตอบที่ไม่สามารถคำนวณ ผลลัพธ์ได้  </h2>
-                                <p class="intro-detail">
-                                   ท่านสามารถ ตอบคำถามเราเพียง สั้นๆเพื่อคะแนนที่แม่นยำขึ้น 
-                                </p>
+                                <h2> เพื่อผลลัพธ์ที่แม่นยำมากยิ่งขึ้น โปรดตอบคำถามอีก <asp:Literal ID="numtopic" runat="server"></asp:Literal> ข้อเพื่อดาวน์โหลดรีพอร์ตทั้งสามฉบับของคุณ </h2>
+                               <%-- <p class="intro-detail">
+                                   
+                                </p>--%>
                                     <%--<asp:Literal ID="IntroDetail" runat="server"></asp:Literal>--%>
                                 </div>
                             </div>

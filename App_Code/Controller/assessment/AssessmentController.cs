@@ -139,10 +139,20 @@ public class AssessmentController
     {
         return ae.getAllSubSection(ae);
     }
+    public static List<Model_AsSubSection2> getSubsectionBySecId2(Model_AsSubSection2 ae)
+    {
+        return ae.getAllSubSection(ae);
+    }
 
     public static Model_AsSubSection getSubByID(int sUID)
     {
         Model_AsSubSection s = new Model_AsSubSection();
+
+        return s.getSubByID(sUID);
+    }
+    public static Model_AsSubSection2 getSubByID2(int sUID)
+    {
+        Model_AsSubSection2 s = new Model_AsSubSection2();
 
         return s.getSubByID(sUID);
     }
@@ -152,7 +162,16 @@ public class AssessmentController
         return sec.UpdateSub(sec);
     }
 
+    public static bool EditSubSection2(Model_AsSubSection2 sec)
+    {
+        return sec.UpdateSub(sec);
+    }
+
     public static int AddSubSection(Model_AsSubSection sec)
+    {
+        return sec.AddnewSub(sec);
+    }
+    public static int AddSubSection2(Model_AsSubSection2 sec)
     {
         return sec.AddnewSub(sec);
     }
