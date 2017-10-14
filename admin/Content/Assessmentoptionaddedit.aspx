@@ -304,11 +304,7 @@ margin-right:5px;
 
                             <div id="tab_content5" runat="server" class="tab-pane active">
                                 <div class="panel-body">
-
-
-                             
-                              
-                                             <div class="ibox float-e-margins" style="margin-bottom:0px;"  id="sub_pan2" runat="server" visible="false">
+                                            <div class="ibox float-e-margins" style="margin-bottom:0px;"  id="sub_pan2" runat="server" visible="false">
                                                       <div class="ibox-content">
                                             <div class="form-horizontal">
                                 <h4 id="h3" runat="server">Create a new Sub Section</h4>
@@ -751,7 +747,7 @@ margin-right:5px;
             }, function (data) {
 
                 //  console.log(data);
-                var h = GenSectionlistAll(data);
+                var h = GenSectionlistAll2(data);
                 $('#body_section_list2').html(h);
                 $('.main-data2').toggleClass('sk-loading');
             });

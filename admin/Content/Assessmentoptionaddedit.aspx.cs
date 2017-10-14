@@ -97,11 +97,11 @@ public partial class _Assessmentoptionaddedit : BasePage
 
             if (!string.IsNullOrEmpty(Request.QueryString["subsection2"]))
             {
-                sub_pan.Visible = true;
+                sub_pan2.Visible = true;
                 int subid = int.Parse(Request.QueryString["subsection2"]);
                 Model_AsSubSection2 sub = AssessmentController.getSubByID2(subid);
-                dropSection.SelectedValue = sub.SCID.ToString();
-                txtSubTitle.Text = sub.Title;
+                dropsection_1.SelectedValue = sub.SCID.ToString();
+                txtSubTitle2.Text = sub.Title;
 
                 string comret = string.Empty;
                 if (!string.IsNullOrEmpty(sub.Combind))
@@ -110,8 +110,8 @@ public partial class _Assessmentoptionaddedit : BasePage
                     comret = string.Join(",", arrcom.Select(i => "SU" + i).ToArray());
                 }
 
-                Combind.Text = comret;
-                radioSubStatus.Text = sub.Status.ToString();
+                Combind2.Text = comret;
+                radioSubStatus2.Text = sub.Status.ToString();
 
 
                 headsection_pan1.InnerHtml = "Edit Sub Section";
@@ -166,7 +166,7 @@ public partial class _Assessmentoptionaddedit : BasePage
 
                     if (!string.IsNullOrEmpty(Request.QueryString["section"]))
                     {
-                        dropsection2.SelectedValue = Request.QueryString["section"];
+                        //dropsection2.SelectedValue = Request.QueryString["section"];
                     }
 
 
@@ -236,7 +236,7 @@ public partial class _Assessmentoptionaddedit : BasePage
 
                     if (!string.IsNullOrEmpty(Request.QueryString["section"]))
                     {
-                        dropsection2_2.SelectedValue = Request.QueryString["section"];
+                       // dropsection2_2.SelectedValue = Request.QueryString["section"];
                     }
 
                     break;
@@ -268,7 +268,6 @@ public partial class _Assessmentoptionaddedit : BasePage
     }
 
 
-   
 
 
     protected void Button1_Click(object sender, EventArgs e)
@@ -328,6 +327,7 @@ public partial class _Assessmentoptionaddedit : BasePage
             string[] arrc = combind.Split(',');
             combindRet = string.Join(",", arrc.Select(i => i.Substring(2)).ToArray());
         }
+
         Model_AsSubSection sub = new Model_AsSubSection
         {
             SCID = secID,
@@ -346,7 +346,7 @@ public partial class _Assessmentoptionaddedit : BasePage
 
             if (AssessmentController.EditSubSection(sub))
             {
-                Response.Redirect("Assessmentoptionaddedit?tab=2&section=" + dropsection2.SelectedValue);
+                Response.Redirect("Assessmentoptionaddedit?tab=2&section=" + dropSection.SelectedValue);
             }
         }
         else
@@ -393,14 +393,14 @@ public partial class _Assessmentoptionaddedit : BasePage
 
         Button btn = (Button)sender;
 
-        if (!string.IsNullOrEmpty(Request.QueryString["subsection"]))
+        if (!string.IsNullOrEmpty(Request.QueryString["subsection2"]))
         {
-            int bytID = int.Parse(Request.QueryString["subsection"]);
-            sub.SUCID = bytID;
+            int bytID = int.Parse(Request.QueryString["subsection2"]);
+            sub.SUCID2 = bytID;
 
             if (AssessmentController.EditSubSection2(sub))
             {
-                Response.Redirect("Assessmentoptionaddedit?tab=5&section=" + dropsection2_2.SelectedValue);
+                Response.Redirect("Assessmentoptionaddedit?tab=5&section=" + dropsection_1.SelectedValue);
             }
         }
         else
@@ -414,7 +414,7 @@ public partial class _Assessmentoptionaddedit : BasePage
 
     protected void Button7_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Assessmentoptionaddedit?tab=2&section=" + dropsection2_2.SelectedValue);
+        Response.Redirect("Assessmentoptionaddedit?tab=5&section=" + dropsection2_2.SelectedValue);
         //sub_pan.Visible  = false;
     }
 

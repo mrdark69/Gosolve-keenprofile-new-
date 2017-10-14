@@ -130,9 +130,7 @@ public class AssessmentController
         Model_AsSection sec = new Model_AsSection();
         return sec.GetListSection();
     }
-
-
-
+    
     ////Sub Section
 
     public static List<Model_AsSubSection> getSubsectionBySecId(Model_AsSubSection ae)

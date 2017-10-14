@@ -16,7 +16,7 @@ using System.Security.Cryptography;
 /// </summary>
 public class Model_AsSubSection2 : BaseModel<Model_AsSubSection2>
 {
-    public int SUCID { get; set; }
+    public int SUCID2 { get; set; }
     public int SCID { get; set; }
     public string Title { get; set; }
     public string Combind { get; set; }
@@ -65,8 +65,8 @@ INNER JOIN Section ur ON ur.SCID =u.SCID AND ur.Status = 1" + w + " ORDER BY ur.
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM SubSection2 WHERE SUCID=@SUCID", cn);
-            cmd.Parameters.Add("@SUCID", SqlDbType.Int).Value = SubID;
+            SqlCommand cmd = new SqlCommand("SELECT * FROM SubSection2 WHERE SUCID2=@SUCID2", cn);
+            cmd.Parameters.Add("@SUCID2", SqlDbType.Int).Value = SubID;
             cn.Open();
             IDataReader reader = ExecuteReader(cmd, CommandBehavior.SingleRow);
             if (reader.Read())
@@ -105,12 +105,12 @@ INNER JOIN Section ur ON ur.SCID =u.SCID AND ur.Status = 1" + w + " ORDER BY ur.
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("UPDATE SubSection2 SET Title=@Title ,Status=@Status ,SCID=@SCID ,Combind=@Combind WHERE SUCID=@SUCID", cn);
+            SqlCommand cmd = new SqlCommand("UPDATE SubSection2 SET Title=@Title ,Status=@Status ,SCID=@SCID ,Combind=@Combind WHERE SUCID2=@SUCID2", cn);
             cmd.Parameters.Add("@SCID", SqlDbType.Int).Value = mu.SCID;
             cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = mu.Title;
             cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = mu.Status;
             cmd.Parameters.Add("@Combind", SqlDbType.VarChar).Value = mu.Combind;
-            cmd.Parameters.Add("@SUCID", SqlDbType.Int).Value = mu.SUCID;
+            cmd.Parameters.Add("@SUCID2", SqlDbType.Int).Value = mu.SUCID2;
             cn.Open();
             return ExecuteNonQuery(cmd) == 1;
         }
