@@ -65,7 +65,13 @@ public class CalculationController
                             ret = ret > 0 ? ret : 0;
 
                         break;
-                       
+                    case 5:
+                        Calculation_T5 cal5 = new Calculation_T5(item.ResultSectionID, intTransactionID);
+                        if (cal5.Calnow())
+                            ret = ret > 0 ? ret : 0;
+
+                        break;
+
                 }
             }
         }

@@ -116,7 +116,8 @@ public class Calculation_T4
                     foreach (string m in arrmap_sub)
                     {
                         List<Model_UsersAssessment> ass = this.R_UserAss_C.Where(o => o.SUCID == int.Parse(m)).ToList();
-                        Req = (decimal)Math.Round(ass.Average(o => o.Score), 2);
+                        if(ass.Count > 0)
+                            Req = (decimal)Math.Round(ass.Average(o => o.Score), 2);
                     }
                 }
                 

@@ -77,6 +77,15 @@
                                         <asp:DropDownList ID="dropsubrigth" placeholder="Sub Section Right" Visible="false" runat="server" CssClass="form-control"></asp:DropDownList>
                                     </div>--%>
                                 </div>
+                                                         <div class="form-group">
+                                    <asp:Label runat="server" AssociatedControlID="dropsub" CssClass="col-md-2 control-label">Sub Section2</asp:Label>
+                                    <div class="col-md-10">
+                                        <asp:DropDownList ID="dropsub2" ClientIDMode="Static" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    </div>
+                                      <%-- <div class="col-md-5">
+                                        <asp:DropDownList ID="dropsubrigth" placeholder="Sub Section Right" Visible="false" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    </div>--%>
+                                </div>
 
                                      <div class="form-group">
                                     <asp:Label runat="server" AssociatedControlID="txtCode" CssClass="col-md-2 control-label">Question Code</asp:Label>

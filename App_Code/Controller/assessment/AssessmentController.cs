@@ -137,6 +137,8 @@ public class AssessmentController
     {
         return ae.getAllSubSection(ae);
     }
+
+
     public static List<Model_AsSubSection2> getSubsectionBySecId2(Model_AsSubSection2 ae)
     {
         return ae.getAllSubSection(ae);

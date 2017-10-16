@@ -168,6 +168,37 @@
                                             </div>
                                         </div>
                                     </div>
+
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="collapsed" aria-expanded="false">[T5] - Company Fit Score 
+</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseFive" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                            <div class="panel-body">
+                                                <%--<div>
+                                                    <h1>"B" Section Result</h1>
+                                                     <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+                                                </div>
+
+                                              --%>
+
+                                                 <div>
+                                                      <h1>"T5" Section Result</h1>
+                                                      <asp:Literal ID="Ltt51" runat="server"></asp:Literal>  
+                                                 </div>
+
+                                                  <div>
+                                                    <h1>Summary T5 Result</h1>
+                                                     <asp:Literal ID="Ltt52" runat="server"></asp:Literal>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
 

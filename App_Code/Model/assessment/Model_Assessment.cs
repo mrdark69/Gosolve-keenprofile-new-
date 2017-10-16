@@ -177,6 +177,7 @@ public class Model_Assessment : BaseModel<Model_Assessment>
     public int TotalRows { get; set; }
     public int RowNum { get; set; }
 
+    public int? SUCID2 { get; set; }
 
     public DTParameters PagingParam { get; set; }
     private List<Model_Assessment_Choice> _asschoice = null;
@@ -211,8 +212,8 @@ public class Model_Assessment : BaseModel<Model_Assessment>
         int ret = 0;
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand(@"INSERT INTO Assessment (Code,Questions,SCID,SUCID,Status,IsHide,QTID,Priority,StartRank,EndRank,Side,GroupName,LeftScaleTitle,RigthScaleTitle) 
-VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,@EndRank,@Side,@GroupName,@LeftScaleTitle,@RigthScaleTitle);SET @ASID = SCOPE_IDENTITY();", cn);
+            SqlCommand cmd = new SqlCommand(@"INSERT INTO Assessment (Code,Questions,SCID,SUCID,Status,IsHide,QTID,Priority,StartRank,EndRank,Side,GroupName,LeftScaleTitle,RigthScaleTitle,SUCID2) 
+VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,@EndRank,@Side,@GroupName,@LeftScaleTitle,@RigthScaleTitle,@SUCID2);SET @ASID = SCOPE_IDENTITY();", cn);
             cn.Open();
             cmd.Parameters.Add("@Code", SqlDbType.VarChar).Value = mu.Code;
             cmd.Parameters.Add("@Questions", SqlDbType.NVarChar).Value = mu.Questions;
@@ -238,6 +239,11 @@ VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,
             cmd.Parameters.Add("@LeftScaleTitle", SqlDbType.NVarChar).Value = mu.LeftScaleTitle;
             cmd.Parameters.Add("@RigthScaleTitle", SqlDbType.NVarChar).Value = mu.RigthScaleTitle;
 
+            if (mu.SUCID2.HasValue)
+                cmd.Parameters.Add("@SUCID2", SqlDbType.Int).Value = mu.SUCID2;
+            else
+                cmd.Parameters.AddWithValue("@SUCID2", DBNull.Value);
+
             cmd.Parameters.Add("@ASID", SqlDbType.Int).Direction = ParameterDirection.Output;
 
             if (ExecuteNonQuery(cmd) > 0)
@@ -255,7 +261,7 @@ VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand(@"UPDATE Assessment SET Code=@Code, Questions=@Questions, SCID=@SCID, SUCID=@SUCID, 
-            Status =@Status,IsHide=@IsHide,QTID=@QTID ,GroupName=@GroupName, Side=@Side,Priority=@Priority, 
+            Status =@Status,IsHide=@IsHide,QTID=@QTID ,GroupName=@GroupName, Side=@Side,Priority=@Priority,SUCID2=@SUCID2,
         StartRank=@StartRank,EndRank=@EndRank ,LeftScaleTitle=@LeftScaleTitle,RigthScaleTitle=@RigthScaleTitle WHERE ASID=@ASID", cn);
 
             cmd.Parameters.Add("@Code", SqlDbType.VarChar).Value = mu.Code;
@@ -276,7 +282,10 @@ VALUES(@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,@StartRank,
             cmd.Parameters.Add("@GroupName", SqlDbType.NVarChar).Value = mu.GroupName;
             cmd.Parameters.Add("@LeftScaleTitle", SqlDbType.NVarChar).Value = mu.LeftScaleTitle;
             cmd.Parameters.Add("@RigthScaleTitle", SqlDbType.NVarChar).Value = mu.RigthScaleTitle;
-
+            if (mu.SUCID2.HasValue)
+                cmd.Parameters.Add("@SUCID2", SqlDbType.Int).Value = mu.SUCID2;
+            else
+                cmd.Parameters.AddWithValue("@SUCID2", DBNull.Value);
             cmd.Parameters.Add("@ASID", SqlDbType.Int).Value = mu.ASID;
 
             cn.Open();

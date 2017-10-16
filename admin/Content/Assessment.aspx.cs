@@ -49,12 +49,21 @@ public partial class _Assessment : BasePage
                 SCID = int.Parse(dropSection.SelectedValue)
             };
 
+            Model_AsSubSection2 ss2 = new Model_AsSubSection2
+            {
+                SCID = int.Parse(dropSection.SelectedValue)
+            };
             List<Model_AsSubSection> sub = AssessmentController.getSubsectionBySecId(ss);
             dropsub.DataSource = sub;
             dropsub.DataTextField = "Title";
             dropsub.DataValueField = "SUCID";
             dropsub.DataBind();
 
+            List<Model_AsSubSection2> sub2 = AssessmentController.getSubsectionBySecId2(ss2);
+            dropsub2.DataSource = sub2;
+            dropsub2.DataTextField = "Title";
+            dropsub2.DataValueField = "SUCID2";
+            dropsub2.DataBind();
 
 
             if (!string.IsNullOrEmpty(Request.QueryString["ass"]))
@@ -104,11 +113,24 @@ public partial class _Assessment : BasePage
                     dropSection.SelectedValue = ass.SCID.ToString();
 
 
+                    Model_AsSubSection2 sss2 = new Model_AsSubSection2
+                    {
+                        SCID = ass.SCID
+                    };
+                    List<Model_AsSubSection2> sub_edit2 = AssessmentController.getSubsectionBySecId2(sss2);
+                    dropsub2.DataSource = sub_edit2;
+                    dropsub2.DataTextField = "Title";
+                    dropsub2.DataValueField = "SUCID2";
+                    dropsub2.DataBind();
+
+
+
                     dropsecs.SelectedValue = (string.IsNullOrEmpty(this.qSection) ? ass.SCID.ToString() : this.qSection);
 
 
                     dropsub.SelectedValue = ass.SUCID.ToString();
 
+                    dropsub2.SelectedValue =  ass.SUCID2.ToString();
 
                     leftTitle.Text = ass.LeftScaleTitle;
                     rightTitle.Text = ass.RigthScaleTitle;
@@ -282,6 +304,7 @@ public partial class _Assessment : BasePage
             Code = txtCode.Text.Trim(),
             SCID = int.Parse(dropSection.SelectedValue),
             SUCID = int.Parse(dropsub.SelectedValue),
+            SUCID2 = string.IsNullOrEmpty(dropsub2.SelectedValue) ? (int?)null : int.Parse(dropsub2.SelectedValue),
             Status = bool.Parse(status.SelectedValue),
             QTID = byte.Parse(dropQType.SelectedValue),
 
