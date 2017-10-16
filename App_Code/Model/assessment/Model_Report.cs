@@ -73,6 +73,18 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
     public int? UseAtWork { get; set; }
 
 
+    public byte? Frequency_y { get; set; }
+    public byte? Frequency_c { get; set; }
+    public byte? Side_y { get; set; }
+    public byte? Side_c { get; set; }
+    public string T5Group { get; set; } = string.Empty;
+
+    public decimal? Score_y { get; set; }
+
+    public decimal? Score_c { get; set; }
+
+    public byte? FitOrNot { get; set; }
+
     public string ResultItemTitle { get; set; }
 
     public List<Model_ReportItemResult> GetItemReportByTransactionID(int TransactionId)
@@ -125,7 +137,7 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
 
     SqlCommand cmdupdate = new SqlCommand(@"UPDATE  ReportItemResult SET Score=@Score,IsAbove=@IsAbove,IsBelow=@IsBelow,Score_new=@Score_new
 ,TASID=@TASID, TASCID=@TASCID, Detail=@Detail,Factor=@Factor,IsDup=@IsDup ,AutoRank4=@AutoRank4,AutoRank1=@AutoRank1,AutoRank2=@AutoRank2,AutoRank3=@AutoRank3
-,Division1=@Division1,Division2=@Division2,Division3=@Division3,Division4=@Division4,GT=@GT,IdealScore=@IdealScore,RqScore=@RqScore,ResultScore=@ResultScore,Result=@Result,UseAtWork=@UseAtWork 
+,Division1=@Division1,Division2=@Division2,Division3=@Division3,Division4=@Division4,GT=@GT,IdealScore=@IdealScore,RqScore=@RqScore,ResultScore=@ResultScore,Result=@Result,UseAtWork=@UseAtWork,Frequency_y=@Frequency_y,Frequency_c=@Frequency_c,Side_y=@Side_y,T5Group=@T5Group,Score_y=@Score_y, Score_c=@Score_c,Side_c=@Side_c,FitOrNo=@FitOrNot 
   WHERE ResultSectionID=@ResultSectionID AND ResultItemID=@ResultItemID AND TransactionID=@TransactionID;
                 ", cn);
 
@@ -228,6 +240,47 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                 else
                     cmdupdate.Parameters.AddWithValue("@UseAtWork", DBNull.Value);
 
+
+
+                if (re.Frequency_y.HasValue)
+                    cmdupdate.Parameters.Add("@Frequency_y", SqlDbType.TinyInt).Value = re.Frequency_y;
+                else
+                    cmdupdate.Parameters.AddWithValue("@Frequency_y", DBNull.Value);
+
+                if (re.Frequency_c.HasValue)
+                    cmdupdate.Parameters.Add("@Frequency_c", SqlDbType.TinyInt).Value = re.Frequency_c;
+                else
+                    cmdupdate.Parameters.AddWithValue("@Frequency_c", DBNull.Value);
+
+                if (re.Side_y.HasValue)
+                    cmdupdate.Parameters.Add("@Side_y", SqlDbType.TinyInt).Value = re.Side_y;
+                else
+                    cmdupdate.Parameters.AddWithValue("@Side_y", DBNull.Value);
+
+                if (re.Side_c.HasValue)
+                    cmdupdate.Parameters.Add("@Side_c", SqlDbType.TinyInt).Value = re.Side_c;
+                else
+                    cmdupdate.Parameters.AddWithValue("@Side_c", DBNull.Value);
+
+                cmdupdate.Parameters.Add("@T5Group", SqlDbType.NVarChar).Value = re.T5Group;
+              
+
+                if (re.Score_y.HasValue)
+                    cmdupdate.Parameters.Add("@Score_y", SqlDbType.Decimal).Value = re.Score_y;
+                else
+                    cmdupdate.Parameters.AddWithValue("@Score_y", DBNull.Value);
+
+                if (re.Score_c.HasValue)
+                    cmdupdate.Parameters.Add("@Score_c", SqlDbType.Decimal).Value = re.Score_c;
+                else
+                    cmdupdate.Parameters.AddWithValue("@Score_c", DBNull.Value);
+
+                if (re.FitOrNot.HasValue)
+                    cmdupdate.Parameters.Add("@FitOrNot", SqlDbType.TinyInt).Value = re.FitOrNot;
+                else
+                    cmdupdate.Parameters.AddWithValue("@FitOrNot", DBNull.Value);
+                
+
                 cmdupdate.Parameters.Add("@IsDup", SqlDbType.Decimal).Value = re.IsDup;
 
                 cmdupdate.Parameters.Add("@IsAbove", SqlDbType.Bit).Value = re.IsAbove;
@@ -239,8 +292,9 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                 //DELETE FROM ReportItemResult WHERE ResultSectionID = @ResultSectionID AND ResultItemID = @ResultItemID AND TransactionID = @TransactionID;
                 if (ExecuteNonQuery(cmdupdate) == 0)
                 {
-                    SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,TASCID,Detail,Factor,IsDup,AutoRank4,AutoRank1,AutoRank2,AutoRank3,Division1,Division2,Division3,Division4,GT,IdealScore,RqScore,ResultScore,Result,UseAtWork) 
-                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@TASCID,@Detail,@Factor,@IsDup,@AutoRank4,@AutoRank1,@AutoRank2,@AutoRank3,@Division1,@Division2,@Division3,@Division4,@GT,@IdealScore,@RqScore,@ResultScore,@Result,@UseAtWork)", cn);
+                    SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,TASCID,Detail,Factor,IsDup,AutoRank4,AutoRank1,AutoRank2,AutoRank3,Division1,Division2,Division3,Division4,GT,IdealScore,RqScore,ResultScore,Result,UseAtWork,Frequency_y,Frequency_c,
+Side_c,T5Group,Score_y,Score_c,Side_y,FitOrNot) 
+                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@TASCID,@Detail,@Factor,@IsDup,@AutoRank4,@AutoRank1,@AutoRank2,@AutoRank3,@Division1,@Division2,@Division3,@Division4,@GT,@IdealScore,@RqScore,@ResultScore,@Result,@UseAtWork,@Frequency_y,@Frequency_c,@Side_c,@T5Group,@Score_y,@Score_c,@Side_y,@FitOrNot)", cn);
                     //             public int? GT { get; set; }
                     //public decimal? IdealScore { get; set; }
                     //public decimal? RqScore { get; set; }
@@ -344,6 +398,46 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                         cmd.Parameters.Add("@UseAtWork", SqlDbType.Int).Value = re.UseAtWork;
                     else
                         cmd.Parameters.AddWithValue("@UseAtWork", DBNull.Value);
+
+
+
+                    if (re.Frequency_y.HasValue)
+                        cmd.Parameters.Add("@Frequency_y", SqlDbType.TinyInt).Value = re.Frequency_y;
+                    else
+                        cmd.Parameters.AddWithValue("@Frequency_y", DBNull.Value);
+
+                    if (re.Frequency_c.HasValue)
+                        cmd.Parameters.Add("@Frequency_c", SqlDbType.TinyInt).Value = re.Frequency_c;
+                    else
+                        cmd.Parameters.AddWithValue("@Frequency_c", DBNull.Value);
+
+                    if (re.Side_y.HasValue)
+                        cmd.Parameters.Add("@Side_y", SqlDbType.TinyInt).Value = re.Side_y;
+                    else
+                        cmd.Parameters.AddWithValue("@Side", DBNull.Value);
+
+                    if (re.Side_c.HasValue)
+                        cmd.Parameters.Add("@Side_c", SqlDbType.TinyInt).Value = re.Side_c;
+                    else
+                        cmd.Parameters.AddWithValue("@Side_c", DBNull.Value);
+
+
+                    cmd.Parameters.Add("@T5Group", SqlDbType.NVarChar).Value = re.T5Group;
+                  
+                    if (re.Score_y.HasValue)
+                        cmd.Parameters.Add("@Score_y", SqlDbType.Decimal).Value = re.Score_y;
+                    else
+                        cmd.Parameters.AddWithValue("@Score_y", DBNull.Value);
+
+                    if (re.Score_c.HasValue)
+                        cmd.Parameters.Add("@Score_c", SqlDbType.Decimal).Value = re.Score_c;
+                    else
+                        cmd.Parameters.AddWithValue("@Score_c", DBNull.Value);
+
+                    if (re.FitOrNot.HasValue)
+                        cmd.Parameters.Add("@FitOrNot", SqlDbType.TinyInt).Value = re.FitOrNot;
+                    else
+                        cmd.Parameters.AddWithValue("@FitOrNot", DBNull.Value);
 
                     cmd.Parameters.Add("@IsDup", SqlDbType.Decimal).Value = re.IsDup;
 

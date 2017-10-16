@@ -173,7 +173,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="collapsed" aria-expanded="false">[T5] - Company Fit Score 
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive" class="collapsed" aria-expanded="false">[T5] - Company Fit Score 
 </a>
                                             </h4>
                                         </div>
