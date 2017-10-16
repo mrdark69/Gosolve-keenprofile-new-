@@ -335,7 +335,7 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                         cmd.Parameters.AddWithValue("@ResultScore", DBNull.Value);
 
                     if (!string.IsNullOrEmpty(re.Result))
-                        cmd.Parameters.Add("@Result", SqlDbType.Decimal).Value = re.Result;
+                        cmd.Parameters.Add("@Result", SqlDbType.VarChar).Value = re.Result;
                     else
                         cmd.Parameters.AddWithValue("@Result", DBNull.Value);
 

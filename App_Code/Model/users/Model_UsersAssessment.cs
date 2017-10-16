@@ -51,7 +51,7 @@ public class Model_UsersAssessment: BaseModel<Model_UsersAssessment>
     public int? ScoreUserRank { get; set; }
 
     public string Combind { get; set; }
-
+    public int? SUCID2 { get; set; }
     public Model_UsersAssessment()
     {
         //
@@ -117,9 +117,9 @@ public class Model_UsersAssessment: BaseModel<Model_UsersAssessment>
             using (SqlConnection cn = new SqlConnection(this.ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand(@"INSERT INTO UserAssessment (TransactionID,Score,ASID,Code,Questions,SCID,SUCID,Status,IsHide,QTID,Priority,
-                                    StartRank,EndRank,GroupName,Side,LeftScaleTitle,RigthScaleTitle,Combind) 
+                                    StartRank,EndRank,GroupName,Side,LeftScaleTitle,RigthScaleTitle,Combind,SUCID2) 
                             VALUES (@TransactionID,@Score,@ASID,@Code,@Questions,@SCID,@SUCID,@Status,@IsHide,@QTID,@Priority,
-                    @StartRank,@EndRank,@GroupName,@Side,@LeftScaleTitle,@RigthScaleTitle,@Combind);SET @TASID = SCOPE_IDENTITY();", cn);
+                    @StartRank,@EndRank,@GroupName,@Side,@LeftScaleTitle,@RigthScaleTitle,@Combind,@SUCID2);SET @TASID = SCOPE_IDENTITY();", cn);
 
                 cn.Open();
 
@@ -144,6 +144,11 @@ public class Model_UsersAssessment: BaseModel<Model_UsersAssessment>
                 cmd.Parameters.Add("@RigthScaleTitle", SqlDbType.NVarChar).Value = ass.RigthScaleTitle;
 
                 cmd.Parameters.Add("@Combind", SqlDbType.VarChar).Value = ass.SubCombind;
+
+                if (ass.SUCID2.HasValue)
+                    cmd.Parameters.Add("@SUCID2", SqlDbType.Int).Value = ass.SUCID2;
+                else
+                    cmd.Parameters.AddWithValue("@SUCID2", DBNull.Value);
 
 
                 cmd.Parameters.Add("@TASID", SqlDbType.Int).Direction = ParameterDirection.Output;
