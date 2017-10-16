@@ -137,7 +137,7 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
 
     SqlCommand cmdupdate = new SqlCommand(@"UPDATE  ReportItemResult SET Score=@Score,IsAbove=@IsAbove,IsBelow=@IsBelow,Score_new=@Score_new
 ,TASID=@TASID, TASCID=@TASCID, Detail=@Detail,Factor=@Factor,IsDup=@IsDup ,AutoRank4=@AutoRank4,AutoRank1=@AutoRank1,AutoRank2=@AutoRank2,AutoRank3=@AutoRank3
-,Division1=@Division1,Division2=@Division2,Division3=@Division3,Division4=@Division4,GT=@GT,IdealScore=@IdealScore,RqScore=@RqScore,ResultScore=@ResultScore,Result=@Result,UseAtWork=@UseAtWork,Frequency_y=@Frequency_y,Frequency_c=@Frequency_c,Side_y=@Side_y,T5Group=@T5Group,Score_y=@Score_y, Score_c=@Score_c,Side_c=@Side_c,FitOrNo=@FitOrNot 
+,Division1=@Division1,Division2=@Division2,Division3=@Division3,Division4=@Division4,GT=@GT,IdealScore=@IdealScore,RqScore=@RqScore,ResultScore=@ResultScore,Result=@Result,UseAtWork=@UseAtWork,Frequency_y=@Frequency_y,Frequency_c=@Frequency_c,Side_y=@Side_y,T5Group=@T5Group,Score_y=@Score_y, Score_c=@Score_c,Side_c=@Side_c,FitOrNot=@FitOrNot 
   WHERE ResultSectionID=@ResultSectionID AND ResultItemID=@ResultItemID AND TransactionID=@TransactionID;
                 ", cn);
 
