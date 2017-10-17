@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -70,7 +70,7 @@ public partial class __AssessmentStepCheck : BasePageFront
                             ret.Append("<input type=\"hidden\" name=\"ass_fill_\"  value=\"" + count + "\" />\r\n");
 
                             ret.Append("<div class=\"text-center m-t-md\">\r\n");
-                            ret.Append("<h2>XXXXXXX</h2>\r\n");
+                            ret.Append("<h2>โปรดให้ระดับคะแนนความสำคัญของข้อความต่อไปนี้ว่าข้อความใดตรงกับตัวตนของคุณมากที่สุด โดยในแต่ละข้อโปรดเลือกระดับคะแนนของแต่ละข้อความไม่ให้ซ้ำกัน</h2>\r\n");
 
 
                             ret.Append("<div class=\"question-type q-type-rank-scale-choice\">\r\n");
@@ -84,9 +84,9 @@ public partial class __AssessmentStepCheck : BasePageFront
                             {
 
                                 if (i == 1)
-                                    ret.Append("<td class=\"choice\">" + i + "<br /><span>XXXXX</span></td>\r\n");
+                                    ret.Append("<td class=\"choice\">" + i + "<br /><span> 1 เป็นตัวตนของฉัน \"น้อย\" ที่สุด</span></td>\r\n");
                                 else if (i == (dupfocus.Count < 3 ? 3 : dupfocus.Count))
-                                    ret.Append("<td class=\"choice\">" + i + "<br /> <span>XXXXX</span>  </td>\r\n");
+                                    ret.Append("<td class=\"choice\">" + i + "<br /> <span>"+ (dupfocus.Count < 3 ? 3 : dupfocus.Count) + " เป็นตัวตนของฉัน \"มาก\" ที่สุด</span></td>\r\n");
                                 else
                                     ret.Append("<td class=\"choice\">" + i + "</td>\r\n");
                             }
