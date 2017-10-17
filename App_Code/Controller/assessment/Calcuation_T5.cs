@@ -200,116 +200,65 @@ public class Calculation_T5
     public List<Model_ReportItemResult> ReviewResult(List<Model_ReportItemResult> rlist)
     {
 
-        foreach (Model_ReportItemResult list in rlist.OrderByDescending(o => o.Score_new))
+       
+
+        for(int g =1; g<=14; g++)
         {
+            List<Model_ReportItemResult> listGroup = rlist.Where(o => int.Parse(o.T5Group) == g).ToList();
 
+            if(listGroup.Count == 2)
+            {
+                foreach (Model_ReportItemResult list in listGroup)
+                {
+                    if(list.Score_y > 0 && list.Score_c > 0)
+                    {
+                        if(list.Frequency_c == list.Frequency_y)
+                        {
+                            rlist.Where(o => o.ResultItemID == list.ResultItemID).FirstOrDefault().FitOrNot = 1;
+                            list.FitOrNot = 1;
+                            break;
+                        }
+                            
+
+                        if ((list.Frequency_c == 2 || list.Frequency_c == 3 || list.Frequency_c == 0) && (list.Frequency_y == 2 || list.Frequency_y == 3 || list.Frequency_y == 0) && list.Frequency_c != list.Frequency_y)
+                        {
+                            rlist.Where(o => o.ResultItemID == list.ResultItemID).FirstOrDefault().FitOrNot = 2;
+                            list.FitOrNot = 2;
+                            break;
+                        }
+                           
+
+                        if ((list.Frequency_c == 1 || list.Frequency_c == 3 || list.Frequency_c == 0) && (list.Frequency_y == 1 || list.Frequency_y == 3 || list.Frequency_y == 0) && list.Frequency_c != list.Frequency_y)
+                        {
+                           
+                            rlist.Where(o => o.ResultItemID == list.ResultItemID).FirstOrDefault().FitOrNot = 3;
+                            list.FitOrNot = 3;
+                            break;
+                        }
+                           
+                    }
+                    else
+                    {
+                        if(list.Score_y > 0 || list.Score_c > 0)
+                        {
+                          rlist.Where(o => o.ResultItemID == list.ResultItemID).FirstOrDefault().FitOrNot = 3;
+                            list.FitOrNot = 3;
+                            break;
+                        }
+                        
+                    }
+                }
+            }
         }
-            //int count = 1;
-            //foreach (Model_ReportItemResult list in rlist.OrderByDescending(o => o.Score_new))
-            //{
-            //    if(count < 8)
-            //    {
-            //        list.GT = 2;
-
-            //        list.IdealScore =  this.IdealScore.Where(s => s.Score == 2).Select(o => o.Value).First();
-
-            //        if (list.IsAbove)
-            //        {
-            //            list.GT = 1;
-            //            list.IdealScore = this.IdealScore.Where(s => s.Score == 1).Select(o => o.Value).First();
-            //        }
-
-
-            //    }
-
-
-
-
-
-            //    if (count >= 8 && count <= 14)
-            //    {
-            //        list.GT = 3;
-            //        list.IdealScore = this.IdealScore.Where(s => s.Score == 3).Select(o => o.Value).First();
-            //    }
-
-
-
-
-            //    if (count > 14)
-            //    {
-            //        list.GT = 4;
-            //        list.IdealScore = this.IdealScore.Where(s => s.Score == 4).Select(o => o.Value).First();
-
-            //        if (list.IsBelow)
-            //        {
-            //            list.GT = 5;
-            //            list.IdealScore = this.IdealScore.Where(s => s.Score == 5).Select(o => o.Value).First();
-            //        }
-
-            //    }
-
-            //        count = count + 1;
-            //}
-
-            //int count1 = 1;
-            //foreach (Model_ReportItemResult list in rlist.OrderByDescending(o => o.Score_new))
-            //{
-            //    Model_Rule1 r1 = this.RuleScore1.Where(s => s.Score == list.GT).FirstOrDefault();
-            //    decimal score = 0.0m;
-
-            //    if(r1 != null)
-            //    {
-            //        switch ((int)list.RqScore)
-            //        {
-            //            case 1:
-            //                score = r1.CJRRuleScore1;
-            //                break;
-            //            case 2:
-            //                score = r1.CJRRuleScore2;
-            //                break;
-            //            case 3:
-            //                score = r1.CJRRuleScore3;
-            //                break;
-            //            case 4:
-            //                score = r1.CJRRuleScore4;
-            //                break;
-            //            case 5:
-            //                score = r1.CJRRuleScore5;
-            //                break;
-            //        }
-            //    }
-            //    list.ResultScore = score;
-
-            //    list.UseAtWork = (int)Math.Round((decimal)(list.RqScore * 100) / 5, 0);
-
-            //    if (count1 < 8)
-            //    {
-            //        Model_Rule4 r4 = this.RuleScore4.Where(o => o.Range_Start <= list.UseAtWork).Where(o=>o.Range_End >= list.UseAtWork).FirstOrDefault();
-            //        if (r4 != null)
-            //            list.Result = r4.ValueTop;
-            //        //list.Result = this.RuleScore4.Where(o => o.Range_Start <= list.UseAtWork && o.Range_End >= list.UseAtWork).Select(r => r.ValueTop).First();
-            //    }
-
-            //    if (count1 >= 8 && count1 <= 14)
-            //    {
-            //        Model_Rule4 r4 = this.RuleScore4.Where(o => o.Range_Start <= list.UseAtWork).Where(o => o.Range_End >= list.UseAtWork).FirstOrDefault();
-            //        if (r4 != null)
-            //            list.Result = r4.ValueOther;
-            //       // list.Result = this.RuleScore4.Where(o => o.Range_Start <= list.UseAtWork && o.Range_End >= list.UseAtWork).Select(r => r.ValueOther).First();
-            //    }
-
-            //    if (count1 > 14)
-            //    {
-            //        Model_Rule4 r4 = this.RuleScore4.Where(o => o.Range_Start <= list.UseAtWork).Where(o => o.Range_End >= list.UseAtWork).FirstOrDefault();
-            //        if (r4 != null)
-            //            list.Result = r4.ValueBottom;
-            //       // list.Result = this.RuleScore4.Where(o => o.Range_Start <= list.UseAtWork && o.Range_End >= list.UseAtWork).Select(r => r.ValueBottom).First();
-            //    }
-
-            //        count1 = count1 + 1;
-            //}
-            ////RuleScore1
-
+           
+        foreach(Model_ReportItemResult ll in rlist.Where(o => o.FitOrNot.HasValue))
+        {
+            var obj = rlist.Where(o => !o.FitOrNot.HasValue && o.T5Group == ll.T5Group).FirstOrDefault();
+            if (obj != null)
+            {
+                obj.FitOrNot = ll.FitOrNot;
+            }
+        }
 
             return rlist;
     }

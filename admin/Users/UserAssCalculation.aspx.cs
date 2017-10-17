@@ -605,7 +605,21 @@ public partial class Users_UserAssCalculation : BasePage
 
 
 
-                retF2.Append("<tr>");
+                string bg = "";
+                switch (i.FitOrNot)
+                {
+                    case 1:
+                        bg = "#eaaf62";
+                        break;
+                    case 2:
+                        bg = "#61d5ea";
+                        break;
+                    case 3:
+                        bg = "#c9cccb";
+                        break;
+                }
+
+                retF2.Append("<tr style=\"background-color:" + bg + "\">");
 
                 retF2.Append("<td>");
                 retF2.Append("<p>" + i.ResultItemTitle + "</p>");
@@ -646,12 +660,31 @@ public partial class Users_UserAssCalculation : BasePage
 
             retF2.Append("</tr>");
 
+
+            int countfit = 0;
+            int countnotfit = 0;
+
             foreach (Model_ReportItemResult i in fscore.Where(o => o.Side_y == 2))
             {
 
 
+                string bg = "";
+                switch (i.FitOrNot)
+                {
+                    case 1:
+                        bg = "#eaaf62";
+                        countfit = countfit + 1;
+                        break;
+                    case 2:
+                        bg = "#61d5ea";
+                        break;
+                    case 3:
+                        bg = "#c9cccb";
+                        countnotfit = countnotfit + 1;
+                        break;
+                }
 
-                retF2.Append("<tr>");
+                retF2.Append("<tr style=\"background-color:"+bg+"\">");
 
               
 
@@ -690,16 +723,22 @@ public partial class Users_UserAssCalculation : BasePage
 
             Ltt51.Text = retF2.ToString();
 
-            //StringBuilder retchH = new StringBuilder();
-            //retchH.Append("<table class='table table-strip'>");
-            //retchH.Append("<tr>");
-            //retchH.Append("<td>Sum Score</td><td>Ideal Score</td><td>Raw % Result</td><td>% Adjusted Result</td><td>Current Job Fit Score</td>");
-            //retchH.Append("</tr>");
+            StringBuilder retchH = new StringBuilder();
+            retchH.Append("<table class='table table-strip'>");
+            retchH.Append("<tr>");
+            retchH.Append("<td>% Culture Fit</td><td>% Culture Not Fit</td><td>% Result</td><td>% Adjusted Result</td><td>Company Fit Score</td>");
+            retchH.Append("</tr>");
 
-            //decimal RawResult = 0.0m;
-            //decimal AdjustREsult = 0.0m;
-            //decimal CurrentJobFitScore = 0.0m;
+            decimal RawResult = 0.0m;
+            decimal AdjustREsult = 0.0m;
+            decimal CurrentJobFitScore = 0.0m;
 
+            decimal decFit = (countfit * 100) / 14;
+            decimal decNotFit = (countnotfit * 100) / 14;
+
+            RawResult = decFit - decNotFit;
+            if(RawResult > 0)
+                AdjustREsult = RawResult + 25;
             //if (SumScore > 0)
             //{
             //    RawResult = SumScore / SumIdeal;
@@ -708,13 +747,13 @@ public partial class Users_UserAssCalculation : BasePage
             //    CurrentJobFitScore = Math.Round(AdjustREsult * 100, 0);
             //}
 
-            //retchH.Append("<tr>");
-            //retchH.Append("<td>" + SumScore + "</td><td>" + SumIdeal + "</td><td>" + RawResult + "</td><td>" + AdjustREsult + "</td><td>" + CurrentJobFitScore + "</td>");
-            //retchH.Append("</tr>");
+            retchH.Append("<tr>");
+            retchH.Append("<td>" + decFit + "</td><td>" + decNotFit + "</td><td>" + RawResult + "</td><td>" + AdjustREsult + "</td><td>" + CurrentJobFitScore + "</td>");
+            retchH.Append("</tr>");
 
-            //retchH.Append("</table>");
+            retchH.Append("</table>");
 
-            //Ltt52.Text = retchH.ToString();
+            Ltt52.Text = retchH.ToString();
 
             T5.RecordResult(fscore);
         }
