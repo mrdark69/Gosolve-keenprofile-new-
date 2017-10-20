@@ -414,7 +414,7 @@ Side_c,T5Group,Score_y,Score_c,Side_y,FitOrNot)
                     if (re.Side_y.HasValue)
                         cmd.Parameters.Add("@Side_y", SqlDbType.TinyInt).Value = re.Side_y;
                     else
-                        cmd.Parameters.AddWithValue("@Side", DBNull.Value);
+                        cmd.Parameters.AddWithValue("@Side_y", DBNull.Value);
 
                     if (re.Side_c.HasValue)
                         cmd.Parameters.Add("@Side_c", SqlDbType.TinyInt).Value = re.Side_c;

@@ -164,7 +164,7 @@ public partial class __AssessmentStepCheck : BasePageFront
                         }
 
                         Stepcontent.Text = ret.ToString();
-                        numtopic.Text = count;
+                        numtopic.Text = count.ToString();
                     }
 
                    
