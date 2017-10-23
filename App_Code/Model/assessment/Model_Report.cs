@@ -297,8 +297,8 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                 if (ExecuteNonQuery(cmdupdate) == 0)
                 {
                     SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,TASCID,Detail,Factor,IsDup,AutoRank4,AutoRank1,AutoRank2,AutoRank3,Division1,Division2,Division3,Division4,GT,IdealScore,RqScore,ResultScore,Result,UseAtWork,Frequency_y,Frequency_c,
-Side_c,T5Group,Score_y,Score_c,Side_y,FitOrNot) 
-                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@TASCID,@Detail,@Factor,@IsDup,@AutoRank4,@AutoRank1,@AutoRank2,@AutoRank3,@Division1,@Division2,@Division3,@Division4,@GT,@IdealScore,@RqScore,@ResultScore,@Result,@UseAtWork,@Frequency_y,@Frequency_c,@Side_c,@T5Group,@Score_y,@Score_c,@Side_y,@FitOrNot)", cn);
+Side_c,T5Group,Score_y,Score_c,Side_y,FitOrNot,UserRank) 
+                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@TASCID,@Detail,@Factor,@IsDup,@AutoRank4,@AutoRank1,@AutoRank2,@AutoRank3,@Division1,@Division2,@Division3,@Division4,@GT,@IdealScore,@RqScore,@ResultScore,@Result,@UseAtWork,@Frequency_y,@Frequency_c,@Side_c,@T5Group,@Score_y,@Score_c,@Side_y,@FitOrNot,@UserRank)", cn);
                     //             public int? GT { get; set; }
                     //public decimal? IdealScore { get; set; }
                     //public decimal? RqScore { get; set; }
@@ -371,6 +371,10 @@ Side_c,T5Group,Score_y,Score_c,Side_y,FitOrNot)
                     else
                         cmd.Parameters.AddWithValue("@Division4", DBNull.Value);
 
+                    if (re.UserRank.HasValue)
+                        cmd.Parameters.Add("@UserRank", SqlDbType.Int).Value = re.UserRank;
+                    else
+                        cmd.Parameters.AddWithValue("@UserRank", DBNull.Value);
 
                     if (re.GT.HasValue)
                         cmd.Parameters.Add("@GT", SqlDbType.Int).Value = re.GT;
