@@ -114,4 +114,25 @@ public partial class admin_Staff_ajax_webmethod_assessment : System.Web.UI.Page
 
         AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
     }
+
+
+    [WebMethod]
+    public static void JobFucntionGroup(Model_JobFunctionGroup parameters)
+    {
+        Model_JobFunctionGroup cgroup = new Model_JobFunctionGroup();
+        List<Model_JobFunctionGroup> ret = cgroup.GetAll();
+
+
+        AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
+    }
+
+    [WebMethod]
+    public static void JobFucntionResult(Model_JobFunctionListMain parameters)
+    {
+        Model_JobFunctionListMain cgroup = new Model_JobFunctionListMain();
+        List<Model_JobFunctionListMain> ret = cgroup.GetAll();
+
+
+        AppTools.SendResponse(HttpContext.Current.Response, ret.ObjectToJSON());
+    }
 }

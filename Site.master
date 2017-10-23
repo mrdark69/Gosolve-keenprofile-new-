@@ -83,6 +83,8 @@
                         <li  <%=MenuActive("ReportContent")%>><a href="<%= Page.ResolveClientUrl("~/admin/Content/ReportContent") %>">ReportContent Manage</a></li>
                      <li  <%=MenuActive("JobFitScoreContent")%>><a href="<%= Page.ResolveClientUrl("~/admin/Content/JobFitScoreContent") %>">Job Fit Score Rules</a></li>
                       <li  <%=MenuActive("CompanyFitScoreContent")%>><a href="<%= Page.ResolveClientUrl("~/admin/Content/CompanyFitScoreContent") %>">Company Fit Score Rules</a></li>
+                        <li  <%=MenuActive("JobFunctionContent")%>><a href="<%= Page.ResolveClientUrl("~/admin/Content/JobFunctionContent") %>">Job Function Content</a></li>
+                        <li  <%=MenuActive("JobFunctionRule")%>><a href="<%= Page.ResolveClientUrl("~/admin/Content/JobFunctionRule") %>">Job Function Rules</a></li>
                     </ul>
                 </li>
                  <li <%=MenuActive("AppSetting","Setting")%> >
