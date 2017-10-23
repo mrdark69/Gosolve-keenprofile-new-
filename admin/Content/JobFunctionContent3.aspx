@@ -140,9 +140,9 @@ margin-right:5px;
                             </div>
                             <div class="row">
                                 <div class="col-sm-5 m-b-xs">
-                                   <%--<strong>Role:</strong>--%> <%--<asp:DropDownList ID="dropRole" ClientIDMode="Static" runat="server" CssClass="input-sm form-control input-s-sm inline">
+                                   <strong>Role:</strong> <asp:DropDownList ID="droupJob" ClientIDMode="Static" runat="server" CssClass="input-sm form-control input-s-sm inline">
 
-                                    </asp:DropDownList>--%>
+                                    </asp:DropDownList>
                                    <%-- <select class="input-sm form-control input-s-sm inline">
                                     <option value="0">Option 1</option>
                                     <option value="1">Option 2</option>
@@ -169,13 +169,10 @@ margin-right:5px;
                                     <tr>
 
                                       <%--  <th></th>--%>
-                                       <th > ID</th>
-                                        <th >Title</th>
-                                         <th >Category</th>
-                                         <th style="text-align:center">Mapping </th>
-                                          <th style="text-align:center"> Priority</th>
-                                        <th style="text-align:center">Status </th>
-
+                                     <%--  <th > ID</th>--%>
+                                        <%--<th style="text-align:center">Job Title</th>--%>
+                                        <th >Main Title</th>
+                                       <th style="text-align:center">Score </th>
                                         <th style="text-align:center">Action</th>
                                     </tr>
                                     </thead>
@@ -207,15 +204,11 @@ margin-right:5px;
             getList();
           
 
-            $('#dropRole').on('change', function () {
+            $('#droupJob').on('change', function () {
 
-                var v = $(this).val();
-                getList(v);
+                //var v = $(this).val();
+                getList();
             });
-
-           
-
-
             
         });
 
@@ -224,10 +217,11 @@ margin-right:5px;
 
             $('.main-data').toggleClass('sk-loading');
 
-            var url = "<%= ResolveUrl("/admin/Content/ajax_webmethod_assessment.aspx/JobFucntionResult") %>";
+            var url = "<%= ResolveUrl("/admin/Content/ajax_webmethod_assessment.aspx/JobFucntionScore") %>";
 
-            if (!v) { v = 0 }
-            var data = { UsersRoleId: v };
+           // if (!v) { v = 0 }
+            var v = $('#droupJob').val(); 
+            var data = { JFID: v };
             var param = JSON.stringify({ parameters: data });
 
             AjaxPost(url, param, function () {
@@ -248,18 +242,19 @@ margin-right:5px;
 
                 ret += '<tr>';
                 //ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
-                ret += '   <td>' + data[i].JFMID + '</td>';
-                ret += '   <td><a href="JobFunctionContent1?g=' + data[i].JFMID + '">' + data[i].Title + '</a></td>';
-                ret += '   <td style="text-align:center">' +( data[i].Category == 1?  "T3" : "T2") + '</td>';
-                ret += '   <td style="text-align:center">' + data[i].Mapping + '</td>';
-                ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
+                //ret += '   <td>' + data[i].JFMID + '</td>';
+                //ret += '   <td><a href="JobFunctionContent3?g=' + data[i].JFID + '&m=' + data[i].JFMID + '">' + data[i].JobTitle + '</a></td>';
+                ret += '   <td><a href="JobFunctionContent3?g=' + data[i].JFID + '&m=' + data[i].JFMID + '">' + data[i].JobmainTitle + '</a></td>';
+                //ret += '   <td style="text-align:center">' + data[i].JobmainTitle + '</td>';
+                ret += '   <td style="text-align:center">' + data[i].Score + '</td>';
+                //ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
                 //ret += '   <td>' + data[i].LastName + '</td>';
                 //ret += '   <td>' + data[i].UserName + '</td>';
-                var txt = 'Active';
-                var bage = 'primary'
-                if (!data[i].Status) { txt = 'Inactive'; bage = 'default'; }
-                ret += '   <td style="text-align:center"><span class="label label-' + bage+'">' + txt + '</span></td>';
-                ret += '   <td style="text-align:center"><a href="JobFunctionContent1?g=' + data[i].JFMID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
+                //var txt = 'Active';
+                //var bage = 'primary'
+                //if (!data[i].Status) { txt = 'Inactive'; bage = 'default'; }
+                //ret += '   <td style="text-align:center"><span class="label label-' + bage+'">' + txt + '</span></td>';
+                ret += '   <td style="text-align:center"><a href="JobFunctionContent3?g=' + data[i].JFID + '&m=' + data[i].JFMID +'"><i class="fa fa-pencil"></i> Edit </a></td>';
                 ret += '   </tr >';
             }
 

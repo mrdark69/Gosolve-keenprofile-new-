@@ -13,8 +13,12 @@ public partial class _JobFunctionContent3 : BasePage
         if (!this.Page.IsPostBack)
         {
 
+            Model_Jobfunction j = new Model_Jobfunction();
 
-
+            droupJob.DataSource = j.GetAll();
+            droupJob.DataTextField = "Title";
+            droupJob.DataValueField = "JFID";
+            droupJob.DataBind();
             if (!string.IsNullOrEmpty(Request.QueryString["g"]))
             {
                 add_section.Visible = true;

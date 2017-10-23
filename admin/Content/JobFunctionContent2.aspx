@@ -165,11 +165,11 @@ margin-right:5px;
                                     <tr>
 
                                       <%--  <th></th>--%>
-                                       <th > ID</th>
-                                        <th >Title</th>
-                                         <th >Category</th>
-                                         <th style="text-align:center">Mapping </th>
-                                          <th style="text-align:center"> Priority</th>
+                                      <%-- <th> ID</th>--%>
+                                        <th>Title</th>
+                                         <th style="text-align:center">Group</th>
+                                         <%--<th style="text-align:center">Mapping </th>--%>
+                                         <%-- <th style="text-align:center"> Priority</th>--%>
                                         <th style="text-align:center">Status </th>
 
                                         <th style="text-align:center">Action</th>
@@ -220,7 +220,7 @@ margin-right:5px;
 
             $('.main-data').toggleClass('sk-loading');
 
-            var url = "<%= ResolveUrl("/admin/Content/ajax_webmethod_assessment.aspx/JobFucntionResult") %>";
+            var url = "<%= ResolveUrl("/admin/Content/ajax_webmethod_assessment.aspx/JobFucntion") %>";
 
             if (!v) { v = 0 }
             var data = { UsersRoleId: v };
@@ -244,18 +244,18 @@ margin-right:5px;
 
                 ret += '<tr>';
                 //ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
-                ret += '   <td>' + data[i].JFMID + '</td>';
-                ret += '   <td><a href="JobFunctionContent1?g=' + data[i].JFMID + '">' + data[i].Title + '</a></td>';
-                ret += '   <td style="text-align:center">' +( data[i].Category == 1?  "T3" : "T2") + '</td>';
-                ret += '   <td style="text-align:center">' + data[i].Mapping + '</td>';
-                ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
+                //ret += '   <td>' + data[i].JFMID + '</td>';
+                ret += '   <td><a href="JobFunctionContent1?g=' + data[i].JFID + '">' + data[i].Title + '</a></td>';
+                ret += '   <td style="text-align:center">' + data[i].GroupName + '</td>';
+                //ret += '   <td style="text-align:center">' + data[i].Mapping + '</td>';
+                //ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
                 //ret += '   <td>' + data[i].LastName + '</td>';
                 //ret += '   <td>' + data[i].UserName + '</td>';
                 var txt = 'Active';
                 var bage = 'primary'
                 if (!data[i].Status) { txt = 'Inactive'; bage = 'default'; }
                 ret += '   <td style="text-align:center"><span class="label label-' + bage+'">' + txt + '</span></td>';
-                ret += '   <td style="text-align:center"><a href="JobFunctionContent1?g=' + data[i].JFMID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
+                ret += '   <td style="text-align:center"><a href="JobFunctionContent2?g=' + data[i].JFID + '"><i class="fa fa-pencil"></i> Edit </a></td>';
                 ret += '   </tr >';
             }
 

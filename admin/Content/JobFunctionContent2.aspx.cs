@@ -203,9 +203,9 @@ public partial class _JobFunctionContent2 : BasePage
 
         }
 
-        
-       
-       
+
+
+        Response.Redirect(Request.Url.ToString());
 
 
     }

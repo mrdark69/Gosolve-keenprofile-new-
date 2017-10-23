@@ -94,12 +94,15 @@ public class Model_Jobfunction : BaseModel<Model_Jobfunction>
     
     public bool Status { get; set; }
 
-   
+    public string GroupName { get; set; }
+
+
     public List<Model_Jobfunction> GetAll()
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Jobfunction", cn);
+            SqlCommand cmd = new SqlCommand(@"SELECT j.*,jg.Title As GroupName FROM Jobfunction j INNER JOIN JobFunctionGroup jg ON j.JGID=jg.JGID
+WHERE jg.Status = 1", cn);
             cn.Open();
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }
@@ -230,19 +233,27 @@ public class Model_JobFunctionListMap : BaseModel<Model_JobFunctionListMap>
     public int JFMID { get; set; }
     public int Score { get; set; }
 
+    public string JobTitle { get; set; }
 
-    public List<Model_JobFunctionListMap> GetAll()
+    public string JobmainTitle { get; set; }
+
+    public List<Model_JobFunctionListMap> GetAll(Model_JobFunctionListMap JobID)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM JobFunctionListMap", cn);
+            SqlCommand cmd = new SqlCommand(@"SELECT jm.*,j.Title AS JobTitle,jma.Title As JobmainTitle FROM JobFunctionListMap jm 
+        INNER JOIN JobFunctionListMain jma ON jma.JFMID = Jm.JFMID 
+         INNER JOIN JobFunction j ON j.JFID = jm.JFID
+WHERE jma.Status =1 AND j.Status =1 AND j.JFID=@JFID
+ORDER BY jma.Priority", cn);
+            cmd.Parameters.Add("@JFID", SqlDbType.Int).Value = JobID.JFID;
             cn.Open();
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }
     }
     public int insert(Model_JobFunctionListMap c)
     {
-        int ret = 0;
+       
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand("INSERT INTO JobFunctionListMap (JFID,JFMID,Score) VALUES(@JFID,@JFMID,@Score) ;", cn);
