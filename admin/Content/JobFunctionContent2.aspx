@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="JobFunctionContent1.aspx.cs" Inherits="_JobFunctionContent1" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="JobFunctionContent2.aspx.cs" Inherits="_JobFunctionContent2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderScript" runat="server">
     <style>
       th.dt-center,td.dt-center{
@@ -46,13 +46,13 @@ margin-right:5px;
                     <div class="tabs-container">
                         <ul class="nav nav-tabs">
                             <li class="" id="li_tab1" runat="server"><a href="JobFunctionContent" id="tab1" runat="server" aria-expanded="true"> Group</a></li>
-                            <li class="active" id="li_tab2" runat="server"><a href="JobFunctionContent1" id="tab2" runat="server" aria-expanded="false">Job Function Result</a></li>
-                             <li class="" id="li_tab3" runat="server"><a href="JobFunctionContent2" id="tab3" runat="server" aria-expanded="false">Job Function</a></li>
+                            <li class="" id="li_tab2" runat="server"><a href="JobFunctionContent1" id="tab2" runat="server" aria-expanded="false">Job Function Result</a></li>
+                             <li class="active" id="li_tab3" runat="server"><a href="JobFunctionContent2" id="tab3" runat="server" aria-expanded="false">Job Function</a></li>
+               
                             <li class="" id="li_tab4" runat="server"><a  href="JobFunctionContent3" id="tab4" runat="server" aria-expanded="false">Job Function Score</a></li>
-                            
                         </ul>
                         <div class="tab-content">
-                            <div id="tab_content2" runat="server" class="tab-pane active">
+                            <div id="tab_content3" runat="server" class="tab-pane active">
                                 <div class="panel-body">
                                         <div class="ibox float-e-margins" style="margin-bottom:0px;"  id="add_section" runat="server" visible="false">
                                <div class="ibox-content">
@@ -66,8 +66,7 @@ margin-right:5px;
                                     <div class="col-md-10">
                                  
                                         <asp:DropDownList ID="dropcat" runat="server" CssClass="form-control">
-                                            <asp:ListItem Text="Working Geniuses[T3]" Value="1"></asp:ListItem>
-                                             <asp:ListItem Text="Working Traits[T2]" Value="2"></asp:ListItem>
+                                           
                                         </asp:DropDownList>
                                         
                                     </div>

@@ -47,9 +47,8 @@ margin-right:5px;
                         <ul class="nav nav-tabs">
                             <li class="active" id="li_tab1" runat="server"><a href="JobFunctionContent" id="tab1" runat="server" aria-expanded="true"> Group</a></li>
                             <li class="" id="li_tab2" runat="server"><a href="JobFunctionContent1" id="tab2" runat="server" aria-expanded="false">Job Function Result</a></li>
-                             <li class="" id="li_tab5" runat="server"><a href="JobFunctionContent2" id="tab5" runat="server" aria-expanded="false">Sub section2</a></li>
-                            <li class="" id="li_tab3" runat="server"><a  href="JobFunctionContent3" id="tab3" runat="server" aria-expanded="false">Question Type</a></li>
-                            <li class="" id="li_tab4" runat="server"><a  href="JobFunctionContent4" id="tab4" runat="server" aria-expanded="false">Assessment Intro</a></li>
+                               <li class="" id="li_tab3" runat="server"><a href="JobFunctionContent2" id="tab3" runat="server" aria-expanded="false">Job Function</a></li>
+                            <li class="" id="li_tab4" runat="server"><a  href="JobFunctionContent3" id="tab4" runat="server" aria-expanded="false">Job Function Score</a></li>
                         </ul>
                         <div class="tab-content">
                             <div id="tab_content1" runat="server" class="tab-pane active">

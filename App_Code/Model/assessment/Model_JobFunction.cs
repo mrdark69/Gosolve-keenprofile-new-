@@ -190,7 +190,8 @@ public class Model_JobFunctionListMap : BaseModel<Model_JobFunctionListMap>
 {
     public int JFID { get; set; }
     public int JFMID { get; set; }
-   
+    public int Score { get; set; }
+
 
     public List<Model_JobFunctionListMap> GetAll()
     {
