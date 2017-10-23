@@ -123,15 +123,31 @@ WHERE jg.Status = 1", cn);
         int ret = 0;
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("INSERT INTO Jobfunction (JGID,Title,Status) VALUES(@JGID,@Title,@Status) ; SET @JFID=SCOPE_IDENTITY();", cn);
-            cmd.Parameters.Add("@JGID", SqlDbType.Int).Value = c.JGID;
-            cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = c.Title;
-            cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = true;
-            cmd.Parameters.Add("@JFID", SqlDbType.Int).Direction = ParameterDirection.Output;
+            SqlCommand cmdUpdate = new SqlCommand("UPDATE Jobfunction SET JGID=@JGID ,Title=@Title WHERE JFID=@JFID ", cn);
+            cmdUpdate.Parameters.Add("@JFID", SqlDbType.Int).Value = c.JFID;
+            cmdUpdate.Parameters.Add("@JGID", SqlDbType.Int).Value = c.JGID;
+            cmdUpdate.Parameters.Add("@Title", SqlDbType.NVarChar).Value = c.Title;
             cn.Open();
+            if (ExecuteNonQuery(cmdUpdate) == 0)
+            {
+                //SqlCommand cmddel = new SqlCommand("DELETE  FROM Jobfunction WHERE JFID=@JFID", cn);
+                //cmddel.Parameters.Add("@JFID", SqlDbType.Int).Value = c.JFID;
+                //ExecuteNonQuery(cmddel);
 
-            if (ExecuteNonQuery(cmd) > 0)
-                ret = (int)cmd.Parameters["@JFID"].Value;
+                SqlCommand cmd = new SqlCommand("INSERT INTO Jobfunction (JFID,JGID,Title,Status) VALUES(@JFID,@JGID,@Title,@Status);", cn);
+                cmd.Parameters.Add("@JFID", SqlDbType.Int).Value = c.JFID;
+                cmd.Parameters.Add("@JGID", SqlDbType.Int).Value = c.JGID;
+                cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = c.Title;
+                cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = true;
+                ret = ExecuteNonQuery(cmd);
+            }
+            else
+            {
+                ret = 1;
+            }
+           
+         
+        
 
 
             return ret;
@@ -253,18 +269,30 @@ ORDER BY jma.Priority", cn);
     }
     public int insert(Model_JobFunctionListMap c)
     {
-       
+        int ret = 0;
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("INSERT INTO JobFunctionListMap (JFID,JFMID,Score) VALUES(@JFID,@JFMID,@Score) ;", cn);
-            cmd.Parameters.Add("@JFID", SqlDbType.Int).Value = c.JFID;
-            cmd.Parameters.Add("@JFMID", SqlDbType.Int).Value = c.JFMID;
-            cmd.Parameters.Add("@Score", SqlDbType.Int).Value = c.Score;
-
+            SqlCommand cmdupdate = new SqlCommand("UPDATE JobFunctionListMap SET Score=@Score WHERE JFID=@JFID AND JFMID=@JFMID ", cn);
+            cmdupdate.Parameters.Add("@JFID", SqlDbType.Int).Value = c.JFID;
+            cmdupdate.Parameters.Add("@JFMID", SqlDbType.Int).Value = c.JFMID;
+            cmdupdate.Parameters.Add("@Score", SqlDbType.Int).Value = c.Score;
             cn.Open();
+            if (ExecuteNonQuery(cmdupdate) == 0)
+            {
+                SqlCommand cmd = new SqlCommand("INSERT INTO JobFunctionListMap (JFID,JFMID,Score) VALUES(@JFID,@JFMID,@Score) ;", cn);
+                cmd.Parameters.Add("@JFID", SqlDbType.Int).Value = c.JFID;
+                cmd.Parameters.Add("@JFMID", SqlDbType.Int).Value = c.JFMID;
+                cmd.Parameters.Add("@Score", SqlDbType.Int).Value = c.Score;
+              ret =   ExecuteNonQuery(cmd);
+            }
+            else
+                ret = 1;
 
 
-            return ExecuteNonQuery(cmd);
+
+
+
+            return ret;
 
 
            

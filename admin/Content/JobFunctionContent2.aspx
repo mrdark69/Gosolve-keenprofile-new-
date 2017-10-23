@@ -165,7 +165,7 @@ margin-right:5px;
                                     <tr>
 
                                       <%--  <th></th>--%>
-                                      <%-- <th> ID</th>--%>
+                                       <th> ID</th>
                                         <th>Title</th>
                                          <th style="text-align:center">Group</th>
                                          <%--<th style="text-align:center">Mapping </th>--%>
@@ -244,7 +244,7 @@ margin-right:5px;
 
                 ret += '<tr>';
                 //ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
-                //ret += '   <td>' + data[i].JFMID + '</td>';
+                ret += '   <td>' + data[i].JFID + '</td>';
                 ret += '   <td><a href="JobFunctionContent1?g=' + data[i].JFID + '">' + data[i].Title + '</a></td>';
                 ret += '   <td style="text-align:center">' + data[i].GroupName + '</td>';
                 //ret += '   <td style="text-align:center">' + data[i].Mapping + '</td>';

@@ -135,12 +135,12 @@ public partial class _JobFunctionContent2 : BasePage
 
             DataTable data = null;
 
-            data = new GsCsvReader(strPath, strFileName,1,25).ResultDataTable;
+            data = new GsCsvReader(strPath, strFileName,1,26).ResultDataTable;
 
             if (data.Rows.Count > 0)
             {
                 Model_Jobfunction cde = new Model_Jobfunction();
-                cde.DeleteAll();
+                //cde.DeleteAll();
                 int count = 0;
                 
                 Model_JobFunctionListMain cm = new Model_JobFunctionListMain();
@@ -150,8 +150,9 @@ public partial class _JobFunctionContent2 : BasePage
                         {
                             Model_Jobfunction cSub = new Model_Jobfunction
                             {
+                                JFID = int.Parse(row[2].ToString()),
                                 JGID = int.Parse(row[0].ToString()),
-                                Title = row[2].ToString()
+                                Title = row[3].ToString()
                                 //Email = (row.Table.Columns.Contains("Email") ? (row["Email"] == DBNull.Value ? "" : (string)row["Email"]) : ""),
                                 //FirstName = (row.Table.Columns.Contains("FirstName") ? (row["FirstName"] == DBNull.Value ? "" : (string)row["FirstName"]) : ""),
                                 //LastName = (row.Table.Columns.Contains("LastName") ? (row["LastName"] == DBNull.Value ? "" : (string)row["LastName"]) : ""),
@@ -160,12 +161,13 @@ public partial class _JobFunctionContent2 : BasePage
 
 
                             };
-                            int intJobfcuntionID = cSub.insert(cSub);
+                                cSub.insert(cSub);
+                            int intJobfcuntionID = int.Parse(row[2].ToString());
 
                       
                         List<Model_JobFunctionListMain> cm1 = cm.GetAllActive();
 
-                        int count1 = 3;
+                        int count1 = 4;
                         foreach (Model_JobFunctionListMain i1 in cm1.Where(o => o.Category == 1).OrderBy(o => o.Priority))
                         {
                             Model_JobFunctionListMap cj = new Model_JobFunctionListMap
@@ -178,7 +180,7 @@ public partial class _JobFunctionContent2 : BasePage
                             count1 = count1 + 1;
                         }
 
-                        int count2 = 21;
+                        int count2 = 22;
                         foreach (Model_JobFunctionListMain i2 in cm1.Where(o => o.Category == 2).OrderBy(o=>o.Priority))
                         {
                             Model_JobFunctionListMap cj = new Model_JobFunctionListMap
