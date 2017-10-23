@@ -84,9 +84,9 @@ public partial class __AssessmentStepCheck : BasePageFront
                             {
 
                                 if (i == 1)
-                                    ret.Append("<td class=\"choice\">" + i + "<br /><span> 1 เป็นตัวตนของฉัน \"น้อย\" ที่สุด</span></td>\r\n");
+                                    ret.Append("<td class=\"choice\">" + i + "<br /><span> เป็นตัวตนของฉัน \"น้อย\" ที่สุด</span></td>\r\n");
                                 else if (i == (dupfocus.Count < 3 ? 3 : dupfocus.Count))
-                                    ret.Append("<td class=\"choice\">" + i + "<br /> <span>"+ (dupfocus.Count < 3 ? 3 : dupfocus.Count) + " เป็นตัวตนของฉัน \"มาก\" ที่สุด</span></td>\r\n");
+                                    ret.Append("<td class=\"choice\">" + i + "<br /> <span> เป็นตัวตนของฉัน \"มาก\" ที่สุด</span></td>\r\n");
                                 else
                                     ret.Append("<td class=\"choice\">" + i + "</td>\r\n");
                             }
@@ -164,7 +164,7 @@ public partial class __AssessmentStepCheck : BasePageFront
                         }
 
                         Stepcontent.Text = ret.ToString();
-                        numtopic.Text = count.ToString();
+                        numtopic.Text = (count - 1 ).ToString();
                     }
 
                    
