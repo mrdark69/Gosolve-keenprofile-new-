@@ -57,7 +57,7 @@ margin-right:5px;
                                         <div class="ibox float-e-margins" style="margin-bottom:0px;"  id="add_section" runat="server" visible="false">
                                <div class="ibox-content">
                                  <div class="form-horizontal">
-                                <h4 id="headsection_pan" runat="server">Create a new </h4>
+                                <h4 id="headsection_pan" runat="server">Create new </h4>
                                 <hr />
                              <%--   <asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
                                 <asp:Label ID="lblsms" runat="server"></asp:Label>
@@ -126,7 +126,7 @@ margin-right:5px;
 
                                     <div class="ibox float-e-margins">
                         <div class="ibox-title" style="border:none;">
-                            <h5>Section List </h5>
+                            <h5>Job Function List </h5>
 
                             
                         </div>
@@ -140,22 +140,18 @@ margin-right:5px;
                             </div>
                             <div class="row">
                                 <div class="col-sm-5 m-b-xs">
-                                   <%--<strong>Role:</strong>--%> <%--<asp:DropDownList ID="dropRole" ClientIDMode="Static" runat="server" CssClass="input-sm form-control input-s-sm inline">
-
-                                    </asp:DropDownList>--%>
-                                   <%-- <select class="input-sm form-control input-s-sm inline">
-                                    <option value="0">Option 1</option>
-                                    <option value="1">Option 2</option>
-                                    <option value="2">Option 3</option>
-                                    <option value="3">Option 4</option>
-                                    </select>--%>
+                                  
                                 </div>
-                                <div class="col-sm-4 m-b-xs">
-                                   <%-- <div data-toggle="buttons" class="btn-group">
-                                        <label class="btn btn-sm btn-white"> <input type="radio" id="option1" name="options"> Day </label>
-                                        <label class="btn btn-sm btn-white active"> <input type="radio" id="option2" name="options"> Week </label>
-                                        <label class="btn btn-sm btn-white"> <input type="radio" id="option3" name="options"> Month </label>
-                                    </div>--%>
+                               <div class="col-sm-4">
+                                   <div style="position:absolute;right:-263px;top:-64px;">
+                                       <asp:FileUpload ID="fileImport" runat="server" style="display:inline-block" />
+                                       <asp:Button ID="btnImport" runat="server" Text="Import" CssClass="btn btn-primary" OnClick="btnImport_Click"  style="display:inline-block" />
+                                       <%--<input type="file" id="import_now" name="import_now" multiple style="display:inline-block" />--%>
+                                   <%--<input type="button" id="btnUploadFile" class="btn btn-primary" value="Import"  style="display:inline-block"  />--%>
+                                   </div>
+                                   
+                                      
+                                            
                                 </div>
                                 <div class="col-sm-3" style="text-align:right">
                                     <asp:Button  runat="server" ID="btnAddnewSection" class="btn btn-w-m btn-success" OnClick="btnAddnewSection_Click" Text="Add New " />

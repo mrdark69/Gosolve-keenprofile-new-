@@ -14,7 +14,9 @@ using System.Text;
 /// </summary>
 public class GsCsvReader
 {
-
+   
+    public int StartRowindex { get; set; }
+    public int ColumnTotal { get; set; }
     public string Path { get; set; }
     public string FileName { get; set; }
     public DataTable ResultDataTable { get; set; }
@@ -26,6 +28,23 @@ public class GsCsvReader
         this.FileName = strFilename;
 
         this.ResultDataTable = CsvCreateDataTableNew();
+        this.StartRowindex = 0;
+        this.ColumnTotal = 3;
+        //
+        //
+        // TODO: Add constructor logic here
+        //
+    }
+    public GsCsvReader(string strPath, string strFilename, int intStartRowindex,int intColumnTotal)
+    {
+        this.Path = strPath;
+        this.FileName = strFilename;
+        this.StartRowindex = intStartRowindex;
+        this.ColumnTotal = intColumnTotal;
+
+        this.ResultDataTable = CsvCreateDataTableNew();
+
+      
         //
         //
         // TODO: Add constructor logic here
@@ -60,47 +79,50 @@ public class GsCsvReader
     private DataTable CsvCreateDataTableNew()
     {
         DataTable dt = new DataTable();
-       // DataRow dr;
+        DataRow dr;
+        for (int j = 0; j < this.ColumnTotal; j++)
+        {
+            dt.Columns.Add(j.ToString());
+        }
+
+            //dt.Columns.Add("FirstName");
+            //dt.Columns.Add("LastName");
+            //dt.Columns.Add("Email");
 
 
-        dt.Columns.Add("FirstName");
-        dt.Columns.Add("LastName");
-        dt.Columns.Add("Email");
+
+            //dr = dt.NewRow();
+            //dr["FirstName"] = "sss2";
+            //dr["Email"] = "SSS2@ddd.com";
+            //dt.Rows.Add(dr);
 
 
+            //dr = dt.NewRow();
+            //dr["FirstName"] = "sss3";
+            //dr["Email"] = "SSS3@ddd.com";
+            //dt.Rows.Add(dr);
 
-        //dr = dt.NewRow();
-        //dr["FirstName"] = "sss2";
-        //dr["Email"] = "SSS2@ddd.com";
-        //dt.Rows.Add(dr);
-
-
-        //dr = dt.NewRow();
-        //dr["FirstName"] = "sss3";
-        //dr["Email"] = "SSS3@ddd.com";
-        //dt.Rows.Add(dr);
-
-        //dr = dt.NewRow();
-        //dr["FirstName"] = "ss4s";
-        //dr["Email"] = "SS4@ddd.com";
-        //dt.Rows.Add(dr);
-        List<string> columns = new List<string>();
+            //dr = dt.NewRow();
+            //dr["FirstName"] = "ss4s";
+            //dr["Email"] = "SS4@ddd.com";
+            //dt.Rows.Add(dr);
+            List<string> columns = new List<string>();
         ////CsvReader
 
         using (var reader = new CsvFileReader(HttpContext.Current.Server.MapPath(this.Path + this.FileName)))
         {
 
-           
+
 
             int i = 0;
             while (reader.ReadRow(columns))
             {
                 if (i > 0)
                 {
-                    object[] obj = new object[3];
+                    object[] obj = new object[this.ColumnTotal];
                     //int j = 0;
 
-                    for(int j = 0; j< columns.Count; j++)
+                    for (int j = 0; j < columns.Count; j++)
                     {
                         obj[j] = columns[j];
                     }
@@ -131,10 +153,10 @@ public class GsCsvReader
 
         return dt;
     }
-    private  DataTable CsvCreateDataTable()
+    private DataTable CsvCreateDataTable()
     {
 
-       
+
         OleDbConnection objConn = new OleDbConnection();
         OleDbDataAdapter dtAdapter;
         DataTable dt = new DataTable();
@@ -150,7 +172,7 @@ public class GsCsvReader
         objConn.Open();
 
         String strSQL;
-        strSQL = "SELECT * FROM " + "[" +this.FileName + "]";
+        strSQL = "SELECT * FROM " + "[" + this.FileName + "]";
 
         dtAdapter = new OleDbDataAdapter(strSQL, objConn);
         dtAdapter.Fill(dt);
@@ -164,7 +186,7 @@ public class GsCsvReader
 
         for (int i = 0; i < dt.Columns.Count; i++)
         {
-            dt.Columns[i].ColumnName = (string)dt.Rows[0][i];
+            dt.Columns[i].ColumnName = (string)dt.Rows[this.StartRowindex][i];
         }
 
 
@@ -172,8 +194,12 @@ public class GsCsvReader
         drr.Delete();
         dt.AcceptChanges();
 
-      
-       
+        DataRow drrs = dt.Rows[1];
+        drrs.Delete();
+        dt.AcceptChanges();
+
+
+
         //DataRow dr = dt.Rows[0];
         //dr.Delete();
 

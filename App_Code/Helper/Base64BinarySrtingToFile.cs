@@ -24,7 +24,71 @@ public class Base64BinarySrtingToFile
         // TODO: Add constructor logic here
         //
     }
+    public void SaveFileNew(HttpPostedFile filedata)
+    {
+        try
+        {
 
+            this.Path = AppTools.ImportPath();
+            string path = HttpContext.Current.Server.MapPath(this.Path);
+
+
+            
+
+            FileInfo file = new FileInfo(path + filedata.FileName);
+
+            string extension = file.Extension;
+
+
+            if (file.Exists)
+                file.Delete();
+
+
+            // string name = DateTime.Now.ToString("hhmmss");
+
+            if (extension.Contains("xlsx"))
+            {
+                this.Format = "excel";
+            }
+
+            if (extension.Contains("csv"))
+            {
+                this.Format = "csv";
+            }
+
+
+
+            switch (this.Format)
+            {
+                case "csv":
+                    this.FileName = "csv_" + (String.IsNullOrEmpty(this.FilePrefix) ? "" : this.FilePrefix) + ".csv";
+
+
+                    break;
+                case "excel":
+                    this.FileName = "excel_" + (String.IsNullOrEmpty(this.FilePrefix) ? "" : this.FilePrefix) + ".xlsx";
+                    break;
+            }
+
+            //string savedFileName = Path.Combine(ServerPath, fileNameOnly + extension);
+            string paths = HttpContext.Current.Server.MapPath(this.Path + this.FileName);
+
+            filedata.SaveAs(paths);
+
+
+
+            this.IsSaved = true;
+
+        }
+        catch (Exception ex)
+        {
+            // result = "Error : " + ex;
+            this.IsSaved = false;
+            this.Error = this.FileName + ":" + this.Format + ":" + ex.Message;
+            this.ErrorDetail = ex.StackTrace;
+
+        }
+    }
     public void SaveFileNew(string Key)
     {
         try

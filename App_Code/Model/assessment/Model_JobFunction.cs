@@ -105,7 +105,36 @@ public class Model_Jobfunction : BaseModel<Model_Jobfunction>
         }
     }
 
-    
+    public bool DeleteAll()
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("DELETE  FROM Jobfunction", cn);
+            cn.Open();
+            return ExecuteNonQuery(cmd) == 1;
+        }
+    }
+
+    public int insert(Model_Jobfunction c)
+    {
+        int ret = 0;
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("INSERT INTO Jobfunction (JGID,Title,Status) VALUES(@JGID,@Title,@Status) ; SET @JFID=SCOPE_IDENTITY();", cn);
+            cmd.Parameters.Add("@JGID", SqlDbType.Int).Value = c.JGID;
+            cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = c.Title;
+            cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = true;
+            cmd.Parameters.Add("@JFID", SqlDbType.Int).Direction = ParameterDirection.Output;
+            cn.Open();
+
+            if (ExecuteNonQuery(cmd) > 0)
+                ret = (int)cmd.Parameters["@JFID"].Value;
+
+
+            return ret;
+
+        }
+    }
 
 }
 public class Model_JobFunctionListMain : BaseModel<Model_JobFunctionListMain>
@@ -126,8 +155,17 @@ public class Model_JobFunctionListMain : BaseModel<Model_JobFunctionListMain>
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }
     }
+    public List<Model_JobFunctionListMain> GetAllActive()
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM JobFunctionListMain WHERE Status=1 ORDER BY Priority ASC", cn);
+         
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+        }
+    }
 
-  
 
     public Model_JobFunctionListMain GetByID(int intID)
     {
@@ -202,7 +240,26 @@ public class Model_JobFunctionListMap : BaseModel<Model_JobFunctionListMap>
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }
     }
+    public int insert(Model_JobFunctionListMap c)
+    {
+        int ret = 0;
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("INSERT INTO JobFunctionListMap (JFID,JFMID,Score) VALUES(@JFID,@JFMID,@Score) ;", cn);
+            cmd.Parameters.Add("@JFID", SqlDbType.Int).Value = c.JFID;
+            cmd.Parameters.Add("@JFMID", SqlDbType.Int).Value = c.JFMID;
+            cmd.Parameters.Add("@Score", SqlDbType.Int).Value = c.Score;
 
-    
+            cn.Open();
+
+
+            return ExecuteNonQuery(cmd);
+
+
+           
+
+        }
+    }
+
 }
 
