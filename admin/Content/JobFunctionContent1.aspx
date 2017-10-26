@@ -66,7 +66,7 @@ margin-right:5px;
                                     <div class="col-md-10">
                                  
                                         <asp:DropDownList ID="dropcat" runat="server" CssClass="form-control">
-                                            <asp:ListItem Text="Working Geniuses[T3]" Value="1"></asp:ListItem>
+                                            <asp:ListItem Text="job Fit Score[T4]" Value="1"></asp:ListItem>
                                              <asp:ListItem Text="Working Traits[T2]" Value="2"></asp:ListItem>
                                         </asp:DropDownList>
                                         
@@ -251,7 +251,7 @@ margin-right:5px;
                 //ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
                 ret += '   <td>' + data[i].JFMID + '</td>';
                 ret += '   <td><a href="JobFunctionContent1?g=' + data[i].JFMID + '">' + data[i].Title + '</a></td>';
-                ret += '   <td style="text-align:center">' +( data[i].Category == 1?  "T3" : "T2") + '</td>';
+                ret += '   <td style="text-align:center">' +( data[i].Category == 1?  "T4" : "T2") + '</td>';
                 ret += '   <td style="text-align:center">' + data[i].Mapping + '</td>';
                 ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';
                 //ret += '   <td>' + data[i].LastName + '</td>';
