@@ -112,90 +112,111 @@ public partial class _JobFunctionRule : BasePage
             txtr24_2.Text = r2row4.CJRRuleScore2.ToString();
             txtr24_3.Text = r2row4.CJRRuleScore3.ToString();
             txtr24_4.Text = r2row4.CJRRuleScore4.ToString();
-           
-
-    
 
 
 
-            Model_Rule3 r3 = new Model_Rule3();
-            List<Model_Rule3> rule3 = r3.GetAll();
+            Model_JFR3 r3 = new Model_JFR3();
+            List<Model_JFR3> rule3 = r3.GetAll();
 
-            Model_Rule3 r3row1 = rule3.Where(o => o.RuleID == 1).FirstOrDefault();
-            exp_from_1.Text = r3row1.Range_Start.ToString();
-            exp_to_1.Text = r3row1.Range_End.ToString();
-            exp_des_1.Text = r3row1.Description.ToString();
+            List<Model_JFR3> rule3G1 = rule3.Where(o => o.Cat == 1).ToList();
+            List<Model_JFR3> rule3G2 = rule3.Where(o => o.Cat == 2).ToList();
 
-            Model_Rule3 r3row2 = rule3.Where(o => o.RuleID == 2).FirstOrDefault();
-            exp_from_2.Text = r3row2.Range_Start.ToString();
-            exp_to_2.Text = r3row2.Range_End.ToString();
-            exp_des_2.Text = r3row2.Description.ToString();
+            Model_JFR3 r3row1 = rule3G1.Where(o => o.RuleID == 1).FirstOrDefault();
+            Model_JFR3 r3row2 = rule3G1.Where(o => o.RuleID == 2).FirstOrDefault();
+            Model_JFR3 r3row3 = rule3G1.Where(o => o.RuleID == 3).FirstOrDefault();
 
-            Model_Rule3 r3row3 = rule3.Where(o => o.RuleID == 4).FirstOrDefault();
-            exp_from_3.Text = r3row3.Range_Start.ToString();
-            exp_to_3.Text = r3row3.Range_End.ToString();
-            exp_des_3.Text = r3row3.Description.ToString();
+            TextBox3_1.Text = r3row1.Condition1;
+            TextBox3_2.Text = r3row1.Condition2;
+            TextBox3_3.Text = r3row1.Score.ToString();
 
-            Model_Rule3 r3row4 = rule3.Where(o => o.RuleID == 5).FirstOrDefault();
-            exp_from_4.Text = r3row4.Range_Start.ToString();
-            exp_to_4.Text = r3row4.Range_End.ToString();
-            exp_des_4.Text = r3row4.Description.ToString();
+            TextBox3_11.Text = r3row2.Condition1;
+            TextBox3_12.Text = r3row2.Condition2;
+            TextBox3_13.Text = r3row2.Score.ToString();
 
-            Model_Rule3 r3row5 = rule3.Where(o => o.RuleID == 6).FirstOrDefault();
-            exp_from_5.Text = r3row5.Range_Start.ToString();
-            exp_to_5.Text = r3row5.Range_End.ToString();
-            exp_des_5.Text = r3row5.Description.ToString();
+            TextBox3_111.Text = r3row3.Condition1;
+            TextBox3_112.Text = r3row3.Condition2;
+            TextBox3_113.Text = r3row3.Score.ToString();
 
-            Model_Rule3 r3row6 = rule3.Where(o => o.RuleID == 11).FirstOrDefault();
-            exp_from_6.Text = r3row6.Range_Start.ToString();
-            exp_to_6.Text = r3row6.Range_End.ToString();
-            exp_des_6.Text = r3row6.Description.ToString();
-
-            Model_Rule3 r3row7 = rule3.Where(o => o.RuleID == 14).FirstOrDefault();
-            exp_from_7.Text = r3row7.Range_Start.ToString();
-            exp_to_7.Text = r3row7.Range_End.ToString();
-            exp_des_7.Text = r3row7.Description.ToString();
+            Model_JFR3 r4row1 = rule3G2.Where(o => o.RuleID == 5).FirstOrDefault();
+            Model_JFR3 r4row2 = rule3G2.Where(o => o.RuleID == 6).FirstOrDefault();
+            Model_JFR3 r4row3 = rule3G2.Where(o => o.RuleID == 7).FirstOrDefault();
 
 
+            TextBox4_1.Text = r4row1.Condition1;
+            TextBox4_2.Text = r4row1.Condition2;
+            TextBox4_3.Text = r4row1.Score.ToString();
+
+            TextBox4_11.Text = r4row2.Condition1;
+            TextBox4_12.Text = r4row2.Condition2;
+            TextBox4_13.Text = r4row2.Score.ToString();
+
+            TextBox4_111.Text = r4row3.Condition1;
+            TextBox4_112.Text = r4row3.Condition2;
+            TextBox4_113.Text = r4row3.Score.ToString();
+
+
+            Model_JFR4 r4 = new Model_JFR4();
+            List<Model_JFR4> rule4 = r4.GetAll();
+
+            List<Model_JFR4> rule4G1 = rule4.Where(o => o.Cat == 1).ToList();
+            List<Model_JFR4> rule4G2 = rule4.Where(o => o.Cat == 2).ToList();
+            List<Model_JFR4> rule4G3 = rule4.Where(o => o.Cat == 3).ToList();
+            List<Model_JFR4> rule4G4 = rule4.Where(o => o.Cat == 4).ToList();
+
+            Model_JFR4 r5row1 = rule4G1.Where(o => o.RuleID == 1).FirstOrDefault();
+            Model_JFR4 r5row2 = rule4G1.Where(o => o.RuleID == 2).FirstOrDefault();
+
+          
+
+            TextBox5_1.Text = r5row1.Condition1;
+            TextBox5_2.Text = r5row1.Score.ToString();
+
+            TextBox5_11.Text = r5row2.Condition1;
+            TextBox5_12.Text = r5row2.Score.ToString();
+
+            Model_JFR4 r6row1 = rule4G2.Where(o => o.RuleID == 4).FirstOrDefault();
+            Model_JFR4 r6row2 = rule4G2.Where(o => o.RuleID == 5).FirstOrDefault();
+            Model_JFR4 r6row3 = rule4G2.Where(o => o.RuleID == 6).FirstOrDefault();
 
 
 
+            TextBox6_1.Text = r6row1.Condition1;
+            TextBox6_2.Text = r6row1.Score.ToString();
 
-            Model_Rule4 r4 = new Model_Rule4();
-            List<Model_Rule4> rule4 = r4.GetAll();
+            TextBox6_11.Text = r6row2.Condition1;
+            TextBox6_12.Text = r6row2.Score.ToString();
 
-            Model_Rule4 r4row1 = rule4.Where(o => o.RuleID == 1).FirstOrDefault();
+            TextBox6_111.Text = r6row3.Condition1;
+            TextBox6_112.Text = r6row3.Score.ToString();
 
-            result_from_1.Text = r4row1.Range_Start.ToString();
-            result_to_1.Text = r4row1.Range_End.ToString();
-            result_top7_1.Text = r4row1.ValueTop.ToString();
-            result_other_1.Text = r4row1.ValueOther.ToString();
-            result_bottom4_1.Text = r4row1.ValueBottom.ToString();
 
-            Model_Rule4 r4row2 = rule4.Where(o => o.RuleID == 2).FirstOrDefault();
 
-            result_from_2.Text = r4row2.Range_Start.ToString();
-            result_to_2.Text = r4row2.Range_End.ToString();
-            result_top7_2.Text = r4row2.ValueTop.ToString();
-            result_other_2.Text = r4row2.ValueOther.ToString();
-            result_bottom4_2.Text = r4row2.ValueBottom.ToString();
+            Model_JFR4 r7row1 = rule4G3.Where(o => o.RuleID == 7).FirstOrDefault();
+            Model_JFR4 r7row2 = rule4G3.Where(o => o.RuleID == 8).FirstOrDefault();
+            Model_JFR4 r7row3 = rule4G3.Where(o => o.RuleID == 9).FirstOrDefault();
 
-            Model_Rule4 r4row3 = rule4.Where(o => o.RuleID == 4).FirstOrDefault();
+            TextBox7_1.Text = r7row1.Condition1;
+            TextBox7_2.Text = r7row1.Score.ToString();
 
-            result_from_3.Text = r4row3.Range_Start.ToString();
-            result_to_3.Text = r4row3.Range_End.ToString();
-            result_top7_3.Text = r4row3.ValueTop.ToString();
-            result_other_3.Text = r4row3.ValueOther.ToString();
-            result_bottom4_3.Text = r4row3.ValueBottom.ToString();
+            TextBox7_11.Text = r7row2.Condition1;
+            TextBox7_12.Text = r7row2.Score.ToString();
 
-            Model_Rule4 r4row4 = rule4.Where(o => o.RuleID == 5).FirstOrDefault();
+            TextBox7_111.Text = r7row3.Condition1;
+            TextBox7_112.Text = r7row3.Score.ToString();
 
-            result_from_4.Text = r4row4.Range_Start.ToString();
-            result_to_4.Text = r4row4.Range_End.ToString();
-            result_top7_4.Text = r4row4.ValueTop.ToString();
-            result_other_4.Text = r4row4.ValueOther.ToString();
-            result_bottom4_4.Text = r4row4.ValueBottom.ToString();
 
+            Model_JFR4 r8row1 = rule4G4.Where(o => o.RuleID == 10).FirstOrDefault();
+            Model_JFR4 r8row2 = rule4G4.Where(o => o.RuleID == 11).FirstOrDefault();
+            Model_JFR4 r8row3 = rule4G4.Where(o => o.RuleID == 12).FirstOrDefault();
+
+            TextBox8_1.Text = r8row1.Condition1;
+            TextBox8_2.Text = r8row1.Score.ToString();
+
+            TextBox8_11.Text = r8row2.Condition1;
+            TextBox8_12.Text = r8row2.Score.ToString();
+
+            TextBox8_111.Text = r8row3.Condition1;
+            TextBox8_112.Text = r8row3.Score.ToString();
 
         }
 
@@ -424,115 +445,138 @@ public partial class _JobFunctionRule : BasePage
 
 
 
+        Model_JFR3 r3 = new Model_JFR3();
+        List<Model_JFR3> rule3 = new List<Model_JFR3>();
 
-        Model_Rule3 r3 = new Model_Rule3();
-        List<Model_Rule3> rule3 = new List<Model_Rule3>();
-
-        rule3.Add(new Model_Rule3 {
-            RuleID = 1,
-            Range_Start = int.Parse(exp_from_1.Text),
-            Range_End = int.Parse(exp_to_1.Text),
-            Description = exp_des_1.Text
-
+        rule3.Add(new Model_JFR3 {
+             RuleID =1,
+             Condition1 = TextBox3_1.Text,
+             Condition2 = TextBox3_2.Text,
+             Score = int.Parse(TextBox3_3.Text)
         });
-        rule3.Add(new Model_Rule3
+
+        rule3.Add(new Model_JFR3
         {
             RuleID = 2,
-            Range_Start = int.Parse(exp_from_2.Text),
-            Range_End = int.Parse(exp_to_2.Text),
-            Description = exp_des_2.Text
-
+            Condition1 = TextBox3_11.Text,
+            Condition2 = TextBox3_12.Text,
+            Score = int.Parse(TextBox3_13.Text)
         });
-        rule3.Add(new Model_Rule3
+
+        rule3.Add(new Model_JFR3
         {
-            RuleID = 4,
-            Range_Start = int.Parse(exp_from_3.Text),
-            Range_End = int.Parse(exp_to_3.Text),
-            Description = exp_des_3.Text
-
+            RuleID = 3,
+            Condition1 = TextBox3_111.Text,
+            Condition2 = TextBox3_112.Text,
+            Score = int.Parse(TextBox3_113.Text)
         });
-        rule3.Add(new Model_Rule3
+
+
+
+        rule3.Add(new Model_JFR3
         {
             RuleID = 5,
-            Range_Start = int.Parse(exp_from_4.Text),
-            Range_End = int.Parse(exp_to_4.Text),
-            Description = exp_des_4.Text
-
+            Condition1 = TextBox4_1.Text,
+            Condition2 = TextBox4_2.Text,
+            Score = int.Parse(TextBox4_3.Text)
         });
-        rule3.Add(new Model_Rule3
+
+        rule3.Add(new Model_JFR3
         {
             RuleID = 6,
-            Range_Start = int.Parse(exp_from_5.Text),
-            Range_End = int.Parse(exp_to_5.Text),
-            Description = exp_des_5.Text
-
+            Condition1 = TextBox4_11.Text,
+            Condition2 = TextBox4_12.Text,
+            Score = int.Parse(TextBox4_13.Text)
         });
-        rule3.Add(new Model_Rule3
-        {
-            RuleID = 11,
-            Range_Start = int.Parse(exp_from_6.Text),
-            Range_End = int.Parse(exp_to_6.Text),
-            Description = exp_des_6.Text
 
-        });
-        rule3.Add(new Model_Rule3
+        rule3.Add(new Model_JFR3
         {
-            RuleID = 14,
-            Range_Start = int.Parse(exp_from_7.Text),
-            Range_End = int.Parse(exp_to_7.Text),
-            Description = exp_des_7.Text
-
+            RuleID = 7,
+            Condition1 = TextBox4_111.Text,
+            Condition2 = TextBox4_112.Text,
+            Score = int.Parse(TextBox4_113.Text)
         });
 
 
         r3.UpdateBulk(rule3);
 
 
-        Model_Rule4 r4 = new Model_Rule4();
-        List<Model_Rule4> rule4 = new List<Model_Rule4>();
 
-        rule4.Add(new Model_Rule4 {
+        Model_JFR4 r4 = new Model_JFR4();
+        List<Model_JFR4> rule4 = new List<Model_JFR4>();
+
+        rule4.Add(new Model_JFR4
+        {
             RuleID = 1,
-            Range_Start = int.Parse(result_from_1.Text),
-            Range_End = int.Parse(result_to_1.Text),
-            ValueTop = result_top7_1.Text,
-            ValueOther = result_other_1.Text,
-            ValueBottom= result_bottom4_1.Text
-
+            Condition1 = TextBox5_1.Text,
+            Score = int.Parse(TextBox5_2.Text)
         });
-        rule4.Add(new Model_Rule4
+        rule4.Add(new Model_JFR4
         {
             RuleID = 2,
-            Range_Start = int.Parse(result_from_2.Text),
-            Range_End = int.Parse(result_to_2.Text),
-            ValueTop = result_top7_2.Text,
-            ValueOther = result_other_2.Text,
-            ValueBottom = result_bottom4_2.Text
-
+            Condition1 = TextBox5_11.Text,
+            Score = int.Parse(TextBox5_12.Text)
         });
-        rule4.Add(new Model_Rule4
+        rule4.Add(new Model_JFR4
         {
             RuleID = 4,
-            Range_Start = int.Parse(result_from_3.Text),
-            Range_End = int.Parse(result_to_3.Text),
-            ValueTop = result_top7_3.Text,
-            ValueOther = result_other_3.Text,
-            ValueBottom = result_bottom4_3.Text
-
+            Condition1 = TextBox6_1.Text,
+            Score = int.Parse(TextBox6_2.Text)
         });
-        rule4.Add(new Model_Rule4
+        rule4.Add(new Model_JFR4
         {
             RuleID = 5,
-            Range_Start = int.Parse(result_from_4.Text),
-            Range_End = int.Parse(result_to_4.Text),
-            ValueTop = result_top7_4.Text,
-            ValueOther = result_other_4.Text,
-            ValueBottom = result_bottom4_4.Text
+            Condition1 = TextBox6_11.Text,
+            Score = int.Parse(TextBox6_12.Text)
+        });
+        rule4.Add(new Model_JFR4
+        {
+            RuleID = 6,
+            Condition1 = TextBox6_111.Text,
+            Score = int.Parse(TextBox6_112.Text)
+        });
 
+
+        rule4.Add(new Model_JFR4
+        {
+            RuleID = 7,
+            Condition1 = TextBox7_1.Text,
+            Score = int.Parse(TextBox7_2.Text)
+        });
+        rule4.Add(new Model_JFR4
+        {
+            RuleID = 8,
+            Condition1 = TextBox7_11.Text,
+            Score = int.Parse(TextBox7_12.Text)
+        });
+        rule4.Add(new Model_JFR4
+        {
+            RuleID = 9,
+            Condition1 = TextBox7_111.Text,
+            Score = int.Parse(TextBox7_112.Text)
+        });
+
+
+        rule4.Add(new Model_JFR4
+        {
+            RuleID = 10,
+            Condition1 = TextBox8_1.Text,
+            Score = int.Parse(TextBox8_2.Text)
+        });
+        rule4.Add(new Model_JFR4
+        {
+            RuleID = 11,
+            Condition1 = TextBox8_11.Text,
+            Score = int.Parse(TextBox8_12.Text)
+        });
+        rule4.Add(new Model_JFR4
+        {
+            RuleID = 12,
+            Condition1 = TextBox8_111.Text,
+            Score = int.Parse(TextBox8_112.Text)
         });
 
         r4.UpdateBulk(rule4);
-
 
         Response.Redirect(Request.Url.ToString());
     }

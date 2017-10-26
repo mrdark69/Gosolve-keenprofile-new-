@@ -47,7 +47,7 @@ margin-right:5px;
                         <ul class="nav nav-tabs">
                             <li class="active" id="li_tab1" runat="server"><a href="JobFunctionRule" id="tab1" runat="server" aria-expanded="true">Geniuses Score</a></li>
                             <li class="" id="li_tab2" runat="server"><a href="JobFunctionRule?tab=2" id="tab2" runat="server" aria-expanded="false">Traits Score</a></li>
-                            <li class="" id="li_tab3" runat="server"><a href="JobFunctionRule?tab=3" id="tab3" runat="server" aria-expanded="false">Required Sup </a></li>
+                            <li class="" id="li_tab3" runat="server"><a href="JobFunctionRule?tab=3" id="tab3" runat="server" aria-expanded="false">Required Supream </a></li>
                             <li class="" id="li_tab4" runat="server"><a href="JobFunctionRule?tab=4" id="tab4" runat="server" aria-expanded="false">Rule for Job Priority Score</a></li>
                            
                         </ul>
@@ -178,106 +178,179 @@ margin-right:5px;
                                         </tr>
                                        
                                     </table>
+
                                     </div>
                             </div>
 
                               <div id="tab_content3" runat="server" class="tab-pane active">
                                  <div class="panel-body">
                                      <table class="table table-strip">
-                                          <tr>
-                                              <th style="width:10%">From</th>
-                                              <th style="width:10%">To</th>
-                                              <th style="width:80%">Explanation</th>
-                                            
-                                          </tr>
-                                          <tr>
-                                             <td><asp:TextBox ID="exp_from_1" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="exp_to_1" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                              <td><asp:TextBox ID="exp_des_1" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                              
-                                          </tr>
-                                           <tr>
-                                         <td><asp:TextBox ID="exp_from_2" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="exp_to_2" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                              <td><asp:TextBox ID="exp_des_2" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                             
-                                              
-                                          </tr>
-                                           <tr>
-                                            <td><asp:TextBox ID="exp_from_3" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="exp_to_3" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                              <td><asp:TextBox ID="exp_des_3" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                         <tr>
+                                        
+                                            <th colspan="3">Required Sup Geniuses</th>
+                                            <th></th>
+                                            <th></th>
                                          
-                                              
-                                          </tr>
-                                           <tr>
-                                            <td><asp:TextBox ID="exp_from_4" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="exp_to_4" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                              <td><asp:TextBox ID="exp_des_4" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                        </tr>
+                                        <tr>
+                                         
+                                          
+                                            <th style="width:30%;text-align:center">Geniuses Type</th>
+                                            <th style="width:30%;text-align:center">Job Score</th>
+                                            <th style="width:30%;text-align:center">Required Sup Geniuses</th>
+                                          
+                                        </tr>
+                                        <tr>
+                                            <td><asp:TextBox ID="TextBox3_1" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox3_2" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox3_3" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                           
+                                        </tr>
+                                        <tr>
+                                            <td><asp:TextBox ID="TextBox3_11" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox3_12" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                             <td><asp:TextBox ID="TextBox3_13" runat="server" CssClass="form-control"></asp:TextBox></td>
                                             
-                                          </tr>
-                                          <tr>
-                                            <td><asp:TextBox ID="exp_from_5" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="exp_to_5" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                              <td><asp:TextBox ID="exp_des_5" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                         </tr>
+                                        <tr>
+                                            <td><asp:TextBox ID="TextBox3_111" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox3_112" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox3_113" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                          
+                                        </tr>
+                                       
+                                       
+                                    </table>
+
+                                     <table class="table table-strip">
+                                         <tr>
+                                           
+                                            <th colspan="3">Required Sup Bottom</th>
+                                            <th></th>
+                                            <th></th>
+                                         
+                                        </tr>
+                                        <tr>
+                                         
+                                          
+                                            <th style="width:30%;text-align:center">Geniuses Type</th>
+                                            <th style="width:30%;text-align:center">Job Score</th>
+                                            <th style="width:30%;text-align:center">Required Sup Geniuses</th>
+                                          
+                                        </tr>
+                                        <tr>
+                                            <td><asp:TextBox ID="TextBox4_1" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox4_2" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox4_3" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                           
+                                        </tr>
+                                        <tr>
+                                            <td><asp:TextBox ID="TextBox4_11" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox4_12" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                             <td><asp:TextBox ID="TextBox4_13" runat="server" CssClass="form-control"></asp:TextBox></td>
                                             
-                                          </tr>
-                                          <tr>
-                                            <td><asp:TextBox ID="exp_from_6" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="exp_to_6" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                              <td><asp:TextBox ID="exp_des_6" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                            
-                                          </tr>
-                                          <tr>
-                                            <td><asp:TextBox ID="exp_from_7" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="exp_to_7" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                              <td><asp:TextBox ID="exp_des_7" TextMode="MultiLine" Rows="5" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                            
-                                          </tr>
-                                          </table>
+                                         </tr>
+                                        <tr>
+                                            <td><asp:TextBox ID="TextBox4_111" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox4_112" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox4_113" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                          
+                                        </tr>
+                                       
+                                       
+                                    </table>
                                      </div>
                             </div>
                              <div id="tab_content4" runat="server" class="tab-pane active">
                                  <div class="panel-body">
                                       <table class="table table-strip">
+                                         <tr>
+                                           <th colspan="2">XX1</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:30%;text-align:center">Sum Geniuses Score</th>
+                                            <th style="width:30%;text-align:center">Job Priority Score A</th>
+                                        </tr>
+                                        <tr>
+                                            <td><asp:TextBox ID="TextBox5_1" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox5_2" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                         </tr>
+                                        <tr>
+                                            <td><asp:TextBox ID="TextBox5_11" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox5_12" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                         </tr>
+                                      </table>
+                                     <br /> <br />
+                                      <table class="table table-strip">
+                                         <tr>
+                                           <th colspan="2">XX2</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:30%;text-align:center">% Require Sup Geniuses</th>
+                                            <th style="width:30%;text-align:center">Job Priority Score B</th>
+                                        </tr>
+                                        <tr>
+                                            <td><asp:TextBox ID="TextBox6_1" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox6_2" runat="server" CssClass="form-control"></asp:TextBox></td>
+
+                                         </tr>
+                                        <tr>
+                                            <td><asp:TextBox ID="TextBox6_11" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox6_12" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                         </tr>
                                           <tr>
-                                              <th>From</th>
-                                              <th>To</th>
-                                              <th>Top 7</th>
-                                              <th>other</th>
-                                              <th>Bottom 4</th>
-                                          </tr>
+                                            <td><asp:TextBox ID="TextBox6_111" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox6_112" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                         </tr>
+                                      </table>
+                                      <br /> <br />
+                                      <table class="table table-strip">
+                                         <tr>
+                                           <th colspan="2">XX3</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:30%;text-align:center">% Require Sup Bottom</th>
+                                            <th style="width:30%;text-align:center">Job Priority Score C</th>
+                                        </tr>
+                                        <tr>
+                                            <td><asp:TextBox ID="TextBox7_1" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox7_2" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                         </tr>
+                                        <tr>
+                                            <td><asp:TextBox ID="TextBox7_11" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox7_12" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                         </tr>
                                           <tr>
-                                             <td><asp:TextBox ID="result_from_1" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="result_to_1" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                              <td><asp:TextBox ID="result_top7_1" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="result_other_1" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="result_bottom4_1" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                          </tr>
-                                           <tr>
-                                         <td><asp:TextBox ID="result_from_2" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="result_to_2" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                              <td><asp:TextBox ID="result_top7_2" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="result_other_2" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="result_bottom4_2" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                              
-                                          </tr>
-                                           <tr>
-                                            <td><asp:TextBox ID="result_from_3" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="result_to_3" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                              <td><asp:TextBox ID="result_top7_3" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="result_other_3" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="result_bottom4_3" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                              
-                                          </tr>
-                                           <tr>
-                                            <td><asp:TextBox ID="result_from_4" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="result_to_4" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                              <td><asp:TextBox ID="result_top7_4" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="result_other_4" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                               <td><asp:TextBox ID="result_bottom4_4" runat="server" CssClass="form-control"></asp:TextBox></td>
-                                          </tr>
-                                          </table>
+                                            <td><asp:TextBox ID="TextBox7_111" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox7_112" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                         </tr>
+                                      </table>
+                                      <br /> <br />
+                                      <table class="table table-strip">
+                                         <tr>
+                                           <th colspan="2">XX4</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:30%;text-align:center">Sum Traits Score</th>
+                                            <th style="width:30%;text-align:center">Job Priority Score D</th>
+                                        </tr>
+                                        <tr>
+                                            <td><asp:TextBox ID="TextBox8_1" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox8_2" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                         </tr>
+                                        <tr>
+                                            <td><asp:TextBox ID="TextBox8_11" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox8_12" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                         </tr>
+                                          <tr>
+                                            <td><asp:TextBox ID="TextBox8_111" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                            <td><asp:TextBox ID="TextBox8_112" runat="server" CssClass="form-control"></asp:TextBox></td>
+                                         </tr>
+                                      </table>
                                      </div>
                             </div>
                             

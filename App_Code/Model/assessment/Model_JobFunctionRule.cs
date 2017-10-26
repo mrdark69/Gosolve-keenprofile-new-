@@ -118,3 +118,96 @@ CJRRuleScore4=@CJRRuleScore4 WHERE RuleID=@RuleID", cn);
 
 
 }
+
+public class Model_JFR3 : BaseModel<Model_JFR3>
+{
+    public int RuleID { get; set; }
+    public string Condition1 { get; set; }
+
+    public string Condition2 { get; set; }
+    public int Score { get; set; }
+    public byte Cat { get; set; }
+
+    //public decimal CJRRuleScore5 { get; set; }
+
+    public List<Model_JFR3> GetAll()
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM JobFunctionRule3", cn);
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+        }
+    }
+
+    public bool UpdateBulk(List<Model_JFR3> data)
+    {
+        bool ret = false;
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            cn.Open();
+            foreach (Model_JFR3 item in data)
+            {
+                SqlCommand cmd = new SqlCommand(@"UPDATE JobFunctionRule3 SET Condition1=@Condition1,Condition2=@Condition2, 
+Score=@Score  WHERE RuleID=@RuleID", cn);
+                cmd.Parameters.Add("@RuleID", SqlDbType.Int).Value = item.RuleID;
+                cmd.Parameters.Add("@Condition1", SqlDbType.VarChar).Value = item.Condition1;
+                cmd.Parameters.Add("@Condition2", SqlDbType.VarChar).Value = item.Condition2;
+                cmd.Parameters.Add("@Score", SqlDbType.Int).Value = item.Score;
+          
+                // cmd.Parameters.Add("@CJRRuleScore5", SqlDbType.Decimal).Value = item.CJRRuleScore5;
+
+                ret = ExecuteNonQuery(cmd) == 1;
+            }
+        }
+
+        return ret;
+    }
+
+
+}
+
+public class Model_JFR4 : BaseModel<Model_JFR4>
+{
+    public int RuleID { get; set; }
+    public string Condition1 { get; set; }
+
+    public int Score { get; set; }
+    public byte Cat { get; set; }
+
+    //public decimal CJRRuleScore5 { get; set; }
+
+    public List<Model_JFR4> GetAll()
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM JobFunctionRule4", cn);
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+        }
+    }
+
+    public bool UpdateBulk(List<Model_JFR4> data)
+    {
+        bool ret = false;
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            cn.Open();
+            foreach (Model_JFR4 item in data)
+            {
+                SqlCommand cmd = new SqlCommand(@"UPDATE JobFunctionRule4 SET Condition1=@Condition1,Score=@Score  WHERE RuleID=@RuleID", cn);
+                cmd.Parameters.Add("@RuleID", SqlDbType.Int).Value = item.RuleID;
+                cmd.Parameters.Add("@Condition1", SqlDbType.VarChar).Value = item.Condition1;
+                cmd.Parameters.Add("@Score", SqlDbType.Int).Value = item.Score;
+
+                // cmd.Parameters.Add("@CJRRuleScore5", SqlDbType.Decimal).Value = item.CJRRuleScore5;
+
+                ret = ExecuteNonQuery(cmd) == 1;
+            }
+        }
+
+        return ret;
+    }
+
+
+}
