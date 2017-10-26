@@ -62,54 +62,40 @@ margin-right:5px;
                              <%--   <asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
                                 <asp:Label ID="lblsms" runat="server"></asp:Label>
                                      <div class="form-group">
-                                          <asp:Label runat="server" AssociatedControlID="dropcat" CssClass="col-md-2 control-label"> Category</asp:Label>
+                                          <asp:Label runat="server" AssociatedControlID="JobFunctionListdrop" CssClass="col-md-2 control-label"> JobFunction</asp:Label>
                                     <div class="col-md-10">
                                  
-                                        <asp:DropDownList ID="dropcat" runat="server" CssClass="form-control">
-                                           
-                                        </asp:DropDownList>
+                                       <asp:DropDownList ID="JobFunctionListdrop" ClientIDMode="Static" runat="server" CssClass="input-sm form-control input-s-sm inline">
+
+                                    </asp:DropDownList>
                                         
                                     </div>
                                 </div>
-                                   
+                                   <asp:Label ID="Label1" runat="server"></asp:Label>
+                                     <div class="form-group">
+                                          <asp:Label runat="server" AssociatedControlID="dropScoreMain" CssClass="col-md-2 control-label">Score Title</asp:Label>
+                                    <div class="col-md-10">
+                                 
+                                       <asp:DropDownList ID="dropScoreMain" ClientIDMode="Static" runat="server" CssClass="input-sm form-control input-s-sm inline">
+
+                                    </asp:DropDownList>
+                                        
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="rname" CssClass="col-md-2 control-label"> Name</asp:Label>
+                                    <asp:Label runat="server" AssociatedControlID="Score" CssClass="col-md-2 control-label"> Score</asp:Label>
                                     <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="rname" CssClass="form-control" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="rname"
+                                        <asp:TextBox runat="server" ID="Score" CssClass="form-control" />
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="Score"
                                             CssClass="text-danger" ErrorMessage="The  field is required." />
                                     </div>
                                 </div>
 
-                                      <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="txtMap" CssClass="col-md-2 control-label"> Mapping</asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="txtMap" CssClass="form-control" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtMap"
-                                            CssClass="text-danger" ErrorMessage="The  field is required." />
-                                    </div>
-                                </div>
+                                     
 
-                              
-                            <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="txtpri" CssClass="col-md-2 control-label">Priority</asp:Label>
-                                    <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="txtpri" CssClass="form-control"  Text="1"  />
-                                       <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="txtpri" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
-                                    </div>
-                                </div>
-                                                
-     
-<div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="status" CssClass="col-md-2 control-label">Group Status</asp:Label>
-            <div class="col-md-10">
-              <asp:RadioButtonList ID="status"  runat="server">
-                  <asp:ListItem Text="Active" Selected="True" Value="True"  ></asp:ListItem>
-                  <asp:ListItem Text="Inactive" Value="False"></asp:ListItem>
-              </asp:RadioButtonList>
-            </div>
-        </div>
+                            
+              
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
                
@@ -140,7 +126,7 @@ margin-right:5px;
                             </div>
                             <div class="row">
                                 <div class="col-sm-5 m-b-xs">
-                                   <strong>Role:</strong> <asp:DropDownList ID="droupJob" ClientIDMode="Static" runat="server" CssClass="input-sm form-control input-s-sm inline">
+                                   <strong>Job Function:</strong> <asp:DropDownList ID="droupJob" ClientIDMode="Static" runat="server" CssClass="input-sm form-control input-s-sm inline">
 
                                     </asp:DropDownList>
                                    <%-- <select class="input-sm form-control input-s-sm inline">

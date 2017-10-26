@@ -125,7 +125,7 @@ public partial class _JobFunctionContent2 : BasePage
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-        Response.Redirect("JobFunctionContent1");
+        Response.Redirect("JobFunctionContent2");
         //add_section.Visible = false;
     }
 

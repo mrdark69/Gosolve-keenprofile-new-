@@ -19,21 +19,34 @@ public partial class _JobFunctionContent3 : BasePage
             droupJob.DataTextField = "Title";
             droupJob.DataValueField = "JFID";
             droupJob.DataBind();
-            if (!string.IsNullOrEmpty(Request.QueryString["g"]))
+
+            JobFunctionListdrop.DataSource = j.GetAll();
+            JobFunctionListdrop.DataTextField = "Title";
+            JobFunctionListdrop.DataValueField = "JFID";
+            JobFunctionListdrop.DataBind();
+
+            Model_JobFunctionListMain main = new Model_JobFunctionListMain();
+            dropScoreMain.DataSource = main.GetAllActive();
+            dropScoreMain.DataTextField = "Title";
+            dropScoreMain.DataValueField = "JFMID";
+            dropScoreMain.DataBind();
+            
+
+            if (!string.IsNullOrEmpty(Request.QueryString["g"]) && !string.IsNullOrEmpty(Request.QueryString["m"]))
             {
                 add_section.Visible = true;
-                int id = int.Parse(Request.QueryString["g"]);
-                Model_JobFunctionListMain cgroup = new Model_JobFunctionListMain();
-                cgroup = cgroup.GetByID(id);
+                int JFID = int.Parse(Request.QueryString["g"]);
+                int JFMID = int.Parse(Request.QueryString["m"]);
+                Model_JobFunctionListMap cgroup = new Model_JobFunctionListMap();
+                cgroup = cgroup.GetByID(JFID, JFMID);
 
 
-                rname.Text = cgroup.Title;
-              
-                dropcat.SelectedValue = cgroup.Category.ToString();
+                Score.Text = cgroup.Score.ToString();
 
-                txtMap.Text = cgroup.Mapping;
+                JobFunctionListdrop.SelectedValue = JFID.ToString();
 
-                txtpri.Text = cgroup.Priority.ToString();
+                dropScoreMain.SelectedValue = cgroup.JFMID.ToString();
+
                 headsection_pan.InnerHtml = "Edit";
 
 
@@ -57,42 +70,32 @@ public partial class _JobFunctionContent3 : BasePage
     protected void Button1_Click(object sender, EventArgs e)
     {
        
-        string s = rname.Text.Trim();
-        string title = rname.Text;
-
-        byte bytcat = byte.Parse(dropcat.SelectedValue);
-        bool st = bool.Parse(status.SelectedValue);
-        int pr = int.Parse(txtpri.Text);
-        string map = txtMap.Text;
-
 
 
         Button btn = (Button)sender;
 
-        Model_JobFunctionListMain cgroup = new Model_JobFunctionListMain
+        Model_JobFunctionListMap cgroup = new Model_JobFunctionListMap
         {
-          
-            Priority = pr,
-            Status = st,
-            Title = s,
-            Category = bytcat,
-            Mapping = map
+
+            JFID = int.Parse(JobFunctionListdrop.SelectedValue),
+            JFMID = int.Parse(dropScoreMain.SelectedValue),
+            Score = int.Parse(Score.Text),
+           
 
         };
 
         if (!string.IsNullOrEmpty(Request.QueryString["g"]))
         {
-            
-            cgroup.JFMID= int.Parse(Request.QueryString["g"]);
-            if (cgroup.updateGroup(cgroup))
+           
+            if (cgroup.Update(cgroup))
             {
-                Response.Redirect("JobFunctionContent1");
+                Response.Redirect("JobFunctionContent3");
             }
         }
         else
         {
            
-           if(cgroup.InsertGroup(cgroup) > 0)
+           if(cgroup.Insert(cgroup) > 0)
             {
                 Response.Redirect(Request.Url.ToString());
             }
@@ -108,7 +111,7 @@ public partial class _JobFunctionContent3 : BasePage
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-        Response.Redirect("JobFunctionContent1");
+        Response.Redirect("JobFunctionContent3");
         //add_section.Visible = false;
     }
 

@@ -319,8 +319,59 @@ public class Model_JobFunctionListMap : BaseModel<Model_JobFunctionListMap>
 
     public string JobmainTitle { get; set; }
 
+
+
+    public Model_JobFunctionListMap GetByID(int intJFID, int intJFMID)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM JobFunctionListMap WHERE JFMID=@JFMID AND JFID=@JFID", cn);
+            cmd.Parameters.Add("@JFMID", SqlDbType.Int).Value = intJFMID;
+            cmd.Parameters.Add("@JFID", SqlDbType.Int).Value = intJFID;
+            cn.Open();
+            IDataReader reader = ExecuteReader(cmd, CommandBehavior.SingleRow);
+            if (reader.Read())
+                return MappingObjectFromDataReaderByName(reader);
+            else
+                return null;
+
+        }
+    }
+
+    public bool Update(Model_JobFunctionListMap c)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("UPDATE JobFunctionListMap SET Score=@Score WHERE JFMID=@JFMID AND JFID=@JFID", cn);
+            cmd.Parameters.Add("@JFMID", SqlDbType.Int).Value = c.JFMID;
+            cmd.Parameters.Add("@JFID", SqlDbType.Int).Value = c.JFID;
+            cmd.Parameters.Add("@Score", SqlDbType.Int).Value = c.Score;
+            cn.Open();
+            return ExecuteNonQuery(cmd) == 1;
+
+        }
+    }
+
+    public int Insert(Model_JobFunctionListMap c)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("INSERT INTO JobFunctionListMap (JFMID,JFID,Score) VALUES(@JFMID,@JFID,@Score) ", cn);
+            cmd.Parameters.Add("@JFMID", SqlDbType.Int).Value = c.JFMID;
+            cmd.Parameters.Add("@JFID", SqlDbType.Int).Value = c.JFID;
+            cmd.Parameters.Add("@Score", SqlDbType.Int).Value = c.Score;
+            cn.Open();
+            return ExecuteNonQuery(cmd);
+
+        }
+    }
+
     public List<Model_JobFunctionListMap> GetAll(Model_JobFunctionListMap JobID)
     {
+
+
+      
+
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
             SqlCommand cmd = new SqlCommand(@"SELECT jm.*,j.Title AS JobTitle,jma.Title As JobmainTitle FROM JobFunctionListMap jm 
