@@ -164,6 +164,11 @@ public partial class _JobFunctionContent2 : BasePage
                 int count = 0;
                 
                 Model_JobFunctionListMain cm = new Model_JobFunctionListMain();
+
+
+                Model_ReportSectionItem cc = new Model_ReportSectionItem();
+
+                cc.Delete(6);
                 foreach (DataRow row in data.Rows)
                     {
                         if(count > 0)
@@ -184,7 +189,23 @@ public partial class _JobFunctionContent2 : BasePage
                                 cSub.insert(cSub);
                             int intJobfcuntionID = int.Parse(row[2].ToString());
 
-                      
+                        Model_ReportSectionItem sub = new Model_ReportSectionItem
+                        {
+                            ResultSectionID = 6,
+                            Title = row[3].ToString(),
+                            Status = true,
+                            Priority = count,
+                            Code = "T6"+ count,
+                            SUCID = row[2].ToString(),
+                            Short = "",
+                            Detail = "",
+                            PeopleTxt = "",
+                            CultureTxt = "",
+                            CompetitionTxt = "",
+
+                        };
+                        sub.Insert(sub);
+
                         List<Model_JobFunctionListMain> cm1 = cm.GetAllActive();
 
                         int count1 = 4;

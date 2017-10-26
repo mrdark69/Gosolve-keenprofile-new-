@@ -72,6 +72,13 @@ public class CalculationController
 
                         break;
 
+                    case 6:
+                        Calculation_T6 cal6 = new Calculation_T6(item.ResultSectionID, intTransactionID);
+                        if (cal6.Calnow())
+                            ret = ret > 0 ? ret : 0;
+
+                        break;
+
                 }
             }
         }

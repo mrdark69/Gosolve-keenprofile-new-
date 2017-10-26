@@ -384,6 +384,27 @@ ORDER BY jma.Priority", cn);
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }
     }
+
+
+    public List<Model_JobFunctionListMap> GetAllList()
+    {
+
+
+
+
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand(@"SELECT jm.*,j.Title AS JobTitle,jma.Title As JobmainTitle FROM JobFunctionListMap jm 
+        INNER JOIN JobFunctionListMain jma ON jma.JFMID = Jm.JFMID 
+         INNER JOIN JobFunction j ON j.JFID = jm.JFID
+WHERE jma.Status =1 AND j.Status =1 
+ORDER BY jma.Priority", cn);
+           
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+        }
+    }
+
     public int insert(Model_JobFunctionListMap c)
     {
         int ret = 0;

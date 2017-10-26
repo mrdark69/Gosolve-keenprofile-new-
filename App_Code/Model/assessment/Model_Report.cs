@@ -593,6 +593,16 @@ public class Model_ReportSectionItem : BaseModel<Model_ReportSectionItem>
         }
     }
     
+    public bool Delete(int intSectionID)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand(@"DELETE FROM ReportSectionItem WHERe ResultSectionID=@ResultSectionID", cn);
+            cmd.Parameters.Add("@ResultSectionID", SqlDbType.Int).Value = intSectionID;
+            cn.Open();
+            return ExecuteNonQuery(cmd) == 1;
+        }
+    }
     public int Insert(Model_ReportSectionItem pr)
     {
         int ret = 0;
