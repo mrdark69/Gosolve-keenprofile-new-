@@ -97,6 +97,57 @@ public class Model_Jobfunction : BaseModel<Model_Jobfunction>
     public string GroupName { get; set; }
 
 
+    public string DesInto { get; set; }
+    public string Des1 { get; set; }
+    public string Des2 { get; set; }
+    public string Des3 { get; set; }
+    public string Des4 { get; set; }
+    public string Des5 { get; set; }
+
+    public bool UpdateById(Model_Jobfunction c)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand(@"UPDATE Jobfunction SET Title=@Title,Status=@Status,JGID=@JGID,DesInto=@DesInto,Des1=@Des1
+,Des2=@Des2,Des3=@Des3,Des4=@Des4,Des5=@Des5 WHERE JFID=@JFID", cn);
+            cmd.Parameters.Add("@JFID", SqlDbType.Int).Value = c.JFID;
+            cmd.Parameters.Add("@JGID", SqlDbType.Int).Value = c.JGID;
+            cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = c.Title;
+            cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = c.Status;
+
+            cmd.Parameters.Add("@DesInto", SqlDbType.NVarChar).Value = c.DesInto;
+            cmd.Parameters.Add("@Des1", SqlDbType.NVarChar).Value = c.Des1;
+            cmd.Parameters.Add("@Des2", SqlDbType.NVarChar).Value = c.Des2;
+            cmd.Parameters.Add("@Des3", SqlDbType.NVarChar).Value = Des3;
+            cmd.Parameters.Add("@Des4", SqlDbType.NVarChar).Value = c.Des4;
+            cmd.Parameters.Add("@Des5", SqlDbType.NVarChar).Value = c.Des5;
+          
+
+            cn.Open();
+            return ExecuteNonQuery(cmd) == 1;
+        }
+    }
+    public int Insert(Model_Jobfunction c)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand(@"INSERT INTO (JFID,JGID,Title,Status,DesInto,Des1,Des2,Des3,Des4,Des5) VALUES(@JFID,@JGID,@Title,@Status,@DesInto,@Des1,@Des2,@Des3,@Des4,@Des5)  ", cn);
+            cmd.Parameters.Add("@JFID", SqlDbType.Int).Value = c.JFID;
+            cmd.Parameters.Add("@JGID", SqlDbType.Int).Value = c.JGID;
+            cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = c.Title;
+            cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = true;
+
+            cmd.Parameters.Add("@DesInto", SqlDbType.NVarChar).Value = c.DesInto;
+            cmd.Parameters.Add("@Des1", SqlDbType.NVarChar).Value = c.Des1;
+            cmd.Parameters.Add("@Des2", SqlDbType.NVarChar).Value = c.Des2;
+            cmd.Parameters.Add("@Des3", SqlDbType.NVarChar).Value = Des3;
+            cmd.Parameters.Add("@Des4", SqlDbType.NVarChar).Value = c.Des4;
+            cmd.Parameters.Add("@Des5", SqlDbType.NVarChar).Value = c.Des5;
+            cn.Open();
+            return ExecuteNonQuery(cmd);
+        }
+    }
+
     public List<Model_Jobfunction> GetAll()
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
@@ -115,6 +166,21 @@ WHERE jg.Status = 1", cn);
             SqlCommand cmd = new SqlCommand("DELETE  FROM Jobfunction", cn);
             cn.Open();
             return ExecuteNonQuery(cmd) == 1;
+        }
+    }
+
+    public Model_Jobfunction GetByID(int intJFID)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Jobfunction WHERE JFID=@JFID", cn);
+            cmd.Parameters.Add("@JFID", SqlDbType.Int).Value = intJFID;
+            cn.Open();
+            IDataReader reader = ExecuteReader(cmd, CommandBehavior.SingleRow);
+            if (reader.Read())
+                return MappingObjectFromDataReaderByName(reader);
+            else
+                return null;
         }
     }
 

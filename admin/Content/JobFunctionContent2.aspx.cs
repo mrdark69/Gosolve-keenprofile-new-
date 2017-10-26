@@ -14,23 +14,30 @@ public partial class _JobFunctionContent2 : BasePage
         if (!this.Page.IsPostBack)
         {
 
-
+            Model_JobFunctionGroup cGroup = new Model_JobFunctionGroup();
+            dropGroup.DataSource = cGroup.GetAll();
+            dropGroup.DataTextField = "Title";
+            dropGroup.DataValueField = "JGID";
+            dropGroup.DataBind();
 
             if (!string.IsNullOrEmpty(Request.QueryString["g"]))
             {
                 add_section.Visible = true;
                 int id = int.Parse(Request.QueryString["g"]);
-                Model_JobFunctionListMain cgroup = new Model_JobFunctionListMain();
-                cgroup = cgroup.GetByID(id);
+                Model_Jobfunction cf = new Model_Jobfunction();
+                cf = cf.GetByID(id);
 
+                JobID.Text = cf.JFID.ToString();
+                rname.Text = cf.Title;
+                status.SelectedValue = cf.Status.ToString();
+                dropGroup.SelectedValue = cf.JGID.ToString();
+                txtintro.Text = cf.DesInto;
+                txtdes1.Text = cf.Des1;
+                txtdes2.Text = cf.Des2;
+                txtdes3.Text = cf.Des3;
+                txtdes4.Text = cf.Des4;
+                txtdes5.Text = cf.Des5;
 
-                rname.Text = cgroup.Title;
-              
-                dropcat.SelectedValue = cgroup.Category.ToString();
-
-                txtMap.Text = cgroup.Mapping;
-
-                txtpri.Text = cgroup.Priority.ToString();
                 headsection_pan.InnerHtml = "Edit";
 
 
@@ -57,39 +64,52 @@ public partial class _JobFunctionContent2 : BasePage
         string s = rname.Text.Trim();
         string title = rname.Text;
 
-        byte bytcat = byte.Parse(dropcat.SelectedValue);
+        int intGroup = int.Parse(dropGroup.SelectedValue);
         bool st = bool.Parse(status.SelectedValue);
-        int pr = int.Parse(txtpri.Text);
-        string map = txtMap.Text;
+     
+
+        string strDes1 = txtdes1.Text;
+        string strDes2 = txtdes2.Text;
+        string strDes3 = txtdes3.Text;
+        string strDes4 = txtdes4.Text;
+        string strDes5 = txtdes5.Text;
+        string Destxtintro = txtintro.Text;
+        int intJobID = int.Parse(JobID.Text);
 
 
 
         Button btn = (Button)sender;
 
-        Model_JobFunctionListMain cgroup = new Model_JobFunctionListMain
+        Model_Jobfunction cgroup = new Model_Jobfunction
         {
-          
-            Priority = pr,
+
+            DesInto = Destxtintro,
+            Des1 = strDes1,
+            Des2 = strDes2,
+            Des3 = strDes3,
+            Des4 = strDes4,
+            Des5 = strDes5,
             Status = st,
             Title = s,
-            Category = bytcat,
-            Mapping = map
+            JGID = intGroup,
+            JFID = intJobID
+
 
         };
 
         if (!string.IsNullOrEmpty(Request.QueryString["g"]))
         {
             
-            cgroup.JFMID= int.Parse(Request.QueryString["g"]);
-            if (cgroup.updateGroup(cgroup))
+            cgroup.JFID= int.Parse(Request.QueryString["g"]);
+            if (cgroup.UpdateById(cgroup))
             {
-                Response.Redirect("JobFunctionContent1");
+                Response.Redirect("JobFunctionContent2");
             }
         }
         else
         {
            
-           if(cgroup.InsertGroup(cgroup) > 0)
+           if(cgroup.Insert(cgroup) > 0)
             {
                 Response.Redirect(Request.Url.ToString());
             }

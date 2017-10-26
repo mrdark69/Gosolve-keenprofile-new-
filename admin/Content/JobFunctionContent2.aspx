@@ -61,11 +61,22 @@ margin-right:5px;
                                 <hr />
                              <%--   <asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
                                 <asp:Label ID="lblsms" runat="server"></asp:Label>
-                                     <div class="form-group">
-                                          <asp:Label runat="server" AssociatedControlID="dropcat" CssClass="col-md-2 control-label"> Category</asp:Label>
+
+                                      <div class="form-group">
+                                          <asp:Label runat="server" AssociatedControlID="JobID" CssClass="col-md-2 control-label"> Job ID</asp:Label>
                                     <div class="col-md-10">
                                  
-                                        <asp:DropDownList ID="dropcat" runat="server" CssClass="form-control">
+                                       <asp:TextBox runat="server" ID="JobID" CssClass="form-control" />
+                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="JobID"
+                                            CssClass="text-danger" ErrorMessage="The  field is required." />
+                                        
+                                    </div>
+                                </div>
+                                     <div class="form-group">
+                                          <asp:Label runat="server" AssociatedControlID="dropGroup" CssClass="col-md-2 control-label"> Group</asp:Label>
+                                    <div class="col-md-10">
+                                 
+                                        <asp:DropDownList ID="dropGroup" runat="server" CssClass="form-control">
                                            
                                         </asp:DropDownList>
                                         
@@ -74,7 +85,7 @@ margin-right:5px;
                                    
 
                                 <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="rname" CssClass="col-md-2 control-label"> Name</asp:Label>
+                                    <asp:Label runat="server" AssociatedControlID="rname" CssClass="col-md-2 control-label"> Title</asp:Label>
                                     <div class="col-md-10">
                                         <asp:TextBox runat="server" ID="rname" CssClass="form-control" />
                                         <asp:RequiredFieldValidator runat="server" ControlToValidate="rname"
@@ -83,20 +94,22 @@ margin-right:5px;
                                 </div>
 
                                       <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="txtMap" CssClass="col-md-2 control-label"> Mapping</asp:Label>
+                                    <asp:Label runat="server" AssociatedControlID="txtintro" CssClass="col-md-2 control-label"> Intro Description</asp:Label>
                                     <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="txtMap" CssClass="form-control" />
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtMap"
-                                            CssClass="text-danger" ErrorMessage="The  field is required." />
+                                        <asp:TextBox runat="server" ID="txtintro" TextMode="MultiLine"  Rows="5"  CssClass="form-control" />
+                                     
                                     </div>
                                 </div>
 
                               
                             <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="txtpri" CssClass="col-md-2 control-label">Priority</asp:Label>
+                                    <asp:Label runat="server" AssociatedControlID="txtintro" CssClass="col-md-2 control-label">  Description</asp:Label>
                                     <div class="col-md-10">
-                                        <asp:TextBox runat="server" ID="txtpri" CssClass="form-control"  Text="1"  />
-                                       <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="txtpri" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
+                                        <asp:TextBox runat="server" ID="txtdes1" CssClass="form-control" /><br />
+                                     <asp:TextBox runat="server" ID="txtdes2" CssClass="form-control" /><br />
+                                        <asp:TextBox runat="server" ID="txtdes3" CssClass="form-control" /><br />
+                                        <asp:TextBox runat="server" ID="txtdes4" CssClass="form-control" /><br />
+                                        <asp:TextBox runat="server" ID="txtdes5" CssClass="form-control" /><br />
                                     </div>
                                 </div>
                                                 
@@ -245,7 +258,7 @@ margin-right:5px;
                 ret += '<tr>';
                 //ret += '   <td><input type="checkbox" checked class="i-checks" name="input[]"></td>';
                 ret += '   <td>' + data[i].JFID + '</td>';
-                ret += '   <td><a href="JobFunctionContent1?g=' + data[i].JFID + '">' + data[i].Title + '</a></td>';
+                ret += '   <td><a href="JobFunctionContent2?g=' + data[i].JFID + '">' + data[i].Title + '</a></td>';
                 ret += '   <td style="text-align:center">' + data[i].GroupName + '</td>';
                 //ret += '   <td style="text-align:center">' + data[i].Mapping + '</td>';
                 //ret += '   <td style="text-align:center">' + data[i].Priority + '</td>';

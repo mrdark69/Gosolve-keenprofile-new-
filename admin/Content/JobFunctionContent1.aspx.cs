@@ -28,7 +28,7 @@ public partial class _JobFunctionContent1 : BasePage
                 dropcat.SelectedValue = cgroup.Category.ToString();
 
                 txtMap.Text = cgroup.Mapping;
-
+                status.SelectedValue = cgroup.Status.ToString();
                 txtpri.Text = cgroup.Priority.ToString();
                 headsection_pan.InnerHtml = "Edit";
 

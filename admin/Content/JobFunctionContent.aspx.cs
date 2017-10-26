@@ -25,8 +25,8 @@ public partial class _JobFunctionContent : BasePage
                
                 GroupName.Text = cgroup.Title;
                 groupid.Text = cgroup.JGID.ToString();
-              
-              
+
+                status.SelectedValue = cgroup.Status.ToString();
                 txtpri.Text = cgroup.Priority.ToString();
                 headsection_pan.InnerHtml = "Edit Section";
 
