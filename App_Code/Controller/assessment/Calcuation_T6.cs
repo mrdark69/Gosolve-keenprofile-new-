@@ -119,8 +119,9 @@ public class Calculation_T6
             decimal ReqSupGeniuses = 0.0m;
             decimal ReqSupBottom = 0.0m;
 
-            int CountSup = 0;
-            int CountBottom = 0;
+            int CountSup = this.ReportResultT4.Where(o => o.GT == 1).Count();
+            int CountBottom = this.ReportResultT4.Where(o => o.GT == 5).Count();
+
             if (arrmap.Length > 0)
             {
                 foreach (string m in arrmap)
@@ -149,11 +150,11 @@ public class Calculation_T6
                                     if (CalKey(r3.Condition1, (int)ass.GT) && CalKey(r3.Condition2, (int)mapscore.Score))
                                     {
                                         ReqSupGeniuses += r3.Score;
-                                        if (r3.Score == 1)
-                                            CountSup = CountSup + 1;
+                                        //if (r3.Score == 1)
+                                        //    CountSup = CountSup + 1;
                                         break;
                                     }
-                                       
+                                   
                                 }
                                 foreach (Model_JFR3 r3 in this.Rule3.Where(o => o.Cat == 2))
                                 {
@@ -161,10 +162,12 @@ public class Calculation_T6
                                     if (CalKey(r3.Condition1, (int)ass.GT) && CalKey(r3.Condition2, (int)mapscore.Score))
                                     {
                                         ReqSupBottom += r3.Score;
-                                        if (r3.Score == 5)
-                                            CountBottom = CountBottom + 1;
+                                        //if (r3.Score == 5)
+                                        //    CountBottom = CountBottom + 1;
                                         break;
                                     }
+
+                                 
 
                                 }
                                 //Model_JFR3 rule2ret = this.Rule3.Where(o => ).FirstOrDefault();
@@ -250,7 +253,7 @@ public class Calculation_T6
             string[] strsplit = Key.Split('-');
             if (strsplit.Length > 1)
             {
-                if( int.Parse(strsplit[0]) <= value && int.Parse(strsplit[0]) >= value)
+                if( int.Parse(strsplit[0]) <= value && int.Parse(strsplit[1]) >= value)
                 {
                     ret = true;
                 }
@@ -283,14 +286,14 @@ public class Calculation_T6
         {
             if (item.CountSup > 0)
             {
-                item.ReqSupGeniuses = item.ReqSupGeniuses / item.CountSup;
+                item.ReqSupGeniuses = Math.Round((decimal)(item.ReqSupGeniuses / item.CountSup) * 100, 0);
             } else
                 item.ReqSupGeniuses = 0;
 
 
             if (item.CountBottom > 0)
             {
-                item.ReqSupBottom = item.ReqSupBottom / item.CountBottom;
+                item.ReqSupBottom = Math.Round((decimal)(item.ReqSupBottom / item.CountBottom) * 100, 0);
             }
             else
                 item.ReqSupBottom = 0;
