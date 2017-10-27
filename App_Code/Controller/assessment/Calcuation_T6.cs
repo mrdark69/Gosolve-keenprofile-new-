@@ -91,8 +91,14 @@ public class Calculation_T6
         //Cdoe F = Section 7;
         List<Model_ReportItemResult> rlist = new List<Model_ReportItemResult>();
 
-        
 
+       var T2Ranking = this.ReportResultT2.Select(s => new {
+            ResultID = s.ResultID,
+            ResultItemID = s.ResultItemID,
+            Ranking = this.ReportResultT2.Count(x => (decimal)x.Score_new > (decimal)s.Score_new) + 1,
+            Name = s.ResultItemTitle,
+            Score = s.Score_new
+        });
 
         foreach (Model_ReportSectionItem item in this.ReportSectionItem)
         {
@@ -107,11 +113,86 @@ public class Calculation_T6
             byte Side_c = 0;
             byte frequency_c = 0;
             byte frequency_y = 0;
+
+            decimal SumGeniuses = 0.0m;
+            decimal SumTrait = 0.0m;
+            decimal ReqSupGeniuses = 0.0m;
+            decimal ReqSupBottom = 0.0m;
+
+            int CountSup = 0;
+            int CountBottom = 0;
             if (arrmap.Length > 0)
             {
                 foreach (string m in arrmap)
                 {
+                    List<Model_Jobfunction> cj = this.JobFunctionList.Where(o => o.JFID == int.Parse(m)).ToList();
+
+
+                    if (cj.Count > 0)
+                    {
+                        Model_Jobfunction cJob = cj.FirstOrDefault();
+                        foreach (Model_JobFunctionListMain main in this.JobFunctionListMain.Where(o => o.Category == 1))
+                        {
+                            Model_ReportItemResult ass = this.ReportResultT4.Where(o => o.ResultItemID == int.Parse(main.Mapping)).FirstOrDefault();
+
+                            Model_JobFunctionListMap mapscore = this.JobFunctionListMap.Where(o => o.JFID == cJob.JFID && o.JFMID == main.JFMID).FirstOrDefault();
+
+                            if(mapscore != null && ass != null)
+                            {
+                                Model_JFR1 rule1ret = this.Rule1.Where(o => o.Score == (int)ass.GT).FirstOrDefault();
+                                SumGeniuses += (decimal)rule1ret.GetType().GetProperty("CJRRuleScore" + mapscore.Score).GetValue(rule1ret);
+
+
+                                foreach(Model_JFR3 r3 in this.Rule3.Where(o => o.Cat == 1))
+                                {
+
+                                    if (CalKey(r3.Condition1, (int)ass.GT) && CalKey(r3.Condition2, (int)mapscore.Score))
+                                    {
+                                        ReqSupGeniuses += r3.Score;
+                                        if (r3.Score == 1)
+                                            CountSup = CountSup + 1;
+                                        break;
+                                    }
+                                       
+                                }
+                                foreach (Model_JFR3 r3 in this.Rule3.Where(o => o.Cat == 2))
+                                {
+
+                                    if (CalKey(r3.Condition1, (int)ass.GT) && CalKey(r3.Condition2, (int)mapscore.Score))
+                                    {
+                                        ReqSupBottom += r3.Score;
+                                        if (r3.Score == 5)
+                                            CountBottom = CountBottom + 1;
+                                        break;
+                                    }
+
+                                }
+                                //Model_JFR3 rule2ret = this.Rule3.Where(o => ).FirstOrDefault();
+                                //ReqSupGeniuses += (decimal)rule2ret.GetType().GetProperty("CJRRuleScore" + mapscore.Score).GetValue(rule1ret);
+
+                                //Model_JFR3 rule3ret = this.Rule3.Where(o => o.Score == (int)ass.GT && o.Cat == 2).FirstOrDefault();
+                            }
+                          
+                        }
+
+                        foreach (Model_JobFunctionListMain main in this.JobFunctionListMain.Where(o => o.Category == 2))
+                        {
+                            var ass = T2Ranking.Where(o => o.ResultItemID == int.Parse(main.Mapping)).FirstOrDefault();
+
+                            Model_JobFunctionListMap mapscore = this.JobFunctionListMap.Where(o => o.JFID == cJob.JFID && o.JFMID == main.JFMID).FirstOrDefault();
+
+                            if (mapscore != null && ass != null)
+                            {
+                                Model_JFR2 rule1ret = this.Rule2.Where(o => o.Score == (int)ass.Ranking).FirstOrDefault();
+                                SumTrait += (decimal)rule1ret.GetType().GetProperty("CJRRuleScore" + mapscore.Score).GetValue(rule1ret);
+                            }
+
+
+                        }
+                    }
+
                    
+
                 }
 
                    
@@ -131,7 +212,14 @@ public class Calculation_T6
                     Side_c = Side_c,
                     Side_y = Side_y,
                     Frequency_c = frequency_c,
-                    Frequency_y  = frequency_y
+                    Frequency_y  = frequency_y,
+                    SumGeniuses = SumGeniuses,
+                    SumTrait = SumTrait,
+                    ReqSupBottom= ReqSupBottom,
+                    ReqSupGeniuses= ReqSupGeniuses,
+                    CountBottom= CountBottom,
+                    CountSup= CountSup
+
 
 
 
@@ -154,6 +242,30 @@ public class Calculation_T6
         return ListReview.OrderByDescending(o => o.Score_new).ToList();
     }
 
+    public bool CalKey(string Key, int value)
+    {
+        bool ret = false;
+        if (Key != "*")
+        {
+            string[] strsplit = Key.Split('-');
+            if (strsplit.Length > 1)
+            {
+                if( int.Parse(strsplit[0]) <= value && int.Parse(strsplit[0]) >= value)
+                {
+                    ret = true;
+                }
+            }
+            else
+            {
+                if (int.Parse(strsplit[0]) == value)
+                    ret = true;
+            }
+        }
+        else
+            return true;
+        return ret;
+    }
+
     public bool Calnow()
     {
 
@@ -167,64 +279,25 @@ public class Calculation_T6
     public List<Model_ReportItemResult> ReviewResult(List<Model_ReportItemResult> rlist)
     {
 
-       
-
-        for(int g =1; g<=14; g++)
+        foreach(Model_ReportItemResult item in rlist)
         {
-            List<Model_ReportItemResult> listGroup = rlist.Where(o => int.Parse(o.T5Group) == g).ToList();
-
-            if(listGroup.Count == 2)
+            if (item.CountSup > 0)
             {
-                foreach (Model_ReportItemResult list in listGroup)
-                {
-                    if(list.Score_y > 0 && list.Score_c > 0)
-                    {
-                        if(list.Frequency_c == list.Frequency_y)
-                        {
-                            rlist.Where(o => o.ResultItemID == list.ResultItemID).FirstOrDefault().FitOrNot = 1;
-                            list.FitOrNot = 1;
-                            break;
-                        }
-                            
+                item.ReqSupGeniuses = item.ReqSupGeniuses / item.CountSup;
+            } else
+                item.ReqSupGeniuses = 0;
 
-                        if ((list.Frequency_c == 2 || list.Frequency_c == 3 || list.Frequency_c == 0) && (list.Frequency_y == 2 || list.Frequency_y == 3 || list.Frequency_y == 0) && list.Frequency_c != list.Frequency_y)
-                        {
-                            rlist.Where(o => o.ResultItemID == list.ResultItemID).FirstOrDefault().FitOrNot = 2;
-                            list.FitOrNot = 2;
-                            break;
-                        }
-                           
 
-                        if ((list.Frequency_c == 1 || list.Frequency_c == 3 || list.Frequency_c == 0) && (list.Frequency_y == 1 || list.Frequency_y == 3 || list.Frequency_y == 0) && list.Frequency_c != list.Frequency_y)
-                        {
-                           
-                            rlist.Where(o => o.ResultItemID == list.ResultItemID).FirstOrDefault().FitOrNot = 3;
-                            list.FitOrNot = 3;
-                            break;
-                        }
-                           
-                    }
-                    else
-                    {
-                        if(list.Score_y > 0 || list.Score_c > 0)
-                        {
-                          rlist.Where(o => o.ResultItemID == list.ResultItemID).FirstOrDefault().FitOrNot = 3;
-                            list.FitOrNot = 3;
-                            break;
-                        }
-                        
-                    }
-                }
-            }
-        }
-           
-        foreach(Model_ReportItemResult ll in rlist.Where(o => o.FitOrNot.HasValue))
-        {
-            var obj = rlist.Where(o => !o.FitOrNot.HasValue && o.T5Group == ll.T5Group).FirstOrDefault();
-            if (obj != null)
+            if (item.CountBottom > 0)
             {
-                obj.FitOrNot = ll.FitOrNot;
+                item.ReqSupBottom = item.ReqSupBottom / item.CountBottom;
             }
+            else
+                item.ReqSupBottom = 0;
+
+
+            item.MatchingScore = item.SumGeniuses + item.SumTrait;
+
         }
 
             return rlist;

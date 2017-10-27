@@ -19,6 +19,7 @@ public partial class Users_UserAssCalculation : BasePage
             T3Cal();
             T4Cal();
             T5Cal();
+            T6Cal();
         }
     }
 
@@ -756,6 +757,86 @@ public partial class Users_UserAssCalculation : BasePage
             Ltt52.Text = retchH.ToString();
 
             T5.RecordResult(fscore);
+        }
+    }
+
+    public void T6Cal()
+    {
+        if (!string.IsNullOrEmpty(Request.QueryString["ts"]))
+        {
+            int tsID = int.Parse(Request.QueryString["ts"]);
+
+            Calculation_T6 T6 = new Calculation_T6(6, tsID);
+
+            //List<Model_UsersAssessment> T1list = T1.GetUserAss('f');
+
+
+
+
+            StringBuilder retF2 = new StringBuilder();
+
+            List<Model_ReportItemResult> fscore = T6.Code_SumValueBySubSection();
+
+
+            retF2.Append("<div class=\"table-responsive\">");
+
+            retF2.Append("<table class='table table-bordered table-striped'>");
+
+            retF2.Append("<tr>");
+            retF2.Append("<td>Job Function</td>");
+            retF2.Append("<td>Sum Geniuses Score</td>");
+            retF2.Append("<td>% Require Sup Geniuses</td>");
+            retF2.Append("<td>% Require Sup Bottom</td>");
+            retF2.Append("<td>Sum Traits Score</td>");
+            retF2.Append("<td>Matching Score (A+D)</td>");
+            retF2.Append("<td>Job Priority Score A</td>");
+            retF2.Append("<td>Job Priority Score B</td>");
+            retF2.Append("<td>Job Priority Score C</td>");
+            retF2.Append("<td>Job Priority Score D</td>");
+            retF2.Append("<td>Sum Job Priority Score (F+G+H+I)</td>");
+            retF2.Append("<td>Job Fit Score (E+J)</td>");
+            retF2.Append("<td>Job Fit Score Rank</td>");
+
+            retF2.Append("</tr>");
+
+            foreach (Model_ReportItemResult i in fscore)
+            {
+
+
+
+                retF2.Append("<tr>");
+                retF2.Append("<td>" + i.ResultItemTitle + "</td>");
+                retF2.Append("<td>"+i.SumGeniuses+"</td>");
+                retF2.Append("<td>" + i.ReqSupGeniuses + "</td>");
+                retF2.Append("<td>" + i.ReqSupBottom + "</td>");
+                retF2.Append("<td>" + i.SumTrait +"</td>");
+                retF2.Append("<td>" + i.MatchingScore + "</td>");
+                retF2.Append("<td></td>");
+                retF2.Append("<td></td>");
+                retF2.Append("<td></td>");
+                retF2.Append("<td></td>");
+                retF2.Append("<td></td>");
+                retF2.Append("<td></td>");
+                retF2.Append("<td></td>");
+
+                retF2.Append("</tr>");
+
+            }
+
+            retF2.Append("</table>");
+
+            retF2.Append("</div>");
+
+
+
+
+            T6Result.Text = retF2.ToString();
+
+
+
+
+
+
         }
     }
 }

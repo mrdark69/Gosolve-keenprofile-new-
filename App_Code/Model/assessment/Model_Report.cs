@@ -87,6 +87,23 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
 
     public string ResultItemTitle { get; set; }
 
+
+    public decimal? SumGeniuses { get; set; }
+    public decimal? ReqSupGeniuses { get; set; }
+    public decimal? ReqSupBottom { get; set; }
+    public decimal? SumTrait { get; set; }
+    public decimal? MatchingScore { get; set; }
+    public decimal? JobPri_A { get; set; }
+    public decimal? JobPri_B { get; set; }
+    public decimal? JobPri_C { get; set; }
+    public decimal? JobPri_D { get; set; }
+    public decimal? SumJob { get; set; }
+    public decimal? JobFitScore { get; set; }
+    public decimal? JobFitScoreRank { get; set; }
+
+    public int CountSup { get; set; }
+    public int CountBottom { get; set; }
+
     public List<Model_ReportItemResult> GetItemReportByTransactionID(int TransactionId)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
@@ -137,7 +154,9 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
 
     SqlCommand cmdupdate = new SqlCommand(@"UPDATE  ReportItemResult SET Score=@Score,IsAbove=@IsAbove,IsBelow=@IsBelow,Score_new=@Score_new
 ,TASID=@TASID, TASCID=@TASCID, Detail=@Detail,Factor=@Factor,IsDup=@IsDup ,AutoRank4=@AutoRank4,AutoRank1=@AutoRank1,AutoRank2=@AutoRank2,AutoRank3=@AutoRank3
-,Division1=@Division1,Division2=@Division2,Division3=@Division3,Division4=@Division4,GT=@GT,IdealScore=@IdealScore,RqScore=@RqScore,ResultScore=@ResultScore,Result=@Result,UseAtWork=@UseAtWork,Frequency_y=@Frequency_y,Frequency_c=@Frequency_c,Side_y=@Side_y,T5Group=@T5Group,Score_y=@Score_y, Score_c=@Score_c,Side_c=@Side_c,FitOrNot=@FitOrNot ,UserRank=@UserRank
+,Division1=@Division1,Division2=@Division2,Division3=@Division3,Division4=@Division4,GT=@GT,IdealScore=@IdealScore,RqScore=@RqScore,ResultScore=@ResultScore,Result=@Result,UseAtWork=@UseAtWork,Frequency_y=@Frequency_y,Frequency_c=@Frequency_c,Side_y=@Side_y,T5Group=@T5Group,Score_y=@Score_y, Score_c=@Score_c,Side_c=@Side_c,FitOrNot=@FitOrNot ,UserRank=@UserRank,SumGeniuses=@SumGeniuses,ReqSupGeniuses=@ReqSupGeniuses,ReqSupBottom=@ReqSupBottom,
+SumTrait=@SumTrait,MatchingScore=@MatchingScore,JobPri_A=@JobPri_A,JobPri_B=@JobPri_B,JobPri_C=@JobPri_C,
+JobPri_D=@JobPri_D,SumJob=@SumJob,JobFitScore=@JobFitScore,JobFitScoreRank=@JobFitScoreRank 
   WHERE ResultSectionID=@ResultSectionID AND ResultItemID=@ResultItemID AND TransactionID=@TransactionID;
                 ", cn);
 
@@ -293,12 +312,63 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
                 cmdupdate.Parameters.Add("@Detail", SqlDbType.VarChar).Value = re.Detail;
 
 
+
+                if (re.SumGeniuses.HasValue)
+                    cmdupdate.Parameters.Add("@SumGeniuses", SqlDbType.Decimal).Value = re.SumGeniuses;
+                else
+                    cmdupdate.Parameters.AddWithValue("@SumGeniuses", DBNull.Value);
+                if (re.ReqSupGeniuses.HasValue)
+                    cmdupdate.Parameters.Add("@ReqSupGeniuses", SqlDbType.Decimal).Value = re.ReqSupGeniuses;
+                else
+                    cmdupdate.Parameters.AddWithValue("@ReqSupGeniuses", DBNull.Value);
+                if (re.ReqSupBottom.HasValue)
+                    cmdupdate.Parameters.Add("@ReqSupBottom", SqlDbType.Decimal).Value = re.ReqSupBottom;
+                else
+                    cmdupdate.Parameters.AddWithValue("@ReqSupBottom", DBNull.Value);
+                if (re.SumTrait.HasValue)
+                    cmdupdate.Parameters.Add("@SumTrait", SqlDbType.Decimal).Value = re.SumTrait;
+                else
+                    cmdupdate.Parameters.AddWithValue("@SumTrait", DBNull.Value);
+                if (re.MatchingScore.HasValue)
+                    cmdupdate.Parameters.Add("@MatchingScore", SqlDbType.Decimal).Value = re.MatchingScore;
+                else
+                    cmdupdate.Parameters.AddWithValue("@MatchingScore", DBNull.Value);
+                if (re.JobPri_A.HasValue)
+                    cmdupdate.Parameters.Add("@JobPri_A", SqlDbType.Decimal).Value = re.JobPri_A;
+                else
+                    cmdupdate.Parameters.AddWithValue("@JobPri_A", DBNull.Value);
+                if (re.JobPri_B.HasValue)
+                    cmdupdate.Parameters.Add("@JobPri_B", SqlDbType.Decimal).Value = re.JobPri_B;
+                else
+                    cmdupdate.Parameters.AddWithValue("@JobPri_B", DBNull.Value);
+                if (re.JobPri_C.HasValue)
+                    cmdupdate.Parameters.Add("@JobPri_C", SqlDbType.Decimal).Value = re.JobPri_C;
+                else
+                    cmdupdate.Parameters.AddWithValue("@JobPri_C", DBNull.Value);
+                if (re.JobPri_D.HasValue)
+                    cmdupdate.Parameters.Add("@JobPri_D", SqlDbType.Decimal).Value = re.JobPri_D;
+                else
+                    cmdupdate.Parameters.AddWithValue("@JobPri_D", DBNull.Value);
+                if (re.SumJob.HasValue)
+                    cmdupdate.Parameters.Add("@SumJob", SqlDbType.Decimal).Value = re.SumJob;
+                else
+                    cmdupdate.Parameters.AddWithValue("@SumJob", DBNull.Value);
+                if (re.JobFitScore.HasValue)
+                    cmdupdate.Parameters.Add("@JobFitScore", SqlDbType.Decimal).Value = re.JobFitScore;
+                else
+                    cmdupdate.Parameters.AddWithValue("@JobFitScore", DBNull.Value);
+                if (re.JobFitScoreRank.HasValue)
+                    cmdupdate.Parameters.Add("@JobFitScoreRank", SqlDbType.Decimal).Value = re.JobFitScoreRank;
+                else
+                    cmdupdate.Parameters.AddWithValue("@JobFitScoreRank", DBNull.Value);
+
+
                 //DELETE FROM ReportItemResult WHERE ResultSectionID = @ResultSectionID AND ResultItemID = @ResultItemID AND TransactionID = @TransactionID;
                 if (ExecuteNonQuery(cmdupdate) == 0)
                 {
                     SqlCommand cmd = new SqlCommand(@"INSERT INTO ReportItemResult (ResultSectionID,ResultItemID,TransactionID,Score,IsAbove,IsBelow,Score_new,TASID,TASCID,Detail,Factor,IsDup,AutoRank4,AutoRank1,AutoRank2,AutoRank3,Division1,Division2,Division3,Division4,GT,IdealScore,RqScore,ResultScore,Result,UseAtWork,Frequency_y,Frequency_c,
-Side_c,T5Group,Score_y,Score_c,Side_y,FitOrNot,UserRank) 
-                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@TASCID,@Detail,@Factor,@IsDup,@AutoRank4,@AutoRank1,@AutoRank2,@AutoRank3,@Division1,@Division2,@Division3,@Division4,@GT,@IdealScore,@RqScore,@ResultScore,@Result,@UseAtWork,@Frequency_y,@Frequency_c,@Side_c,@T5Group,@Score_y,@Score_c,@Side_y,@FitOrNot,@UserRank)", cn);
+Side_c,T5Group,Score_y,Score_c,Side_y,FitOrNot,UserRank,SumGeniuses,ReqSupGeniuses,ReqSupBottom,SumTrait,MatchingScore,JobPri_A,JobPri_B,JobPri_C,JobPri_D,SumJob,JobFitScore,JobFitScoreRank) 
+                VALUES(@ResultSectionID,@ResultItemID,@TransactionID,@Score,@IsAbove,@IsBelow,@Score_new,@TASID,@TASCID,@Detail,@Factor,@IsDup,@AutoRank4,@AutoRank1,@AutoRank2,@AutoRank3,@Division1,@Division2,@Division3,@Division4,@GT,@IdealScore,@RqScore,@ResultScore,@Result,@UseAtWork,@Frequency_y,@Frequency_c,@Side_c,@T5Group,@Score_y,@Score_c,@Side_y,@FitOrNot,@UserRank,@SumGeniuses,@ReqSupGeniuses,@ReqSupBottom,@SumTrait,@MatchingScore,@JobPri_A,@JobPri_B,@JobPri_C,@JobPri_D,@SumJob,@JobFitScore,@JobFitScoreRank)", cn);
                     //             public int? GT { get; set; }
                     //public decimal? IdealScore { get; set; }
                     //public decimal? RqScore { get; set; }
@@ -453,6 +523,58 @@ Side_c,T5Group,Score_y,Score_c,Side_y,FitOrNot,UserRank)
                     cmd.Parameters.Add("@IsBelow", SqlDbType.Bit).Value = re.IsBelow;
 
                     cmd.Parameters.Add("@Detail", SqlDbType.VarChar).Value = re.Detail;
+
+
+
+
+                    if (re.SumGeniuses.HasValue)
+                        cmd.Parameters.Add("@SumGeniuses", SqlDbType.Decimal).Value = re.SumGeniuses;
+                    else
+                        cmd.Parameters.AddWithValue("@SumGeniuses", DBNull.Value);
+                    if (re.ReqSupGeniuses.HasValue)
+                        cmd.Parameters.Add("@ReqSupGeniuses", SqlDbType.Decimal).Value = re.ReqSupGeniuses;
+                    else
+                        cmd.Parameters.AddWithValue("@ReqSupGeniuses", DBNull.Value);
+                    if (re.ReqSupBottom.HasValue)
+                        cmd.Parameters.Add("@ReqSupBottom", SqlDbType.Decimal).Value = re.ReqSupBottom;
+                    else
+                        cmd.Parameters.AddWithValue("@ReqSupBottom", DBNull.Value);
+                    if (re.SumTrait.HasValue)
+                        cmd.Parameters.Add("@SumTrait", SqlDbType.Decimal).Value = re.SumTrait;
+                    else
+                        cmd.Parameters.AddWithValue("@SumTrait", DBNull.Value);
+                    if (re.MatchingScore.HasValue)
+                        cmd.Parameters.Add("@MatchingScore", SqlDbType.Decimal).Value = re.MatchingScore;
+                    else
+                        cmd.Parameters.AddWithValue("@MatchingScore", DBNull.Value);
+                    if (re.JobPri_A.HasValue)
+                        cmd.Parameters.Add("@JobPri_A", SqlDbType.Decimal).Value = re.JobPri_A;
+                    else
+                        cmd.Parameters.AddWithValue("@JobPri_A", DBNull.Value);
+                    if (re.JobPri_B.HasValue)
+                        cmd.Parameters.Add("@JobPri_B", SqlDbType.Decimal).Value = re.JobPri_B;
+                    else
+                        cmd.Parameters.AddWithValue("@JobPri_B", DBNull.Value);
+                    if (re.JobPri_C.HasValue)
+                        cmd.Parameters.Add("@JobPri_C", SqlDbType.Decimal).Value = re.JobPri_C;
+                    else
+                        cmd.Parameters.AddWithValue("@JobPri_C", DBNull.Value);
+                    if (re.JobPri_D.HasValue)
+                        cmd.Parameters.Add("@JobPri_D", SqlDbType.Decimal).Value = re.JobPri_D;
+                    else
+                        cmd.Parameters.AddWithValue("@JobPri_D", DBNull.Value);
+                    if (re.SumJob.HasValue)
+                        cmd.Parameters.Add("@SumJob", SqlDbType.Decimal).Value = re.SumJob;
+                    else
+                        cmd.Parameters.AddWithValue("@SumJob", DBNull.Value);
+                    if (re.JobFitScore.HasValue)
+                        cmd.Parameters.Add("@JobFitScore", SqlDbType.Decimal).Value = re.JobFitScore;
+                    else
+                        cmd.Parameters.AddWithValue("@JobFitScore", DBNull.Value);
+                    if (re.JobFitScoreRank.HasValue)
+                        cmd.Parameters.Add("@JobFitScoreRank", SqlDbType.Decimal).Value = re.JobFitScoreRank;
+                    else
+                        cmd.Parameters.AddWithValue("@JobFitScoreRank", DBNull.Value);
 
                     ret = ExecuteNonQuery(cmd) == 1;
                 }
