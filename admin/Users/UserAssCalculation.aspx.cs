@@ -775,7 +775,7 @@ public partial class Users_UserAssCalculation : BasePage
 
             StringBuilder retF2 = new StringBuilder();
 
-            List<Model_ReportItemResult> fscore = T6.Code_SumValueBySubSection();
+            List<Model_ReportItemResult> fscore = T6.Code_SumValueBySubSection().OrderBy(o => o.JobFitScoreRank).ToList();
 
 
             retF2.Append("<div class=\"table-responsive\">");
@@ -811,13 +811,13 @@ public partial class Users_UserAssCalculation : BasePage
                 retF2.Append("<td>" + i.ReqSupBottom + "</td>");
                 retF2.Append("<td>" + i.SumTrait +"</td>");
                 retF2.Append("<td>" + i.MatchingScore + "</td>");
-                retF2.Append("<td></td>");
-                retF2.Append("<td></td>");
-                retF2.Append("<td></td>");
-                retF2.Append("<td></td>");
-                retF2.Append("<td></td>");
-                retF2.Append("<td></td>");
-                retF2.Append("<td></td>");
+                retF2.Append("<td>" + i.JobPri_A + "</td>");
+                retF2.Append("<td>" + i.JobPri_B + "</td>");
+                retF2.Append("<td>" + i.JobPri_C + "</td>");
+                retF2.Append("<td>" + i.JobPri_D + "</td>");
+                retF2.Append("<td>" + i.SumJob + "</td>");
+                retF2.Append("<td>" + i.JobFitScore + "</td>");
+                retF2.Append("<td>" + i.JobFitScoreRank + "</td>");
 
                 retF2.Append("</tr>");
 

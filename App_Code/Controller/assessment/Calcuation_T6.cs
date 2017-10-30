@@ -269,6 +269,30 @@ public class Calculation_T6
         return ret;
     }
 
+    public bool CalKey2(string Key, int value)
+    {
+        bool ret = false;
+        if (Key != "*")
+        {
+            string[] strsplit = Key.Split('-');
+            if (strsplit.Length > 1)
+            {
+                if ( (strsplit[0] == "*"? true : int.Parse(strsplit[0]) <= value) && (strsplit[1] =="*"? true: int.Parse(strsplit[1]) >= value))
+                {
+                    ret = true;
+                }
+            }
+            else
+            {
+                if (int.Parse(strsplit[0]) == value)
+                    ret = true;
+            }
+        }
+        else
+            return true;
+        return ret;
+    }
+
     public bool Calnow()
     {
 
@@ -301,6 +325,60 @@ public class Calculation_T6
 
             item.MatchingScore = item.SumGeniuses + item.SumTrait;
 
+        }
+
+        foreach (Model_ReportItemResult item in rlist)
+        {
+            foreach (Model_JFR4 r4 in this.Rule4.Where(o => o.Cat == 1))
+            {
+                if (CalKey2(r4.Condition1, (int)item.SumGeniuses))
+                {
+                    item.JobPri_A = r4.Score;
+                    break;
+                }
+            }
+            foreach (Model_JFR4 r4 in this.Rule4.Where(o => o.Cat == 2))
+            {
+                if (CalKey2(r4.Condition1, (int)item.ReqSupGeniuses))
+                {
+                    item.JobPri_B= r4.Score;
+                    break;
+                }
+            }
+            foreach (Model_JFR4 r4 in this.Rule4.Where(o => o.Cat == 3))
+            {
+                if (CalKey2(r4.Condition1, (int)item.ReqSupBottom))
+                {
+                    item.JobPri_C = r4.Score;
+                    break;
+                }
+            }
+            foreach (Model_JFR4 r4 in this.Rule4.Where(o => o.Cat == 4))
+            {
+                if (CalKey2(r4.Condition1, (int)item.SumTrait))
+                {
+                    item.JobPri_D = r4.Score;
+                    break;
+                }
+            }
+
+            item.SumJob = item.JobPri_A + item.JobPri_B + item.JobPri_C + item.JobPri_D;
+            item.JobFitScore = item.SumJob + item.MatchingScore;
+
+        }
+
+
+
+        var JobfitScoreRankList = rlist.Select(s => new {
+            ResultID = s.ResultID,
+            ResultItemID = s.ResultItemID,
+            Ranking = rlist.Count(x => (decimal)x.JobFitScore > (decimal)s.JobFitScore) + 1,
+            
+        });
+
+        foreach (Model_ReportItemResult item in rlist)
+        {
+            item.JobFitScoreRank = JobfitScoreRankList.Where(o => o.ResultItemID == item.ResultItemID).Select(o => o.Ranking).FirstOrDefault();
         }
 
             return rlist;
