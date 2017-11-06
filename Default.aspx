@@ -16,14 +16,18 @@
 								<div class="row">
 									<div class="col-xs-5">
 										<div class="profile-photo">
-                                            <h1>Lorem Ipsum is simply dummy text of the printing and</h1>
+                                            <h1>KEENCareer Finder</h1>
                                             <p>
 
-                                                 typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                                                 แบบประเมินแรกของโลกที่สามารถระบุอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ เพื่อบ่งบอกว่าประเภทสายงานและวัฒนธรรมบริษัทที่เหมาะกับตัวคุณ
+                                                งานที่คุณทำอยู่ปัจจุบันเหมาะกับคุณจริงๆ หรือไม่
+                                                สายงานอะไรและบริษัทแบบไหนที่คุณสามารถเติบโตได้อย่างมีประสิทธิภาพ
+                                                หาคำตอบได้เลย
+
                                             </p>
 <%--                                            <img src="http://rscard.px-lab.com/img/uploads/rs-photo-v1.jpg" alt="Robert Smith">--%>
 
-                                              <a class="btn btn-lg btn-border ripple" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;"   target="_blank" href="Assessmentstep.aspx"> Do Assessment Now</a>
+                                              <a class="btn btn-lg btn-border ripple" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;"   target="_blank" href="Assessmentstep.aspx"> เริ่มทำแบบประเมิน</a>
 										</div>
 									</div>
 									<div class="col-xs-7">
@@ -102,23 +106,23 @@
 				<div class="divider-wrapper divider-one">
 					<i class="fa fa-star-o"></i>
 					<h2>KEENCareer Finder Report</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
+					<p>รายงานแสดงผลอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ คุณจะทราบวิธีการพัฒนาศักยภาพการทำงานที่เหมาะสมกับตัวคุณ <a href="#">อ่านต่อ</a></p>
                     <asp:Button ID="btnReport1" runat="server" Text="Dowload Now" CssClass="btn_button" OnClick="btnReport1_Click"  CommandArgument="1"/>
 				</div>
 			</div>
 			<div class="col-md-4 col-sm-6">
 				<div class="divider-wrapper divider-two">
 					<i class="fa fa-star-half-o"></i>
-					<h2>The Right Job Functions Report</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
+					<h2>Your Current Job & Company Fit Report</h2>
+					<p>รายงานแสดงผลความเหมาะสมระหว่างตัวคุณกับงานปัจจุบันและวัฒนธรรมของบริษัทปัจจุบัน คุณควรทำงานนี้ต่อไปหรือไม่?</p>
                      <asp:Button ID="btnReport2" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="2" />
 				</div>
 			</div>
 			<div class="col-md-4 col-sm-12">
 				<div class="divider-wrapper divider-three">
 					<i class="fa fa-star"></i>
-					<h2>Your Current Job & Company Fit Report</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam </p>
+					<h2>The Right Job Functions Report</h2>
+					<p>รายงานแสดงผลสายงานทั้งหมดที่เหมาะสมกับอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ คุณจะไม่หลงทางกับ เส้นทางอาชีพอีกต่อไป <a href="#">อ่านต่อ</a>  </p>
                      <asp:Button ID="btnReport3" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="3" />
 				</div>
 			</div>

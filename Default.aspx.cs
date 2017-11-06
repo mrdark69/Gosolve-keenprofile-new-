@@ -31,15 +31,15 @@ public partial class _Default : BasePageFront
                 List<Model_UsersTransaction> TSL = Uts.getTsListByUserID(u.UserID);
                 if(TSL.Count > 0)
                 {
-                    btnReport1.Text = "Download Now";
-                    btnReport2.Text = "Download Now";
-                    btnReport3.Text = "Contact Us now";
+                    btnReport1.Text = "คลิกเพื่อ Download";
+                    btnReport2.Text = "คลิกเพื่อ Download";
+                    btnReport3.Text = "ต้องการ Download";
                 }
                 else
                 {
-                    btnReport1.Text = "Do Assessment Now";
-                    btnReport2.Text = "Do Assessment Now";
-                    btnReport3.Text = "Do Assessment Now";
+                    btnReport1.Text = "เริ่มทำแบบประเมิน";
+                    btnReport2.Text = "เริ่มทำแบบประเมิน";
+                    btnReport3.Text = "เริ่มทำแบบประเมิน";
 
                     btnReport1.CommandArgument = "0";
                     btnReport2.CommandArgument = "0";
