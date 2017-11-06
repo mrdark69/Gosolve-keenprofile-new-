@@ -227,7 +227,7 @@ public partial class _ReportContent : BasePage
             SUCID = txtSubsectionID.Text,
             Short = txtShort.Text,
             Detail= txtDetail.Text,
-            PeopleTxt = txtDetail.Text,
+            PeopleTxt = txtPeople.Text,
             CultureTxt = txtCulture.Text,
             CompetitionTxt = txtCompetition.Text
 

@@ -104,6 +104,27 @@ public class Model_ReportItemResult : BaseModel<Model_ReportItemResult>
     public int CountSup { get; set; }
     public int CountBottom { get; set; }
 
+    public string des_Short { get; set; }
+    public string des_Detail { get; set; }
+    public string des_PeopleTxt { get; set; }
+    public string des_CultureTxt { get; set; }
+    public string des_CompetitionTxt { get; set; }
+
+
+    public List<Model_ReportItemResult> GetItemReportByTransactionIDwithTitle(int TransactionId)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand(@"SELECT rr.*,ri.Title AS ResultItemTitle,ri.Detail AS des_Detail,ri.PeopleTxt AS des_PeopleTxt 
+,ri.CultureTxt AS des_CultureTxt,ri.CompetitionTxt AS des_CompetitionTxt, ri.Short AS des_Short FROM ReportItemResult rr 
+INNER JOIN ReportSectionItem ri ON ri.ResultItemID = rr.ResultItemID 
+ WHERE rr.TransactionID=@TransactionID ", cn);
+            cmd.Parameters.Add("@TransactionID", SqlDbType.Int).Value = TransactionId;
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+        }
+    }
+
     public List<Model_ReportItemResult> GetItemReportByTransactionID(int TransactionId)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))

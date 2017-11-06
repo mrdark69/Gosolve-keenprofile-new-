@@ -60,7 +60,7 @@ public partial class _Default : BasePageFront
         Button btn = (Button)sender;
 
         int ReportType = btn.CommandArgument != string.Empty ? int.Parse(btn.CommandArgument) : 0;
-
+        Model_Users u = this.UserActive;
         switch (ReportType)
         {
             case 0:
@@ -68,8 +68,8 @@ public partial class _Default : BasePageFront
                 Response.End();
                 break;
             case 1:
-
-                string report = AssessmentController.GetPaperReport1();
+         
+                string report = AssessmentController.GetPaperReport1(u);
                 byte[] html = pdfgen.pdfGenerate(report);
 
                 pdfgen.ToClientSave(html, "KEENCareer-Finder-Report");

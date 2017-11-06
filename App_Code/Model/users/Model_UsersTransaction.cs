@@ -104,6 +104,22 @@ public class Model_UsersTransaction: BaseModel<Model_UsersTransaction>
     }
 
 
+    public Model_UsersTransaction GetTsLatestByUser(int UserID)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT TOP 1 * FROM UserAssTransaction WHERE UserID=@UserID ORDER BY DateSubmit DESC", cn);
+            cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = UserID;
+            cn.Open();
+            IDataReader reader = ExecuteReader(cmd, CommandBehavior.SingleRow);
+            if (reader.Read())
+                return MappingObjectFromDataReaderByName(reader);
+            else
+                return null;
+            
+        }
+    }
+
 
     public IList<Model_UsersTransaction> getTsListl_Paging(Model_UsersTransaction mu)
     {

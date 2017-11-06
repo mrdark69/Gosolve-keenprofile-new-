@@ -5,7 +5,7 @@ body {
       padding: 0;
       background-color: #FAFAFA;
       font-family: 'Open Sans', sans-serif;
-      color: #fffee6;
+      color: #ffffff;
   }
   * {
       box-sizing: border-box;
@@ -56,7 +56,7 @@ body {
       background-color: #37353a;
   }
   .bg-cream{
-      background-color: #fffee6;
+      background-color: #ffffff;
   }
 
   .bg-red{
@@ -70,7 +70,7 @@ body {
   }
 
   .page .footer {
-      color: #fffee6;
+      color: #ffffff;
       font-size: 12px;
       position: absolute;
       left: 50%;
@@ -121,7 +121,7 @@ body {
   .cover-page-des{
     text-align: center;
 padding-top: 200px;
-color: #fffee6;
+color: #ffffff;
 
   }
   .cover-page-des h3 {
@@ -154,7 +154,7 @@ color: #fffee6;
 
 }
 .page-front-cover .front-cover-title{
-color: #fffee6;
+color: #ffffff;
 padding-top: 350px;
 }
 
@@ -183,7 +183,7 @@ text-align: right;
 
 }
 .page-content .page-content-header h1{
-  color: #fffee6;
+  color: #ffffff;
       font-weight: 300;
         font-size: 40px;
         padding: 0px;
@@ -192,7 +192,7 @@ text-align: right;
 
 .page-content .page-content-table p{
   margin-top: 60px;
-color: #d0e53d;
+color: #ffffff;
 font-size: 30px;
 }
 .page-content .page-content-table table{
@@ -207,13 +207,13 @@ font-size: 30px;
   padding: 20px;
 }
 .page-content .page-content-table table tr td.col-1{
-color: #d0e53d;
+color: #ffffff;
 font-size: 30px;
 text-align: right;
 width: 20%;
 }
 .page-content .page-content-table table tr td.col-2{
-color: #fffee6;
+color: #ffffff;
 font-size: 22px;
 width: 80%;
 
