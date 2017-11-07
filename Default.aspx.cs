@@ -34,12 +34,16 @@ public partial class _Default : BasePageFront
                     btnReport1.Text = "คลิกเพื่อ Download";
                     btnReport2.Text = "คลิกเพื่อ Download";
                     btnReport3.Text = "ต้องการ Download";
+
+                    btnReport4.Text = "ต้องการ Coaching";
                 }
                 else
                 {
-                    btnReport1.Text = "เริ่มทำแบบประเมิน";
-                    btnReport2.Text = "เริ่มทำแบบประเมิน";
-                    btnReport3.Text = "เริ่มทำแบบประเมิน";
+                    btnReport1.Text = "คลิกเพื่อ Download";
+                    btnReport2.Text = "คลิกเพื่อ Download";
+                    btnReport3.Text = "ต้องการ Download";
+
+                    btnReport4.Text = "ต้องการ Coaching";
 
                     btnReport1.CommandArgument = "0";
                     btnReport2.CommandArgument = "0";

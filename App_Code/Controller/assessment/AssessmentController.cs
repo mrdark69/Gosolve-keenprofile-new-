@@ -27,7 +27,7 @@ public class AssessmentController
     {
         string ret = StringUtility.GetPDFTemplate("report1");
 
-        string userfullname = u.FirstName + "-" + u.LastName;
+        string userfullname = u.FirstName + " " + u.LastName;
 
         Model_UsersTransaction ts = new Model_UsersTransaction();
         ts = ts.GetTsLatestByUser(u.UserID);
