@@ -79,6 +79,10 @@ public partial class _Default : BasePageFront
                 pdfgen.ToClientSave(html, "KEENCareer-Finder-Report");
                 break;
             case 2:
+                string report2 = AssessmentController.GetPaperReport2(u);
+                byte[] html2 = pdfgen.pdfGenerate(report2);
+
+                pdfgen.ToClientSave(html2, "The-Right-Job-Functions-Report");
                 break;
             case 3:
                 break;

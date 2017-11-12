@@ -321,7 +321,17 @@ public class AssessmentController
 
         return ret;
     }
+    public static string GetPaperReport2(Model_Users u)
+    {
+        string ret = StringUtility.GetPDFTemplate("report2");
 
+       
+
+
+
+
+        return ret;
+    }
     public static string jobT3(IEnumerable<dynamic> T3Rank, string ret, string title, int intResultItemID, int StepContent ) 
     {
         var data = T3Rank.FirstOrDefault(o => (int)o.ResultItemID == intResultItemID);
