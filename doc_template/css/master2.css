@@ -55,3 +55,211 @@ left: 26px;
   margin-right: -25px;
   font-weight: 700;
 }
+
+.score_ret .title{
+  display: block;
+  margin: 0;
+  padding: 0;
+  margin-top: 60px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+
+}
+.score_ret .title-lv2{
+  display: block;
+  margin: 0;
+  padding: 0;
+  margin-top: 5px;
+  text-align: center;
+  font-size: 30px;
+
+}
+
+.score_ret .score_{
+display: block;
+font-size: 80px;
+text-align: center;
+}
+.score_ret .score_des_{
+  margin: 0;
+  padding: 0;
+  display: block;
+  margin-top: 150px;
+}
+.score_ret .score_des_ h1{
+display: block;
+font-size:18px;
+text-align: left;
+margin-left: 0px;
+font-weight: bold;
+
+}
+.score_ret .score_des_ p{
+  font-size: 16px;
+
+}
+.score_ret_table .table_score_ret{
+  background-color: #000;
+  color: #fff;
+
+}
+.score_ret_table .table_score_ret thead{
+
+}
+.score_ret_table .table_score_ret thead tr {
+
+}
+.score_ret_table .table_score_ret thead tr th{
+ font-weight: bold;
+ font-size: 16px;
+ text-align: center;
+padding: 8px 2px 8px 2px;
+
+}
+.score_ret_table .table_score_ret tbody tr {
+
+}
+.score_ret_table .table_score_ret tbody tr td{
+text-align: center;
+font-size: 14px;
+padding: 8px 2px 8px 2px;
+}
+
+.content-table-des{
+  margin: 0;
+  padding: 0;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.content-table-des .table_des_body tr td h1{
+  font-size: 14px;
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
+  font-weight: bold;
+}
+.content-table-des .table_des_body tr td  h2{
+  font-size: 12px;
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
+}
+.content-table-des .table_des_body tr td  p{
+  text-align: right;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+.content-table-des .table_des_body tr td  span{
+  float: left;
+      display: block;
+      width: 35px;
+      height: 18px;
+      margin-right: 20px;
+      margin-left: 10px;
+}
+
+.score_ret_table_cy .table_score_yc{
+  margin: 0;
+  padding: 0px;
+}
+.score_ret_table_cy .table_score_yc table{
+width: 100%;
+color: #fff;
+width: 100%;
+
+
+}
+.score_ret_table_cy .table_score_yc table thead tr th{
+ font-size: 14px;
+ padding: 8px 2px 8px 2px;
+
+}
+.score_ret_table_cy .table_score_yc table.tbl_left{
+background-color: #000;
+border-collapse: separate;
+  border-spacing: 2px;
+  border-right: 1px solid #f1f1f1;
+}
+.score_ret_table_cy .table_score_yc table.tbl_right{
+background-color: #000;
+  border-spacing: 2px;
+}
+.bg_blue td,.bg_blue th{
+  background-color: #23366b;
+}
+.bg_red td,.bg_red th{
+  background-color: #592f2f;
+}
+.bg_grey td,.bg_grey th{
+  background-color: #37353a;
+}
+.bg_blue_c td,.bg_blue_c th{
+  background-color: #555e83;
+}
+.bg_grey_c td,.bg_grey_c th{
+  background-color: #636266;
+}
+.cross_merg_left{
+  padding-right: 0px;
+
+}
+
+.arrow_des{
+  margin: 0 auto;
+position: relative;
+margin-bottom: 15px;
+margin-left: 15px
+
+}
+.arrow_des .arrow-right {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+
+  border-left: 20px solid #37353a;
+  top:-7px;
+  right: 0px;
+
+}
+
+.arrow_des .arrow-left {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+
+  border-right:20px solid #23366b;
+  top:-7px;
+  left: -15px;
+}
+.arrow_des p{
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+  width: 49%;
+  line-height: 25px;
+  color:#fff;
+  font-size: 14px;
+  height: 25px;
+}
+.arrow_des p.right{
+  margin-left: -5px;
+  text-align: left;
+  padding: 0 0 0 2px;
+}
+.arrow_des p.left{
+  text-align: right;
+padding: 0 2px 0 0px;
+}
+
+
+
+
+/*555e83*/
+
+/*636266*/
