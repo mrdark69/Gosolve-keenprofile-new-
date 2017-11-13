@@ -23,6 +23,7 @@ public class AssessmentController
     }
 
 
+   
     public static string GetPaperReport1(Model_Users u)
     {
         string ret = StringUtility.GetPDFTemplate("report1");
@@ -279,10 +280,11 @@ public class AssessmentController
             StringBuilder detail2 = new StringBuilder();
             foreach (var i in T3Rank.Where(o => o.Ranking > 14).OrderBy(o => o.Ranking))
             {
-                bottom4 = bottom4 + "<li>" + count4 + "." + i.Title + (i.Isbelow ? "*" : "") + "</li>";
+                
 
                 if(count4 <= 4)
                 {
+                    bottom4 = bottom4 + "<li>" + count4 + "." + i.Title + (i.Isbelow ? "*" : "") + "</li>";
                     detail2.Append("<div class=\"desscription-body\">");
 
                     detail2.Append("<div class=\"desscription-body-block left\">");
@@ -325,10 +327,430 @@ public class AssessmentController
     {
         string ret = StringUtility.GetPDFTemplate("report2");
 
-       
+        string userfullname = u.FirstName + " " + u.LastName;
+
+        Model_UsersTransaction ts = new Model_UsersTransaction();
+        ts = ts.GetTsLatestByUser(u.UserID);
+
+
+        if (ts != null && u != null)
+        {
+            Model_ReportItemResult report = new Model_ReportItemResult();
+            List<Model_ReportItemResult> reportlist = report.GetItemReportByTransactionIDwithTitle(ts.TransactionID);
+
+            ret = Regex.Replace(ret, "<!--###FullName###-->", userfullname);
+
+            //T1 process
+
+            List<Model_ReportItemResult> T1list = reportlist.Where(o => o.ResultSectionID == 1).ToList();
+            var T1Rank = T1list.Select(s => new {
+                ResultID = s.ResultID,
+                Title = s.ResultItemTitle,
+                ResultItemID = s.ResultItemID,
+                des_Detail = s.des_Detail,
+                des_PeopleTxt = s.des_PeopleTxt,
+                des_CultureTxt = s.des_CultureTxt,
+                des_Short = s.des_Short,
+                des_CompetitionTxt = s.des_CompetitionTxt,
+                Ranking = T1list.Count(x => (decimal)x.Score > (decimal)s.Score) + 1,
+
+            });
+
+            int Innovation = T1Rank.FirstOrDefault(o => o.ResultItemID == 1).Ranking;
+            int Service = T1Rank.FirstOrDefault(o => o.ResultItemID == 2).Ranking;
+            int Cost = T1Rank.FirstOrDefault(o => o.ResultItemID == 3).Ranking;
+
+            if (Innovation == 1 || Innovation == 2)
+                ret = ret.Replace("<!--###css_color_1###-->", "item_blue");
+            if (Service == 1 || Service == 2)
+                ret = ret.Replace("<!--###css_color_2###-->", "item_blue");
+            if (Cost == 1 || Cost == 2)
+                ret = ret.Replace("<!--###css_color_3###-->", "item_blue");
+
+            ret = ret.Replace("<!--###css_color_1###-->", "");
+            ret = ret.Replace("<!--###css_color_2###-->", "");
+            ret = ret.Replace("<!--###css_color_3###-->", "");
+
+            ret = ret.Replace("<!--###T1_1###-->", Innovation.ToString());
+            ret = ret.Replace("<!--###T1_2###-->", Service.ToString());
+            ret = ret.Replace("<!--###T1_3###-->", Cost.ToString());
+
+
+            string phi = string.Empty;
+          
+            int countphi = 1;
+            foreach (var i in T1Rank.Where(o => o.Ranking <= 2).OrderBy(o => o.Ranking))
+            {
+                if (countphi <= 2)
+                {
+
+
+                    phi = phi + "<li>" + countphi + "." + i.Title + "</li>";
+
+                  
 
 
 
+                }
+
+                countphi = countphi + 1;
+            }
+
+           
+            ret = ret.Replace("<!--###T2_phi_7###-->", phi);
+            //T2 process
+
+            List<Model_ReportItemResult> T2list = reportlist.Where(o => o.ResultSectionID == 2).ToList();
+            var T2Rank = T2list.Select(s => new {
+                ResultID = s.ResultID,
+                ResultItemID = s.ResultItemID,
+                Title = s.ResultItemTitle,
+                des_Detail = s.des_Detail,
+                des_PeopleTxt = s.des_PeopleTxt,
+                des_CultureTxt = s.des_CultureTxt,
+                des_Short = s.des_Short,
+                des_CompetitionTxt = s.des_CompetitionTxt,
+                Ranking = T2list.Count(x => (decimal)x.Score > (decimal)s.Score) + 1,
+
+            });
+
+            int Inventor = T2Rank.FirstOrDefault(o => o.ResultItemID == 4).Ranking;
+            int Promoter = T2Rank.FirstOrDefault(o => o.ResultItemID == 5).Ranking;
+            int Optimizer = T2Rank.FirstOrDefault(o => o.ResultItemID == 6).Ranking;
+            int Controller = T2Rank.FirstOrDefault(o => o.ResultItemID == 7).Ranking;
+
+            if (Inventor == 1 || Inventor == 2)
+                ret = ret.Replace("<!--###css_color_1_1###-->", "item_blue_bg");
+            if (Promoter == 1 || Promoter == 2)
+                ret = ret.Replace("<!--###css_color_2_2###-->", "item_blue_bg");
+            if (Optimizer == 1 || Optimizer == 2)
+                ret = ret.Replace("<!--###css_color_3_3###-->", "item_blue_bg");
+            if (Controller == 1 || Controller == 2)
+                ret = ret.Replace("<!--###css_color_4_4###-->", "item_blue_bg");
+
+            ret = ret.Replace("<!--###css_color_1_1###-->", "");
+            ret = ret.Replace("<!--###css_color_2_2###-->", "");
+            ret = ret.Replace("<!--###css_color_3_3###-->", "");
+            ret = ret.Replace("<!--###css_color_4_4###-->", "");
+
+            ret = ret.Replace("<!--###T2_1###-->", Inventor.ToString());
+            ret = ret.Replace("<!--###T2_2###-->", Promoter.ToString());
+            ret = ret.Replace("<!--###T2_3###-->", Optimizer.ToString());
+            ret = ret.Replace("<!--###T2_4###-->", Controller.ToString());
+
+
+
+            string trait = string.Empty;
+            StringBuilder traitdetail = new StringBuilder();
+            int count = 1;
+            foreach (var i in T2Rank.Where(o => o.Ranking <= 2).OrderBy(o => o.Ranking))
+            {
+                if (count <= 2)
+                {
+                    trait = trait + "<li>" + count + "." + i.Title + "</li>";
+
+
+
+                    traitdetail.Append("<div class=\"desscription-body big\">");
+                    traitdetail.Append("<div class=\"desscription-body-block left\">");
+                    traitdetail.Append("<div class=\"square-block big bg-blue\">");
+                    traitdetail.Append(" " + i.Title + " <br />(1)");
+                    traitdetail.Append("</div>");
+                    traitdetail.Append("</div>");
+                    traitdetail.Append("<div class=\"desscription-body-block right\">");
+                    traitdetail.Append(" <p><span>" + i.Title + "</span></p>");
+                    traitdetail.Append("<p>");
+                    traitdetail.Append(i.des_Detail);
+                    traitdetail.Append("</p>");
+                    traitdetail.Append("</div>");
+                    traitdetail.Append(" </div>");
+                }
+
+
+
+                count = count + 1;
+
+            }
+
+            ret = ret.Replace("<!--###T2_des_detail###-->", traitdetail.ToString());
+            ret = ret.Replace("<!--###T2_trait_7###-->", trait);
+
+            //T3 process
+
+            List<Model_ReportItemResult> T3list = reportlist.Where(o => o.ResultSectionID == 3).ToList();
+            var T3Rank = T3list.Select(s => new {
+                ResultID = s.ResultID,
+                ResultItemID = s.ResultItemID,
+                Title = s.ResultItemTitle,
+                Isabove = s.IsAbove,
+                Isbelow = s.IsBelow,
+                des_Detail = s.des_Detail,
+                des_PeopleTxt = s.des_PeopleTxt,
+                des_CultureTxt = s.des_CultureTxt,
+                des_Short = s.des_Short,
+                des_CompetitionTxt = s.des_CompetitionTxt,
+                Ranking = T3list.Count(x => (decimal)x.Score_new > (decimal)s.Score_new) + 1,
+
+            });
+
+
+            ret = jobT3(T3Rank, ret, "Creative", 8, 1);
+            ret = jobT3(T3Rank, ret, "Strategic", 9, 2);
+            ret = jobT3(T3Rank, ret, "Analytical", 10, 3);
+            ret = jobT3(T3Rank, ret, "Numerical", 11, 4);
+            ret = jobT3(T3Rank, ret, "Prudently", 12, 5);
+            ret = jobT3(T3Rank, ret, "Obstacle", 13, 6);
+            ret = jobT3(T3Rank, ret, "Words", 14, 7);
+            ret = jobT3(T3Rank, ret, "Strong", 15, 8);
+            ret = jobT3(T3Rank, ret, "Socialize", 16, 9);
+            ret = jobT3(T3Rank, ret, "Knowledge", 17, 10);
+            ret = jobT3(T3Rank, ret, "Individualizing", 18, 11);
+            ret = jobT3(T3Rank, ret, "Sensation", 19, 12);
+            ret = jobT3(T3Rank, ret, "Momentum", 20, 13);
+            ret = jobT3(T3Rank, ret, "Working", 21, 14);
+            ret = jobT3(T3Rank, ret, "Emotion", 22, 15);
+            ret = jobT3(T3Rank, ret, "Time", 23, 16);
+            ret = jobT3(T3Rank, ret, "Priority", 24, 17);
+            ret = jobT3(T3Rank, ret, "Delegating", 25, 18);
+
+            string top7 = string.Empty;
+         
+            int count7 = 1;
+            foreach (var i in T3Rank.Where(o => o.Ranking <= 7).OrderBy(o => o.Ranking))
+            {
+                if (count <= 7)
+                {
+                    top7 = top7 + "<li>" + count7 + "." + i.Title + (i.Isabove ? "*" : "") + "</li>";
+
+
+                   
+                }
+
+
+
+
+
+
+                count7 = count7 + 1;
+
+            }
+            
+            ret = ret.Replace("<!--###T3_TOP_7###-->", top7);
+
+
+            string bottom4 = string.Empty;
+            int count4 = 1;
+          
+            foreach (var i in T3Rank.Where(o => o.Ranking > 14).OrderBy(o => o.Ranking))
+            {
+               
+
+                if (count4 <= 4)
+                {
+                    bottom4 = bottom4 + "<li>" + count4 + "." + i.Title + (i.Isbelow ? "*" : "") + "</li>";
+
+                }
+
+
+                count4 = count4 + 1;
+
+            }
+           
+            ret = ret.Replace("<!--###T3_Bottom_4###-->", bottom4);
+
+
+
+            //T4
+
+            List<Model_ReportItemResult> T4list = reportlist.Where(o => o.ResultSectionID == 4).ToList();
+
+            Decimal SumScore = 0.0m;
+            decimal SumIdeal = 0.0m;
+            StringBuilder T4ret = new StringBuilder();
+            int countt4 = 1;
+            foreach (Model_ReportItemResult i in T4list.OrderByDescending(o => o.Score_new))
+            {
+             
+              
+
+                if(i.IsAbove)
+                    T4ret.Append("<tr class=\"bg-blue\">");
+                else if(i.IsBelow)
+                    T4ret.Append("<tr class=\"bg-red\">");
+                else
+                    T4ret.Append("<tr class=\"bg-grey\">");
+               
+                T4ret.Append("<td " + (count4==1? "style=\"border-top:none;\"": "") + ">" + countt4 + "</td>");
+                T4ret.Append("<td " + (count4 == 1 ? "style=\"border-top:none;\"" : "") + ">" + i.ResultItemTitle + "</td>");
+                T4ret.Append("<td " + (count4 == 1 ? "style=\"border-top:none;\"" : "") + ">" + i.UseAtWork + "</td>");
+                T4ret.Append("<td " + (count4 == 1 ? "style=\"border-top:none;\"" : "") + ">" +i.Result+"d</td>");
+                T4ret.Append("</tr>");
+                T4ret.Append("");
+
+
+                countt4 = countt4 + 1;
+
+
+
+
+                
+
+                SumScore = SumScore + (decimal)i.ResultScore;
+                SumIdeal = SumIdeal + (decimal)i.IdealScore;
+            }
+
+            decimal RawResult = 0.0m;
+            decimal AdjustREsult = 0.0m;
+            decimal CurrentJobFitScore = 0.0m;
+
+            if (SumScore > 0)
+            {
+                RawResult = SumScore / SumIdeal;
+                AdjustREsult = RawResult + (decimal)0.1;
+
+                CurrentJobFitScore = Math.Round(AdjustREsult * 100, 0);
+            }
+
+            ret = ret.Replace("<!--###T4_list###-->", T4ret.ToString());
+            ret = ret.Replace("<!--###CurrentJobFitScore###-->", CurrentJobFitScore.ToString());
+
+           
+            
+            decimal t4width = ((59 * CurrentJobFitScore) / 10) + 2;
+
+            ret = ret.Replace("<!--###CurrentJobFitScore_width###-->", "style=\"width: "+ t4width.ToString("0.00") + "px\"" );
+            Model_Rule3 r3 = new Model_Rule3();
+
+            List<Model_Rule3> explaint4 = r3.GetAll();
+
+            Model_Rule3 des = explaint4.Where(o => o.Range_Start <= CurrentJobFitScore && o.Range_End >= CurrentJobFitScore).FirstOrDefault();
+            if(des != null)
+            {
+                ret = ret.Replace("<!--###CurrentJobFitScore_meaning###-->", des.Description);  
+            }
+
+            StringBuilder com_left = new StringBuilder();
+            StringBuilder com_right = new StringBuilder();
+            int countleft = 0;
+            //T5 
+            List<Model_ReportItemResult> T5list = reportlist.Where(o => o.ResultSectionID == 5).ToList();
+            foreach (Model_ReportItemResult i in T5list.Where(o => o.Side_y == 1))
+            {
+
+
+
+                //string bg = "";
+                //switch (i.FitOrNot)
+                //{
+                //    case 1:
+                //        bg = "#eaaf62";
+                //        break;
+                //    case 2:
+                //        bg = "#61d5ea";
+                //        break;
+                //    case 3:
+                //        bg = "#c9cccb";
+                //        break;
+                //}
+                string bg = "bg_blue";
+
+                if (countleft % 2 == 0)
+                    bg = "bg_blue_c";
+
+                 com_left.Append("<tr class=\""+ bg + "\">");
+                com_left.Append("<td "+ (countleft == 0 ? "style=\"border-top:none;\"" : "") + ">"+ i.ResultItemTitle+"</td>");
+                com_left.Append("<td "+ (countleft == 0 ? "style=\"border-top:none;\"" : "") + ">" + (T5list.Where(o => o.Score_y > 0 && o.Frequency_y == 1 && o.ResultItemID == i.ResultItemID).Count() > 0 ? "Y" : "%##%") + (T5list.Where(o => o.Score_c > 0 && o.Frequency_c == 1 && o.ResultItemID == i.ResultItemID).Count() > 0 ? "/C" : "") + "</td>");
+                com_left.Append("<td "+ (countleft == 0 ? "style=\"border-top:none;\"" : "") + ">" + (T5list.Where(o => o.Score_y > 0 && o.Frequency_y == 2 && o.ResultItemID == i.ResultItemID).Count() > 0 ? "Y" : "%##%") + (T5list.Where(o => o.Score_c > 0 && o.Frequency_c == 2 && o.ResultItemID == i.ResultItemID).Count() > 0 ? "/C" : "") + "</td>");
+                  com_left.Append("<td "+ (countleft == 0 ? "style=\"border-top:none;\"" : "") + ">" + (T5list.Where(o => o.Score_y > 0 && o.Frequency_y == 3 && o.ResultItemID == i.ResultItemID).Count() > 0 ? "Y" : "%##%") + (T5list.Where(o => o.Score_c > 0 && o.Frequency_c == 3 && o.ResultItemID == i.ResultItemID).Count() > 0 ? "/C" : "") + "</td>");
+                com_left.Append("</tr>");
+
+                countleft = countleft + 1;
+
+            }
+
+
+            int countfit = 0;
+            int countnotfit = 0;
+            int countright = 0;
+            foreach (Model_ReportItemResult i in T5list.Where(o => o.Side_y == 2))
+            {
+
+
+                string bg = "";
+                switch (i.FitOrNot)
+                {
+                    case 1:
+                        bg = "#eaaf62";
+                        countfit = countfit + 1;
+                        break;
+                    case 2:
+                        bg = "#61d5ea";
+                        break;
+                    case 3:
+                        bg = "#c9cccb";
+                        countnotfit = countnotfit + 1;
+                        break;
+                }
+
+
+                string bg2 = "bg_grey";
+
+                if (countright % 2 == 0)
+                    bg2 = "bg_grey_c";
+
+                com_right.Append("<tr class=\""+ bg2 + "\">");
+                com_right.Append("<td "+ (countright == 0 ? "style=\"border-top:none;\"" : "") + ">" + (T5list.Where(o => o.Score_y > 0 && o.Frequency_y == 3 && o.ResultItemID == i.ResultItemID).Count() > 0 ? "Y" : "%##%") + (T5list.Where(o => o.Score_c > 0 && o.Frequency_c == 3 && o.ResultItemID == i.ResultItemID).Count() > 0 ? "/C" : "") + "</td>");
+                com_right.Append("<td "+ (countright == 0 ? "style=\"border-top:none;\"" : "") + ">"+ (T5list.Where(o => o.Score_y > 0 && o.Frequency_y == 2 && o.ResultItemID == i.ResultItemID).Count() > 0 ? "Y" : "%##%") + (T5list.Where(o => o.Score_c > 0 && o.Frequency_c == 2 && o.ResultItemID == i.ResultItemID).Count() > 0 ? "/C" : "") + "</td>");
+                com_right.Append("<td "+ (countright == 0 ? "style=\"border-top:none;\"" : "") + ">" + (T5list.Where(o => o.Score_y > 0 && o.Frequency_y == 1 && o.ResultItemID == i.ResultItemID).Count() > 0 ? "Y" : "%##%") + (T5list.Where(o => o.Score_c > 0 && o.Frequency_c == 1 && o.ResultItemID == i.ResultItemID).Count() > 0 ? "/C" : "") + "</td>");
+                com_right.Append("<td "+ (countright == 0 ? "style=\"border-top:none;\"" : "") + ">"+ i.ResultItemTitle + "</td>");
+                com_right.Append("</tr>");
+
+
+                countright = countright + 1;
+
+
+
+            }
+
+            ret = ret.Replace("<!--###T5_Left_list###-->", com_left.ToString());
+            ret = ret.Replace("<!--###T5_Rigth_list###-->", com_right.ToString());
+
+            decimal RawResult_t5 = 0.0m;
+            decimal AdjustREsult_t5 = 0.0m;
+            decimal ComFit = 0.0m;
+
+            decimal decFit = (countfit * 100) / 14;
+            decimal decNotFit = (countnotfit * 100) / 14;
+
+            RawResult_t5 = decFit - decNotFit;
+            if (RawResult_t5 > 0)
+                AdjustREsult_t5 = RawResult_t5 + 25;
+
+            ComFit = AdjustREsult_t5;
+
+
+            decimal t5width = ((59 * ComFit) / 10) + 2;
+
+            ret = ret.Replace("<!--###comfit_width###-->", "style=\"width: " + t5width.ToString("0.00") + "px\"" );
+
+            ret = ret.Replace("<!--###comfit###-->", ComFit.ToString());
+          
+
+
+            Model_Com_Rule3 r5 = new Model_Com_Rule3();
+            List<Model_Com_Rule3> r5Explain = r5.GetAll();
+
+            Model_Com_Rule3 des5 = r5Explain.Where(o => o.Range_Start <= ComFit && o.Range_End >= ComFit).FirstOrDefault();
+            if (des5 != null)
+            {
+                ret = ret.Replace("<!--###comfit_meaning###-->", des5.Description);
+            }
+            //if (SumScore > 0)
+
+
+            ret = Regex.Replace(ret, "%##%/", "");
+            ret = Regex.Replace(ret, "%##%", "");
+        }
 
         return ret;
     }

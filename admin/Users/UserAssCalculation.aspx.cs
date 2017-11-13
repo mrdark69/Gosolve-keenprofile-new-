@@ -24,9 +24,7 @@ public partial class Users_UserAssCalculation : BasePage
     }
 
 
-
-   
-
+    
     protected void btnRecal_Click(object sender, EventArgs e)
     {
         if (!string.IsNullOrEmpty(Request.QueryString["ts"]))
@@ -740,6 +738,8 @@ public partial class Users_UserAssCalculation : BasePage
             RawResult = decFit - decNotFit;
             if(RawResult > 0)
                 AdjustREsult = RawResult + 25;
+
+            CurrentJobFitScore = AdjustREsult;
             //if (SumScore > 0)
             //{
             //    RawResult = SumScore / SumIdeal;
