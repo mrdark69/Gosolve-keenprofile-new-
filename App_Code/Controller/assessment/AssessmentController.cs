@@ -1115,24 +1115,22 @@ public class AssessmentController
 
                     }
                    
-
-                    if (countfirst >= 19 && countfirst <= 22 && main.Category == 2)
-                    {
-                        
-                        Model_JobFunctionListMap mapscore = Jobmaplist.Where(o => o.JFID == job.JFID && o.JFMID == main.JFMID).FirstOrDefault();
-
-                        if(mapscore.Score == 1 || mapscore.Score == 2)
-                        {
-                            td = td + "<td style=\"width:50%;\"><img src=\""+url+"/doc_template/images/"+ main.Title.ToLower()+ ".png\" /><span>Promoter</span></td>";
-                        }
-                    }
-
                     
-
                     countfirst = countfirst + 1;
                 }
 
-                dupF = dupF.Replace("<!--###T6_Page_Gen_WorkingTrait###-->", td);
+                foreach (Model_JobFunctionListMain main in jobmainlist.Where(o=>o.Category == 2))
+                {
+                    Model_JobFunctionListMap mapscore = Jobmaplist.Where(o => o.JFID == job.JFID && o.JFMID == main.JFMID).FirstOrDefault();
+
+                    if (mapscore.Score == 1 || mapscore.Score == 2)
+                    {
+                        td = td + "<td style=\"width:50%;\"><img src=\"http://" + url + "/doc_template/images/" + main.Title.ToLower() + ".png\" /><span>"+ main.Title + "</span></td>";
+                    }
+                }
+
+
+                    dupF = dupF.Replace("<!--###T6_Page_Gen_WorkingTrait###-->", td);
                 
                 dupF = dupF.Replace("<!--###T6_Page_Gen_Geniuses###-->", li);
 
@@ -1158,6 +1156,7 @@ public class AssessmentController
                 dup = GetKeywordpRelace;
                 int countsec = 1;
                 string li = string.Empty;
+                string td = string.Empty;
                 foreach (Model_JobFunctionListMain main in jobmainlist)
                 {
                    
@@ -1175,21 +1174,25 @@ public class AssessmentController
 
                     dup = dup.Replace("<!--###T6_Page_Gen_Geniuses###-->", li);
 
-                    if (countsec >= 19 && countsec <= 22 && main.Category == 2)
-                    {
-                        Model_JobFunctionListMap mapscore = Jobmaplist.Where(o => o.JFID == job.JFID && o.JFMID == main.JFMID).FirstOrDefault();
-
-                        if (mapscore.Score == 1 || mapscore.Score == 2)
-                        {
-
-                        }
-                    }
+                   
 
 
 
                     countsec = countsec + 1;
                 }
 
+
+                foreach (Model_JobFunctionListMain main in jobmainlist.Where(o => o.Category == 2))
+                {
+                    Model_JobFunctionListMap mapscore = Jobmaplist.Where(o => o.JFID == job.JFID && o.JFMID == main.JFMID).FirstOrDefault();
+
+                    if (mapscore.Score == 1 || mapscore.Score == 2)
+                    {
+                        td = td + "<td style=\"width:50%;\"><img src=\"http://" + url + "/doc_template/images/" + main.Title.ToLower() + ".png\" /><span>" + main.Title + "</span></td>";
+                    }
+                }
+
+                dup = dup.Replace("<!--###T6_Page_Gen_WorkingTrait###-->", td);
                 dup = dup.Replace("<!--###T6_Page_Gen_Geniuses###-->", li);
 
                 dup = dup.Replace("<!--###T6_Page_Gen_Title###-->", "The Second Job Priority");
