@@ -338,46 +338,68 @@ JobPri_D=@JobPri_D,SumJob=@SumJob,JobFitScore=@JobFitScore,JobFitScoreRank=@JobF
                     cmdupdate.Parameters.Add("@SumGeniuses", SqlDbType.Decimal).Value = re.SumGeniuses;
                 else
                     cmdupdate.Parameters.AddWithValue("@SumGeniuses", DBNull.Value);
+
+
                 if (re.ReqSupGeniuses.HasValue)
                     cmdupdate.Parameters.Add("@ReqSupGeniuses", SqlDbType.Decimal).Value = re.ReqSupGeniuses;
                 else
                     cmdupdate.Parameters.AddWithValue("@ReqSupGeniuses", DBNull.Value);
+
+
                 if (re.ReqSupBottom.HasValue)
                     cmdupdate.Parameters.Add("@ReqSupBottom", SqlDbType.Decimal).Value = re.ReqSupBottom;
                 else
                     cmdupdate.Parameters.AddWithValue("@ReqSupBottom", DBNull.Value);
+
+
                 if (re.SumTrait.HasValue)
                     cmdupdate.Parameters.Add("@SumTrait", SqlDbType.Decimal).Value = re.SumTrait;
                 else
                     cmdupdate.Parameters.AddWithValue("@SumTrait", DBNull.Value);
+
+
                 if (re.MatchingScore.HasValue)
                     cmdupdate.Parameters.Add("@MatchingScore", SqlDbType.Decimal).Value = re.MatchingScore;
                 else
                     cmdupdate.Parameters.AddWithValue("@MatchingScore", DBNull.Value);
+
+
                 if (re.JobPri_A.HasValue)
                     cmdupdate.Parameters.Add("@JobPri_A", SqlDbType.Decimal).Value = re.JobPri_A;
                 else
                     cmdupdate.Parameters.AddWithValue("@JobPri_A", DBNull.Value);
+
+
                 if (re.JobPri_B.HasValue)
                     cmdupdate.Parameters.Add("@JobPri_B", SqlDbType.Decimal).Value = re.JobPri_B;
                 else
                     cmdupdate.Parameters.AddWithValue("@JobPri_B", DBNull.Value);
+
+
                 if (re.JobPri_C.HasValue)
                     cmdupdate.Parameters.Add("@JobPri_C", SqlDbType.Decimal).Value = re.JobPri_C;
                 else
                     cmdupdate.Parameters.AddWithValue("@JobPri_C", DBNull.Value);
+
+
                 if (re.JobPri_D.HasValue)
                     cmdupdate.Parameters.Add("@JobPri_D", SqlDbType.Decimal).Value = re.JobPri_D;
                 else
                     cmdupdate.Parameters.AddWithValue("@JobPri_D", DBNull.Value);
+
+
                 if (re.SumJob.HasValue)
                     cmdupdate.Parameters.Add("@SumJob", SqlDbType.Decimal).Value = re.SumJob;
                 else
                     cmdupdate.Parameters.AddWithValue("@SumJob", DBNull.Value);
+
+
                 if (re.JobFitScore.HasValue)
                     cmdupdate.Parameters.Add("@JobFitScore", SqlDbType.Decimal).Value = re.JobFitScore;
                 else
                     cmdupdate.Parameters.AddWithValue("@JobFitScore", DBNull.Value);
+
+
                 if (re.JobFitScoreRank.HasValue)
                     cmdupdate.Parameters.Add("@JobFitScoreRank", SqlDbType.Decimal).Value = re.JobFitScoreRank;
                 else
@@ -552,46 +574,57 @@ Side_c,T5Group,Score_y,Score_c,Side_y,FitOrNot,UserRank,SumGeniuses,ReqSupGenius
                         cmd.Parameters.Add("@SumGeniuses", SqlDbType.Decimal).Value = re.SumGeniuses;
                     else
                         cmd.Parameters.AddWithValue("@SumGeniuses", DBNull.Value);
+
                     if (re.ReqSupGeniuses.HasValue)
                         cmd.Parameters.Add("@ReqSupGeniuses", SqlDbType.Decimal).Value = re.ReqSupGeniuses;
                     else
                         cmd.Parameters.AddWithValue("@ReqSupGeniuses", DBNull.Value);
+
                     if (re.ReqSupBottom.HasValue)
                         cmd.Parameters.Add("@ReqSupBottom", SqlDbType.Decimal).Value = re.ReqSupBottom;
                     else
                         cmd.Parameters.AddWithValue("@ReqSupBottom", DBNull.Value);
+
                     if (re.SumTrait.HasValue)
                         cmd.Parameters.Add("@SumTrait", SqlDbType.Decimal).Value = re.SumTrait;
                     else
                         cmd.Parameters.AddWithValue("@SumTrait", DBNull.Value);
+
                     if (re.MatchingScore.HasValue)
                         cmd.Parameters.Add("@MatchingScore", SqlDbType.Decimal).Value = re.MatchingScore;
                     else
                         cmd.Parameters.AddWithValue("@MatchingScore", DBNull.Value);
+
                     if (re.JobPri_A.HasValue)
                         cmd.Parameters.Add("@JobPri_A", SqlDbType.Decimal).Value = re.JobPri_A;
                     else
                         cmd.Parameters.AddWithValue("@JobPri_A", DBNull.Value);
+
                     if (re.JobPri_B.HasValue)
                         cmd.Parameters.Add("@JobPri_B", SqlDbType.Decimal).Value = re.JobPri_B;
                     else
                         cmd.Parameters.AddWithValue("@JobPri_B", DBNull.Value);
+
                     if (re.JobPri_C.HasValue)
                         cmd.Parameters.Add("@JobPri_C", SqlDbType.Decimal).Value = re.JobPri_C;
                     else
                         cmd.Parameters.AddWithValue("@JobPri_C", DBNull.Value);
+
                     if (re.JobPri_D.HasValue)
                         cmd.Parameters.Add("@JobPri_D", SqlDbType.Decimal).Value = re.JobPri_D;
                     else
                         cmd.Parameters.AddWithValue("@JobPri_D", DBNull.Value);
+
                     if (re.SumJob.HasValue)
                         cmd.Parameters.Add("@SumJob", SqlDbType.Decimal).Value = re.SumJob;
                     else
                         cmd.Parameters.AddWithValue("@SumJob", DBNull.Value);
+
                     if (re.JobFitScore.HasValue)
                         cmd.Parameters.Add("@JobFitScore", SqlDbType.Decimal).Value = re.JobFitScore;
                     else
                         cmd.Parameters.AddWithValue("@JobFitScore", DBNull.Value);
+
                     if (re.JobFitScoreRank.HasValue)
                         cmd.Parameters.Add("@JobFitScoreRank", SqlDbType.Decimal).Value = re.JobFitScoreRank;
                     else

@@ -82,9 +82,13 @@ public partial class _Default : BasePageFront
                 string report2 = AssessmentController.GetPaperReport2(u);
                 byte[] html2 = pdfgen.pdfGenerate(report2);
 
-                pdfgen.ToClientSave(html2, "Your Current Job & Company Fit Report");
+                pdfgen.ToClientSave(html2, "Your-Current-Job-Company-Fit-Report");
                 break;
             case 3:
+                string report3 = AssessmentController.GetPaperReport3(u);
+                byte[] html3 = pdfgen.pdfGenerate(report3);
+
+                pdfgen.ToClientSave(html3, "The-Right-Job-Functions-Report");
                 break;
         }
     }

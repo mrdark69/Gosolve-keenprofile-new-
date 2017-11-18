@@ -32,6 +32,15 @@ public class Model_JobFunctionGroup: BaseModel<Model_JobFunctionGroup>
             return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
         }
     }
+    public List<Model_JobFunctionGroup> GetAllActive()
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM JobFunctionGroup ORDER BY Priority ASC", cn);
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+        }
+    }
 
     public Model_JobFunctionGroup GetByID(int intID)
     {

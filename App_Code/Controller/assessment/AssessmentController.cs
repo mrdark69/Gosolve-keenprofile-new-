@@ -754,6 +754,459 @@ public class AssessmentController
 
         return ret;
     }
+
+    public static string GetPaperReport3(Model_Users u)
+    {
+        string ret = StringUtility.GetPDFTemplate("report3");
+
+        string userfullname = u.FirstName + " " + u.LastName;
+
+        Model_UsersTransaction ts = new Model_UsersTransaction();
+        ts = ts.GetTsLatestByUser(u.UserID);
+
+
+        if (ts != null && u != null)
+        {
+            Model_ReportItemResult report = new Model_ReportItemResult();
+            List<Model_ReportItemResult> reportlist = report.GetItemReportByTransactionIDwithTitle(ts.TransactionID);
+
+            ret = Regex.Replace(ret, "<!--###FullName###-->", userfullname);
+
+            //T1 process
+
+            List<Model_ReportItemResult> T1list = reportlist.Where(o => o.ResultSectionID == 1).ToList();
+            var T1Rank = T1list.Select(s => new {
+                ResultID = s.ResultID,
+                Title = s.ResultItemTitle,
+                ResultItemID = s.ResultItemID,
+                des_Detail = s.des_Detail,
+                des_PeopleTxt = s.des_PeopleTxt,
+                des_CultureTxt = s.des_CultureTxt,
+                des_Short = s.des_Short,
+                des_CompetitionTxt = s.des_CompetitionTxt,
+                Ranking = T1list.Count(x => (decimal)x.Score > (decimal)s.Score) + 1,
+
+            });
+
+            int Innovation = T1Rank.FirstOrDefault(o => o.ResultItemID == 1).Ranking;
+            int Service = T1Rank.FirstOrDefault(o => o.ResultItemID == 2).Ranking;
+            int Cost = T1Rank.FirstOrDefault(o => o.ResultItemID == 3).Ranking;
+
+            if (Innovation == 1 || Innovation == 2)
+                ret = ret.Replace("<!--###css_color_1###-->", "item_blue");
+            if (Service == 1 || Service == 2)
+                ret = ret.Replace("<!--###css_color_2###-->", "item_blue");
+            if (Cost == 1 || Cost == 2)
+                ret = ret.Replace("<!--###css_color_3###-->", "item_blue");
+
+            ret = ret.Replace("<!--###css_color_1###-->", "");
+            ret = ret.Replace("<!--###css_color_2###-->", "");
+            ret = ret.Replace("<!--###css_color_3###-->", "");
+
+            ret = ret.Replace("<!--###T1_1###-->", Innovation.ToString());
+            ret = ret.Replace("<!--###T1_2###-->", Service.ToString());
+            ret = ret.Replace("<!--###T1_3###-->", Cost.ToString());
+
+
+            string phi = string.Empty;
+
+            int countphi = 1;
+            foreach (var i in T1Rank.Where(o => o.Ranking <= 2).OrderBy(o => o.Ranking))
+            {
+                if (countphi <= 2)
+                {
+
+
+                    phi = phi + "<li>" + countphi + "." + i.Title + "</li>";
+
+
+
+
+
+                }
+
+                countphi = countphi + 1;
+            }
+
+
+            ret = ret.Replace("<!--###T2_phi_7###-->", phi);
+            //T2 process
+
+            List<Model_ReportItemResult> T2list = reportlist.Where(o => o.ResultSectionID == 2).ToList();
+            var T2Rank = T2list.Select(s => new {
+                ResultID = s.ResultID,
+                ResultItemID = s.ResultItemID,
+                Title = s.ResultItemTitle,
+                des_Detail = s.des_Detail,
+                des_PeopleTxt = s.des_PeopleTxt,
+                des_CultureTxt = s.des_CultureTxt,
+                des_Short = s.des_Short,
+                des_CompetitionTxt = s.des_CompetitionTxt,
+                Ranking = T2list.Count(x => (decimal)x.Score > (decimal)s.Score) + 1,
+
+            });
+
+            int Inventor = T2Rank.FirstOrDefault(o => o.ResultItemID == 4).Ranking;
+            int Promoter = T2Rank.FirstOrDefault(o => o.ResultItemID == 5).Ranking;
+            int Optimizer = T2Rank.FirstOrDefault(o => o.ResultItemID == 6).Ranking;
+            int Controller = T2Rank.FirstOrDefault(o => o.ResultItemID == 7).Ranking;
+
+            if (Inventor == 1 || Inventor == 2)
+                ret = ret.Replace("<!--###css_color_1_1###-->", "item_blue_bg");
+            if (Promoter == 1 || Promoter == 2)
+                ret = ret.Replace("<!--###css_color_2_2###-->", "item_blue_bg");
+            if (Optimizer == 1 || Optimizer == 2)
+                ret = ret.Replace("<!--###css_color_3_3###-->", "item_blue_bg");
+            if (Controller == 1 || Controller == 2)
+                ret = ret.Replace("<!--###css_color_4_4###-->", "item_blue_bg");
+
+            ret = ret.Replace("<!--###css_color_1_1###-->", "");
+            ret = ret.Replace("<!--###css_color_2_2###-->", "");
+            ret = ret.Replace("<!--###css_color_3_3###-->", "");
+            ret = ret.Replace("<!--###css_color_4_4###-->", "");
+
+            ret = ret.Replace("<!--###T2_1###-->", Inventor.ToString());
+            ret = ret.Replace("<!--###T2_2###-->", Promoter.ToString());
+            ret = ret.Replace("<!--###T2_3###-->", Optimizer.ToString());
+            ret = ret.Replace("<!--###T2_4###-->", Controller.ToString());
+
+
+
+            string trait = string.Empty;
+            StringBuilder traitdetail = new StringBuilder();
+            int count = 1;
+            foreach (var i in T2Rank.Where(o => o.Ranking <= 2).OrderBy(o => o.Ranking))
+            {
+                if (count <= 2)
+                {
+                    trait = trait + "<li>" + count + "." + i.Title + "</li>";
+
+
+
+                    traitdetail.Append("<div class=\"desscription-body big\">");
+                    traitdetail.Append("<div class=\"desscription-body-block left\">");
+                    traitdetail.Append("<div class=\"square-block big bg-blue\">");
+                    traitdetail.Append(" " + i.Title + " <br />(1)");
+                    traitdetail.Append("</div>");
+                    traitdetail.Append("</div>");
+                    traitdetail.Append("<div class=\"desscription-body-block right\">");
+                    traitdetail.Append(" <p><span>" + i.Title + "</span></p>");
+                    traitdetail.Append("<p>");
+                    traitdetail.Append(i.des_Detail);
+                    traitdetail.Append("</p>");
+                    traitdetail.Append("</div>");
+                    traitdetail.Append(" </div>");
+                }
+
+
+
+                count = count + 1;
+
+            }
+
+            ret = ret.Replace("<!--###T2_des_detail###-->", traitdetail.ToString());
+            ret = ret.Replace("<!--###T2_trait_7###-->", trait);
+
+            //T3 process
+
+            List<Model_ReportItemResult> T3list = reportlist.Where(o => o.ResultSectionID == 3).ToList();
+            var T3Rank = T3list.Select(s => new {
+                ResultID = s.ResultID,
+                ResultItemID = s.ResultItemID,
+                Title = s.ResultItemTitle,
+                Isabove = s.IsAbove,
+                Isbelow = s.IsBelow,
+                des_Detail = s.des_Detail,
+                des_PeopleTxt = s.des_PeopleTxt,
+                des_CultureTxt = s.des_CultureTxt,
+                des_Short = s.des_Short,
+                des_CompetitionTxt = s.des_CompetitionTxt,
+                Ranking = T3list.Count(x => (decimal)x.Score_new > (decimal)s.Score_new) + 1,
+
+            });
+
+
+            ret = jobT3(T3Rank, ret, "Creative", 8, 1);
+            ret = jobT3(T3Rank, ret, "Strategic", 9, 2);
+            ret = jobT3(T3Rank, ret, "Analytical", 10, 3);
+            ret = jobT3(T3Rank, ret, "Numerical", 11, 4);
+            ret = jobT3(T3Rank, ret, "Prudently", 12, 5);
+            ret = jobT3(T3Rank, ret, "Obstacle", 13, 6);
+            ret = jobT3(T3Rank, ret, "Words", 14, 7);
+            ret = jobT3(T3Rank, ret, "Strong", 15, 8);
+            ret = jobT3(T3Rank, ret, "Socialize", 16, 9);
+            ret = jobT3(T3Rank, ret, "Knowledge", 17, 10);
+            ret = jobT3(T3Rank, ret, "Individualizing", 18, 11);
+            ret = jobT3(T3Rank, ret, "Sensation", 19, 12);
+            ret = jobT3(T3Rank, ret, "Momentum", 20, 13);
+            ret = jobT3(T3Rank, ret, "Working", 21, 14);
+            ret = jobT3(T3Rank, ret, "Emotion", 22, 15);
+            ret = jobT3(T3Rank, ret, "Time", 23, 16);
+            ret = jobT3(T3Rank, ret, "Priority", 24, 17);
+            ret = jobT3(T3Rank, ret, "Delegating", 25, 18);
+
+            string top7 = string.Empty;
+
+            int count7 = 1;
+            foreach (var i in T3Rank.Where(o => o.Ranking <= 7).OrderBy(o => o.Ranking))
+            {
+                if (count <= 7)
+                {
+                    top7 = top7 + "<li>" + count7 + "." + i.Title + (i.Isabove ? "*" : "") + "</li>";
+
+
+
+                }
+
+
+
+
+
+
+                count7 = count7 + 1;
+
+            }
+
+            ret = ret.Replace("<!--###T3_TOP_7###-->", top7);
+
+
+            string bottom4 = string.Empty;
+            int count4 = 1;
+
+            foreach (var i in T3Rank.Where(o => o.Ranking > 14).OrderBy(o => o.Ranking))
+            {
+
+
+                if (count4 <= 4)
+                {
+                    bottom4 = bottom4 + "<li>" + count4 + "." + i.Title + (i.Isbelow ? "*" : "") + "</li>";
+
+                }
+
+
+                count4 = count4 + 1;
+
+            }
+
+            ret = ret.Replace("<!--###T3_Bottom_4###-->", bottom4);
+
+
+            //T6 process
+
+            string url = HttpContext.Current.Request.Url.Host;
+
+            //HttpContext.Current.Response.Write(url);
+            //HttpContext.Current.Response.End();
+            ret = ret.Replace("<!--###T6_URL###-->", "http://" +url);
+            
+
+            List<Model_ReportItemResult> T6list = reportlist.Where(o => o.ResultSectionID == 6).OrderBy(o => o.JobFitScoreRank).ToList();
+            Model_ReportSectionItem ReportSection = new Model_ReportSectionItem();
+            List<Model_ReportSectionItem> SectionItem = ReportSection.GetListItemBySectionID(6);
+
+            Model_JobFunctionGroup jg = new Model_JobFunctionGroup();
+            List<Model_JobFunctionGroup> jglist = jg.GetAllActive();
+
+            Model_Jobfunction jobf = new Model_Jobfunction();
+            List<Model_Jobfunction> joblist = jobf.GetAll();
+
+
+            Model_JobFunctionListMain joblistmain = new Model_JobFunctionListMain();
+            List<Model_JobFunctionListMain> jobmainlist = joblistmain.GetAllActive();
+
+            Model_JobFunctionListMap JobMap = new Model_JobFunctionListMap();
+            List<Model_JobFunctionListMap> Jobmaplist = JobMap.GetAllList();
+
+
+            //get Top priority with 
+            int countpri = 1;
+            StringBuilder topPri = new StringBuilder();
+            StringBuilder secPri = new StringBuilder();
+
+            List<Model_Jobfunction> ArrJobFirst = new List<Model_Jobfunction>();
+            List<Model_Jobfunction> ArrJobSecound = new List<Model_Jobfunction>();
+            foreach (Model_ReportItemResult item in T6list)
+            {
+                if(countpri <= 4)
+                {
+                    string bg = "bg-blue-smooth";
+                    if (countpri % 2 == 0)
+                        bg = "bg-blue-smooth-thin";
+
+                    string Groupname = string.Empty;
+                  string SUCID =  SectionItem.Where(o => o.ResultItemID == item.ResultItemID).Select(o => o.SUCID).FirstOrDefault();
+                    if (!String.IsNullOrEmpty(SUCID))
+                    {
+                        Model_Jobfunction job = joblist.Where(o => o.JFID == int.Parse(SUCID)).FirstOrDefault();
+                        if(job != null)
+                        {
+                            Model_JobFunctionGroup jobgroup = jglist.Where(o => o.JGID == job.JGID).FirstOrDefault();
+                            Groupname = "(" + jobgroup.Title + ")";
+
+                            ArrJobFirst.Add(job);
+                        }
+                        
+                    }
+
+                    topPri.Append("<tr><td class=\""+ bg + "\">"+ item.ResultItemTitle+ " " + Groupname + "</td></tr>");
+
+
+                }
+
+                if(countpri> 4 && countpri <= 8)
+                {
+                    string bg = "bg-grey-smooth";
+                    if (countpri%2 == 0)
+                         bg = "bg-grey-smooth-thin";
+
+
+                    string Groupname = string.Empty;
+                    string SUCID = SectionItem.Where(o => o.ResultItemID == item.ResultItemID).Select(o => o.SUCID).FirstOrDefault();
+                    if (!String.IsNullOrEmpty(SUCID))
+                    {
+                        Model_Jobfunction job = joblist.Where(o => o.JFID == int.Parse(SUCID)).FirstOrDefault();
+                        if (job != null)
+                        {
+                            Model_JobFunctionGroup jobgroup = jglist.Where(o => o.JGID == job.JGID).FirstOrDefault();
+                            Groupname = "(" + jobgroup.Title + ")";
+
+                            ArrJobSecound.Add(job);
+                        }
+
+                    }
+
+                    secPri.Append("<tr><td class=\""+ bg + "\">" + item.ResultItemTitle + " " + Groupname + "</td></tr>");
+                }
+
+                countpri = countpri + 1;
+            }
+
+
+            ret = ret.Replace("<!--###T6_First_Pri###-->", topPri.ToString());
+            ret = ret.Replace("<!--###T6_Sec_Pri###-->", secPri.ToString());
+
+
+
+            string GetKeywordpRelace = StringUtility.GetKeywordpRelace(ret, "<!--###T6_Page_Gen_Start###-->", "<!--###T6_Page_Gen_End###-->");
+            StringBuilder First = new StringBuilder();
+            StringBuilder Secound = new StringBuilder();
+            List<Model_ReportItemResult> T4list = reportlist.Where(o => o.ResultSectionID == 4).OrderByDescending(o => o.Score_new).ToList();
+
+            // Generate Page dynamics First 
+            string dupF = string.Empty;
+            foreach (Model_Jobfunction job in ArrJobFirst)
+            {
+                dupF = GetKeywordpRelace;
+                int countfirst = 1;
+                string li = string.Empty;
+                string td = string.Empty;
+                foreach (Model_JobFunctionListMain main in jobmainlist)
+                {
+                    if(countfirst <= 7)
+                    {
+                        Model_ReportItemResult ass = T4list.Where(o => o.ResultItemID == int.Parse(main.Mapping)).FirstOrDefault();
+
+                        Model_JobFunctionListMap mapscore = Jobmaplist.Where(o => o.JFID == job.JFID && o.JFMID == main.JFMID).FirstOrDefault();
+
+                        if(( ass.GT == 1 || ass.GT == 2 ) && (mapscore.Score == 4 || mapscore.Score == 5))
+                        {
+                            li = li + "<li>" + main.Title + "</li>\r\n";
+                        }
+
+                    }
+                   
+
+                    if (countfirst >= 19 && countfirst <= 22 && main.Category == 2)
+                    {
+                        
+                        Model_JobFunctionListMap mapscore = Jobmaplist.Where(o => o.JFID == job.JFID && o.JFMID == main.JFMID).FirstOrDefault();
+
+                        if(mapscore.Score == 1 || mapscore.Score == 2)
+                        {
+                            td = td + "<td style=\"width:50%;\"><img src=\""+url+"/doc_template/images/"+ main.Title.ToLower()+ ".png\" /><span>Promoter</span></td>";
+                        }
+                    }
+
+                    
+
+                    countfirst = countfirst + 1;
+                }
+
+                dupF = dupF.Replace("<!--###T6_Page_Gen_WorkingTrait###-->", td);
+                
+                dupF = dupF.Replace("<!--###T6_Page_Gen_Geniuses###-->", li);
+
+                dupF = dupF.Replace("<!--###T6_Page_Gen_Title###-->", "The First Job Priority");
+                dupF = dupF.Replace("<!--###T6_Page_Gen_Job_Title###-->", job.Title);
+                dupF = dupF.Replace("<!--###T6_Page_Gen_Job_Group###-->", job.GroupName);
+
+                // des process 
+
+
+                First.Append(dupF);
+            }
+
+
+            // Generate Page dynamics Secound
+
+           
+
+            string dup = string.Empty;
+
+            foreach (Model_Jobfunction job in ArrJobSecound)
+            {
+                dup = GetKeywordpRelace;
+                int countsec = 1;
+                string li = string.Empty;
+                foreach (Model_JobFunctionListMain main in jobmainlist)
+                {
+                   
+                    if (countsec <= 7)
+                    {
+                        Model_ReportItemResult ass = T4list.Where(o => o.ResultItemID == int.Parse(main.Mapping)).FirstOrDefault();
+
+                        Model_JobFunctionListMap mapscore = Jobmaplist.Where(o => o.JFID == job.JFID && o.JFMID == main.JFMID).FirstOrDefault();
+
+                        if ((ass.GT == 1 || ass.GT == 2) && (mapscore.Score == 4 || mapscore.Score == 5))
+                        {
+                            li = li + "<li>"+ main .Title+ "</li>";
+                        }
+                    }
+
+                    dup = dup.Replace("<!--###T6_Page_Gen_Geniuses###-->", li);
+
+                    if (countsec >= 19 && countsec <= 22 && main.Category == 2)
+                    {
+                        Model_JobFunctionListMap mapscore = Jobmaplist.Where(o => o.JFID == job.JFID && o.JFMID == main.JFMID).FirstOrDefault();
+
+                        if (mapscore.Score == 1 || mapscore.Score == 2)
+                        {
+
+                        }
+                    }
+
+
+
+                    countsec = countsec + 1;
+                }
+
+                dup = dup.Replace("<!--###T6_Page_Gen_Geniuses###-->", li);
+
+                dup = dup.Replace("<!--###T6_Page_Gen_Title###-->", "The Second Job Priority");
+                dup = dup.Replace("<!--###T6_Page_Gen_Job_Title###-->", job.Title);
+                dup = dup.Replace("<!--###T6_Page_Gen_Job_Group###-->", job.GroupName);
+
+                // des process 
+
+                Secound.Append(dup);
+            }
+
+            ret = ret.Replace(GetKeywordpRelace, First.ToString() + Secound.ToString());
+        }
+
+        return ret;
+    }
+
     public static string jobT3(IEnumerable<dynamic> T3Rank, string ret, string title, int intResultItemID, int StepContent ) 
     {
         var data = T3Rank.FirstOrDefault(o => (int)o.ResultItemID == intResultItemID);
