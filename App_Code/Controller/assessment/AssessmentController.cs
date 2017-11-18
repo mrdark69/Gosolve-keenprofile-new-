@@ -1102,18 +1102,18 @@ public class AssessmentController
                 string td = string.Empty;
                 foreach (Model_JobFunctionListMain main in jobmainlist)
                 {
-                    if(countfirst <= 7)
-                    {
+                    //if(countfirst <= 7)
+                    //{
                         Model_ReportItemResult ass = T4list.Where(o => o.ResultItemID == int.Parse(main.Mapping)).FirstOrDefault();
 
                         Model_JobFunctionListMap mapscore = Jobmaplist.Where(o => o.JFID == job.JFID && o.JFMID == main.JFMID).FirstOrDefault();
 
-                        if(( ass.GT == 1 || ass.GT == 2 ) && (mapscore.Score == 4 || mapscore.Score == 5))
+                        if(( ass.GT == 1 || ass.GT == 2 ) && (mapscore.Score == 4 || mapscore.Score == 5 || mapscore.Score == 3))
                         {
                             li = li + "<li>" + main.Title + "</li>\r\n";
                         }
 
-                    }
+                    //}
                    
                     
                     countfirst = countfirst + 1;
@@ -1160,17 +1160,17 @@ public class AssessmentController
                 foreach (Model_JobFunctionListMain main in jobmainlist)
                 {
                    
-                    if (countsec <= 7)
-                    {
+                    //if (countsec <= 7)
+                    //{
                         Model_ReportItemResult ass = T4list.Where(o => o.ResultItemID == int.Parse(main.Mapping)).FirstOrDefault();
 
                         Model_JobFunctionListMap mapscore = Jobmaplist.Where(o => o.JFID == job.JFID && o.JFMID == main.JFMID).FirstOrDefault();
 
-                        if ((ass.GT == 1 || ass.GT == 2) && (mapscore.Score == 4 || mapscore.Score == 5))
+                        if ((ass.GT == 1 || ass.GT == 2) && (mapscore.Score == 4 || mapscore.Score == 5 || mapscore.Score == 3))
                         {
                             li = li + "<li>"+ main .Title+ "</li>";
                         }
-                    }
+                    //}
 
                     dup = dup.Replace("<!--###T6_Page_Gen_Geniuses###-->", li);
 
