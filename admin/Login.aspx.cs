@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using gs_newsletter;
 
-public partial class Account_Login : Page
+public partial class Login : Page
 {
     
         protected void Page_Load(object sender, EventArgs e)

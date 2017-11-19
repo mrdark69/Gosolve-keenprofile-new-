@@ -1102,8 +1102,11 @@ public class AssessmentController
                 string td = string.Empty;
                 foreach (Model_JobFunctionListMain main in jobmainlist)
                 {
+
                     //if(countfirst <= 7)
                     //{
+
+
                         Model_ReportItemResult ass = T4list.Where(o => o.ResultItemID == int.Parse(main.Mapping)).FirstOrDefault();
 
                         Model_JobFunctionListMap mapscore = Jobmaplist.Where(o => o.JFID == job.JFID && o.JFMID == main.JFMID).FirstOrDefault();
