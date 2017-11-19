@@ -1100,7 +1100,7 @@ public class AssessmentController
                 int countfirst = 1;
                 string li = string.Empty;
                 string td = string.Empty;
-                foreach (Model_JobFunctionListMain main in jobmainlist)
+                foreach (Model_JobFunctionListMain main in jobmainlist.Where(o => o.Category == 1))
                 {
 
                     //if(countfirst <= 7)
@@ -1160,7 +1160,7 @@ public class AssessmentController
                 int countsec = 1;
                 string li = string.Empty;
                 string td = string.Empty;
-                foreach (Model_JobFunctionListMain main in jobmainlist)
+                foreach (Model_JobFunctionListMain main in jobmainlist.Where(o => o.Category == 1))
                 {
                    
                     //if (countsec <= 7)
