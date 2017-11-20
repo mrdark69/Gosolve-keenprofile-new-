@@ -1133,7 +1133,7 @@ public class AssessmentController
                 }
 
 
-                    dupF = dupF.Replace("<!--###T6_Page_Gen_WorkingTrait###-->", td);
+                dupF = dupF.Replace("<!--###T6_Page_Gen_WorkingTrait###-->", td);
                 
                 dupF = dupF.Replace("<!--###T6_Page_Gen_Geniuses###-->", li);
 
@@ -1171,16 +1171,10 @@ public class AssessmentController
 
                         if ((ass.GT == 1 || ass.GT == 2) && (mapscore.Score == 4 || mapscore.Score == 5 || mapscore.Score == 3))
                         {
-                            li = li + "<li>"+ main .Title+ "</li>";
+                            li = li + "<li>"+ main .Title+ "</li>\r\n";
                         }
                     //}
-
-                    dup = dup.Replace("<!--###T6_Page_Gen_Geniuses###-->", li);
-
-                   
-
-
-
+                    
                     countsec = countsec + 1;
                 }
 
