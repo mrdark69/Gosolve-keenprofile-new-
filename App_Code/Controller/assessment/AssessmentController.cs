@@ -1141,9 +1141,24 @@ public class AssessmentController
                 dupF = dupF.Replace("<!--###T6_Page_Gen_Job_Title###-->", job.Title);
                 dupF = dupF.Replace("<!--###T6_Page_Gen_Job_Group###-->", job.GroupName);
 
+
+                
+
                 // des process 
 
+                dupF = dupF.Replace("<!--###T6_Page_Gen_des###-->", job.DesInto);
 
+                StringBuilder desbulet = new StringBuilder();
+
+                desbulet.Append( string.IsNullOrEmpty(job.Des1)? "" : "<li>"+job.Des1+"</li>");
+                desbulet.Append(string.IsNullOrEmpty(job.Des2) ? "" : "<li>" + job.Des2 + "</li>");
+                desbulet.Append(string.IsNullOrEmpty(job.Des3) ? "" : "<li>" + job.Des3 + "</li>");
+                desbulet.Append(string.IsNullOrEmpty(job.Des4) ? "" : "<li>" + job.Des4 + "</li>");
+                desbulet.Append(string.IsNullOrEmpty(job.Des5) ? "" : "<li>" + job.Des5 + "</li>");
+
+                dupF = dupF.Replace("<!--###T6_Page_Gen_des_list###-->", desbulet.ToString());
+
+                
                 First.Append(dupF);
             }
 
@@ -1197,6 +1212,19 @@ public class AssessmentController
                 dup = dup.Replace("<!--###T6_Page_Gen_Job_Group###-->", job.GroupName);
 
                 // des process 
+
+
+                dup = dup.Replace("<!--###T6_Page_Gen_des###-->", job.DesInto);
+
+                StringBuilder desbulet2 = new StringBuilder();
+
+                desbulet2.Append(string.IsNullOrEmpty(job.Des1) ? "" : "<li>" + job.Des1 + "</li>");
+                desbulet2.Append(string.IsNullOrEmpty(job.Des2) ? "" : "<li>" + job.Des2 + "</li>");
+                desbulet2.Append(string.IsNullOrEmpty(job.Des3) ? "" : "<li>" + job.Des3 + "</li>");
+                desbulet2.Append(string.IsNullOrEmpty(job.Des4) ? "" : "<li>" + job.Des4 + "</li>");
+                desbulet2.Append(string.IsNullOrEmpty(job.Des5) ? "" : "<li>" + job.Des5 + "</li>");
+
+                dup = dup.Replace("<!--###T6_Page_Gen_des_list###-->", desbulet2.ToString());
 
                 Secound.Append(dup);
             }
