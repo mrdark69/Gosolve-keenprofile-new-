@@ -38,8 +38,11 @@ public class AssessmentController
             Model_ReportItemResult report = new Model_ReportItemResult();
             List<Model_ReportItemResult> reportlist = report.GetItemReportByTransactionIDwithTitle(ts.TransactionID);
 
-            ret = Regex.Replace(ret, "<!--###FullName###-->", userfullname); 
+            ret = Regex.Replace(ret, "<!--###FullName###-->", userfullname);
 
+            DateTime Date = DateTime.Now;
+
+            ret = Regex.Replace(ret, "<!--###Datetime###-->", Date.ToString("dd-MMM-yyyy"));
             //T1 process
 
             List<Model_ReportItemResult> T1list = reportlist.Where(o => o.ResultSectionID == 1).ToList();
@@ -339,7 +342,9 @@ public class AssessmentController
             List<Model_ReportItemResult> reportlist = report.GetItemReportByTransactionIDwithTitle(ts.TransactionID);
 
             ret = Regex.Replace(ret, "<!--###FullName###-->", userfullname);
+            DateTime Date = DateTime.Now;
 
+            ret = Regex.Replace(ret, "<!--###Datetime###-->", Date.ToString("dd-MMM-yyyy"));
             //T1 process
 
             List<Model_ReportItemResult> T1list = reportlist.Where(o => o.ResultSectionID == 1).ToList();
@@ -771,7 +776,9 @@ public class AssessmentController
             List<Model_ReportItemResult> reportlist = report.GetItemReportByTransactionIDwithTitle(ts.TransactionID);
 
             ret = Regex.Replace(ret, "<!--###FullName###-->", userfullname);
+            DateTime Date = DateTime.Now;
 
+            ret = Regex.Replace(ret, "<!--###Datetime###-->", Date.ToString("dd-MMM-yyyy"));
             //T1 process
 
             List<Model_ReportItemResult> T1list = reportlist.Where(o => o.ResultSectionID == 1).ToList();
@@ -1092,6 +1099,8 @@ public class AssessmentController
             StringBuilder Secound = new StringBuilder();
             List<Model_ReportItemResult> T4list = reportlist.Where(o => o.ResultSectionID == 4).OrderByDescending(o => o.Score_new).ToList();
 
+
+            int countPageDynamic = 10;
             // Generate Page dynamics First 
             string dupF = string.Empty;
             foreach (Model_Jobfunction job in ArrJobFirst)
@@ -1158,8 +1167,13 @@ public class AssessmentController
 
                 dupF = dupF.Replace("<!--###T6_Page_Gen_des_list###-->", desbulet.ToString());
 
-                
+
+                dupF = dupF.Replace("<!--###Page_dynamic###-->", countPageDynamic.ToString());
+                dupF = dupF.Replace("<!--###Datetime_dynamic###-->", Date.ToString("dd-MMM-yyyy"));
+
                 First.Append(dupF);
+
+                countPageDynamic = countPageDynamic + 1;
             }
 
 
@@ -1226,10 +1240,28 @@ public class AssessmentController
 
                 dup = dup.Replace("<!--###T6_Page_Gen_des_list###-->", desbulet2.ToString());
 
+
+                dup = dup.Replace("<!--###Page_dynamic###-->", countPageDynamic.ToString());
+                dup = dup.Replace("<!--###Datetime_dynamic###-->", Date.ToString("dd-MMM-yyyy"));
+
                 Secound.Append(dup);
+
+                countPageDynamic = countPageDynamic + 1;
             }
 
+
+
             ret = ret.Replace(GetKeywordpRelace, First.ToString() + Secound.ToString());
+
+            ret = ret.Replace("<!--###Page_dynamic+3###-->", (countPageDynamic+2).ToString());
+            ret = ret.Replace("<!--###Page_dynamic+4###-->", (countPageDynamic + 3).ToString());
+            ret = ret.Replace("<!--###Page_dynamic+5###-->", (countPageDynamic + 4).ToString());
+
+            //countPageDynamic
+
+            ret = ret.Replace("<!--###pageEnd###-->", (countPageDynamic -1).ToString());
+
+            ret = ret.Replace("<!--###Paperend###-->", (countPageDynamic + 2).ToString() + "-" + (countPageDynamic + 4).ToString());
         }
 
         return ret;
