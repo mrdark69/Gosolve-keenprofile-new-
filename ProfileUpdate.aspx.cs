@@ -66,8 +66,10 @@ public partial class _ProfileUpdate : BasePageFront
                 strcjf.Append("<div  class=\"checkitem\">");
 
 
-                foreach (Model_CJF i in cjflist)
+                foreach (Model_CJF i in cjflist.Where(o=>o.Status))
                 {
+
+
 
                     string check = string.Empty;
                     if (cjfuserChecked.Where(r => r.CJFID == i.CJFID).Count() > 0)
@@ -87,27 +89,27 @@ public partial class _ProfileUpdate : BasePageFront
 
 
 
-                strfc.Append("<div class=\"checkitem\">");
+                //strfc.Append("<div class=\"checkitem\">");
 
-                foreach (Model_FC i in fclist)
-                {
+                //foreach (Model_FC i in fclist)
+                //{
 
-                    string check = string.Empty;
-                    if (fcuserchecked.Where(r => r.FCID == i.FCID).Count() > 0)
-                        check = "Checked=\"Checked\"";
+                //    string check = string.Empty;
+                //    if (fcuserchecked.Where(r => r.FCID == i.FCID).Count() > 0)
+                //        check = "Checked=\"Checked\"";
 
-                    strfc.Append("<div class=\"item\">");
-                    strfc.Append("<input  type=\"checkbox\" name=\"chckFC_form\" " + check + " class=\"role_fc_valid\" value=\"" + i.FCID + "\">");
-                    strfc.Append("<label>" + i.Title + "</label>");
-                    strfc.Append("</div>");
+                //    strfc.Append("<div class=\"item\">");
+                //    strfc.Append("<input  type=\"checkbox\" name=\"chckFC_form\" " + check + " class=\"role_fc_valid\" value=\"" + i.FCID + "\">");
+                //    strfc.Append("<label>" + i.Title + "</label>");
+                //    strfc.Append("</div>");
 
 
-                }
+                //}
 
-                strfc.Append("</div>");
+                //strfc.Append("</div>");
 
                 chckCJF.Text = strcjf.ToString();
-                checkFC.Text = strfc.ToString();
+                //checkFC.Text = strfc.ToString();
 
 
                 Maintitle.Text = "Your Profile";

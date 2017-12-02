@@ -185,15 +185,15 @@
 
                                             </div>
                                         </div>
-                                 <div class="form-group"><label class="col-sm-2 control-label">Functional Competencies:</label>
+                                <%-- <div class="form-group"><label class="col-sm-2 control-label">Functional Competencies:</label>
 
                                             <div class="col-sm-10" style="padding:0 0px 0 0px">
                                                 
                                                 <asp:Literal ID="checkFC" runat="server"></asp:Literal>
-                                        <%--    <asp:CheckBoxList ID="checkFC" runat="server" CssClass="checkitem" RepeatLayout="Table"  RepeatDirection="Horizontal"></asp:CheckBoxList>--%>
+                                     
 
                                             </div>
-                                        </div>
+                                        </div>--%>
                                  <div class="form-group"><label class="col-sm-2 control-label">Current Job Function name:</label>
 
                                             <div class="col-sm-10" style="padding:0 0px 0 0px">
@@ -302,12 +302,12 @@
 
              var chckCJF_form = $('input[name="chckCJF_form"]');
 
-             if (chckFC_form) {
-                 if ($('input[name=chckFC_form]:checked').length == 0) {
-                     alert("You must select Functional Competencies at least one!");
-                     return false;
-                 }
-             }
+             //if (chckFC_form) {
+             //    if ($('input[name=chckFC_form]:checked').length == 0) {
+             //        alert("You must select Functional Competencies at least one!");
+             //        return false;
+             //    }
+             //}
 
              if (chckCJF_form) {
                  if ($('input[name=chckCJF_form]:checked').length == 0) {

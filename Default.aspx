@@ -66,7 +66,7 @@
 									<div class="col-xs-7">
 										<div class="profile-info">
 											<div class="profile-preword"><span>Hello</span></div>
-											<h1 class="profile-title"><span>I'm </span> <asp:Literal ID="name" runat="server"></asp:Literal> </h1>
+											<h1 class="profile-title"><%--<span>I'm </span>--%> <asp:Literal ID="name" runat="server"></asp:Literal> </h1>
                                               <a class="btn btn-lg btn-border ripple" style="float:right;top:-20px;font-size:11px;    background-color: #fff;
     padding: 5px;"  href="ProfileUpdate">Update Profile </a>
 											<%--<h2 class="profile-position"><asp:Literal ID="cjf" runat="server"></asp:Literal></h2></div>--%>
@@ -139,7 +139,7 @@
 				<div class="divider-wrapper divider-one">
 					<div class="circle" style="color:#a84209">1</div>
 					<h2>KEENCareer Finder Report</h2>
-					<p>รายงานแสดงผลอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ คุณจะทราบวิธีการพัฒนาศักยภาพการทำงานที่เหมาะสมกับตัวคุณ <br /><a  class="read-more-btn" href="#">อ่านต่อ >></a></p>
+					<p>รายงานแสดงผลอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ คุณจะทราบวิธีการพัฒนาศักยภาพการทำงานที่เหมาะสมกับตัวคุณ <br /><%--<a  class="read-more-btn" href="#">อ่านต่อ >></a>--%></p>
                     <asp:Button ID="btnReport1" runat="server" Text="Dowload Now" CssClass="btn_button" OnClick="btnReport1_Click"  CommandArgument="1"/>
 				</div>
 			</div>
@@ -155,7 +155,7 @@
 				<div class="divider-wrapper divider-three">
 					<div class="circle" style="color:#e9a427">3</div>
 					<h2>The Right Job Functions Report</h2>
-					<p>รายงานแสดงผลสายงานทั้งหมดที่เหมาะสมกับอัจฉริยภาพและบุคลิกภาพการทำงานของคุณคุณจะไม่หลงทางกับเส้นทางอาชีพอีกต่อไป  <br /><a class="read-more-btn" href="#">อ่านต่อ >></a>  </p>
+					<p>รายงานแสดงผลสายงานทั้งหมดที่เหมาะสมกับอัจฉริยภาพและบุคลิกภาพการทำงานของคุณคุณจะไม่หลงทางกับเส้นทางอาชีพอีกต่อไป  <br /><%--<a class="read-more-btn" href="#">อ่านต่อ >></a>--%>  </p>
                      <asp:Button ID="btnReport3" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="3" />
 				</div>
 			</div>
@@ -166,7 +166,7 @@
 				<div class="divider-wrapper divider-four">
 					<div class="circle" style="color:#366f9a">4</div>
 					<h2>KEENCareer Coaching</h2>
-					<p>โค้ชตัวต่อตัวกับผู้เชี่ยวชาญของทางทีมงาน KEEN PROFILE เพื่อทำความเข้าใจเชิงลึกเกี่ยวกับเส้นทางอาชีพที่เหมาะกับอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ <a  class="read-more-btn" href="#">อ่านต่อ >></a>  </p>
+					<p>โค้ชตัวต่อตัวกับผู้เชี่ยวชาญของทางทีมงาน KEEN PROFILE เพื่อทำความเข้าใจเชิงลึกเกี่ยวกับเส้นทางอาชีพที่เหมาะกับอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ <%--<a  class="read-more-btn" href="#">อ่านต่อ >></a> --%> </p>
                      <asp:Button ID="btnReport4" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="3" />
 				</div>
 			</div>
