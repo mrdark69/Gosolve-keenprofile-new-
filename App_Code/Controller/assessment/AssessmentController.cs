@@ -573,15 +573,15 @@ public class AssessmentController
              
               
 
-                if(i.IsAbove)
+                if(countt4<= 7)
                     T4ret.Append("<tr class=\"bg-blue\">");
-                else if(i.IsBelow)
+                else if(countt4> 14)
                     T4ret.Append("<tr class=\"bg-red\">");
                 else
                     T4ret.Append("<tr class=\"bg-grey\">");
                
                 T4ret.Append("<td " + (count4==1? "style=\"border-top:none;\"": "") + ">" + countt4 + "</td>");
-                T4ret.Append("<td " + (count4 == 1 ? "style=\"border-top:none;\"" : "") + ">" + i.ResultItemTitle + "</td>");
+                T4ret.Append("<td " + (count4 == 1 ? "style=\"border-top:none;\"" : "") + ">" + i.ResultItemTitle +( i.IsAbove || i.IsBelow? "*":"") + "</td>");
                 T4ret.Append("<td " + (count4 == 1 ? "style=\"border-top:none;\"" : "") + ">" + i.UseAtWork + "</td>");
                 T4ret.Append("<td " + (count4 == 1 ? "style=\"border-top:none;\"" : "") + ">" +i.Result+"d</td>");
                 T4ret.Append("</tr>");
