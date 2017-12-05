@@ -11,6 +11,12 @@ using gs_newsletter;
 using System.Web.Providers.Entities;
 using System.Security.Cryptography;
 
+public enum UserLoginChannel : byte
+{
+     Application=1,
+     Facebook =2,
+     Google = 3
+}
 /// <summary>
 /// Summary description for Model_User
 /// </summary>
@@ -31,6 +37,7 @@ public class Model_Users : BaseModel<Model_Users>
     public byte UserCatId { get; set; }
     public byte UsersRoleId { get; set; }
     public bool Status { get; set; }
+    public UserLoginChannel UserLoginChannel { get; set; } = UserLoginChannel.Application;
     public bool EmailVerify { get; set; }
 
     public DateTime DateSubmit  { get; set; } = DatetimeHelper._UTCNow();
@@ -116,8 +123,8 @@ public class Model_Users : BaseModel<Model_Users>
             }
             else
             {
-                SqlCommand cmd = new SqlCommand(@"INSERT INTO Users (FirstName,LastName,UserName,Password,Status,UserCatId,UsersRoleId,DateSubmit)
-VALUES(@FirstName,@LastName,@UserName,@Password,@Status,@UserCatId,@UsersRoleId,@DateSubmit)", cn);
+                SqlCommand cmd = new SqlCommand(@"INSERT INTO Users (FirstName,LastName,UserName,Password,Status,UserCatId,UsersRoleId,DateSubmit,UserLoginChannel)
+VALUES(@FirstName,@LastName,@UserName,@Password,@Status,@UserCatId,@UsersRoleId,@DateSubmit,@UserLoginChannel)", cn);
 
                 cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = users.FirstName;
                 cmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = users.LastName;
@@ -125,6 +132,7 @@ VALUES(@FirstName,@LastName,@UserName,@Password,@Status,@UserCatId,@UsersRoleId,
                 cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = Hotels2MD5EncryptedData(users.Password);
                 cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = true;
                 cmd.Parameters.Add("@UserCatId", SqlDbType.TinyInt).Value = users.UserCatId;
+                cmd.Parameters.Add("@UserLoginChannel", SqlDbType.TinyInt).Value = users.UserLoginChannel;
                 cmd.Parameters.Add("@UsersRoleId", SqlDbType.TinyInt).Value = users.UsersRoleId;
                 cmd.Parameters.Add("@DateSubmit", SqlDbType.SmallDateTime).Value = users.DateSubmit;
 
@@ -135,6 +143,47 @@ VALUES(@FirstName,@LastName,@UserName,@Password,@Status,@UserCatId,@UsersRoleId,
         return ret;
     }
 
+    public int InsertUserExternal(Model_Users users)
+    {
+        int ret = 0;
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmdcheck = new SqlCommand("SELECT COUNT(*) FROM Users WHERE UserName=@UserName  AND UserCatId=1 AND UserLoginChannel=@UserLoginChannel", cn);
+            cmdcheck.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = users.UserName;
+            cmdcheck.Parameters.Add("@UserLoginChannel", SqlDbType.TinyInt).Value = users.UserLoginChannel;
+            //cmdcheck.Parameters.Add("@Password", SqlDbType.NVarChar).Value = Hotels2MD5EncryptedData(users.Password);
+            cn.Open();
+            if ((int)ExecuteScalar(cmdcheck) > 0)
+            {
+                ret = -1;
+            }
+            else
+            {
+                SqlCommand cmd = new SqlCommand(@"INSERT INTO Users (Email,UserName,Password,Status,UserCatId,DateSubmit,UserLoginChannel,FirstName,LastName,EmailVerify)
+VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChannel,@FirstName,@LastName,@EmailVerify);SET @UserID = SCOPE_IDENTITY();", cn);
+
+                cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = users.Email;
+                cmd.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = users.UserName;
+                cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = Hotels2MD5EncryptedData(users.Password);
+                cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = true;
+                cmd.Parameters.Add("@UserCatId", SqlDbType.TinyInt).Value = users.UserCatId;
+                cmd.Parameters.Add("@DateSubmit", SqlDbType.SmallDateTime).Value = users.DateSubmit;
+                cmd.Parameters.Add("@UserLoginChannel", SqlDbType.TinyInt).Value = users.UserLoginChannel;
+                cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = users.FirstName;
+                cmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = users.LastName;
+
+                cmd.Parameters.Add("@EmailVerify", SqlDbType.NVarChar).Value = users.EmailVerify;
+                cmd.Parameters.Add("@UserID", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+                ret = ExecuteNonQuery(cmd);
+
+                if (ret > 0)
+                    ret = (int)cmd.Parameters["@UserID"].Value;
+            }
+
+        }
+        return ret;
+    }
     public int InsertUser(Model_Users users)
     {
         int ret = 0;
@@ -150,8 +199,8 @@ VALUES(@FirstName,@LastName,@UserName,@Password,@Status,@UserCatId,@UsersRoleId,
             }
             else
             {
-                SqlCommand cmd = new SqlCommand(@"INSERT INTO Users (Email,UserName,Password,Status,UserCatId,DateSubmit)
-VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit);SET @UserID = SCOPE_IDENTITY();", cn);
+                SqlCommand cmd = new SqlCommand(@"INSERT INTO Users (Email,UserName,Password,Status,UserCatId,DateSubmit,UserLoginChannel)
+VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChannel);SET @UserID = SCOPE_IDENTITY();", cn);
 
                 cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = users.Email;
                 cmd.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = users.UserName;
@@ -159,6 +208,7 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit);SET @UserID = 
                 cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = true;
                 cmd.Parameters.Add("@UserCatId", SqlDbType.TinyInt).Value = users.UserCatId;
                 cmd.Parameters.Add("@DateSubmit", SqlDbType.SmallDateTime).Value = users.DateSubmit;
+                cmd.Parameters.Add("@UserLoginChannel", SqlDbType.TinyInt).Value = users.UserLoginChannel;
                 cmd.Parameters.Add("@UserID", SqlDbType.Int).Direction = ParameterDirection.Output;
 
                 ret = ExecuteNonQuery(cmd);
@@ -378,9 +428,25 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit);SET @UserID = 
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE UserName=@UserName AND Password=@Password AND UserCatId=1", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE UserName=@UserName AND Password=@Password AND UserCatId=1 AND UserLoginChannel=1", cn);
             cmd.Parameters.Add("@UserName", SqlDbType.VarChar).Value = strUserName;
             cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = Hotels2MD5EncryptedData(strPassword);
+            cn.Open();
+            IDataReader reader = ExecuteReader(cmd, CommandBehavior.SingleRow);
+            if (reader.Read())
+                return MappingObjectFromDataReaderByName(reader);
+            else
+                return null;
+        }
+    }
+
+    public Model_Users CheckLoginUserExternal(string strUserName, UserLoginChannel loginChannel)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE UserName=@UserName AND UserCatId=1 AND UserLoginChannel=@UserLoginChannel", cn);
+            cmd.Parameters.Add("@UserName", SqlDbType.VarChar).Value = strUserName;
+            cmd.Parameters.Add("@UserLoginChannel", SqlDbType.TinyInt).Value = loginChannel;
             cn.Open();
             IDataReader reader = ExecuteReader(cmd, CommandBehavior.SingleRow);
             if (reader.Read())

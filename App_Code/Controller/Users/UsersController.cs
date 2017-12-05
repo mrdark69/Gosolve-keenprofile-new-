@@ -129,6 +129,12 @@ public class UsersController
         return u.CheckLoginUser(user, pass);
     }
 
+    public static Model_Users UserCheckloginExternal(string user, UserLoginChannel loginchannel)
+    {
+        Model_Users u = new Model_Users();
+        return u.CheckLoginUserExternal(user, loginchannel);
+    }
+
     public static int InsertUser(Model_Users user)
     {
         int ret = user.InsertUser(user);
@@ -140,6 +146,13 @@ public class UsersController
         return ret;
     }
 
+    public static int InsertUserExternal(Model_Users user)
+    {
+        int ret = user.InsertUserExternal(user);
+
+        
+        return ret;
+    }
 
     public static void SendEmailVerify(int UserID)
     {
