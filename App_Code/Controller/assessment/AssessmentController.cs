@@ -256,7 +256,7 @@ public class AssessmentController
                     detail.Append("</div>");
 
                     detail.Append("</div>");
-
+                     
                     detail.Append("<div class=\"desscription-body-block right\">");
                     detail.Append("<p><span>"+ i.Title + (i.Isabove ? "*" : "") +": </span>");
                     detail.Append(i.des_Detail);
@@ -294,13 +294,13 @@ public class AssessmentController
 
                     detail2.Append("<div class=\"square-block bg-red\">");
 
-                    detail2.Append(i.Title + "* <br />(" + i.Ranking + ")");
+                    detail2.Append(i.Title + (i.Isbelow ? "*" : "") + " <br />(" + i.Ranking + ")");
                     detail2.Append("</div>");
 
                     detail2.Append("</div>");
 
                     detail2.Append("<div class=\"desscription-body-block right\">");
-                    detail2.Append("<p><span>" + i.Title + "*: </span>");
+                    detail2.Append("<p><span>" + i.Title + (i.Isbelow ? "*" : "") + ": </span>");
                     detail2.Append(i.des_Detail);
 
                     detail2.Append("</p>");
