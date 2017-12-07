@@ -252,13 +252,13 @@ public class AssessmentController
 
                     detail.Append("<div class=\"square-block bg-blue\">");
 
-                    detail.Append(i.Title + "* <br />("+ i.Ranking + ")");
+                    detail.Append(i.Title + (i.Isabove ? "*" : "") +" <br />(" + i.Ranking + ")");
                     detail.Append("</div>");
 
                     detail.Append("</div>");
 
                     detail.Append("<div class=\"desscription-body-block right\">");
-                    detail.Append("<p><span>"+ i.Title + "*: </span>");
+                    detail.Append("<p><span>"+ i.Title + (i.Isabove ? "*" : "") +": </span>");
                     detail.Append(i.des_Detail);
 
                     detail.Append("</p>");
