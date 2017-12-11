@@ -69,15 +69,22 @@ public class OrderController
                 cp.InsertOrderPayment(cp);
             }
 
-            ret = 1;
+
+            Model_Setting s = new Model_Setting();
+            s = s.GetSetting();
 
 
+            HttpContext context = HttpContext.Current;
 
-          
-            object[] parameters = new object[] { u };
-            SendingEngineController.cpool.QueueWork(parameters, SendEmaiReceiveToCustomer);
+            object[] parameters = new object[] { u,s , context };
+           SendingEngineController.cpool.QueueWork(parameters, SendEmaiReceiveToCustomer);
 
+            string staffEmail = "mrdark6996@gmail.com;oh_darkman@hotmail.com";
+            object[] parameters2 = new object[] { staffEmail,s , context };
+           
+           SendingEngineController.cpool.QueueWork(parameters2, SendEmailReceiveToStaff);
 
+        ret = 1;
         }
         catch
         {
@@ -91,20 +98,22 @@ public class OrderController
 
     public static void SendEmaiReceiveToCustomer(object param)
     {
-        Model_Setting s = new Model_Setting();
-        s = s.GetSetting();
+       
 
         object[] parameters = (object[])param;
+
+    
         Model_Users user = (Model_Users)parameters[0];
-
+        Model_Setting s = (Model_Setting)parameters[1];
+        HttpContext context = (HttpContext)parameters[2];
         string body = string.Empty;
-        string text = File.ReadAllText(HttpContext.Current.Server.MapPath("/Theme/emailtemplate/layout.html"), Encoding.UTF8);
-        if (!string.IsNullOrEmpty(text))
-        {
-            string path = ConfigurationManager.AppSettings["AuthorizeBaseURL"].ToString().Replace("/admin", "") + "Verify?ID=" + StringUtility.EncryptedData(user.UserID.ToString());
-            body = text.Replace("<!--##@Linkverfiy##-->", "<a href=\"" + path + "\" />here</a>");
-        }
-
+        string text = File.ReadAllText(context.Server.MapPath("/Theme/emailtemplate/layout.html"), Encoding.UTF8);
+        //if (!string.IsNullOrEmpty(text))
+        //{
+        //    string path = ConfigurationManager.AppSettings["AuthorizeBaseURL"].ToString().Replace("/admin", "") + "Verify?ID=" + StringUtility.EncryptedData(user.UserID.ToString());
+        //    body = text.Replace("<!--##@Linkverfiy##-->", "<a href=\"" + path + "\" />here</a>");
+        //}
+        body = "test acknowledge email sending";
         MailSenderOption option = new MailSenderOption
         {
             MailSetting = s,
@@ -116,22 +125,27 @@ public class OrderController
         MAilSender.SendMailEngine(option);
     }
 
-    public static void SendEmailReceiveToStaff(string staffmail)
+    public static void SendEmailReceiveToStaff(object param)
     {
-        Model_Setting s = new Model_Setting();
-        s = s.GetSetting();
-
        
 
+
+        object[] parameters = (object[])param;
+        string staffmail = (string)parameters[0];
+        Model_Setting s = (Model_Setting)parameters[1];
+        HttpContext context = (HttpContext)parameters[2];
+
         string body = string.Empty;
-        string text = File.ReadAllText(HttpContext.Current.Server.MapPath("/Theme/emailtemplate/layout.html"), Encoding.UTF8);
+        string text = File.ReadAllText(context.Server.MapPath("/Theme/emailtemplate/layout.html"), Encoding.UTF8);
         //if (!string.IsNullOrEmpty(text))
         //{
         //    string path = ConfigurationManager.AppSettings["AuthorizeBaseURL"].ToString().Replace("/admin", "") + "Verify?ID=" + StringUtility.EncryptedData(user.UserID.ToString());
         //    body = text.Replace("<!--##@Linkverfiy##-->", "<a href=\"" + path + "\" />here</a>");
         //}
 
-        foreach(string email in staffmail.Split(';'))
+
+        body = "test acknowledge email sending";
+        foreach (string email in staffmail.Split(';'))
         {
             MailSenderOption option = new MailSenderOption
             {
@@ -143,6 +157,8 @@ public class OrderController
             };
             MAilSender.SendMailEngine(option);
         }
+
+
         
     }
 
