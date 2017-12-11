@@ -124,11 +124,27 @@
                         </div>
                         
                     </div>
+
+
+                                          <div class="ibox-content">
+                                               <h2  class="t_title">ขอบคุณสำหรับ รายการสั่งซื้อ</h2>
+                                               <p class="t_title">ท่านสามารถชำระ ค่าบริการผ่านช่องทาง ด้านล่างนี้</p>
+                                             <ul>
+                                                 <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
+                                                    <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
+                                                   <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
+                                                   <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
+                                             </ul>
+                                              </div>
                     <div class="ibox-content">
+                        <h2  class="t_title">ยืนยันการชำระเงิน</h2>
+                         <p class="t_title">เมื่อคุณได้ชำระเงินผ่านช่องทางต่างๆ ที่ระบบของเราเตรียมไว้ให้แล้ว ก็สามารถแจ้งการชำระเงินได้ผ่านแบบฟอร์มด้านล่างนี้ได้ เพื่อให้เจ้าหน้าที่ตรวจสอบ และดำเนินการในขั้นตอนต่อไป</p>
                         <div class="main_thanksyoublock col-md-12">
                             <asp:Label ID="lblError" runat="server" style="color: red;text-align: center;margin: 0 auto;display: block;"></asp:Label>
+
+
                             <div class="q-form-bio form-horizontal">
-                                        <div class="form-group"><label class="col-sm-2 control-label">First name:</label>
+                                        <div class="form-group"><label class="col-sm-2 control-label">รายละเอียด:</label>
 
                                             <div class="col-sm-10">
                                                 <asp:TextBox ID="firstName" runat="server" CssClass="form-control required"></asp:TextBox>
@@ -136,73 +152,89 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Last name:</label>
+                                            <label class="col-sm-2 control-label">ผ่านช่องทาง:</label>
 
                                             <div class="col-sm-10">
-                                                    <asp:TextBox ID="LastName" runat="server" CssClass="form-control required"></asp:TextBox>
+                                                    <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server"></asp:DropDownList>
+                                               
+                                            </div>
+                                        </div>
+                                 <div class="form-group">
+                                            <label class="col-sm-2 control-label">ชำระเมื่อวันที่:</label>
+
+                                            <div class="col-sm-10">
+                                                    <asp:TextBox ID="TextBox1" runat="server" MaxLengt="2" TextMode="Date" placeholder="Day" CssClass="form-control dob required"></asp:TextBox>
                                                
                                             </div>
                                         </div>
 
+                                <div class="form-group">
+                                            <label class="col-sm-2 control-label">จำนวนเงิน:</label>
+
+                                            <div class="col-sm-10">
+                                                    <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control required"></asp:TextBox>
+                                               
+                                            </div>
+                                        </div>
+                                 <div class="form-group">
+                                            <label class="col-sm-2 control-label">สถานที่โอน:</label>
+
+                                            <div class="col-sm-10">
+                                                    <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control required"></asp:TextBox>
+                                               
+                                            </div>
+                                        </div>
+
+                                 <div class="form-group">
+                                            <label class="col-sm-2 control-label">จากเลขบัญชี:</label>
+
+                                            <div class="col-sm-10">
+                                                    <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control required"></asp:TextBox>
+                                               
+                                            </div>
+                                        </div>
+                                
                                      <div class="form-group">
-                                            <label class="col-sm-2 control-label">Email:</label>
+                                            <label class="col-sm-2 control-label">อีเมลของคุณ:</label>
 
                                             <div class="col-sm-10">
                                                     <asp:TextBox TextMode="Email" ID="txtEmail" runat="server" CssClass="form-control required"></asp:TextBox>
                                                
                                             </div>
                                         </div>
-                                        <div class="form-group"><label class="col-sm-2 control-label">Gender:</label>
+
+                                 <div class="form-group">
+                                            <label class="col-sm-2 control-label">เบอร์โทรของคุณ:</label>
 
                                             <div class="col-sm-10">
-                                                <asp:DropDownList ID="dropGender" CssClass="form-control" runat="server">
-                                                    <asp:ListItem Text="Male" Value="1"></asp:ListItem>
-                                                    <asp:ListItem Text="Female" Value="2"></asp:ListItem>
-                                                </asp:DropDownList>
-                                                
+                                                    <asp:TextBox TextMode="Email" ID="TextBox5" runat="server" CssClass="form-control required"></asp:TextBox>
+                                               
                                             </div>
                                         </div>
-                                        <div class="form-group"><label class="col-sm-2 control-label">Nationality:</label>
+                                <div class="form-group">
+                                            <label class="col-sm-2 control-label">ไฟล์แนบ::</label>
 
                                             <div class="col-sm-10">
-                                                <asp:DropDownList ID="dropNation" CssClass="form-control" runat="server"></asp:DropDownList>
-                                             
+                                                    <asp:TextBox TextMode="Email" ID="TextBox6" runat="server" CssClass="form-control required"></asp:TextBox>
+                                               
                                             </div>
                                         </div>
-                                        <div class="form-group"><label class="col-sm-2 control-label">Date of birth:</label>
 
-                                            <div class="col-sm-10" style="text-align:left">
-                                                <asp:TextBox ID="day" runat="server" MaxLengt="2" TextMode="Date" placeholder="Day" CssClass="form-control dob required"></asp:TextBox>
-                                                 
+                                  <div class="form-group">
+                                            <label class="col-sm-2 control-label">เพิ่มเติม::</label>
 
+                                            <div class="col-sm-10">
+                                                    <asp:TextBox TextMode="Email" ID="TextBox7" runat="server" CssClass="form-control required"></asp:TextBox>
+                                               
                                             </div>
                                         </div>
-                                <div class="form-group"><label class="col-sm-2 control-label">Mobile Phone:</label>
-
-                                            <div class="col-sm-10" style="padding:0 0px 0 15px">
-                                                
-                                         <asp:TextBox ID="txtPhon" runat="server" ClientIDMode="Static" placeholder="###-###-####" CssClass="form-control required customphone" TextMode="Phone"></asp:TextBox>
-
-                                            </div>
-                                        </div>
-                                <%-- <div class="form-group"><label class="col-sm-2 control-label">Functional Competencies:</label>
-
-                                            <div class="col-sm-10" style="padding:0 0px 0 0px">
-                                                
-                                                <asp:Literal ID="checkFC" runat="server"></asp:Literal>
+                                
+                                      
+                                      
                                      
-
-                                            </div>
-                                        </div>--%>
-                                 <div class="form-group"><label class="col-sm-2 control-label">Current Job Function name:</label>
-
-                                            <div class="col-sm-10" style="padding:0 0px 0 0px">
-                                                
-                                                <asp:Literal ID="chckCJF" runat="server"></asp:Literal>
-                                           <%-- <asp:CheckBoxList ID="chckCJF" runat="server" CssClass="checkitem" RepeatLayout="Table"  RepeatDirection="Horizontal"></asp:CheckBoxList>--%>
-
-                                            </div>
-                                        </div>
+                             
+                               
+                                
 
                                           
                                     </div>
@@ -211,7 +243,7 @@
                             <div class="btn_pan">
 
                               <%--  <asp:Button ID="btnBackprofile" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;" CssClass="btn btn-lg btn-border ripple" runat="server" OnClick="btnBackprofile_Click" Text="Your profile" />--%>
-                                 <asp:Button ID="btnDownload" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;float:right" CssClass="btn btn-lg btn-border ripple" runat="server" OnClientClick="return submitbtn();" OnClick="btnDownload_Click"  Text="Update Now" />
+                                 <asp:Button ID="btnDownload" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;float:right" CssClass="btn btn-lg btn-border ripple" runat="server" OnClientClick="return submitbtn();" OnClick="btnDownload_Click"  Text="ยืนยันการชำระเงิน" />
                             </div>
                         </div>
                         
