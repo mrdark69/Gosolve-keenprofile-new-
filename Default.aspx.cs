@@ -85,10 +85,31 @@ public partial class _Default : BasePageFront
                 pdfgen.ToClientSave(html2, "Your-Current-Job-Company-Fit-Report");
                 break;
             case 3:
-                string report3 = AssessmentController.GetPaperReport3(u);
-                byte[] html3 = pdfgen.pdfGenerate(report3);
 
-                pdfgen.ToClientSave(html3, "The-Right-Job-Functions-Report");
+                int intProductID = 1;
+
+                Model_Orders o = new Model_Orders();
+                int paid = o.CountIsPaidByProduct(intProductID);
+
+                if (paid > 1)
+                {
+                    string report3 = AssessmentController.GetPaperReport3(u);
+                    byte[] html3 = pdfgen.pdfGenerate(report3);
+
+                    pdfgen.ToClientSave(html3, "The-Right-Job-Functions-Report");
+                }
+                else
+                {
+
+                    if( OrderController.MakeOrder(intProductID, u) > 0)
+                    {
+                        Response.Redirect("Orders.aspx");
+                        Response.End();
+                    }
+
+                    
+                }
+              
                 break;
         }
     }
