@@ -26,6 +26,9 @@ public partial class _Default : BasePageFront
 
 
                 //btnReport1 //btnReport3 //btnReport2
+                int intProductID = 1;
+                Model_Orders o = new Model_Orders();
+                int paid = o.CountIsPaidByProduct(intProductID);
 
                 Model_UsersTransaction Uts = new Model_UsersTransaction();
                 List<Model_UsersTransaction> TSL = Uts.getTsListByUserID(u.UserID);
@@ -33,7 +36,7 @@ public partial class _Default : BasePageFront
                 {
                     btnReport1.Text = "คลิกเพื่อ Download";
                     btnReport2.Text = "คลิกเพื่อ Download";
-                    btnReport3.Text = "ต้องการ Download";
+                    btnReport3.Text = paid > 0? "คลิกเพื่อ Download" : "ต้องการ Download";
 
                     btnReport4.Text = "ต้องการ Coaching";
                 }
@@ -100,10 +103,10 @@ public partial class _Default : BasePageFront
                 }
                 else
                 {
-
-                    if( OrderController.MakeOrder(intProductID, u) > 0)
+                    int orderID = OrderController.MakeOrder(intProductID, u);
+                    if (orderID > 0)
                     {
-                        Response.Redirect("Orders.aspx");
+                        Response.Redirect("Orders.aspx?orderID=" + orderID);
                         Response.End();
                     }
 

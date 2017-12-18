@@ -30,13 +30,20 @@ public partial class _Orders : BasePageFront
             if (u != null && !string.IsNullOrEmpty(orderID))
             {
                 
+
+
+
                 Maintitle.Text = "Order Summary : OrderID#158237 [รอการชำระเงิน]";
 
                 
             }
+            
            
         }
        
+       
+
+
 
     }
 
@@ -51,17 +58,8 @@ public partial class _Orders : BasePageFront
     }
 
 
-   
-
-    protected void btn_confirm_Click(object sender, EventArgs e)
+    protected void btnDownload_Click(object sender, EventArgs e)
     {
 
-
-
-        string orderID = Request.QueryString["orderID"];
-
-
-
-        Response.Redirect("~/Thankyou?Con=firm&OrderID="+ orderID);
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.User1.Master" AutoEventWireup="true" CodeFile="Orders.aspx.cs" Inherits="_Orders" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.User1.Master" AutoEventWireup="true" CodeFile="Thankyou.aspx.cs" Inherits="_Orders" %>
 
 <asp:Content ID="HeaderScript" ContentPlaceHolderID="HeaderScript" runat="server">
     <style type="text/css">
@@ -243,7 +243,7 @@
                             <div class="btn_pan">
 
                               <%--  <asp:Button ID="btnBackprofile" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;" CssClass="btn btn-lg btn-border ripple" runat="server" OnClick="btnBackprofile_Click" Text="Your profile" />--%>
-                                 <asp:Button ID="btn_confirm" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;float:right" CssClass="btn btn-lg btn-border ripple" runat="server" OnClientClick="return submitbtn();" OnClick="btn_confirm_Click"  Text="ยืนยันการชำระเงิน" />
+                                 <asp:Button ID="btnDownload" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;float:right" CssClass="btn btn-lg btn-border ripple" runat="server" OnClientClick="return submitbtn();" OnClick="btnDownload_Click"  Text="ยืนยันการชำระเงิน" />
                             </div>
                         </div>
                         

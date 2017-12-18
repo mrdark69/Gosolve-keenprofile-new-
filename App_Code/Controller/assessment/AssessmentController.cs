@@ -177,7 +177,7 @@ public class AssessmentController
                     traitdetail.Append("<div class=\"desscription-body big\">");
                     traitdetail.Append("<div class=\"desscription-body-block left\">");
                     traitdetail.Append("<div class=\"square-block big bg-blue\">");
-                    traitdetail.Append(" " + i.Title + " <br />(1)");
+                    traitdetail.Append(" " + i.Title + " <br />("+i.Ranking+")");
                     traitdetail.Append("</div>");
                     traitdetail.Append("</div>");
                     traitdetail.Append("<div class=\"desscription-body-block right\">");
@@ -459,7 +459,7 @@ public class AssessmentController
                     traitdetail.Append("<div class=\"desscription-body big\">");
                     traitdetail.Append("<div class=\"desscription-body-block left\">");
                     traitdetail.Append("<div class=\"square-block big bg-blue\">");
-                    traitdetail.Append(" " + i.Title + " <br />(1)");
+                    traitdetail.Append(" " + i.Title + " <br />("+i.Ranking + ")");
                     traitdetail.Append("</div>");
                     traitdetail.Append("</div>");
                     traitdetail.Append("<div class=\"desscription-body-block right\">");
