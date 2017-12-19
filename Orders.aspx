@@ -113,11 +113,18 @@
                 timePicker: true,
               
                 locale: {
-                    format: 'MM/DD/YYYY h:mm A'
+                    format: 'MM/DD/YYYY h:mm A',
+                    cancelLabel: 'Clear'
                 }
             });
+           
 
+            $('input[name="datefilter"]').on('cancel.daterangepicker', function (ev, picker) {
+                $(this).val('');
+            });
             $('#date_payment').on('apply.daterangepicker', function (ev, picker) {
+
+                $(this).val(picker.startDate.format('MM/DD/YYYY h:mm A'));
                 $('#hd_date_payment').val(picker.startDate.format('YYYY-MM-DD-hh-mm-ss'));
              
                 // $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));

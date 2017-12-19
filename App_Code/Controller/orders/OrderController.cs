@@ -114,8 +114,8 @@ public class OrderController
                         object[] parameters = new object[] { u, s, context };
                         SendingEngineController.cpool.QueueWork(parameters, SendEmaiReceiveToCustomer);
 
-                        string staffEmail = "mrdark6996@gmail.com;oh_darkman@hotmail.com";
-                        object[] parameters2 = new object[] { staffEmail, s, context };
+                        string staffEmail = "mrdark6996@gmail.com;serviceteam@keenprofile.com";
+                        object[] parameters2 = new object[] { staffEmail, s, context , con };
 
                         SendingEngineController.cpool.QueueWork(parameters2, SendEmailReceiveToStaff);
                     }
@@ -147,6 +147,7 @@ public class OrderController
         Model_Users user = (Model_Users)parameters[0];
         Model_Setting s = (Model_Setting)parameters[1];
         HttpContext context = (HttpContext)parameters[2];
+      
         string body = string.Empty;
         string text = File.ReadAllText(context.Server.MapPath("/Theme/emailtemplate/layout.html"), Encoding.UTF8);
         //if (!string.IsNullOrEmpty(text))
@@ -161,7 +162,7 @@ public class OrderController
             context = HttpContext.Current,
             mailTo = user.Email,
             Mailbody = body,
-            Subject = "Please verify"
+            Subject = "Keenprofile thank you : THE RIGHT JOB-FUNCTIONS REPORT Your order is completed"
         };
         MAilSender.SendMailEngine(option);
     }
@@ -175,7 +176,7 @@ public class OrderController
         string staffmail = (string)parameters[0];
         Model_Setting s = (Model_Setting)parameters[1];
         HttpContext context = (HttpContext)parameters[2];
-
+        Model_OrderPaymentTransferConfirm con = (Model_OrderPaymentTransferConfirm)parameters[3];
         string body = string.Empty;
         string text = File.ReadAllText(context.Server.MapPath("/Theme/emailtemplate/layout.html"), Encoding.UTF8);
         //if (!string.IsNullOrEmpty(text))
@@ -185,7 +186,9 @@ public class OrderController
         //}
 
 
-        body = "test acknowledge email sending";
+        body = "FirstName : " + con.Name + "\r\n";
+        body = body +  "email : " + con.Email + "\r\n";
+        body = body + "datetime : " + con.DatePayment.ToThaiDateTime() + "\r\n";
         foreach (string email in staffmail.Split(';'))
         {
             MailSenderOption option = new MailSenderOption
@@ -194,7 +197,7 @@ public class OrderController
                 context = HttpContext.Current,
                 mailTo = email,
                 Mailbody = body,
-                Subject = "Please verify"
+                Subject = "THE RIGHT JOB-FUNCTIONS REPORT : Transaction Received [Confirmed Order#" + con.OrderID + "]"
             };
             MAilSender.SendMailEngine(option);
         }
