@@ -70,20 +70,7 @@ public class OrderController
             }
 
 
-            Model_Setting s = new Model_Setting();
-            s = s.GetSetting();
-
-
-            HttpContext context = HttpContext.Current;
-
-            object[] parameters = new object[] { u,s , context };
-           SendingEngineController.cpool.QueueWork(parameters, SendEmaiReceiveToCustomer);
-
-            string staffEmail = "mrdark6996@gmail.com;oh_darkman@hotmail.com";
-            object[] parameters2 = new object[] { staffEmail,s , context };
-           
-           SendingEngineController.cpool.QueueWork(parameters2, SendEmailReceiveToStaff);
-
+          
             ret = orderID;
         }
         catch
@@ -95,6 +82,60 @@ public class OrderController
         return ret;
     }
 
+    public static int ConfirmTransferPayment(int OrderID, Model_Users u, Model_OrderPaymentTransferConfirm con)
+    {
+        int ret = 0;
+        try {
+
+            Model_OrderPayment payment = new Model_OrderPayment();
+            List<Model_OrderPayment> listpayment = payment.getPaymentByOrderID(con.OrderID);
+            if(listpayment.Count > 0)
+            {
+
+                var total = listpayment.Sum(o => o.Amount);
+
+                var PaymentID = listpayment.FirstOrDefault().PaymentID;
+
+
+                if(con.Amount >= total)
+                {
+                    
+                    con.PaymentID = PaymentID;
+
+                    if(con.InsertOrderPaymentTransferConfirm(con) > 0)
+                    {
+                        payment.UpdatePayment(PaymentID);
+                        Model_Setting s = new Model_Setting();
+                        s = s.GetSetting();
+
+
+                        HttpContext context = HttpContext.Current;
+
+                        object[] parameters = new object[] { u, s, context };
+                        SendingEngineController.cpool.QueueWork(parameters, SendEmaiReceiveToCustomer);
+
+                        string staffEmail = "mrdark6996@gmail.com;oh_darkman@hotmail.com";
+                        object[] parameters2 = new object[] { staffEmail, s, context };
+
+                        SendingEngineController.cpool.QueueWork(parameters2, SendEmailReceiveToStaff);
+                    }
+                   
+                }
+
+              
+
+            }
+
+          
+
+            ret = 1;
+        } catch
+        {
+
+        }
+        
+        return ret;
+    }
 
     public static void SendEmaiReceiveToCustomer(object param)
     {

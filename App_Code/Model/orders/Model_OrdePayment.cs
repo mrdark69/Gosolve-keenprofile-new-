@@ -31,7 +31,7 @@ public enum PaymentType : byte
 /// </summary>
 public class Model_OrderPayment : BaseModel<Model_OrderPayment>
 {
-    public int PaymenyID { get; set; }
+    public int PaymentID { get; set; }
     public int OrderID { get; set; }
     public decimal Amount { get; set; }
     public byte GateWayID { get; set; }
@@ -84,6 +84,36 @@ public class Model_OrderPayment : BaseModel<Model_OrderPayment>
         }
     }
 
+    public int UpdatePayment(int intPaymentID)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand(@"UPDATE OrderPayment SET ComfirmPayment=@ComfirmPayment WHERE PaymentID=@PaymentID", cn);
+            cmd.Parameters.Add("@PaymentID", SqlDbType.Int).Value = intPaymentID;
+           
+        
+
+            cmd.Parameters.Add("@ComfirmPayment", SqlDbType.SmallDateTime).Value = DatetimeHelper._UTCNow();
+      
+        
+
+            cn.Open();
+
+            return ExecuteNonQuery(cmd);
+        }
+    }
+
+
+    public List<Model_OrderPayment> getPaymentByOrderID(int intOrderID)
+    {
+        using(SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM OrderPayment WHERE OrderID=@OrderID AND Status= 1 AND ComfirmPayment IS NULL", cn);
+            cmd.Parameters.Add("@OrderID", SqlDbType.Int).Value = intOrderID;
+            cn.Open();
+            return MappingObjectCollectionFromDataReaderByName(ExecuteReader(cmd));
+        }
+    }
 
 
 

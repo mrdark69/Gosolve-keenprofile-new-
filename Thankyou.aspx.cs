@@ -60,6 +60,6 @@ public partial class _Orders : BasePageFront
 
     protected void btnDownload_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("~/Default#download");
     }
 }

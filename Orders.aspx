@@ -96,6 +96,35 @@
    <%--     <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="css/plugins/steps/jquery.steps.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">--%>
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#date_payment').daterangepicker({
+                autoUpdateInput: false,
+                singleDatePicker: true,
+                timePicker: true,
+              
+                locale: {
+                    format: 'MM/DD/YYYY h:mm A'
+                }
+            });
+
+            $('#date_payment').on('apply.daterangepicker', function (ev, picker) {
+                $('#hd_date_payment').val(picker.startDate.format('YYYY-MM-DD-hh-mm-ss'));
+             
+                // $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+            });
+        });
+      
+    </script>
  </asp:Content>
   
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -122,21 +151,29 @@
                         <div class="col-md-12">
                              <h2 class="t_title"><asp:Literal ID="ThanksTitle" runat="server"></asp:Literal> </h2>
                         </div>
+
+                       
                         
                     </div>
 
 
                                           <div class="ibox-content">
-                                               <h2  class="t_title">ขอบคุณสำหรับ รายการสั่งซื้อ</h2>
-                                               <p class="t_title">ท่านสามารถชำระ ค่าบริการผ่านช่องทาง ด้านล่างนี้</p>
-                                             <ul>
+                                               <h2  class="t_title">ลิสต์รายชื่อสายงานทั้งหมดที่เหมาะกับอัจฉริยภาพและบุคลิกการทำงานของคุณ ง่ายๆ </h2>
+                                              <h2 class="t_title">แค่ดาวน์โหลด "The Right Job-Functions Report" </h2>
+                                          
+
+                                              <h1 class="t_title" style="text-align:center">ปกติราคา 1,000 บาท<span style="color:red;font-weight:bold;text-decoration:underline"> ลดเหลือ 100 บาท ด่วน !</span></h1>
+
+
+                                                   <p class="t_title" style="margin-top:30px;">ท่านสามารถชำระ ค่าบริการผ่านช่องทาง ด้านล่างนี้</p>
+                                             <ul class="t_title" style="padding-left:50px;">
                                                  <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
                                                     <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
                                                    <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
                                                    <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
                                              </ul>
                                               </div>
-                    <div class="ibox-content">
+                    <div class="ibox-content" style="margin-top:60px;">
                         <h2  class="t_title">ยืนยันการชำระเงิน</h2>
                          <p class="t_title">เมื่อคุณได้ชำระเงินผ่านช่องทางต่างๆ ที่ระบบของเราเตรียมไว้ให้แล้ว ก็สามารถแจ้งการชำระเงินได้ผ่านแบบฟอร์มด้านล่างนี้ได้ เพื่อให้เจ้าหน้าที่ตรวจสอบ และดำเนินการในขั้นตอนต่อไป</p>
                         <div class="main_thanksyoublock col-md-12">
@@ -144,70 +181,85 @@
 
 
                             <div class="q-form-bio form-horizontal">
-                                        <div class="form-group"><label class="col-sm-2 control-label">รายละเอียด:</label>
+                                        <div class="form-group"><label class="col-sm-2 control-label">ชื่อ:</label>
 
                                             <div class="col-sm-10">
                                                 <asp:TextBox ID="firstName" runat="server" CssClass="form-control required"></asp:TextBox>
                                                
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">ผ่านช่องทาง:</label>
+                                    <div class="form-group"><label class="col-sm-2 control-label">อีเมล์</label>
 
                                             <div class="col-sm-10">
-                                                    <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server"></asp:DropDownList>
+                                                <asp:TextBox ID="email" TextMode="Email" runat="server" CssClass="form-control required"></asp:TextBox>
                                                
                                             </div>
                                         </div>
+
+                                     
                                  <div class="form-group">
                                             <label class="col-sm-2 control-label">ชำระเมื่อวันที่:</label>
 
                                             <div class="col-sm-10">
-                                                    <asp:TextBox ID="TextBox1" runat="server" MaxLengt="2" TextMode="Date" placeholder="Day" CssClass="form-control dob required"></asp:TextBox>
+                                                    <asp:TextBox ID="date_payment" ClientIDMode="Static" runat="server" MaxLengt="2"   CssClass="form-control dob required"></asp:TextBox>
+
+                                                <asp:HiddenField ID="hd_date_payment" runat="server" ClientIDMode="Static" />
                                                
                                             </div>
                                         </div>
+                                   <div class="form-group">
+                                            <label class="col-sm-2 control-label">ธนาคารที่โอนเงิน:</label>
 
+                                            <div class="col-sm-10">
+                                                    <asp:DropDownList ID="dropgatway" CssClass="form-control" runat="server">
+
+                                                        <asp:ListItem Text="Kasikorn Bank" Value="1"></asp:ListItem>
+                                                        <asp:ListItem Text="SCB" Value="2"></asp:ListItem>
+
+                                                    </asp:DropDownList>
+                                               
+                                            </div>
+                                        </div>
                                 <div class="form-group">
                                             <label class="col-sm-2 control-label">จำนวนเงิน:</label>
 
                                             <div class="col-sm-10">
-                                                    <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control required"></asp:TextBox>
+                                                    <asp:TextBox ID="amount" runat="server" CssClass="form-control required"></asp:TextBox>
                                                
                                             </div>
                                         </div>
-                                 <div class="form-group">
+                                 <%--<div class="form-group">
                                             <label class="col-sm-2 control-label">สถานที่โอน:</label>
 
                                             <div class="col-sm-10">
                                                     <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control required"></asp:TextBox>
                                                
                                             </div>
-                                        </div>
+                                        </div>--%>
 
-                                 <div class="form-group">
+                                 <%--<div class="form-group">
                                             <label class="col-sm-2 control-label">จากเลขบัญชี:</label>
 
                                             <div class="col-sm-10">
                                                     <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control required"></asp:TextBox>
                                                
                                             </div>
-                                        </div>
+                                        </div>--%>
                                 
-                                     <div class="form-group">
+                                    <%-- <div class="form-group">
                                             <label class="col-sm-2 control-label">อีเมลของคุณ:</label>
 
                                             <div class="col-sm-10">
                                                     <asp:TextBox TextMode="Email" ID="txtEmail" runat="server" CssClass="form-control required"></asp:TextBox>
                                                
                                             </div>
-                                        </div>
+                                        </div>--%>
 
                                  <div class="form-group">
                                             <label class="col-sm-2 control-label">เบอร์โทรของคุณ:</label>
 
                                             <div class="col-sm-10">
-                                                    <asp:TextBox TextMode="Email" ID="TextBox5" runat="server" CssClass="form-control required"></asp:TextBox>
+                                                    <asp:TextBox TextMode="Phone" ID="txtPhone" runat="server" CssClass="form-control required"></asp:TextBox>
                                                
                                             </div>
                                         </div>
@@ -215,7 +267,8 @@
                                             <label class="col-sm-2 control-label">ไฟล์แนบ::</label>
 
                                             <div class="col-sm-10">
-                                                    <asp:TextBox TextMode="Email" ID="TextBox6" runat="server" CssClass="form-control required"></asp:TextBox>
+                                                <asp:FileUpload ID="file" ClientIDMode="Static" runat="server" />
+                                                    <%--<asp:TextBox TextMode="Email" ID="TextBox6" runat="server" CssClass="form-control required"></asp:TextBox>--%>
                                                
                                             </div>
                                         </div>
@@ -224,7 +277,7 @@
                                             <label class="col-sm-2 control-label">เพิ่มเติม::</label>
 
                                             <div class="col-sm-10">
-                                                    <asp:TextBox TextMode="Email" ID="TextBox7" runat="server" CssClass="form-control required"></asp:TextBox>
+                                                    <asp:TextBox  ID="txtextra" runat="server" CssClass="form-control "></asp:TextBox>
                                                
                                             </div>
                                         </div>
@@ -341,12 +394,12 @@
              //    }
              //}
 
-             if (chckCJF_form) {
-                 if ($('input[name=chckCJF_form]:checked').length == 0) {
-                     alert("You must select Current Job Function  at least one!");
-                     return false;
-                 }
-             }
+             //if (chckCJF_form) {
+             //    if ($('input[name=chckCJF_form]:checked').length == 0) {
+             //        alert("You must select Current Job Function  at least one!");
+             //        return false;
+             //    }
+             //}
 
 
 

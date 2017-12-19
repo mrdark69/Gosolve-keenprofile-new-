@@ -94,7 +94,7 @@ public partial class _Default : BasePageFront
                 Model_Orders o = new Model_Orders();
                 int paid = o.CountIsPaidByProduct(intProductID);
 
-                if (paid > 1)
+                if (paid > 0)
                 {
                     string report3 = AssessmentController.GetPaperReport3(u);
                     byte[] html3 = pdfgen.pdfGenerate(report3);

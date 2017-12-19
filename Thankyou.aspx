@@ -127,127 +127,18 @@
 
 
                                           <div class="ibox-content">
-                                               <h2  class="t_title">ขอบคุณสำหรับ รายการสั่งซื้อ</h2>
+                                               <h2  class="t_title">เราได้รับการยืนยันการโอนเงินจากคุณเรียบร้อยแล้ว กรุณารอการยืนยันจากทีมงานประมาณ 1-3 วัน ทางทีมงานจะส่งอีเมลแจ้งคุณทันทีที่การโอนเงินได้รับการยืนยันจากเจ้าหน้าที่ จากนั้นคุณจะสามารถ Download Report ได้ทันที โดยปุ่มจะเปลี่ยนจาก "ต้องการ Download" เป็น "คลิกเพื่อ Download"
+</h2>
                                                <p class="t_title">ท่านสามารถชำระ ค่าบริการผ่านช่องทาง ด้านล่างนี้</p>
-                                             <ul>
-                                                 <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
-                                                    <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
-                                                   <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
-                                                   <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
-                                             </ul>
-                                              </div>
-                    <div class="ibox-content">
-                        <h2  class="t_title">ยืนยันการชำระเงิน</h2>
-                         <p class="t_title">เมื่อคุณได้ชำระเงินผ่านช่องทางต่างๆ ที่ระบบของเราเตรียมไว้ให้แล้ว ก็สามารถแจ้งการชำระเงินได้ผ่านแบบฟอร์มด้านล่างนี้ได้ เพื่อให้เจ้าหน้าที่ตรวจสอบ และดำเนินการในขั้นตอนต่อไป</p>
-                        <div class="main_thanksyoublock col-md-12">
-                            <asp:Label ID="lblError" runat="server" style="color: red;text-align: center;margin: 0 auto;display: block;"></asp:Label>
-
-
-                            <div class="q-form-bio form-horizontal">
-                                        <div class="form-group"><label class="col-sm-2 control-label">รายละเอียด:</label>
-
-                                            <div class="col-sm-10">
-                                                <asp:TextBox ID="firstName" runat="server" CssClass="form-control required"></asp:TextBox>
-                                               
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">ผ่านช่องทาง:</label>
-
-                                            <div class="col-sm-10">
-                                                    <asp:DropDownList ID="DropDownList1" CssClass="form-control" runat="server"></asp:DropDownList>
-                                               
-                                            </div>
-                                        </div>
-                                 <div class="form-group">
-                                            <label class="col-sm-2 control-label">ชำระเมื่อวันที่:</label>
-
-                                            <div class="col-sm-10">
-                                                    <asp:TextBox ID="TextBox1" runat="server" MaxLengt="2" TextMode="Date" placeholder="Day" CssClass="form-control dob required"></asp:TextBox>
-                                               
-                                            </div>
-                                        </div>
-
-                                <div class="form-group">
-                                            <label class="col-sm-2 control-label">จำนวนเงิน:</label>
-
-                                            <div class="col-sm-10">
-                                                    <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control required"></asp:TextBox>
-                                               
-                                            </div>
-                                        </div>
-                                 <div class="form-group">
-                                            <label class="col-sm-2 control-label">สถานที่โอน:</label>
-
-                                            <div class="col-sm-10">
-                                                    <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control required"></asp:TextBox>
-                                               
-                                            </div>
-                                        </div>
-
-                                 <div class="form-group">
-                                            <label class="col-sm-2 control-label">จากเลขบัญชี:</label>
-
-                                            <div class="col-sm-10">
-                                                    <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control required"></asp:TextBox>
-                                               
-                                            </div>
-                                        </div>
-                                
-                                     <div class="form-group">
-                                            <label class="col-sm-2 control-label">อีเมลของคุณ:</label>
-
-                                            <div class="col-sm-10">
-                                                    <asp:TextBox TextMode="Email" ID="txtEmail" runat="server" CssClass="form-control required"></asp:TextBox>
-                                               
-                                            </div>
-                                        </div>
-
-                                 <div class="form-group">
-                                            <label class="col-sm-2 control-label">เบอร์โทรของคุณ:</label>
-
-                                            <div class="col-sm-10">
-                                                    <asp:TextBox TextMode="Email" ID="TextBox5" runat="server" CssClass="form-control required"></asp:TextBox>
-                                               
-                                            </div>
-                                        </div>
-                                <div class="form-group">
-                                            <label class="col-sm-2 control-label">ไฟล์แนบ::</label>
-
-                                            <div class="col-sm-10">
-                                                    <asp:TextBox TextMode="Email" ID="TextBox6" runat="server" CssClass="form-control required"></asp:TextBox>
-                                               
-                                            </div>
-                                        </div>
-
-                                  <div class="form-group">
-                                            <label class="col-sm-2 control-label">เพิ่มเติม::</label>
-
-                                            <div class="col-sm-10">
-                                                    <asp:TextBox TextMode="Email" ID="TextBox7" runat="server" CssClass="form-control required"></asp:TextBox>
-                                               
-                                            </div>
-                                        </div>
-                                
-                                      
-                                      
-                                     
-                             
-                               
-                                
-
-                                          
-                                    </div>
-                           
-                            <div class="t_des"><asp:Literal ID="ThanksDes" runat="server"></asp:Literal></div>
-                            <div class="btn_pan">
+                                             
+                                               <div class="btn_pan">
 
                               <%--  <asp:Button ID="btnBackprofile" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;" CssClass="btn btn-lg btn-border ripple" runat="server" OnClick="btnBackprofile_Click" Text="Your profile" />--%>
-                                 <asp:Button ID="btnDownload" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;float:right" CssClass="btn btn-lg btn-border ripple" runat="server" OnClientClick="return submitbtn();" OnClick="btnDownload_Click"  Text="ยืนยันการชำระเงิน" />
+                                 <asp:Button ID="btnDownload" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;float:right" CssClass="btn btn-lg btn-border ripple" runat="server" OnClick="btnDownload_Click"  Text="คลิ๊กเพื่อกลับไปหน้า ดาวโหลด" />
                             </div>
-                        </div>
-                        
-                        </div>
+
+                                              </div>
+                    
 
                                          </div>
                                         </div>
