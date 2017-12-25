@@ -27,8 +27,11 @@ public partial class _Default : BasePageFront
 
                 //btnReport1 //btnReport3 //btnReport2
                 int intProductID = 1;
+                int intProductCoach = 2;
                 Model_Orders o = new Model_Orders();
                 int paid = o.CountIsPaidByProduct(intProductID);
+
+                int paidCoaching = o.CountIsPaidByProduct(intProductCoach);
 
                 Model_UsersTransaction Uts = new Model_UsersTransaction();
                 List<Model_UsersTransaction> TSL = Uts.getTsListByUserID(u.UserID);
@@ -38,7 +41,7 @@ public partial class _Default : BasePageFront
                     btnReport2.Text = "คลิกเพื่อ Download";
                     btnReport3.Text = paid > 0? "คลิกเพื่อ Download" : "ต้องการ Download";
 
-                    btnReport4.Text = "ต้องการ Coaching";
+                    btnReport4.Text = paidCoaching > 0? "รอการติดต่อกลับ": "ต้องการ Coaching";
                 }
                 else
                 {
@@ -68,6 +71,7 @@ public partial class _Default : BasePageFront
 
         int ReportType = btn.CommandArgument != string.Empty ? int.Parse(btn.CommandArgument) : 0;
         Model_Users u = this.UserActive;
+        Model_Orders o = new Model_Orders();
         switch (ReportType)
         {
             case 0:
@@ -91,7 +95,7 @@ public partial class _Default : BasePageFront
 
                 int intProductID = 1;
 
-                Model_Orders o = new Model_Orders();
+               
                 int paid = o.CountIsPaidByProduct(intProductID);
 
                 if (paid > 0)
@@ -106,13 +110,40 @@ public partial class _Default : BasePageFront
                     int orderID = OrderController.MakeOrder(intProductID, u);
                     if (orderID > 0)
                     {
-                        Response.Redirect("Orders.aspx?orderID=" + orderID);
+                        Response.Redirect("Orders.aspx?orderID=" + orderID + "&ProductID=1");
                         Response.End();
                     }
 
                     
                 }
               
+                break;
+            case 4:
+
+                 intProductID = 2;
+
+               
+                 paid = o.CountIsPaidByProduct(intProductID);
+
+                if (paid > 0)
+                {
+                    string report3 = AssessmentController.GetPaperReport3(u);
+                    byte[] html3 = pdfgen.pdfGenerate(report3);
+
+                    pdfgen.ToClientSave(html3, "The-Right-Job-Functions-Report");
+                }
+                else
+                {
+                    int orderID = OrderController.MakeOrder(intProductID, u);
+                    if (orderID > 0)
+                    {
+                        Response.Redirect("Orders.aspx?orderID=" + orderID + "&ProductID=2");
+                        Response.End();
+                    }
+
+
+                }
+
                 break;
         }
     }

@@ -27,10 +27,21 @@ public partial class _Orders : BasePageFront
             Model_Users u = this.UserActive;
 
             string orderID = Request.QueryString["orderID"];
+
+
+
             if (u != null && !string.IsNullOrEmpty(orderID))
             {
-                
 
+                switch (Request.QueryString["ProductID"])
+                {
+                    case "1":
+                        lbldes.Text = "เราได้รับการยืนยันการโอนเงินจากคุณเรียบร้อยแล้ว กรุณารอการยืนยันจากทีมงานประมาณ 5 นาที ทางทีมงานจะส่งอีเมลแจ้งคุณทันทีที่การโอนเงินได้รับการยืนยันจากเจ้าหน้าที่ จากนั้นคุณจะสามารถ Download Report ได้ทันที โดยปุ่มจะเปลี่ยนจาก \"ต้องการ Download\" เป็น \"คลิกเพื่อ Download\"";
+                        break;
+                    case "2":
+                        lbldes.Text = "เราได้รับการยืนยันการโอนเงินจากคุณเรียบร้อยแล้ว กรุณารอการยืนยันจากทีมงานประมาณ 1-3 วัน ทางทีมงานจะส่งอีเมลและโทรติดต่อคุณทันทีที่การโอนเงินได้รับการยืนยันจากเจ้าหน้าที่ จากนั้นทีมผู้เชี่ยวชาญระทำการนัดหมายคุณเพื่อรับการโค้ชในวัน-เวลาที่คุณสะดวก";
+                        break;
+                }
 
 
                 Maintitle.Text = "Order Summary : OrderID#158237 [รอการชำระเงิน]";

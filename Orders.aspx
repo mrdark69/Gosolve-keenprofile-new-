@@ -165,11 +165,11 @@
 
 
                                           <div class="ibox-content">
-                                               <h2  class="t_title">ลิสต์รายชื่อสายงานทั้งหมดที่เหมาะกับอัจฉริยภาพและบุคลิกการทำงานของคุณ ง่ายๆ </h2>
-                                              <h2 class="t_title">แค่ดาวน์โหลด "The Right Job-Functions Report" </h2>
+                                               <h2  class="t_title"><asp:Literal ID="lbltitle" runat="server"></asp:Literal>  </h2>
+                                              <h2 class="t_title"><asp:Literal ID="lbltitle2" runat="server"></asp:Literal> </h2>
                                           
 
-                                              <h1 class="t_title" style="text-align:center">ปกติราคา 1,000 บาท<span style="color:red;font-weight:bold;text-decoration:underline"> ลดเหลือ 100 บาท ด่วน !</span></h1>
+                                              <h1 class="t_title" style="text-align:center">ปกติราคา <asp:Literal ID="lblpricemock" runat="server"></asp:Literal>  บาท<span style="color:red;font-weight:bold;text-decoration:underline"> ลดเหลือ <asp:Literal ID="lblpricenet" runat="server"></asp:Literal> บาท ด่วน !</span></h1>
 
 
                                                    <p class="t_title" style="margin-top:30px;">ท่านสามารถชำระ ค่าบริการผ่านช่องทาง ด้านล่างนี้</p>

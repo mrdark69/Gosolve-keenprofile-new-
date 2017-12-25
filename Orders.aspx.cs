@@ -24,13 +24,36 @@ public partial class _Orders : BasePageFront
             //    ThanksDes.Text = convertcontent(intro.ThanksDes);
             //}
 
+            if (!string.IsNullOrEmpty(Request.QueryString["ProductID"]))
+            {
+                switch (Request.QueryString["ProductID"])
+                {
+                    case "1":
+                        lbltitle.Text = "ลิสต์รายชื่อสายงานทั้งหมดที่เหมาะกับอัจฉริยภาพและบุคลิกการทำงานของคุณ ง่ายๆ";
+                        lbltitle2.Text = "แค่ดาวน์โหลด \"The Right Job - Functions Report\"";
+                        lblpricemock.Text = "1,000";
+                        lblpricenet.Text = "100";
+
+                        Maintitle.Text = "The Right Job-Functions Report";
+                        break;
+                    case "2":
+                        lbltitle.Text = "โค้ชลงลึกเกี่ยวกับกลยุทธ์เส้นทางอาชีพของคุณในอีก 3-5 ปีข้างหน้า โดยทีมงานผู้เชี่ยวชาญที่สัมภาษณ์ผู้บริหารมาแล้วมากกว่าพันคน คุณจะไม่ต้องหลงทางกับเส้นทางอาชีพของคุณอีกต่อไป";
+                        lbltitle2.Text = "";
+                        lblpricemock.Text = "5,000";
+                        lblpricenet.Text = "1,000";
+
+
+                        Maintitle.Text = "KEENCareer Coaching";
+                        break;
+                }
+            }
+
             Model_Users u = this.UserActive;
 
             string orderID = Request.QueryString["orderID"];
             if (u != null && !string.IsNullOrEmpty(orderID))
             {
-                
-                Maintitle.Text = "The Right Job-Functions Report";
+              
 
 
                 firstName.Text = u.FirstName;
@@ -112,7 +135,7 @@ public partial class _Orders : BasePageFront
                 file.PostedFile.SaveAs(HttpContext.Current.Server.MapPath(FilePath));
             }
 
-            Response.Redirect("~/Thankyou?Con=firm&OrderID=" + orderID);
+            Response.Redirect("~/Thankyou?Con=firm&OrderID=" + orderID + "&ProductID=" + Request.QueryString["ProductID"]);
         }
 
         

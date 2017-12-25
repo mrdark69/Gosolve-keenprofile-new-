@@ -167,7 +167,7 @@
 					<div class="circle" style="color:#366f9a">4</div>
 					<h2>KEENCareer Coaching</h2>
 					<p>โค้ชตัวต่อตัวกับผู้เชี่ยวชาญของทางทีมงาน KEEN PROFILE เพื่อทำความเข้าใจเชิงลึกเกี่ยวกับเส้นทางอาชีพที่เหมาะกับอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ <%--<a  class="read-more-btn" href="#">อ่านต่อ >></a> --%> </p>
-                     <asp:Button ID="btnReport4" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="3" />
+                     <asp:Button ID="btnReport4" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="4" />
 				</div>
 			</div>
        </div>
