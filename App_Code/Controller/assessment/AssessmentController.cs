@@ -588,7 +588,7 @@ public class AssessmentController
                 T4ret.Append("<td " + (count4==1? "style=\"border-top:none;\"": "") + ">" + countt4 + "</td>");
                 T4ret.Append("<td " + (count4 == 1 ? "style=\"border-top:none;\"" : "") + ">" + i.ResultItemTitle +( i.IsAbove || i.IsBelow? "*":"") + "</td>");
                 T4ret.Append("<td " + (count4 == 1 ? "style=\"border-top:none;\"" : "") + ">" + i.UseAtWork + "</td>");
-                T4ret.Append("<td " + (count4 == 1 ? "style=\"border-top:none;\"" : "") + ">" +i.Result+"d</td>");
+                T4ret.Append("<td " + (count4 == 1 ? "style=\"border-top:none;\"" : "") + ">" +i.Result+"</td>");
                 T4ret.Append("</tr>");
                 T4ret.Append("");
 
