@@ -41,10 +41,25 @@
                    </div>
 				</div>
 				<div class="hr"></div>
-                <div class="group">
-                      <a href="#" onclick="loginByFacebook();" class="button">Login with Facebook</a>
+                
+				<div class="foot-lnk">
+					
+                    <a href="Signup.aspx">Create a new Keen Profile account</a>
+				</div>
+			</div>
+			
+		</div>
+	</div>
 
-                    <script type="text/javascript">
+         
+</div>
+   
+    <%--<asp:Button ID="Button1" CssClass="button" runat="server" OnClick="btnSignup_Click" Text="Sign Up" />--%>
+</asp:Content>
+<%--<div class="group">
+                      <a href="#" onclick="loginByFacebook();" class="button">Login with Facebook</a>--%>
+
+                    <%--<script type="text/javascript">
                         window.fbAsyncInit = function () {
                             FB.init({
                                 appId: '358756381252009',
@@ -79,19 +94,5 @@
                             else
                                 window.location = loc + '?authprv=facebook&access_token=' + response.authResponse.accessToken;
                         }
-    </script>
-                    </div>
-				<div class="foot-lnk">
-					
-                    <a href="Signup.aspx">Create a new Keen Profile account</a>
-				</div>
-			</div>
-			
-		</div>
-	</div>
-
-         
-</div>
-   
-    <%--<asp:Button ID="Button1" CssClass="button" runat="server" OnClick="btnSignup_Click" Text="Sign Up" />--%>
-</asp:Content>
+    </script>--%>
+                    <%--</div>--%>

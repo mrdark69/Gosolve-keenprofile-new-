@@ -56,11 +56,32 @@
 				</div>
 				<div class="hr"></div>
 
-                	<div class="group">
-                        <input type="button" onclick="loginByFacebook();"  class="button" value="Sign Up with Facebook"/>
-                         <%--<a href="#" onclick="loginByFacebook();">Sign Up with Facebook</a>--%>
+                
 
-                    <script type="text/javascript">
+
+                <div class="group">
+                    <p style="font-size:14px;margin:0px;padding:0px; line-height:14px;" >© 2018 Keen Profile, All rights reserved.
+                </p>
+                    <p><a style="font-size:14px;" target="_blank" href="http://www.keenprofile.com/terms-and-conditions/">Term and Conditions</a></p>
+                </div>
+				
+			</div>
+			
+		</div>
+	</div>
+
+         
+</div>
+   
+    <%--<asp:Button ID="Button1" CssClass="button" runat="server" OnClick="btnSignup_Click" Text="Sign Up" />--%>
+</asp:Content>
+
+
+<%--	<div class="group">
+                        <input type="button" onclick="loginByFacebook();"  class="button" value="Sign Up with Facebook"/>
+                        <a href="#" onclick="loginByFacebook();">Sign Up with Facebook</a>--%>
+
+                    <%--<script type="text/javascript">
                         window.fbAsyncInit = function () {
                             FB.init({
                                 appId: '358756381252009',
@@ -95,16 +116,5 @@
                             else
                                 window.location = loc + '?authprv=facebook&access_token=' + response.authResponse.accessToken;
                         }
-    </script>
-                        </div>
-				
-			</div>
-			
-		</div>
-	</div>
-
-         
-</div>
-   
-    <%--<asp:Button ID="Button1" CssClass="button" runat="server" OnClick="btnSignup_Click" Text="Sign Up" />--%>
-</asp:Content>
+    </script>--%>
+                      <%--  </div>--%>
