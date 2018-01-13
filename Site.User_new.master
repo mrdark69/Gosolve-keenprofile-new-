@@ -1,0 +1,188 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.User_new.master.cs" Inherits="SiteUserMaster_new" %>
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://www.keenprofile.com/about/ -->
+<html class="ua-chrome ua-chrome-63 ua-chrome-63-0 ua-chrome-63-0-3239 ua-chrome-63-0-3239-132 ua-desktop ua-desktop-macintosh ua-mac_os_x ua-mac_os_x-10 ua-mac_os_x-10-13 ua-mac_os_x-10-13-2 ua-webkit ua-webkit-537 ua-webkit-537-36 js applicationcache geolocation history postmessage websockets localstorage sessionstorage websqldatabase webworkers hashchange audio canvas canvastext video webgl cssgradients multiplebgs opacity rgba inlinesvg hsla supports svgclippaths smil no-touchevents fontface generatedcontent textshadow cssanimations backgroundsize borderimage borderradius boxshadow flexbox cssreflections csstransforms csstransforms3d csstransitions" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# og: http://ogp.me/ns#" data-useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>About - KEEN PROFILE</title>
+   
+      <style type="text/css">
+         img.wp-smiley,
+         img.emoji {
+         display: inline !important;
+         border: none !important;
+         box-shadow: none !important;
+         height: 1em !important;
+         width: 1em !important;
+         margin: 0 .07em !important;
+         vertical-align: -0.1em !important;
+         background: none !important;
+         padding: 0 !important;
+         }
+      </style>
+      <link rel="stylesheet" id="contact-form-7-css" href="./About - KEEN PROFILE_files/styles.css" type="text/css" media="all">
+      <link rel="stylesheet" id="rs-plugin-settings-css" href="./About - KEEN PROFILE_files/settings.css" type="text/css" media="all">
+     
+      <link rel="stylesheet" id="avada-stylesheet-css" href="./About - KEEN PROFILE_files/style.min.css" type="text/css" media="all">
+             <link rel="stylesheet" type="text/css" href="Theme/css/custom_new.css?ver=<% Response.Write(DateTime.Now.ToString("HH:ss:mm")); %>" title="wsite-theme-css" />
+      <link href='//fonts.googleapis.com/css?family=Lato:400,300,300italic,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+
+
+       <link href="https://fonts.googleapis.com/css?family=Kanit:400,500,600,700&amp;subset=thai" rel="stylesheet" type="text/css">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     
+      <link rel="stylesheet" id="fusion-dynamic-css-css" href="./About - KEEN PROFILE_files/fusion-9.css" type="text/css" media="all">
+      <script type="text/javascript" src="./About - KEEN PROFILE_files/jquery.js"></script>
+      <script type="text/javascript" src="./About - KEEN PROFILE_files/jquery-migrate.min.js"></script>
+  
+    
+    
+      <style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style>
+      <asp:ContentPlaceHolder ID="HeaderScript" runat="server">
+      </asp:ContentPlaceHolder>
+   </head>
+   <body class="page-template page-template-100-width page-template-100-width-php page page-id-9 fusion-image-hovers fusion-body ltr fusion-sticky-header no-tablet-sticky-header no-mobile-sticky-header mobile-logo-pos-left layout-wide-mode fusion-top-header menu-text-align-left mobile-menu-design-modern fusion-show-pagination-text fusion-header-layout-v1 avada-responsive avada-footer-fx-none do-animate">
+
+       <form runat="server">
+      <div id="wrapper" class="" style="height: auto;">
+        
+         <header class="fusion-header-wrapper" style="position: relative; z-index: 5; height: 96px;">
+            <div class="fusion-header-v1 fusion-logo-left fusion-sticky-menu- fusion-sticky-logo- fusion-mobile-logo-  fusion-mobile-menu-design-modern">
+               <div class="fusion-header-sticky-height" style="height: 96px; overflow: visible; display: none;"></div>
+               <div class="fusion-header fusion-header-backface" style="height: 96px; overflow: visible;">
+                  <div class="fusion-row">
+                     <div class="fusion-logo" data-margin-top="31px" data-margin-bottom="0" data-margin-left="0px" data-margin-right="0px">
+                        <a class="fusion-logo-link" href="http://www.keenprofile.com/">
+                           <!-- standard logo -->
+                           <img src="./About - KEEN PROFILE_files/keenprofile-logo.png" srcset="http://www.keenprofile.com/wp-content/uploads/2017/11/keenprofile-logo.png 1x" width="209" height="43" alt="KEEN PROFILE Logo" retina_logo_url="" class="fusion-standard-logo">
+                           <!-- mobile logo -->
+                           <!-- sticky header logo -->
+                        </a>
+                     </div>
+                     <nav class="fusion-main-menu" aria-label="Main Menu">
+                        <ul role="menubar" id="menu-architecture-main-menu" class="fusion-menu">
+                           <li role="menuitem" id="menu-item-21" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-21"><a href="http://www.keenprofile.com/" class="fusion-bar-highlight"><span class="menu-text">Home</span></a></li>
+                           <li role="menuitem" id="menu-item-20" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-9 current_page_item menu-item-20"><a href="http://www.keenprofile.com/about/" class="fusion-bar-highlight"><span class="menu-text">About</span></a></li>
+                           <li role="menuitem" id="menu-item-19" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-19 fusion-dropdown-menu" style="">
+                              <a href="http://www.keenprofile.com/services/" class="fusion-bar-highlight" aria-haspopup="true"><span class="menu-text">Services</span> <span class="fusion-caret"><i class="fusion-dropdown-indicator"></i></span></a>
+                              <ul role="menu" class="sub-menu">
+                                 <li role="menuitem" id="menu-item-830" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-830 fusion-dropdown-submenu"><a href="http://www.keenprofile.com/2017/11/28/keencareer-finder/" class="fusion-bar-highlight"><span>KEENCareer Finder</span></a></li>
+                                 <li role="menuitem" id="menu-item-832" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-832 fusion-dropdown-submenu"><a href="http://www.keenprofile.com/2017/11/28/profile-career-advisory/" class="fusion-bar-highlight"><span>Profile &amp; Career Advisory</span></a></li>
+                                 <li role="menuitem" id="menu-item-831" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-831 fusion-dropdown-submenu"><a href="http://www.keenprofile.com/2017/11/28/professional-resume/" class="fusion-bar-highlight"><span>Professional Resume</span></a></li>
+                                 <li role="menuitem" id="menu-item-829" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-829 fusion-dropdown-submenu"><a href="http://www.keenprofile.com/2017/11/28/interview-in-practice/" class="fusion-bar-highlight"><span>Interview in Practice</span></a></li>
+                              </ul>
+                           </li>
+                           <li role="menuitem" id="menu-item-17" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17"><a href="http://www.keenprofile.com/contact/" class="fusion-bar-highlight"><span class="menu-text">Contact</span></a></li>
+                           <li role="menuitem" id="menu-item-700" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-700"><a href="http://www.keenprofile.com/news/" class="fusion-bar-highlight"><span class="menu-text">News</span></a></li>
+                           <li role="menuitem" id="menu-item-805" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-805 fusion-last-menu-item"><a href="http://member.keenprofile.com/" class="fusion-flex-link fusion-bar-highlight"><span class="fusion-megamenu-icon"><i class="fa glyphicon fa-user"></i></span><span class="menu-text">Member</span></a></li>
+                        </ul>
+                     </nav>
+                     <div class="fusion-mobile-menu-icons">
+                        <a href="http://www.keenprofile.com/about/#" class="fusion-icon fusion-icon-bars" aria-label="Toggle mobile menu"></a>
+                     </div>
+                     <nav class="fusion-mobile-nav-holder fusion-mobile-menu-text-align-left">
+                        <ul role="menubar" id="mobile-menu-architecture-main-menu" class="fusion-menu">
+                           <li role="menuitem" id="mobile-menu-item-21" class="fusion-mobile-nav-item" style=""><a href="http://www.keenprofile.com/" class="fusion-bar-highlight"><span class="menu-text">Home</span></a></li>
+                           <li role="menuitem" id="mobile-menu-item-20" class="fusion-mobile-nav-item fusion-mobile-current-nav-item" style=""><a href="http://www.keenprofile.com/about/" class="fusion-bar-highlight"><span class="menu-text">About</span></a></li>
+                           <li role="menuitem" id="mobile-menu-item-19" class="fusion-mobile-nav-item" style="">
+                              <span href="#" aria-haspopup="true" class="fusion-open-submenu"></span><a href="http://www.keenprofile.com/services/" class="fusion-bar-highlight"><span class="menu-text">Services</span> </a>
+                              <ul role="menu" class="sub-menu" style="display: none;">
+                                 <li role="menuitem" id="mobile-menu-item-830" class="fusion-mobile-nav-item" style=""><a href="http://www.keenprofile.com/2017/11/28/keencareer-finder/" class="fusion-bar-highlight"><span>KEENCareer Finder</span></a></li>
+                                 <li role="menuitem" id="mobile-menu-item-832" class="fusion-mobile-nav-item" style=""><a href="http://www.keenprofile.com/2017/11/28/profile-career-advisory/" class="fusion-bar-highlight"><span>Profile &amp; Career Advisory</span></a></li>
+                                 <li role="menuitem" id="mobile-menu-item-831" class="fusion-mobile-nav-item" style=""><a href="http://www.keenprofile.com/2017/11/28/professional-resume/" class="fusion-bar-highlight"><span>Professional Resume</span></a></li>
+                                 <li role="menuitem" id="mobile-menu-item-829" class="fusion-mobile-nav-item" style=""><a href="http://www.keenprofile.com/2017/11/28/interview-in-practice/" class="fusion-bar-highlight"><span>Interview in Practice</span></a></li>
+                              </ul>
+                           </li>
+                           <li role="menuitem" id="mobile-menu-item-17" class="fusion-mobile-nav-item" style=""><a href="http://www.keenprofile.com/contact/" class="fusion-bar-highlight"><span class="menu-text">Contact</span></a></li>
+                           <li role="menuitem" id="mobile-menu-item-700" class="fusion-mobile-nav-item" style=""><a href="http://www.keenprofile.com/news/" class="fusion-bar-highlight"><span class="menu-text">News</span></a></li>
+                           <li role="menuitem" id="mobile-menu-item-805" class="fusion-mobile-nav-item" style=""><a href="http://member.keenprofile.com/" class="fusion-flex-link fusion-bar-highlight"><span class="fusion-megamenu-icon"><i class="fa glyphicon fa-user"></i></span><span class="menu-text">Member</span></a></li>
+                        </ul>
+                     </nav>
+                  </div>
+               </div>
+            </div>
+            <div class="fusion-clearfix"></div>
+         </header>
+         
+         <main id="main" role="main"  style="padding-left: 40px; padding-right: 40px; position: relative; z-index: 3;">
+            <div class="fusion-row" style="max-width:100%;">
+               <section id="content" class="full-width">
+                   <div class="container">
+                          <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                  </asp:ContentPlaceHolder>
+                   </div>
+               
+               </section>
+            </div>
+            <!-- fusion-row -->
+         </main>
+         <!-- #main -->
+         <div class="fusion-footer">
+            <footer role="contentinfo" class="fusion-footer-widget-area fusion-widget-area" style="position: relative; z-index: 3;">
+               <div class="fusion-row">
+                  <div class="fusion-columns fusion-columns-2 fusion-widget-area">
+                     <div class="fusion-column col-lg-6 col-md-6 col-sm-6">
+                        <section id="social_links-widget-2" class="fusion-footer-widget-column widget social_links">
+                           <div class="fusion-social-networks boxed-icons">
+                              <div class="fusion-social-networks-wrapper">
+                                 <a class="fusion-social-network-icon fusion-tooltip fusion-facebook fusion-icon-facebook" href="http://www.keenprofile.com/about/#" data-placement="top" data-title="Facebook" data-toggle="tooltip" data-original-title="Facebook" title="" aria-label="Facebook" rel="" target="_self" style="border-radius:50%;padding:12px;font-size:18px;color:#828c8e;background-color:#2b2e35;border-color:#2b2e35;"></a>
+                                 <a class="fusion-social-network-icon fusion-tooltip fusion-twitter fusion-icon-twitter" href="http://www.keenprofile.com/about/#" data-placement="top" data-title="Twitter" data-toggle="tooltip" data-original-title="Twitter" title="" aria-label="Twitter" rel="" target="_self" style="border-radius:50%;padding:12px;font-size:18px;color:#828c8e;background-color:#2b2e35;border-color:#2b2e35;"></a>
+                                 <a class="fusion-social-network-icon fusion-tooltip fusion-rss fusion-icon-rss" href="http://www.keenprofile.com/about/#" data-placement="top" data-title="Rss" data-toggle="tooltip" data-original-title="Rss" title="" aria-label="Rss" rel="" target="_self" style="border-radius:50%;padding:12px;font-size:18px;color:#828c8e;background-color:#2b2e35;border-color:#2b2e35;"></a>
+                                 <a class="fusion-social-network-icon fusion-tooltip fusion-linkedin fusion-icon-linkedin" href="http://www.keenprofile.com/about/#" data-placement="top" data-title="Linkedin" data-toggle="tooltip" data-original-title="Linkedin" title="" aria-label="Linkedin" rel="" target="_self" style="border-radius:50%;padding:12px;font-size:18px;color:#828c8e;background-color:#2b2e35;border-color:#2b2e35;"></a>
+                              </div>
+                           </div>
+                           <div style="clear:both;"></div>
+                        </section>
+                     </div>
+                     <div class="fusion-column fusion-column-last col-lg-6 col-md-6 col-sm-6">
+                        <section id="text-4" class="fusion-footer-widget-column widget widget_text">
+                           <div class="textwidget">
+                              <div class="fusion-button-wrapper fusion-alignright">
+                                 <style type="text/css" scoped="scoped">.fusion-button.button-1 .fusion-button-text, .fusion-button.button-1 i {color:#fff;}.fusion-button.button-1 {border-width:0px;border-color:#fff;}.fusion-button.button-1 .fusion-button-icon-divider{border-color:#fff;}.fusion-button.button-1:hover .fusion-button-text, .fusion-button.button-1:hover i,.fusion-button.button-1:focus .fusion-button-text, .fusion-button.button-1:focus i,.fusion-button.button-1:active .fusion-button-text, .fusion-button.button-1:active{color:#fff;}.fusion-button.button-1:hover, .fusion-button.button-1:focus, .fusion-button.button-1:active{border-width:0px;border-color:#fff;}.fusion-button.button-1:hover .fusion-button-icon-divider, .fusion-button.button-1:hover .fusion-button-icon-divider, .fusion-button.button-1:active .fusion-button-icon-divider{border-color:#fff;}.fusion-button.button-1{background: #2b2e35;}.fusion-button.button-1:hover,.button-1:focus,.fusion-button.button-1:active{background: #2f333a;}.fusion-button.button-1{width:auto;}</style>
+                                 <a class="fusion-button button-flat fusion-button-square button-large button-custom button-1" target="_self" href="http://www.keenprofile.com/about/#" data-toggle="modal" data-target=".fusion-modal.contact"><span class="fusion-button-text">Get In Touch</span></a>
+                              </div>
+                           </div>
+                           <div style="clear:both;"></div>
+                        </section>
+                     </div>
+                     <div class="fusion-clearfix"></div>
+                  </div>
+                  <!-- fusion-columns -->
+               </div>
+               <!-- fusion-row -->
+            </footer>
+            <!-- fusion-footer-widget-area -->
+            <footer id="footer" class="fusion-footer-copyright-area" style="position: relative; z-index: 3;">
+               <div class="fusion-row">
+                  <div class="fusion-copyright-content">
+                     <div class="fusion-copyright-notice" style="padding-bottom: 0px;">
+                        <div>
+                           <span style="line-height:30px !important;">
+                              © Copyright 2012 - <script>document.write(new Date().getFullYear());</script>2018 |&nbsp;&nbsp;&nbsp;Avada Theme by <a href="http://theme-fusion.com/" target="_blank">Theme Fusion</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;All Rights Reserved&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Powered by <a href="http://wordpress.org/" target="_blank">WordPress</a>
+                           </span>
+                           <span style="float:right;color:#fff"><i class="fa fa-phone"></i>&nbsp;&nbsp;1.800.555.6789&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:support@theme-fusion.com" style="color:#fff;text-transform:uppercase;"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;Email Us</a></span>	
+                        </div>
+                     </div>
+                  </div>
+                  <!-- fusion-fusion-copyright-content -->
+               </div>
+               <!-- fusion-row -->
+            </footer>
+            <!-- #footer -->
+         </div>
+         <!-- fusion-footer -->
+      </div>
+      <!-- wrapper -->
+      <a class="fusion-one-page-text-link fusion-page-load-link"></a>
+     
+     
+      
+      <asp:ContentPlaceHolder ID="ContentFooter" runat="server">
+      </asp:ContentPlaceHolder>
+           </form>
+   </body>
+</html>
