@@ -200,6 +200,14 @@
                               Contact
                               </a>
                            </li>
+                             <li  class="wsite-menu-item-wrap user_login ">
+                              <a
+                                 href="http://member.keenprofile.com/"
+                                 class="wsite-menu-item"
+                                 >
+                              <asp:Literal ID="lblprofile" runat="server"></asp:Literal>
+                              </a>
+                           </li>
                         </ul>
                      </div>
                       </div>

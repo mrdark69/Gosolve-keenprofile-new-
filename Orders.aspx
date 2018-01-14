@@ -174,10 +174,10 @@
 
                                                    <p class="t_title" style="margin-top:30px;">ท่านสามารถชำระ ค่าบริการผ่านช่องทาง ด้านล่างนี้</p>
                                              <ul class="t_title" style="padding-left:50px;">
-                                                 <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
-                                                    <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
-                                                   <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
-                                                   <li>ธนารคาร กสิกรไทย xxx-xxxx-xxxx ออมทรัพย์ พีระพงษ์ นิ่มนนท์</li>
+                                                 <li>ธนารคาร กสิกรไทย 035-8-94355-1 ออมทรัพย์ ธนะสิทธิ์ กิตติแสงสุวรรณ</li>
+                                                    <li>ธนารคาร ไทยพาณิชย์ 218-262644-9 ออมทรัพย์ ธนะสิทธิ์ กิตติแสงสุวรรณ</li>
+                                                   <li>ธนารคาร กรุงศรี 531-1-42882-8 ออมทรัพย์ ธนะสิทธิ์ กิตติแสงสุวรรณ</li>
+                                                  
                                              </ul>
                                               </div>
                     <div class="ibox-content" style="margin-top:60px;">
@@ -188,14 +188,14 @@
 
 
                             <div class="q-form-bio form-horizontal">
-                                        <div class="form-group"><label class="col-sm-2 control-label">ชื่อ:</label>
+                                        <div class="form-group"><label class="col-sm-2 control-label"><span style="color:red;">*</span>ชื่อ:</label>
 
                                             <div class="col-sm-10">
                                                 <asp:TextBox ID="firstName" runat="server" CssClass="form-control required"></asp:TextBox>
                                                
                                             </div>
                                         </div>
-                                    <div class="form-group"><label class="col-sm-2 control-label">อีเมล์</label>
+                                    <div class="form-group"><label class="col-sm-2 control-label"><span style="color:red;">*</span>อีเมล์</label>
 
                                             <div class="col-sm-10">
                                                 <asp:TextBox ID="email" TextMode="Email" runat="server" CssClass="form-control required"></asp:TextBox>
@@ -205,7 +205,7 @@
 
                                      
                                  <div class="form-group">
-                                            <label class="col-sm-2 control-label">ชำระเมื่อวันที่:</label>
+                                            <label class="col-sm-2 control-label"><span style="color:red;">*</span>ชำระเมื่อวันที่:</label>
 
                                             <div class="col-sm-10">
                                                     <asp:TextBox ID="date_payment" ClientIDMode="Static" runat="server" MaxLengt="2"   CssClass="form-control dob required"></asp:TextBox>
@@ -215,55 +215,32 @@
                                             </div>
                                         </div>
                                    <div class="form-group">
-                                            <label class="col-sm-2 control-label">ธนาคารที่โอนเงิน:</label>
+                                            <label class="col-sm-2 control-label"><span style="color:red;">*</span>ธนาคารที่โอนเงิน:</label>
 
                                             <div class="col-sm-10">
                                                     <asp:DropDownList ID="dropgatway" CssClass="form-control" runat="server">
 
                                                         <asp:ListItem Text="Kasikorn Bank" Value="1"></asp:ListItem>
                                                         <asp:ListItem Text="SCB" Value="2"></asp:ListItem>
+                                                        <asp:ListItem Text="Krungsri" Value="3"></asp:ListItem>
+                                                        
 
                                                     </asp:DropDownList>
                                                
                                             </div>
                                         </div>
                                 <div class="form-group">
-                                            <label class="col-sm-2 control-label">จำนวนเงิน:</label>
+                                            <label class="col-sm-2 control-label"><span style="color:red;">*</span>จำนวนเงิน:</label>
 
                                             <div class="col-sm-10">
                                                     <asp:TextBox ID="amount" runat="server" CssClass="form-control required"></asp:TextBox>
                                                
                                             </div>
                                         </div>
-                                 <%--<div class="form-group">
-                                            <label class="col-sm-2 control-label">สถานที่โอน:</label>
-
-                                            <div class="col-sm-10">
-                                                    <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control required"></asp:TextBox>
-                                               
-                                            </div>
-                                        </div>--%>
-
-                                 <%--<div class="form-group">
-                                            <label class="col-sm-2 control-label">จากเลขบัญชี:</label>
-
-                                            <div class="col-sm-10">
-                                                    <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control required"></asp:TextBox>
-                                               
-                                            </div>
-                                        </div>--%>
                                 
-                                    <%-- <div class="form-group">
-                                            <label class="col-sm-2 control-label">อีเมลของคุณ:</label>
-
-                                            <div class="col-sm-10">
-                                                    <asp:TextBox TextMode="Email" ID="txtEmail" runat="server" CssClass="form-control required"></asp:TextBox>
-                                               
-                                            </div>
-                                        </div>--%>
 
                                  <div class="form-group">
-                                            <label class="col-sm-2 control-label">เบอร์โทรของคุณ:</label>
+                                            <label class="col-sm-2 control-label"><span style="color:red;">*</span>เบอร์โทรของคุณ:</label>
 
                                             <div class="col-sm-10">
                                                     <asp:TextBox TextMode="Phone" ID="txtPhone" runat="server" CssClass="form-control required"></asp:TextBox>

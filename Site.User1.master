@@ -149,7 +149,7 @@
                               </div>
                <div class="dusk-header">
                <div class="nav-wrap">
-                  <div class="container">
+                  <div class="container-fluid">
                      <div class="logo"><span class="wsite-logo">
                         <a href="/">
                         <span id="wsite-title">KEEN PROFILE</span>
@@ -197,6 +197,14 @@
                                  class="wsite-menu-item"
                                  >
                               Contact
+                              </a>
+                           </li>
+                             <li  class="wsite-menu-item-wrap user_login ">
+                              <a
+                                 href="http://member.keenprofile.com/"
+                                 class="wsite-menu-item"
+                                 >
+                              <asp:Literal ID="lblprofile" runat="server"></asp:Literal>
                               </a>
                            </li>
                         </ul>
