@@ -266,7 +266,12 @@ public class UsersController
             UserID = intUserID
         };
 
-        return mu.UpdateUserVerify(mu);
+        if (mu.UpdateUserVerify(mu))
+        {
+            SendEmailSuccess(intUserID);
+        }
+
+        return true;
 
 
 
