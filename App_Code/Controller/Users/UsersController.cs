@@ -181,6 +181,35 @@ public class UsersController
         MAilSender.SendMailEngine(option);
     }
 
+    public static void SendEmailSuccess(int UserID)
+    {
+        Model_Setting s = new Model_Setting();
+        s = s.GetSetting();
+
+        Model_Users user = GetUserbyID(UserID);
+
+        string body = string.Empty;
+        string text = File.ReadAllText(HttpContext.Current.Server.MapPath("/Theme/emailtemplate/layout_sgSuccess.html"), Encoding.UTF8);
+        if (!string.IsNullOrEmpty(text))
+        {
+            //string path = ConfigurationManager.AppSettings["AuthorizeBaseURL"].ToString().Replace("/admin", "") + "Verify?ID=" + StringUtility.EncryptedData(user.UserID.ToString());
+            //body = text.Replace("<!--##@Linkverfiy##-->", path);
+            //body = text.Replace("<!--##@Linkverfiy_btn##-->", path);
+
+            body = text;
+        }
+
+        MailSenderOption option = new MailSenderOption
+        {
+            MailSetting = s,
+            context = HttpContext.Current,
+            mailTo = user.Email,
+            Mailbody = body,
+            Subject = "การสมัครของคุณเสร็จสิ้น/ You've successfully Register to Keen Profile System"
+        };
+        MAilSender.SendMailEngine(option);
+    }
+
     public static Model_Users SendEmailForgot(string email)
     {
         Model_Setting s = new Model_Setting();
@@ -238,6 +267,10 @@ public class UsersController
         };
 
         return mu.UpdateUserVerify(mu);
+
+
+
+
     }
 
     public static bool UpdatePassword (Model_Users mu)
