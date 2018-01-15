@@ -176,7 +176,7 @@ public class UsersController
             context = HttpContext.Current,
             mailTo = user.Email,
             Mailbody = body,
-            Subject = "การสมัครของคุณเสร็จสิ้น/ You've successfully Register to Keen Profile System : Please verify "
+            Subject = "Verify Email for Keen Profile Service"
         };
         MAilSender.SendMailEngine(option);
     }
