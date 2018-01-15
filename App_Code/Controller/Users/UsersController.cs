@@ -166,7 +166,8 @@ public class UsersController
         if (!string.IsNullOrEmpty(text))
         {
             string path = ConfigurationManager.AppSettings["AuthorizeBaseURL"].ToString().Replace("/admin","") + "Verify?ID=" + StringUtility.EncryptedData(user.UserID.ToString());
-            body = text.Replace("<!--##@Linkverfiy##-->", "<a href=\""+path+"\" />here</a>" );
+            body = text.Replace("<!--##@Linkverfiy##-->", path);
+            body = text.Replace("<!--##@Linkverfiy_btn##-->", path);
         }
      
         MailSenderOption option = new MailSenderOption
