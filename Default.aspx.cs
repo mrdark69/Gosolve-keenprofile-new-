@@ -41,7 +41,9 @@ public partial class _Default : BasePageFront
                     btnReport2.Text = "คลิกเพื่อ Download";
                     btnReport3.Text = paid > 0? "คลิกเพื่อ Download" : "ต้องการ Download";
 
-                    btnReport4.Text = paidCoaching > 0? "รอการติดต่อกลับ": "ต้องการ Coaching";
+                    btnReport4.Text = paidCoaching > 0? "รอการ Coaching" : "ต้องการ Coaching";
+
+                    btnReport4.Attributes.Add("class", "sss");
                 }
                 else
                 {
@@ -54,6 +56,11 @@ public partial class _Default : BasePageFront
                     btnReport1.CommandArgument = "0";
                     btnReport2.CommandArgument = "0";
                     btnReport3.CommandArgument = "0";
+                    btnReport4.CommandArgument = "0";
+
+                    btnReport4.CssClass = "btn_button btn_coach";
+
+                    btnReport3.CssClass = "btn_button btn_r3";
                 }
             }
         }
@@ -127,10 +134,10 @@ public partial class _Default : BasePageFront
 
                 if (paid > 0)
                 {
-                    string report3 = AssessmentController.GetPaperReport3(u);
-                    byte[] html3 = pdfgen.pdfGenerate(report3);
+                    //string report3 = AssessmentController.GetPaperReport3(u);
+                    //byte[] html3 = pdfgen.pdfGenerate(report3);
 
-                    pdfgen.ToClientSave(html3, "The-Right-Job-Functions-Report");
+                    //pdfgen.ToClientSave(html3, "The-Right-Job-Functions-Report");
                 }
                 else
                 {
