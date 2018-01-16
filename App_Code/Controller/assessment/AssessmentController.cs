@@ -1147,8 +1147,8 @@ public class AssessmentController
                 dupF = dupF.Replace("<!--###T6_Page_Gen_Geniuses###-->", li);
 
                 dupF = dupF.Replace("<!--###T6_Page_Gen_Title###-->", "The First Job Priority");
-                dupF = dupF.Replace("<!--###T6_Page_Gen_Job_Title###-->", job.Title);
-                dupF = dupF.Replace("<!--###T6_Page_Gen_Job_Group###-->", job.GroupName);
+                dupF = dupF.Replace("<!--###T6_Page_Gen_Job_Title###-->", "”" +  job.Title + "“");
+                dupF = dupF.Replace("<!--###T6_Page_Gen_Job_Group###-->", " (" + job.GroupName + ")");
 
 
                 
