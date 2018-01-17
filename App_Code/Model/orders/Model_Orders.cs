@@ -46,7 +46,7 @@ public class Model_Orders : BaseModel<Model_Orders>
     }
 
 
-    public int CountIsPaidByProduct(int ProductID)
+    public int CountIsPaidByProduct(int ProductID,int UserID)
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
@@ -58,10 +58,11 @@ public class Model_Orders : BaseModel<Model_Orders>
                                     WHERE opy.OrderID = o.OrderID
                                     AND opy.ComfirmPayment IS NOT NULL AND opy.Status = 1
                                     ) AS Payment
-                                    WHERE op.ProductID = @ProductID AND Payment.totalpaid >= op.Price", cn);
+                                    WHERE op.ProductID = @ProductID AND o.UserID =@UserID AND  Payment.totalpaid >= op.Price", cn);
 
             cn.Open();
             cmd.Parameters.Add("@ProductID", SqlDbType.Int).Value = ProductID;
+            cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = UserID;
             return (int)ExecuteScalar(cmd);
         }
     }

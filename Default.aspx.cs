@@ -29,9 +29,9 @@ public partial class _Default : BasePageFront
                 int intProductID = 1;
                 int intProductCoach = 2;
                 Model_Orders o = new Model_Orders();
-                int paid = o.CountIsPaidByProduct(intProductID);
+                int paid = o.CountIsPaidByProduct(intProductID,u.UserID);
 
-                int paidCoaching = o.CountIsPaidByProduct(intProductCoach);
+                int paidCoaching = o.CountIsPaidByProduct(intProductCoach,u.UserID);
 
                 Model_UsersTransaction Uts = new Model_UsersTransaction();
                 List<Model_UsersTransaction> TSL = Uts.getTsListByUserID(u.UserID);
@@ -103,7 +103,7 @@ public partial class _Default : BasePageFront
                 int intProductID = 1;
 
                
-                int paid = o.CountIsPaidByProduct(intProductID);
+                int paid = o.CountIsPaidByProduct(intProductID,u.UserID);
 
                 if (paid > 0)
                 {
@@ -130,7 +130,7 @@ public partial class _Default : BasePageFront
                  intProductID = 2;
 
                
-                 paid = o.CountIsPaidByProduct(intProductID);
+                 paid = o.CountIsPaidByProduct(intProductID, u.UserID);
 
                 if (paid > 0)
                 {
