@@ -82,7 +82,7 @@ public class OrderController
         return ret;
     }
 
-    public static int ConfirmTransferPayment(int OrderID, Model_Users u, Model_OrderPaymentTransferConfirm con)
+    public static int ConfirmTransferPayment(int OrderID, Model_Users u, Model_OrderPaymentTransferConfirm con, int intProductID)
     {
         int ret = 0;
         try {
@@ -111,11 +111,11 @@ public class OrderController
 
                         HttpContext context = HttpContext.Current;
 
-                        object[] parameters = new object[] { u, s, context };
+                        object[] parameters = new object[] { u, s, context , intProductID };
                         SendingEngineController.cpool.QueueWork(parameters, SendEmaiReceiveToCustomer);
 
                         string staffEmail = "mrdark6996@gmail.com;serviceteam@keenprofile.com";
-                        object[] parameters2 = new object[] { staffEmail, s, context , con };
+                        object[] parameters2 = new object[] { staffEmail, s, context , con ,intProductID };
 
                         SendingEngineController.cpool.QueueWork(parameters2, SendEmailReceiveToStaff);
                     }
@@ -147,22 +147,34 @@ public class OrderController
         Model_Users user = (Model_Users)parameters[0];
         Model_Setting s = (Model_Setting)parameters[1];
         HttpContext context = (HttpContext)parameters[2];
-      
+
+        int intProductID = (int)parameters[3];
+
+
         string body = string.Empty;
-        string text = File.ReadAllText(context.Server.MapPath("/Theme/emailtemplate/layout.html"), Encoding.UTF8);
+        string text = string.Empty;
+        if (intProductID == 1)
+        {
+            text = File.ReadAllText(context.Server.MapPath("/Theme/emailtemplate/layout_r3.html"), Encoding.UTF8);
+        }
+
+        if (intProductID == 2)
+        {
+            text = File.ReadAllText(context.Server.MapPath("/Theme/emailtemplate/layout_coaching.html"), Encoding.UTF8);
+        }
         //if (!string.IsNullOrEmpty(text))
         //{
         //    string path = ConfigurationManager.AppSettings["AuthorizeBaseURL"].ToString().Replace("/admin", "") + "Verify?ID=" + StringUtility.EncryptedData(user.UserID.ToString());
         //    body = text.Replace("<!--##@Linkverfiy##-->", "<a href=\"" + path + "\" />here</a>");
         //}
-        body = "test acknowledge email sending";
+        body = text;
         MailSenderOption option = new MailSenderOption
         {
             MailSetting = s,
             context = HttpContext.Current,
             mailTo = user.Email,
             Mailbody = body,
-            Subject = "Keenprofile thank you : THE RIGHT JOB-FUNCTIONS REPORT Your order is completed"
+            Subject = "การชำระค่าบริการเสร็จสมบูรณ์แล้ว / Success Payment Confirmation"
         };
         MAilSender.SendMailEngine(option);
     }
@@ -176,9 +188,21 @@ public class OrderController
         string staffmail = (string)parameters[0];
         Model_Setting s = (Model_Setting)parameters[1];
         HttpContext context = (HttpContext)parameters[2];
+      
+
         Model_OrderPaymentTransferConfirm con = (Model_OrderPaymentTransferConfirm)parameters[3];
+        int intProductID = (int)parameters[4];
         string body = string.Empty;
-        string text = File.ReadAllText(context.Server.MapPath("/Theme/emailtemplate/layout.html"), Encoding.UTF8);
+        string text = "";
+        if (intProductID == 1)
+        {
+            text = File.ReadAllText(context.Server.MapPath("/Theme/emailtemplate/layout_r3.html"), Encoding.UTF8);
+        }
+
+        if (intProductID == 2)
+        {
+            text = File.ReadAllText(context.Server.MapPath("/Theme/emailtemplate/layout_coaching.html"), Encoding.UTF8);
+        }
         //if (!string.IsNullOrEmpty(text))
         //{
         //    string path = ConfigurationManager.AppSettings["AuthorizeBaseURL"].ToString().Replace("/admin", "") + "Verify?ID=" + StringUtility.EncryptedData(user.UserID.ToString());
@@ -197,7 +221,7 @@ public class OrderController
                 context = HttpContext.Current,
                 mailTo = email,
                 Mailbody = body,
-                Subject = "THE RIGHT JOB-FUNCTIONS REPORT : Transaction Received [Confirmed Order#" + con.OrderID + "]"
+                Subject = "[Keen Staff] การชำระค่าบริการเสร็จสมบูรณ์แล้ว / Success Payment Confirmation [Confirmed Order#" + con.OrderID + "]"
             };
             MAilSender.SendMailEngine(option);
         }

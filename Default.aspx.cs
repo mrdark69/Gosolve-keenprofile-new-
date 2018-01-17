@@ -43,7 +43,9 @@ public partial class _Default : BasePageFront
 
                     btnReport4.Text = paidCoaching > 0? "รอการ Coaching" : "ต้องการ Coaching";
 
-                    btnReport4.Attributes.Add("class", "sss");
+                    btnReport4.CssClass = "btn_button btn_coach";
+
+                    btnReport3.CssClass = "btn_button btn_r3";
                 }
                 else
                 {
@@ -58,9 +60,7 @@ public partial class _Default : BasePageFront
                     btnReport3.CommandArgument = "0";
                     btnReport4.CommandArgument = "0";
 
-                    btnReport4.CssClass = "btn_button btn_coach";
-
-                    btnReport3.CssClass = "btn_button btn_r3";
+                   
                 }
             }
         }

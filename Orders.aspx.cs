@@ -123,8 +123,9 @@ public partial class _Orders : BasePageFront
             BankIssue = functionBakIssue(byte.Parse(dropgatway.SelectedValue))
 
         };
+        int intProductID = int.Parse(Request.QueryString["ProductID"]);
 
-       int ret =  OrderController.ConfirmTransferPayment(intOrderID, u, con);
+       int ret =  OrderController.ConfirmTransferPayment(intOrderID, u, con, intProductID);
 
         if( ret >0)
         {
@@ -135,7 +136,7 @@ public partial class _Orders : BasePageFront
                 file.PostedFile.SaveAs(HttpContext.Current.Server.MapPath(FilePath));
             }
 
-            Response.Redirect("~/Thankyou?Con=firm&OrderID=" + orderID + "&ProductID=" + Request.QueryString["ProductID"]);
+            Response.Redirect("~/Thankyou?Con=firm&OrderID=" + orderID + "&ProductID=" + intProductID);
         }
 
         
