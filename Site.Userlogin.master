@@ -22,6 +22,8 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
       <!-- Optional theme -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+           <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
       <style type='text/css'>
          .wsite-elements.wsite-not-footer:not(.wsite-header-elements) div.paragraph, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) p, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .product-block .product-title, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .product-description, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .wsite-form-field label, .wsite-elements.wsite-not-footer:not(.wsite-header-elements) .wsite-form-field label, #wsite-content div.paragraph, #wsite-content p, #wsite-content .product-block .product-title, #wsite-content .product-description, #wsite-content .wsite-form-field label, #wsite-content .wsite-form-field label, .blog-sidebar div.paragraph, .blog-sidebar p, .blog-sidebar .wsite-form-field label, .blog-sidebar .wsite-form-field label {}
          #wsite-content div.paragraph, #wsite-content p, #wsite-content .product-block .product-title, #wsite-content .product-description, #wsite-content .wsite-form-field label, #wsite-content .wsite-form-field label, .blog-sidebar div.paragraph, .blog-sidebar p, .blog-sidebar .wsite-form-field label, .blog-sidebar .wsite-form-field label {}
@@ -124,6 +126,44 @@
             }
        </style>
 
+       <style>
+
+             
+}
+
+
+           footer {
+                 margin: 0 auto;
+    font-size: 12px !important;
+               background: #1c1c1c;
+               padding-top: 15px;
+               padding-bottom: 15px;
+               max-width: 1170px;
+           }
+
+           
+.fusion-footer {
+   background: #1c1c1c;
+}
+footer{
+
+    margin:0 auto;
+    font-size:12px !important;
+}
+
+    footer a, footer span, footer p, footer i {
+        font-size: 12px !important;
+    }
+
+.fusion-copyright-notice {
+    color: #5a5d62;
+    font-size: 12px;
+}
+
+footer .fa{
+    margin-right:0px !important;
+}
+       </style>
        <script>
            function checkpan() {
                $(document).ready(function () {
@@ -137,6 +177,9 @@
               
            }
          </script>
+
+        <link rel="stylesheet" type="text/css" href="Theme/css/custom.css?ver=<% Response.Write(DateTime.Now.ToString("HH:ss:mm")); %>" title="wsite-theme-css" />
+      <link href='//fonts.googleapis.com/css?family=Lato:400,300,300italic,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
       <script><!--
     var STATIC_BASE = '//cdn1.editmysite.com/';
     var ASSETS_BASE = '//cdn2.editmysite.com/';
@@ -205,56 +248,28 @@
 
 
 
-   <div class="footer-wrap">
-      <div class="container">
-         <div class="footer">
-            <div class="wsite-elements wsite-footer">
-               <div>
-                  <div class="wsite-multicol">
-                     <div class="wsite-multicol-table-wrap" style="margin:0 -15px;">
-                        <table class="wsite-multicol-table">
-                           <tbody class="wsite-multicol-tbody">
-                              <tr class="wsite-multicol-tr">
-                                 <td class="wsite-multicol-col" style="width:17.617197617198%; padding:0 15px;">
-                                    <h2 class="wsite-content-title" style="text-align:left;"><font size="3">Hours</font><br></h2>
-                                    <div class="paragraph" style="text-align:left;">Everyday: 9 am - 9 pm</div>
-                                 </td>
-                                 <td class="wsite-multicol-col" style="width:16.180574360215%; padding:0 15px;">
-                                    <h2 class="wsite-content-title" style="text-align:left;"><font size="3">Telephone</font></h2>
-                                    <div class="paragraph" style="text-align:left;">098-271-6660</div>
-                                 </td>
-                                 <td class="wsite-multicol-col" style="width:66.202228022587%; padding:0 15px;">
-                                    <h2 class="wsite-content-title" style="text-align:left;"><font size="3">Email</font></h2>
-                                    <div>
-                                       <div class="wsite-multicol">
-                                          <div class="wsite-multicol-table-wrap" style="margin:0 -15px;">
-                                             <table class="wsite-multicol-table">
-                                                <tbody class="wsite-multicol-tbody">
-                                                   <tr class="wsite-multicol-tr">
-                                                      <td class="wsite-multicol-col" style="width:57.862595419847%; padding:0 15px;">
-                                                         <div class="paragraph" style="text-align:left;">serviceteam@keenprofile.com</div>
-                                                      </td>
-                                                      <td class="wsite-multicol-col" style="width:42.137404580153%; padding:0 15px;">
-                                                         <div class="paragraph" style="text-align:left;"><span style="color:rgb(148, 148, 148)">©&nbsp;</span>2016 &amp; 2017, KeenProfile.com</div>
-                                                      </td>
-                                                   </tr>
-                                                </tbody>
-                                             </table>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </td>
-                              </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end container -->
-   </div>
+    <div class="fusion-footer">
+					
+	
+	<footer id="footer" class="fusion-footer-copyright-area" style="position: relative; z-index: 3;">
+		<div class="fusion-row">
+			<div class="fusion-copyright-content">
+
+				<div class="fusion-copyright-notice">
+		<div>
+		<span style="line-height:30px !important;">© Copyright 2016 - <script>document.write(new Date().getFullYear());</script> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;All Rights Reserved&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Powered by <a href="http://gosolve.net" target="_blank"> Gosolve Development</a></span>
+
+<span style="float:right;color:#fff"><a href="mailto:serviceteam@keenprofile.com" style="color:#fff;text-transform:uppercase;"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;Email Us</a> &nbsp;&nbsp&nbsp&nbsp  <a> <i class="fa fa-facebook" aria-hidden="true" style="font-size:16px !important;"></i> </a></span>
+
+            
+		</div>
+</div>
+
+
+			</div> <!-- fusion-fusion-copyright-content -->
+		</div> <!-- fusion-row -->
+	</footer> <!-- #footer -->
+				</div>
    <!-- end footer-wrap -->
 </div>
          

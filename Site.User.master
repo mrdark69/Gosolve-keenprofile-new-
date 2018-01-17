@@ -152,7 +152,7 @@
                   <div class="container-fluid" >
                       <div class="row">
                             <div class="logo"><span class="wsite-logo">
-                        <a href="/">
+                        <a href="http://www.keenprofile.com">
                         <span id="wsite-title">KEEN PROFILE</span>
                         </a>
                         </span>
@@ -161,7 +161,7 @@
                         <ul class="wsite-menu-default">
                            <li id="pg854646203491723645" class="wsite-menu-item-wrap ">
                               <a
-                                 href="http://www.keenprofile.com/services/"
+                                 href="http://www.keenprofile.com/"
                                  class="wsite-menu-item"
                                  >
                               Home
@@ -281,7 +281,7 @@
 
 				<div class="fusion-copyright-notice">
 		<div>
-		<span style="line-height:30px !important;">© Copyright 2016 - <script>document.write(new Date().getFullYear());</script>2018 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;All Rights Reserved&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Powered by <a href="http://gosolve.net" target="_blank"> Gosolve Development</a></span>
+		<span style="line-height:30px !important;">© Copyright 2016 - <script>document.write(new Date().getFullYear());</script> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;All Rights Reserved&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Powered by <a href="http://gosolve.net" target="_blank"> Gosolve Development</a></span>
 
 <span style="float:right;color:#fff"><a href="mailto:serviceteam@keenprofile.com" style="color:#fff;text-transform:uppercase;"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;Email Us</a> &nbsp;&nbsp&nbsp&nbsp  <a> <i class="fa fa-facebook" aria-hidden="true" style="font-size:16px !important;"></i> </a></span>
 
