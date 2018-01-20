@@ -40,7 +40,7 @@
 				</div>--%>
 				<div class="group">
 					<%--<input type="submit" class="button" value="Sign In">--%>
-                    <asp:Button ID="btn_login" runat="server" CssClass="button" OnClick="btn_login_Click" Text="Send Email Now" />
+                    <asp:Button ID="btn_login" runat="server" CssClass="button" OnClick="btn_login_Click" Text="Reset Password Now" />
                     <asp:Button ID="btn_forgot" runat="server" CssClass="button" OnClick="btn_forgot_Click" Text="Go to Send Email" Visible="false" />
                        <asp:Button ID="btnBacklogin" runat="server" CssClass="button" OnClick="btnBacklogin_Click" Text="Return to sign in"  Visible="false"/>
 				</div>
