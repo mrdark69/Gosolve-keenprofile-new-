@@ -132,7 +132,7 @@ public partial class __AssessmentStepCheck : BasePageFront
                                         }
                                     }
 
-                                    Model_UsersAssessment rd = randomlist.Skip(3).FirstOrDefault();
+                                    Model_UsersAssessment rd = randomlist.Where(p => !dupfocus.Any(p2 => p2.TASID == p.TASID)).Skip(3).FirstOrDefault();
                                     
                                     ret.Append("<tr>\r\n");
                                     //ret.Append("<input type=\"hidden\" name=\"ass_fill_ch_\"  value=\"" + rd.ResultID + "\" />\r\n");
