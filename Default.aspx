@@ -26,7 +26,7 @@
             font-size:24px;
         }
         .divider-four{
-            background-color:#366f9a;
+            background:rgba(40, 57, 101,0.9);
         }
 
         .read-more-btn{
@@ -137,7 +137,7 @@
 		<div class="row">
 			<div class="col-md-4 col-sm-6">
 				<div class="divider-wrapper divider-one">
-					<div class="circle" style="color:#a84209">1</div>
+					<div class="circle circle-1" style="color:#a84209">1</div>
 					<h2>KEENCareer Finder Report</h2>
 					<p>รายงานแสดงผลอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ คุณจะทราบวิธีการพัฒนาศักยภาพการทำงานที่เหมาะสมกับตัวคุณ <br /><%--<a  class="read-more-btn" href="#">อ่านต่อ >></a>--%></p>
                     <asp:Button ID="btnReport1" runat="server" Text="Dowload Now" CssClass="btn_button" OnClick="btnReport1_Click"  CommandArgument="1"/>
@@ -145,7 +145,7 @@
 			</div>
 			<div class="col-md-4 col-sm-6">
 				<div class="divider-wrapper divider-two">
-					<div class="circle" style="color:#569888">2</div>
+					<div class="circle circle-2" style="color:#569888">2</div>
 					<h2>Your Current Job & Company Fit Report</h2>
 					<p>รายงานแสดงผลความเหมาะสมระหว่างตัวคุณกับงานปัจจุบันและวัฒนธรรมของบริษัทปัจจุบัน คุณควรทำงานนี้ต่อไปหรือไม่?</p>
                      <asp:Button ID="btnReport2" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="2" />
@@ -153,7 +153,7 @@
 			</div>
 			<div class="col-md-4 col-sm-12">
 				<div class="divider-wrapper divider-three">
-					<div class="circle" style="color:#e9a427">3</div>
+					<div class="circle circle-3" style="color:#e9a427">3</div>
 					<h2>The Right Job Functions Report</h2>
 					<p>รายงานแสดงผลสายงานทั้งหมดที่เหมาะสมกับอัจฉริยภาพและบุคลิกภาพการทำงานของคุณคุณจะไม่หลงทางกับเส้นทางอาชีพอีกต่อไป  <br /><%--<a class="read-more-btn" href="#">อ่านต่อ >></a>--%>  </p>
                      <asp:Button ID="btnReport3" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="3" />
@@ -164,7 +164,7 @@
         <div class="row" style="margin-top:30px;">
             <div class="col-md-offset-4 col-md-4 col-sm-12">
 				<div class="divider-wrapper divider-four">
-					<div class="circle" style="color:#366f9a">4</div>
+					<div class="circle circle-4" style="color:#366f9a">4</div>
 					<h2>KEENCareer Coaching</h2>
 					<p>โค้ชตัวต่อตัวกับผู้เชี่ยวชาญของทางทีมงาน KEEN PROFILE เพื่อทำความเข้าใจเชิงลึกเกี่ยวกับเส้นทางอาชีพที่เหมาะกับอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ <%--<a  class="read-more-btn" href="#">อ่านต่อ >></a> --%> </p>
                      <asp:Button ID="btnReport4" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="4" />

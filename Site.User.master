@@ -233,9 +233,11 @@
              <div class="banner-wrap">
                <div class="wsite-elements wsite-not-footer wsite-header-elements">
                   <div class="wsite-section-wrap">
-                     <div  class="wsite-section wsite-header-section wsite-section-bg-image" style="height: 515px;vertical-align: middle;background-image: url(//cdn2.editmysite.com/images/editor/theme-background/stock/Skyscrapers.jpg) ;background-repeat: no-repeat ;background-position: undefined undefined ;background-size: 100% ;background-color: transparent ;background-size: cover;" >
+                     <div  class="wsite-section wsite-header-section wsite-section-bg-image" style="height: auto;vertical-align: middle;background-image: url(//cdn2.editmysite.com/images/editor/theme-background/stock/Skyscrapers.jpg) ;background-repeat: no-repeat ;background-position: undefined undefined ;background-size: 100% ;background-color: transparent ;background-size: cover;" >
                         <div class="wsite-section-content">
                            <div class="container">
+                                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                              </asp:ContentPlaceHolder>
                               <div class="banner">
                                <%--  <div class="wsite-section-elements">
                                     <div class="paragraph" style="text-align:center;"><font size="3">Please Feel Free to</font></div>
@@ -252,7 +254,7 @@
             <!-- end header -->
             
           
-            <div class="main-wrap" style="background-color:#202020">
+           <%-- <div class="main-wrap" style="background-color:#202020">
                <div id="wsite-content" class="wsite-elements wsite-not-footer">
                   <div class="wsite-section-wrap">
                      <div class="wsite-section wsite-body-section wsite-background-6 wsite-custom-background"  >
@@ -262,15 +264,14 @@
                                 
 
                               
-                              <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                              </asp:ContentPlaceHolder>
+                             
                              
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
-            </div>
+            </div>--%>
             <!-- end main-wrap -->
             <div class="fusion-footer">
 					

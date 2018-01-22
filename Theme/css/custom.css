@@ -23,11 +23,12 @@ p {
 }
 
 .section-about {
-    margin-top: -500px;
+    /*margin-top: -500px;*/
     margin-bottom: 20px;
     z-index: 998;
     padding-top: 40px;
     position: relative;
+    text-align:left;
 }
 
 
@@ -584,17 +585,33 @@ img {
         }
 
     .divider .divider-one {
-        background: #c14000;
+        background: rgba(40, 57, 101,0.9);
     }
 
     .divider .divider-two {
-        background: #009988;
+        background: rgba(40, 57, 101,0.9);
     }
 
     .divider .divider-three {
-        background: #ffa500;
+        background: rgba(40, 57, 101,0.9);
     }
 
+.circle-1 {
+    color: #fff !important;
+    background: #C1400B !important;
+}
+.circle-2 {
+    color: #fff !important;
+    background: #009988 !important;
+}
+.circle-3 {
+    color: #fff !important;
+    background: #ffa500 !important;
+}
+.circle-4 {
+    color: #fff !important;
+    background: #366f9a !important;
+}
 /* about section */
 #about-header {
     background: url('../images/about-header.jpg') no-repeat;
