@@ -16,7 +16,10 @@
             min-height:434px;
         }
         .divider-wrapper p{
-            font-size:14px;
+            font-size:16px;
+            line-height:22px;
+            padding-left:4px;
+             padding-right:4px;
         }
 
         .divider-wrapper p a{
