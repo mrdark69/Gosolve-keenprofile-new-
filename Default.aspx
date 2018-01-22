@@ -2,6 +2,10 @@
 
 <asp:Content ID="HeaderScript" ContentPlaceHolderID="HeaderScript" runat="server">
     <style type="text/css">
+
+        body,p,h1,h2,h3,ul,li{
+             font-family:'Kanit' !important;
+        }
        
         .circle{width:80px;height:80px;border-radius:50px;font-size:30px;line-height:80px;text-align:center;background:#fff;
                 margin:0 auto;
