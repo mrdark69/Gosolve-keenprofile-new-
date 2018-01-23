@@ -35,7 +35,12 @@ public partial class _Default : BasePageFront
 
                 Model_UsersTransaction Uts = new Model_UsersTransaction();
                 List<Model_UsersTransaction> TSL = Uts.getTsListByUserID(u.UserID);
-                if(TSL.Count > 0)
+
+
+                sample_r1.NavigateUrl = "http://www.keenprofile.com/wp-content/uploads/2018/01/Example-KEENCareer-Finder-Report.pdf";
+                sample_r2.NavigateUrl = "http://www.keenprofile.com/wp-content/uploads/2018/01/Example-Your-Current-Job-Company-Fit-Report.pdf";
+                sample_r3.NavigateUrl = "http://www.keenprofile.com/wp-content/uploads/2018/01/Example-The-Right-Job-Functions-Report.pdf";
+                if (TSL.Count > 0)
                 {
                     btnReport1.Text = "คลิกเพื่อ Download";
                     btnReport2.Text = "คลิกเพื่อ Download";
@@ -56,9 +61,12 @@ public partial class _Default : BasePageFront
                         fa_r3_1.Visible = true;
                         fa_r3_2.Visible = false;
                         btnReport3.CssClass = "btn_button btn_r3";
+
+                        sample_r3.Visible = false;
                     }
 
-                 
+                    sample_r1.Visible = false;
+                    sample_r2.Visible = false;
                 }
                 else
                 {
