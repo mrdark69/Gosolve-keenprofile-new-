@@ -177,7 +177,7 @@
 					<p>รายงานแสดงผลอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ คุณจะทราบวิธีการพัฒนาศักยภาพการทำงานที่เหมาะสมกับตัวคุณ <br /><%--<a  class="read-more-btn" href="#">อ่านต่อ >></a>--%></p>
                     <i class="fa fa-download fa-btn-3" runat="server" id="fa_r1" aria-hidden="true"></i>
                     <asp:Button ID="btnReport1" runat="server" Text="Dowload Now" CssClass="btn_button" OnClick="btnReport1_Click"  CommandArgument="1"/>
-                    <asp:HyperLink ID="sample_r1" runat="server" >ตัวอย่าง Report</asp:HyperLink>
+                    <asp:HyperLink ID="sample_r1" runat="server" Target="_blank" >ตัวอย่าง Report</asp:HyperLink>
 				</div>
 			</div>
 			<div class="col-md-4 col-sm-6">
@@ -187,7 +187,7 @@
 					<p>รายงานแสดงผลความเหมาะสมระหว่างตัวคุณกับงานปัจจุบันและวัฒนธรรมของบริษัทปัจจุบัน คุณควรทำงานนี้ต่อไปหรือไม่?</p>
                     <i class="fa fa-download fa-btn-3" runat="server" id="fa_r2" aria-hidden="true"></i>
                      <asp:Button ID="btnReport2" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="2" />
-                     <asp:HyperLink ID="sample_r2" runat="server" >ตัวอย่าง Report</asp:HyperLink>
+                     <asp:HyperLink ID="sample_r2" runat="server" Target="_blank">ตัวอย่าง Report</asp:HyperLink>
 				</div>
 			</div>
 			<div class="col-md-4 col-sm-12">
@@ -199,7 +199,7 @@
                      <i class="fa fa-download fa-btn-3" runat="server" id="fa_r3_1"  visible="false" aria-hidden="true"></i>
                      <asp:Button ID="btnReport3" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="3" />
 
-                    <asp:HyperLink ID="sample_r3" runat="server" >ตัวอย่าง Report</asp:HyperLink>
+                    <asp:HyperLink ID="sample_r3" runat="server" Target="_blank" >ตัวอย่าง Report</asp:HyperLink>
 				</div>
 			</div>
             
