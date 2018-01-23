@@ -53,6 +53,8 @@ public partial class _Default : BasePageFront
                  
                     if(paid > 0)
                     {
+                        fa_r3_1.Visible = true;
+                        fa_r3_2.Visible = false;
                         btnReport3.CssClass = "btn_button btn_r3";
                     }
 

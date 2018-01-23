@@ -186,8 +186,8 @@
 					<div class="circle circle-3" style="color:#e9a427">3</div>
 					<h2>The Right Job Functions Report</h2>
 					<p>รายงานแสดงผลสายงานทั้งหมดที่เหมาะสมกับอัจฉริยภาพและบุคลิกภาพการทำงานของคุณคุณจะไม่หลงทางกับเส้นทางอาชีพอีกต่อไป  <br /><%--<a class="read-more-btn" href="#">อ่านต่อ >></a>--%>  </p>
-                    
-                     <i class="fa fa-download fa-btn-3" runat="server" id="fa_r3"  aria-hidden="true"></i>
+                    <i class="fa fa-shopping-cart fa-btn-3" runat="server" id="fa_r3_2" aria-hidden="true"></i>
+                     <i class="fa fa-download fa-btn-3" runat="server" id="fa_r3_1"  visible="false" aria-hidden="true"></i>
                      <asp:Button ID="btnReport3" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="3" />
 				</div>
 			</div>
