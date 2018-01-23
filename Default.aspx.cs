@@ -43,9 +43,20 @@ public partial class _Default : BasePageFront
 
                     btnReport4.Text = paidCoaching > 0? "รอการ Coaching" : "ต้องการ Coaching";
 
-                    btnReport4.CssClass = "btn_button btn_coach";
+                    if(paidCoaching>0)
+                    {
+                        fa_r4_1.Visible = false;
+                        fa_r4_2.Visible = true;
+                        btnReport4.CssClass = "btn_button btn_coach";
+                    }
 
-                    btnReport3.CssClass = "btn_button btn_r3";
+                 
+                    if(paid > 0)
+                    {
+                        btnReport3.CssClass = "btn_button btn_r3";
+                    }
+
+                 
                 }
                 else
                 {

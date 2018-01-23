@@ -132,6 +132,14 @@
         });
       
     </script>
+
+
+    <style>
+        .span-star {
+            margin-top: -9px;
+    font-size: 18px !important;
+        }
+    </style>
  </asp:Content>
   
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -188,14 +196,14 @@
 
 
                             <div class="q-form-bio form-horizontal">
-                                        <div class="form-group"><label class="col-sm-2 control-label"><span style="color:red;">*</span>ชื่อ:</label>
+                                        <div class="form-group"><label class="col-sm-2 control-label">ชื่อ:<span class="span-star" style="color:red;">*</span></label>
 
                                             <div class="col-sm-10">
                                                 <asp:TextBox ID="firstName" runat="server" CssClass="form-control required"></asp:TextBox>
                                                
                                             </div>
                                         </div>
-                                    <div class="form-group"><label class="col-sm-2 control-label"><span style="color:red;">*</span>อีเมล์</label>
+                                    <div class="form-group"><label class="col-sm-2 control-label">อีเมล์:<span class="span-star" style="color:red;">*</span></label>
 
                                             <div class="col-sm-10">
                                                 <asp:TextBox ID="email" TextMode="Email" runat="server" CssClass="form-control required"></asp:TextBox>
@@ -205,7 +213,7 @@
 
                                      
                                  <div class="form-group">
-                                            <label class="col-sm-2 control-label"><span style="color:red;">*</span>ชำระเมื่อวันที่:</label>
+                                            <label class="col-sm-2 control-label">ชำระเมื่อวันที่:<span class="span-star" style="color:red;">*</span></label>
 
                                             <div class="col-sm-10">
                                                     <asp:TextBox ID="date_payment" ClientIDMode="Static" runat="server" MaxLengt="2"   CssClass="form-control dob required"></asp:TextBox>
@@ -215,7 +223,7 @@
                                             </div>
                                         </div>
                                    <div class="form-group">
-                                            <label class="col-sm-2 control-label"><span style="color:red;">*</span>ธนาคารที่โอนเงิน:</label>
+                                            <label class="col-sm-2 control-label">ธนาคารที่โอนเงิน:<span class="span-star" style="color:red;">*</span></label>
 
                                             <div class="col-sm-10">
                                                     <asp:DropDownList ID="dropgatway" CssClass="form-control" runat="server">
@@ -230,7 +238,7 @@
                                             </div>
                                         </div>
                                 <div class="form-group">
-                                            <label class="col-sm-2 control-label"><span style="color:red;">*</span>จำนวนเงิน:</label>
+                                            <label class="col-sm-2 control-label">จำนวนเงิน:<span class="span-star" style="color:red;">*</span></label>
 
                                             <div class="col-sm-10">
                                                     <asp:TextBox ID="amount" runat="server" CssClass="form-control required"></asp:TextBox>
@@ -240,7 +248,7 @@
                                 
 
                                  <div class="form-group">
-                                            <label class="col-sm-2 control-label"><span style="color:red;">*</span>เบอร์โทรของคุณ:</label>
+                                            <label class="col-sm-2 control-label">เบอร์โทรของคุณ:<span class="span-star" style="color:red;">*</span></label>
 
                                             <div class="col-sm-10">
                                                     <asp:TextBox TextMode="Phone" ID="txtPhone" runat="server" CssClass="form-control required"></asp:TextBox>
@@ -248,17 +256,17 @@
                                             </div>
                                         </div>
                                 <div class="form-group">
-                                            <label class="col-sm-2 control-label">ไฟล์แนบ::</label>
+                                            <label class="col-sm-2 control-label">ไฟล์แนบ:</label>
 
                                             <div class="col-sm-10">
-                                                <asp:FileUpload ID="file" ClientIDMode="Static" runat="server" />
+                                                <asp:FileUpload ID="file" ClientIDMode="Static" runat="server" style="color:#fff;" />
                                                     <%--<asp:TextBox TextMode="Email" ID="TextBox6" runat="server" CssClass="form-control required"></asp:TextBox>--%>
                                                
                                             </div>
                                         </div>
 
                                   <div class="form-group">
-                                            <label class="col-sm-2 control-label">เพิ่มเติม::</label>
+                                            <label class="col-sm-2 control-label">เพิ่มเติม:</label>
 
                                             <div class="col-sm-10">
                                                     <asp:TextBox  ID="txtextra" runat="server" CssClass="form-control "></asp:TextBox>

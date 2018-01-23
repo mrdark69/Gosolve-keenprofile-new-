@@ -55,11 +55,14 @@
         color:#fff;
     }
 
-    .t_des{
+    .t_des,strong{
          font-family:'Kanit' !important;
         color:#fff;
         font-size:16px;
         margin-bottom:30px;
+    }
+    strong{
+         font-size:24px;
     }
     .main-wrap {
    
@@ -120,14 +123,14 @@
                     <div class="ibox-title">
                         <%--<h5>Basic Wizzard</h5>--%>
                         <div class="col-md-12">
-                             <h2 class="t_title"><asp:Literal ID="ThanksTitle" runat="server"></asp:Literal> </h2>
+                             <h2 class="t_title" style="line-height:45px;font-size: 24px;font-weight: 300"><asp:Literal ID="ThanksTitle" runat="server"></asp:Literal> </h2>
                         </div>
                         
                     </div>
 
 
                                           <div class="ibox-content">
-                                               <h2  class="t_title"> <asp:Literal ID="lbldes" runat="server"></asp:Literal> 
+                                               <h2  class="t_title" style="line-height:45px;font-size: 24px;font-weight: 300;"> <asp:Literal ID="lbldes" runat="server"></asp:Literal> 
 </h2>
                                               <%-- <p class="t_title">ท่านสามารถชำระ ค่าบริการผ่านช่องทาง ด้านล่างนี้</p>--%>
                                              

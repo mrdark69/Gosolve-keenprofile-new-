@@ -34,6 +34,8 @@ public partial class _Orders : BasePageFront
                         lblpricemock.Text = "1,000";
                         lblpricenet.Text = "100";
 
+                        amount.Text = "100";
+
                         Maintitle.Text = "The Right Job-Functions Report";
                         break;
                     case "2":
@@ -41,7 +43,7 @@ public partial class _Orders : BasePageFront
                         lbltitle2.Text = "";
                         lblpricemock.Text = "5,000";
                         lblpricenet.Text = "1,000";
-
+                        amount.Text = "1,000";
 
                         Maintitle.Text = "KEENCareer Coaching";
                         break;
@@ -58,7 +60,7 @@ public partial class _Orders : BasePageFront
 
                 firstName.Text = u.FirstName;
                 email.Text = u.Email;
-                amount.Text = "100";
+              
                 txtPhone.Text = u.MobileNumber;
 
             }

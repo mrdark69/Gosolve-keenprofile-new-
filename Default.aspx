@@ -43,6 +43,27 @@
     border-radius: 10px;
     color: white;
 }
+        .btn_r3 {
+           background-color: #ffa500 !important;
+        }
+        .btn_coach{
+             background-color: #366f9a !important;
+        }
+
+        .btn_button{
+            font-family:'Kanit' !important;
+            font-size:16px !important;
+            font-weight:300 !important;
+        }
+
+
+        .fa-btn-3{
+            border:none !important;
+            font-size:18px !important;
+            position:absolute;
+            top:303px;
+            left:20px;
+        }
         
     </style>
  </asp:Content>
@@ -147,6 +168,7 @@
 					<div class="circle circle-1" style="color:#a84209">1</div>
 					<h2>KEENCareer Finder Report</h2>
 					<p>รายงานแสดงผลอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ คุณจะทราบวิธีการพัฒนาศักยภาพการทำงานที่เหมาะสมกับตัวคุณ <br /><%--<a  class="read-more-btn" href="#">อ่านต่อ >></a>--%></p>
+                    <i class="fa fa-download fa-btn-3" runat="server" id="fa_r1" aria-hidden="true"></i>
                     <asp:Button ID="btnReport1" runat="server" Text="Dowload Now" CssClass="btn_button" OnClick="btnReport1_Click"  CommandArgument="1"/>
 				</div>
 			</div>
@@ -155,6 +177,7 @@
 					<div class="circle circle-2" style="color:#569888">2</div>
 					<h2>Your Current Job & Company Fit Report</h2>
 					<p>รายงานแสดงผลความเหมาะสมระหว่างตัวคุณกับงานปัจจุบันและวัฒนธรรมของบริษัทปัจจุบัน คุณควรทำงานนี้ต่อไปหรือไม่?</p>
+                    <i class="fa fa-download fa-btn-3" runat="server" id="fa_r2" aria-hidden="true"></i>
                      <asp:Button ID="btnReport2" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="2" />
 				</div>
 			</div>
@@ -163,6 +186,8 @@
 					<div class="circle circle-3" style="color:#e9a427">3</div>
 					<h2>The Right Job Functions Report</h2>
 					<p>รายงานแสดงผลสายงานทั้งหมดที่เหมาะสมกับอัจฉริยภาพและบุคลิกภาพการทำงานของคุณคุณจะไม่หลงทางกับเส้นทางอาชีพอีกต่อไป  <br /><%--<a class="read-more-btn" href="#">อ่านต่อ >></a>--%>  </p>
+                    
+                     <i class="fa fa-download fa-btn-3" runat="server" id="fa_r3"  aria-hidden="true"></i>
                      <asp:Button ID="btnReport3" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="3" />
 				</div>
 			</div>
@@ -174,7 +199,11 @@
 					<div class="circle circle-4" style="color:#366f9a">4</div>
 					<h2>KEENCareer Coaching</h2>
 					<p>โค้ชตัวต่อตัวกับผู้เชี่ยวชาญของทางทีมงาน KEEN PROFILE เพื่อทำความเข้าใจเชิงลึกเกี่ยวกับเส้นทางอาชีพที่เหมาะกับอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ <%--<a  class="read-more-btn" href="#">อ่านต่อ >></a> --%> </p>
-                     <asp:Button ID="btnReport4" runat="server" Text="Dowload Now" CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="4" />
+                    <i class="fa fa-users fa-btn-3" runat="server" id="fa_r4_1" style="top:300px !important;" aria-hidden="true"></i>
+              
+
+                    <i class="fa fa-clock-o fa-btn-3" runat="server" id="fa_r4_2" style="top:300px !important;left:31px !important;" visible="false"  aria-hidden="true"></i>
+                     <asp:Button ID="btnReport4" runat="server" Text="Dowload Now"  CssClass="btn_button"  OnClick="btnReport1_Click" CommandArgument="4" />
 				</div>
 			</div>
        </div>
