@@ -58,6 +58,7 @@ public partial class SiteUserLoginMaster : MasterPage
 
     protected void master_Page_PreLoad(object sender, EventArgs e)
     {
+       
         //if (!IsPostBack)
         //{
         //    // Set Anti-XSRF token
@@ -77,7 +78,17 @@ public partial class SiteUserLoginMaster : MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+        this.Page.Title = "Online Professional Career Strategy";
+
+        Page p = new Page();
+        //Model_Users u = UserSessionController.FrontAppAuthorization(p);
+
+        //if (u != null)
+        //{
+           
+        //}
+
+        //lblprofile.Text = "<i class=\"fa fa-user\" aria-hidden=\"true\"></i> " + u.FirstName + " |&nbsp; <a style=\"color:#fff;\" href=\"http://member.keenprofile.com/logout\" />Log out <i class=\"fa fa-sign-out\" aria-hidden=\"true\"></i></a>";
     }
 
     protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

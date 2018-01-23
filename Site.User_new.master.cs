@@ -77,7 +77,7 @@ public partial class SiteUserMaster_new : MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        this.Page.Title = "Online Professional Career Strategy";
     }
 
     protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

@@ -4,6 +4,10 @@
    <head runat="server">
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <link rel="shortcut icon" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png" type="image/x-icon">
+       <link rel="apple-touch-icon" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png">
+       <link rel="apple-touch-icon" sizes="114x114" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png">
+       <link rel="apple-touch-icon" sizes="72x72" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png">
       <title><%: Page.Title %> - My ASP.NET Application</title>
       <%--<title>Contact - KEEN PROFILE</title><meta property="og:site_name" content="KEEN PROFILE" />--%>
       <meta property="og:title" content="Contact" />
@@ -223,6 +227,137 @@ footer .fa{
 
 
           <div class="wrapper">
+
+               <div class="wsite-menu-wrap item_sub" style="display:none">
+                                 <ul class="wsite-menu">
+                                    <li id="wsite-nav-912705756444884904"
+                                       class="wsite-menu-subitem-wrap "
+                                       >
+                                       <a
+                                          href="http://www.keenprofile.com/2017/11/28/keencareer-finder/"
+                                          class="wsite-menu-subitem"
+                                          >
+                                       <span class="wsite-menu-title">
+                                    KEENCareer Finder
+                                       </span>
+                                       </a>
+                                    </li>
+                                    <li id="wsite-nav-156098595335330717"
+                                       class="wsite-menu-subitem-wrap "
+                                       >
+                                       <a
+                                          href="http://www.keenprofile.com/2017/11/28/profile-career-advisory/"
+                                          class="wsite-menu-subitem"
+                                          >
+                                       <span class="wsite-menu-title">
+                                       Profile & Career Advisory
+                                       </span>
+                                       </a>
+                                    </li>
+                                    <li id="wsite-nav-531157509672665387"
+                                       class="wsite-menu-subitem-wrap "
+                                       >
+                                       <a
+                                          href="http://www.keenprofile.com/2017/11/28/professional-resume/"
+                                          class="wsite-menu-subitem"
+                                          >
+                                       <span class="wsite-menu-title">
+                                      Professional Resume
+                                       </span>
+                                       </a>
+                                    </li>
+                                      <li id="wsite-nav-531157509672665387"
+                                       class="wsite-menu-subitem-wrap "
+                                       >
+                                       <a
+                                          href="http://www.keenprofile.com/2017/11/28/interview-in-practice/"
+                                          class="wsite-menu-subitem"
+                                          >
+                                       <span class="wsite-menu-title">
+                                      Interview in Practice
+                                       </span>
+                                       </a>
+                                    </li>
+                                    
+                                 </ul>
+                              </div>
+               <div class="dusk-header">
+               <div class="nav-wrap">
+                  <div class="container-fluid" >
+                      <div class="row">
+                            <div class="logo"><span class="wsite-logo">
+                        <a href="http://www.keenprofile.com">
+                        <span id="wsite-title">KEEN PROFILE</span>
+                        </a>
+                        </span>
+                     </div>
+                     <div class="nav desktop-nav">
+                        <ul class="wsite-menu-default">
+                           <li id="pg854646203491723645" class="wsite-menu-item-wrap ">
+                              <a
+                                 href="http://www.keenprofile.com/"
+                                 class="wsite-menu-item"
+                                 >
+                              Home
+                              </a>
+                           </li>
+                           <li id="pg819345848846054473" class="wsite-menu-item-wrap ">
+                              <a
+                                 href="http://www.keenprofile.com/about/"
+                                 class="wsite-menu-item"
+                                 >
+                              About
+                              </a>
+                           </li>
+                           <li id="pg943050601742761806" class="wsite-menu-item-wrap main_sub_menu">
+                              <a
+                                 href="http://www.keenprofile.com/services/"
+                                 class="wsite-menu-item"
+                                 >
+                              Services
+                              </a>
+                              
+                           </li>
+                           <li id="pg123797770713687674" class="wsite-menu-item-wrap ">
+                              <a
+                                 href="http://www.keenprofile.com/news/"
+                                 class="wsite-menu-item"
+                                 >
+                              News
+                              </a>
+                           </li>
+                           <li  class="wsite-menu-item-wrap ">
+                              <a
+                                 href="http://www.keenprofile.com/contact/"
+                                 class="wsite-menu-item"
+                                 >
+                              Contact
+                              </a>
+                           </li>
+                             <li  class="wsite-menu-item-wrap user_login ">
+                              <a
+                                 href="http://member.keenprofile.com/"
+                                 class="wsite-menu-item"
+                                 >
+                              <asp:Literal ID="lblprofile" runat="server"></asp:Literal>
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                      </div>
+                   
+                     <label class="hamburger"><span></span></label>
+                  </div>
+                  <!-- end container -->
+               </div>
+
+                   
+
+                
+            <!-- end banner-wrap -->
+            </div>
+
+
    <div class="banner-wrap">
       <div class="wsite-elements wsite-not-footer wsite-header-elements">
          <div class="wsite-section-wrap">
@@ -457,6 +592,42 @@ footer .fa{
 
 
             
+         </script>
+
+          <script type="text/javascript">
+
+
+
+              function alertshow() {
+                  $('#alertbar').show();
+              }
+
+              $(document).ready(function () {
+
+                  $('.main_sub_menu').mouseover(function () {
+                      var sub = $(this).find('.item_sub');
+                      sub.show();
+
+                      var offset = $(this).offset();
+
+                      $('.item_sub').show();
+
+                      $('.item_sub').css({
+                          "left": offset.left,
+                          "top": offset.top + 70,
+                      });
+                  })
+
+                  $('.main_sub_menu').mouseleave(function () {
+
+
+                      $('.item_sub').hide();
+
+
+                  })
+              });
+
+
          </script>
       </form>
    </body>
