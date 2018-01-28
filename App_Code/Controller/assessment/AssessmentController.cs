@@ -301,7 +301,7 @@ public class AssessmentController
 
                     detail2.Append("<div class=\"desscription-body-block right\">");
                     detail2.Append("<p><span>" + i.Title + (i.Isbelow ? "*" : "") + ": </span>");
-                    detail2.Append(i.des_Detail);
+                    detail2.Append(i.des_PeopleTxt);
 
                     detail2.Append("</p>");
                     detail2.Append("</div>");
