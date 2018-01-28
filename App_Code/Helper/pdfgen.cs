@@ -5,6 +5,7 @@ using System.Web;
 using System.IO;
 using System.Net.Mail;
 using HiQPdf;
+using System.Configuration;
 
 /// <summary>
 /// Summary description for pdfgen
@@ -30,7 +31,7 @@ namespace Utility
 
             // create the HTML to PDF converter
             HtmlToPdf htmlToPdfConverter = new HtmlToPdf();
-            // htmlToPdfConverter.SerialNumber = "jMTl3dzo-6sDl7v7t-/vW1orys-vay9rLi0-ur+sv72i-vb6itbW1-tQ==";
+            htmlToPdfConverter.SerialNumber = ConfigurationManager.AppSettings["PDFKey"].ToString();
 
 
             // set browser width
