@@ -238,7 +238,7 @@ public class UsersController
 
 
                 string path = ConfigurationManager.AppSettings["AuthorizeBaseURL"].ToString().Replace("/admin", "") + "ResetPassword?e=" + StringUtility.EncryptedData(paramstring);
-                body = text.Replace("<!--##@Linkresetpassword##-->", "<a href=\"" + path + "\" />here</a>");
+                body = text.Replace("<!--##@Linkresetpassword##-->", path);
             }
 
             MailSenderOption option = new MailSenderOption
