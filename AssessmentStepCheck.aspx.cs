@@ -10,6 +10,7 @@ public partial class __AssessmentStepCheck : BasePageFront
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Page.Title = "KeenProfile Assessment Extra";
         if (!this.Page.IsPostBack)
         {
 

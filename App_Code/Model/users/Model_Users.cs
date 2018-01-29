@@ -280,6 +280,29 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChann
 
     }
 
+    public bool UpdateIsPaid(Model_Users users)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            string w = string.Empty;
+
+            SqlCommand cmd = new SqlCommand();
+
+            string q = @"UPDATE Users SET Ispaid=@Ispaid WHERE UserID=@UserID";
+        
+            cmd.Parameters.Add("@Ispaid", SqlDbType.Bit).Value = users.Ispaid;
+         
+            cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = users.UserID;
+            cmd.CommandText = q;
+            cmd.Connection = cn;
+
+            cn.Open();
+
+            return ExecuteNonQuery(cmd) == 1;
+        }
+
+    }
+
 
     public int UpdateUserProfileUserEdit(Model_Users users)
     {

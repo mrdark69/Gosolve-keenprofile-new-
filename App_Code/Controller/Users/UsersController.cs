@@ -19,6 +19,10 @@ public class UsersController
         //
     }
 
+    public static bool UpdateIsPaidUser(Model_Users user)
+    {
+        return user.UpdateIsPaid(user);
+    }
     public static int InsertUserAdmin(Model_Users user)
     {
        

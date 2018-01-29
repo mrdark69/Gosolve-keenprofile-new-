@@ -105,9 +105,15 @@ public class OrderController
                     if(con.InsertOrderPaymentTransferConfirm(con) > 0)
                     {
                         payment.UpdatePayment(PaymentID);
+
+                        //Update user to Paid;
+                        u.Ispaid = true;
+                        UsersController.UpdateIsPaidUser(u);
+
                         Model_Setting s = new Model_Setting();
                         s = s.GetSetting();
 
+                        
 
                         HttpContext context = HttpContext.Current;
 

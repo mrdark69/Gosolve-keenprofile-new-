@@ -8,8 +8,10 @@ using System.Text;
 
 public partial class _AssessmentStep : BasePageFront
 {
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Page.Title = "KeenProfile Assessment";
         if (!this.Page.IsPostBack)
         {
 
