@@ -12,6 +12,7 @@ public partial class _Login : Page
     public const string FaceBookAppKey = "208d02df5b5b65c4a081e7ee2e8b13e1";
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Page.Title = "KeenProfile Login";
         if (!this.Page.IsPostBack)
         {
             Model_Users u = UserSessionController.FrontAppAuthLogin(this);

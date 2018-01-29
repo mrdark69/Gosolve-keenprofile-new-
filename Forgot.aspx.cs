@@ -9,6 +9,7 @@ public partial class _Forgot : Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Page.Title = "KeenProfile Forgot Password";
         if (!this.Page.IsPostBack)
         {
             Model_Users u = UserSessionController.FrontAppAuthLogin(this);

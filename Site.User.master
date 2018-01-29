@@ -4,12 +4,9 @@
    <head runat="server">
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title><%: Page.Title %> - My ASP.NET Application</title>
+      <title><%: Page.Title %>- Online Professional Career Strategy</title>
       <%--<title>Contact - KEEN PROFILE</title><meta property="og:site_name" content="KEEN PROFILE" />--%>
-      <meta property="og:title" content="Contact" />
-      <meta property="og:description" content="Everyday: 9 am - 9 pm" />
-      <meta property="og:image" content="http://www.keenprofile.com/uploads/8/3/4/6/83467774/kp-pic-4.png?1468693944" />
-      <meta property="og:url" content="http://www.keenprofile.com/contact.html" />
+      
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <link  rel="stylesheet" type="text/css" href="//cdn2.editmysite.com/css/sites.css?buildTime=1487981270" />
@@ -19,6 +16,12 @@
        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
          <link rel="stylesheet" type="text/css" href="Theme/css/custom.css?ver=<% Response.Write(DateTime.Now.ToString("HH:ss:mm")); %>" title="wsite-theme-css" />
       <link href='//fonts.googleapis.com/css?family=Lato:400,300,300italic,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+
+
+        <link rel="shortcut icon" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png">
 
          <link href="https://fonts.googleapis.com/css?family=Kanit:400,500,600,700&amp;subset=thai" rel="stylesheet" type='text/css'>
       <!-- Latest compiled and minified CSS -->

@@ -10,6 +10,7 @@ public partial class _Orders : BasePageFront
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Page.Title = "KeenProfile Order";
         if (!this.Page.IsPostBack)
         {
 

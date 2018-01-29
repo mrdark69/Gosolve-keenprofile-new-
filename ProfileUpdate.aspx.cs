@@ -10,6 +10,8 @@ public partial class _ProfileUpdate : BasePageFront
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        this.Page.Title = "KeenProfile Your Profile";
         if (!this.Page.IsPostBack)
         {
 
@@ -79,7 +81,7 @@ public partial class _ProfileUpdate : BasePageFront
                     strcjf.Append("<div class=\"item\">");
 
 
-                    strcjf.Append("<input  type=\"checkbox\" name=\"chckCJF_form\" " + check + " class=\"role_cjf_valid\" value=\"" + i.CJFID + "\">");
+                    strcjf.Append("<input  type=\"radio\" name=\"chckCJF_form\" " + check + " class=\"role_cjf_valid\" value=\"" + i.CJFID + "\">");
                     strcjf.Append("<label>" + i.Title + "</label>");
                     strcjf.Append("</div>");
                 }
@@ -239,7 +241,7 @@ public partial class _ProfileUpdate : BasePageFront
 
 
 
-            Response.Redirect(Request.Url.ToString());
+            Response.Redirect("/");
         }
         else
         {
@@ -251,5 +253,10 @@ public partial class _ProfileUpdate : BasePageFront
 
 
        
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/");
     }
 }

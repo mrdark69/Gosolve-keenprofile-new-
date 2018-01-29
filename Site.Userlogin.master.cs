@@ -78,7 +78,7 @@ public partial class SiteUserLoginMaster : MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.Page.Title = "Online Professional Career Strategy";
+        
 
         Page p = new Page();
         //Model_Users u = UserSessionController.FrontAppAuthorization(p);

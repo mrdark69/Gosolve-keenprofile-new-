@@ -8,12 +8,9 @@
        <link rel="apple-touch-icon" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png">
        <link rel="apple-touch-icon" sizes="114x114" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png">
        <link rel="apple-touch-icon" sizes="72x72" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png">
-      <title><%: Page.Title %> - My ASP.NET Application</title>
+      <title><%: Page.Title %>- Online Professional Career Strategy</title>
       <%--<title>Contact - KEEN PROFILE</title><meta property="og:site_name" content="KEEN PROFILE" />--%>
-      <meta property="og:title" content="Contact" />
-      <meta property="og:description" content="Everyday: 9 am - 9 pm" />
-      <meta property="og:image" content="http://www.keenprofile.com/uploads/8/3/4/6/83467774/kp-pic-4.png?1468693944" />
-      <meta property="og:url" content="http://www.keenprofile.com/contact.html" />
+
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <link  rel="stylesheet" type="text/css" href="//cdn2.editmysite.com/css/sites.css?buildTime=1487981270" />
@@ -24,6 +21,13 @@
       <link href='//fonts.googleapis.com/css?family=Lato:400,300,300italic,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
       <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+
+       <link rel="shortcut icon" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png" type="image/x-icon" />
+		<link rel="apple-touch-icon" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png">
       <!-- Optional theme -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 

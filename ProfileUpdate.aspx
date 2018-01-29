@@ -194,7 +194,7 @@
 
                                             </div>
                                         </div>--%>
-                                 <div class="form-group"><label class="col-sm-2 control-label">Current Job Function name:</label>
+                                 <div class="form-group"><label class="col-sm-2 control-label">current job level:</label>
 
                                             <div class="col-sm-10" style="padding:0 0px 0 0px">
                                                 
@@ -211,7 +211,8 @@
                             <div class="btn_pan">
 
                               <%--  <asp:Button ID="btnBackprofile" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;" CssClass="btn btn-lg btn-border ripple" runat="server" OnClick="btnBackprofile_Click" Text="Your profile" />--%>
-                                 <asp:Button ID="btnDownload" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;float:right" CssClass="btn btn-lg btn-border ripple" runat="server" OnClientClick="return submitbtn();" OnClick="btnDownload_Click"  Text="Update Now" />
+                               &nbsp;&nbsp;  <asp:Button ID="btnDownload" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;float:right;margin-left:10px;" CssClass="btn btn-lg btn-border ripple" runat="server" OnClientClick="return submitbtn();" OnClick="btnDownload_Click"  Text="Update Now" />  &nbsp;&nbsp;<asp:Button ID="btnCancel" runat="server" style="background-color:#f1f1f1;margin:0 auto;color:#000 !important;margin-top: 10px;float:right" CssClass="btn btn-lg btn-border ripple"  OnClick="btnCancel_Click" Text="Cancel" />  &nbsp;&nbsp;
+                               
                             </div>
                         </div>
                         
