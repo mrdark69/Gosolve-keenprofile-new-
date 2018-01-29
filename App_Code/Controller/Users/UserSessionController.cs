@@ -305,6 +305,23 @@ public class UserSessionController
             
         }
 
+        if (!u.EmailVerify)
+        {
+
+            string url = HttpContext.Current.Request.Url.AbsoluteUri;
+            string[] arrurl = url.Split('/');
+            int length = arrurl.Length;
+
+            string route = arrurl[length - 1];
+
+            route = route.Split('?')[0];
+            if (route != "" && route.ToLower() != "default.aspx" && route.ToLower() != "default")
+            {
+                HttpContext.Current.Response.Redirect("/");
+            }
+          
+        }
+
 
         return u;
         

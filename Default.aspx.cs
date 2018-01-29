@@ -26,6 +26,21 @@ public partial class _Default : BasePageFront
 
                 // fc.Text = string.Join(", ", u.UserFC.Select(r => r.Title).ToArray());
 
+                if (!u.EmailVerify)
+                {
+                    Do_assessment.Attributes.Add("disabled", "disabled");
+
+                    Do_assessment.Attributes.Add("onclick", "ShowAlert(event);");
+                    //btnReport1.Attributes.Add("disabled", "disabled");
+                    //btnReport2.Attributes.Add("disabled", "disabled");
+                    //btnReport3.Attributes.Add("disabled", "disabled");
+                    //btnReport4.Attributes.Add("disabled", "disabled");
+
+                    btnReport1.Attributes.Add("onclick", "ShowAlert(event);");
+                    btnReport2.Attributes.Add("onclick", "ShowAlert(event);");
+                    btnReport3.Attributes.Add("onclick", "ShowAlert(event);");
+                    btnReport4.Attributes.Add("onclick", "ShowAlert(event);");
+                }
 
                 //btnReport1 //btnReport3 //btnReport2
                 int intProductID = 1;

@@ -95,7 +95,7 @@
                                             </p>
 <%--                                            <img src="http://rscard.px-lab.com/img/uploads/rs-photo-v1.jpg" alt="Robert Smith">--%>
 
-                                              <a class="btn btn-lg btn-border ripple" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;"   target="_blank" href="Assessmentstep.aspx"> เริ่มทำแบบประเมิน</a>
+                                              <a runat="server" id="Do_assessment" class="btn btn-lg btn-border ripple" style="background-color:#3f51b5;margin:0 auto;color:#fff !important;margin-top: 10px;"   target="_blank" href="Assessmentstep.aspx"> เริ่มทำแบบประเมิน</a>
 										</div>
 									</div>
 									<div class="col-xs-7">
@@ -223,6 +223,7 @@
 </div>
 </asp:Content>
 <asp:Content ID="FooterScript" ContentPlaceHolderID="ContentFooter" runat="server">
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         $(document).ready(function(){
             if (window.location.hash) {
@@ -232,5 +233,17 @@
             }
 
         });
+
+
+        function ShowAlert(e) {
+
+            e.preventDefault();
+            swal({
+                icon: "warning",
+                title: "Warning",
+                text: "Your account is not verify please check your email which you registerd"
+            });
+            return false;
+        }
     </script>
     </asp:Content>
