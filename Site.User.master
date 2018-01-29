@@ -90,7 +90,16 @@
     <%--  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'></script>--%>
     
       <script type="text/javascript" src="//cdn2.editmysite.com/js/lang/en/stl.js?buildTime=1487981270&"></script><script> _W.themePlugins = [];</script>
-      
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113224153-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-113224153-1');
+</script>
+
         <asp:ContentPlaceHolder ID="HeaderScript" runat="server">
     </asp:ContentPlaceHolder>
    </head>

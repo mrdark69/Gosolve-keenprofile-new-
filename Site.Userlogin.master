@@ -220,8 +220,20 @@ footer .fa{
          //-->
       </script>
 
+       <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113224153-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-113224153-1');
+</script>
+
         <asp:ContentPlaceHolder ID="HeaderScript" runat="server">
     </asp:ContentPlaceHolder>
+
+
    </head>
    <body class="header-page page-has-banner  wsite-theme-light  wsite-page-contact header-overlay-on ">
       <form runat="server">
