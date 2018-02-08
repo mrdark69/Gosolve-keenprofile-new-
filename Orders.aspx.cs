@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
+using System.IO;
 
 public partial class _Orders : BasePageFront
 {
@@ -94,6 +95,9 @@ public partial class _Orders : BasePageFront
             case 2:
                 ret = "scb";
                 break;
+            case 3:
+                ret = "Krungsri";
+                break;
         }
         return ret;
     }
@@ -107,7 +111,12 @@ public partial class _Orders : BasePageFront
 
         int intOrderID = int.Parse(orderID);
         string Filename = orderID + ".jpg";
-        string FilePath = "/orderconfilmfile/" + Filename;
+
+        DirectoryInfo fdr = new DirectoryInfo(Server.MapPath("/orderconfirmfile/"));
+        if (!fdr.Exists)
+            fdr.Create();
+       
+        string FilePath = "/orderconfirmfile/" + Filename;
 
         string DAteconfirm = hd_date_payment.Value;
         string[] arrdatetime = DAteconfirm.Split('-');
