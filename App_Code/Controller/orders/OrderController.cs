@@ -120,7 +120,7 @@ public class OrderController
                         object[] parameters = new object[] { u, s, context , intProductID };
                         SendingEngineController.cpool.QueueWork(parameters, SendEmaiReceiveToCustomer);
 
-                        string staffEmail = "mrdark6996@gmail.com;serviceteam@keenprofile.com";
+                        string staffEmail = "mrdark6996@gmail.com;serviceteam@keenprofile.com;keenprofiledev@gmail.com";
                         object[] parameters2 = new object[] { staffEmail, s, context , con ,intProductID };
 
                         SendingEngineController.cpool.QueueWork(parameters2, SendEmailReceiveToStaff);
@@ -219,6 +219,17 @@ public class OrderController
         body = "FirstName : " + con.Name + "\r\n";
         body = body +  "email : " + con.Email + "\r\n";
         body = body + "datetime : " + con.DatePayment.ToThaiDateTime() + "\r\n";
+
+
+        List<MailSenderFileAtt> list = new List<MailSenderFileAtt>
+        {
+            new MailSenderFileAtt
+            {
+                 FileName ="",
+                  Path = con.FilePath
+
+            }
+        };
         foreach (string email in staffmail.Split(';'))
         {
             MailSenderOption option = new MailSenderOption
@@ -227,6 +238,7 @@ public class OrderController
                 context = HttpContext.Current,
                 mailTo = email,
                 Mailbody = body,
+                Attachment = list,
                 Subject = "[Keen Staff] การชำระค่าบริการเสร็จสมบูรณ์แล้ว / Success Payment Confirmation [Confirmed Order#" + con.OrderID + "]"
             };
             MAilSender.SendMailEngine(option);

@@ -11,6 +11,8 @@ public partial class _Default : BasePageFront
     protected void Page_Load(object sender, EventArgs e)
     {
 
+      
+
         this.Page.Title = "KeenProfile Member";
         if (!this.Page.IsPostBack)
         {
