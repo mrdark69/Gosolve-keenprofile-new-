@@ -23,7 +23,7 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 
-
+      <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
        <link rel="shortcut icon" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png" type="image/x-icon" />
 		<link rel="apple-touch-icon" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png">
 		<link rel="apple-touch-icon" sizes="114x114" href="http://www.keenprofile.com/wp-content/uploads/2018/01/fav_keen.png">
@@ -137,8 +137,29 @@
        <style>
 
              
-}
 
+       .group .button.btn-facebook{
+                background-color:#43609D !important;
+                font-size: 17px !important;
+                /*font-weight: bold !important;*/
+                text-decoration: none !important;
+                text-align: center !important;
+                text-transform: none !important;
+
+           }
+           .btn-facebook i {
+               font-size:26px !important;
+               float: left;
+    margin: -3px 0 11px 9px;
+
+           }
+
+           .social_or{
+               margin: 0 auto;
+                display: block;
+                text-align: center;
+                margin-top: -13px;
+           }
 
            footer {
                  margin: 0 auto;
@@ -149,6 +170,24 @@
                max-width: 1170px;
            }
 
+          .social_or{
+              position: absolute;
+    padding: 1px 5px 1px 5px;
+    border-radius: 2px;
+    background-color: #aaa;
+    margin-left: 50%;
+    font-size: 11px;
+    top: 4px;  
+          }
+
+
+           .login-html{
+               background: rgba(40,57,101,1) !important;
+           }
+
+           .login-form{
+               margin-top: 15px;
+           }
            
 .fusion-footer {
    background: #1c1c1c;
