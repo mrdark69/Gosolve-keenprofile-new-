@@ -1,0 +1,131 @@
+/* Add here all your css styles (customizations) */
+
+.custom-right {
+    position: absolute !important;
+}
+
+.custom-right-register {
+    right: 0px;
+}
+
+.keen-header-color {
+    /* background: rgba(40, 57, 101, 1) !important; */
+    background-color: #313c64 !important;
+    border-bottom: 1px solid #161a28;
+    /* background: rgba(40, 57, 101, 1) !important; */
+}
+
+.keen-logo-txt {
+    color: #fff !important;
+    font-size: 30px;
+}
+
+@media (max-width: 774px) {
+    .keen-logo-txt {
+        font-size: 20px;
+    }
+}
+
+.keen-bg {
+    /* background-image: url(//cdn2.editmysite.com/images/editor/theme-background/stock/Skyscrapers.jpg);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 100%;
+    background-color: transparent;
+    background-size: cover; */
+    /* background-color: #aeb6d5 !important; */
+    background-color: #e3e5ed !important;
+}
+
+.keen-bg-img {
+    background-image: url(//cdn2.editmysite.com/images/editor/theme-background/stock/Skyscrapers.jpg);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 100%;
+    background-color: transparent;
+    background-size: cover;
+}
+
+.keen-bg-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 200%;
+    height: inherit;
+    background: rgba(24, 24, 24, 0.7);
+}
+
+.keen-form-bg {
+    background: rgba(40, 57, 101, .9) !important;
+}
+
+.keen-form-bg input,
+.keen-form-bg .chosen-container {
+    background: rgba(255, 255, 255, .1)!important;
+    color: #fff !important;
+    border: 0px;
+}
+
+.keen-form-bg label,
+.keen-form-bg span {
+    color: #aaa !important;
+}
+
+.keen-form-bg .keen-cw {
+    color: #fff !important;
+}
+
+.keen-txt {
+    color: #fff!important;
+}
+
+.keen-btn-primary {
+    color: #fff !important;
+    background-color: #1161ee !important;
+}
+
+.custom-right-register a {
+    background-color: #1161ee !important;
+    color: #fff;
+}
+
+.custom-right-login {
+    right: 100px;
+}
+
+@media (max-width: 774px) {
+    .custom-right-login {
+        right: 80px;
+    }
+    .custom-right-register a {
+        padding: 5px 10px 5px 10px !important;
+    }
+}
+
+.custom-right-login a {
+    font-weight: bold !important;
+}
+
+.txt-white {
+    color: #fff !important;
+}
+
+.keen-bg-blue {
+    background-color: #1161ee!important;
+}
+
+.g-bg-bluegray-opacity-0_3--before::before,
+.g-bg-bluegray-opacity-0_3--after::after {
+    background-color: transparent!important;
+}
+
+.u-btn-linkedin {
+    background-color: #007bb6;
+    color: #fff;
+}
+
+.u-btn-linkedin:hover {
+    background-color: #005983;
+}
