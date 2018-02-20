@@ -3,117 +3,91 @@
     
     </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-     <div id="fb-root"></div>
-     <div class="login-wrap" style="text-align:left">
-	<div class="login-html">
-		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-		<input id="tab-2" type="radio" name="tab" class="sign-up"  ><label for="tab-2" class="tab" style="display:none;" >Sign Up</label>
-		<div class="login-form">
-			<div class="sign-in-htm" style="text-align:left;">
 
 
 
-                <div class="group">
-                <a href="#" onclick="loginByFacebook();" style="text-align:center" class="button btn-facebook"><i class="fab fa-facebook"></i> Login with Facebook</a>
+     <!-- Login -->
+        <section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall" data-options="{direction: 'reverse', settings_mode_oneelement_max_offset: '150'}">
+            <!-- Parallax Image -->
+            <div class="divimage dzsparallaxer--target w-100 u-bg-overlay g-bg-size-cover g-bg-bluegray-opacity-0_3--after keen-bg-img" style="height: 140%; background-image: url(Theme/fronttheme/assets/KeenImg/Skyscrapers.jpg);"></div>
+            <!-- End Parallax Image -->
+            <div class="container g-py-30 g-py-100--lg">
 
-                    <script type="text/javascript">
-                        window.fbAsyncInit = function () {
-                            FB.init({
-                                appId: '358756381252009',
-                                status: true, // check login status
-                                cookie: true, // enable cookies to allow the server to access the session
-                                xfbml: true, // parse XFBML
-                                oauth: true // enable OAuth 2.0
-                            });
-                        };
-                        (function () {
-                            var e = document.createElement('script'); e.async = true;
-                            e.src = document.location.protocol +
-                                '//connect.facebook.net/en_US/all.js';
-                            $('#fb-root').prepend(e);
-                            // document.getElementById('fb-root').appendChild(e);
-                        }());
-
-                        function loginByFacebook() {
-                            FB.login(function (response) {
-                                if (response.authResponse) {
-                                    FacebookLoggedIn(response);
-                                } else {
-                                    console.log('User cancelled login or did not fully authorize.');
-                                }
-                            }, { scope: 'public_profile,user_friends,email' });
-                        }
-
-                        function FacebookLoggedIn(response) {
-                            var loc = '/hook_api/facebookcallback.aspx';
-                            if (loc.indexOf('?') > -1)
-                                window.location = loc + '&authprv=facebook&access_token=' + response.authResponse.accessToken;
-                            else
-                                window.location = loc + '?authprv=facebook&access_token=' + response.authResponse.accessToken;
-                        }
-    </script>
-          </div>
-
-             
-                    <div class="hr inline" style="position:relative">
-                          <span class="social_or inline">OR</span>
+                <div class="row justify-content-center text-center mb-5">
+                    <div class="col-lg-8">
+                        <!-- Heading -->
+                        <h1 class="g-color-white text-uppercase mb-4 keen-txt">Login or register an account</h1>
+                        <div class="d-inline-block g-width-60 g-height-2 g-bg-white mb-4 keen-bg-blue"></div>
+                        <p class="lead g-color-white keen-txt">The time has come to bring those ideas and plans to life. This is where we really begin to visualize your napkin sketches and make them into beautiful pixels.</p>
+                        <!-- End Heading -->
                     </div>
-                  
-                  
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-8 col-lg-6 ">
+                        <div class="u-shadow-v21 g-bg-white rounded g-pa-50 keen-form-bg keen-style">
+                            <header class="text-center mb-4">
+                                <h2 class="h2 g-color-black g-font-weight-600 keen-cw">Login</h2>
+                            </header>
 
-             
-                
-				<div class="group">
-					<label for="user" class="label">Email Address</label>
-					<%--<input id="user" type="text" class="input">--%>
-                    <%--<asp:TextBox ID="login_user" runat="server" CssClass="input"></asp:TextBox>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="login_user"
-                                CssClass="text-danger" ErrorMessage="The user name field is required." />--%>
+                            <!-- Form -->
+                            <div class="g-py-15">
+                                <button class="btn btn-block u-btn-facebook rounded text-uppercase g-py-13 g-mb-15 " type="button">
+                                            <i class="mr-3 fa fa-facebook"></i>
+                                            <span class="g-hidden-xs-down keen-cw">Login with</span> Facebook
+                                          </button>
+                                <button class="btn btn-block u-btn-linkedin rounded text-uppercase g-py-13 g-mb-30" type="button">
+                                            <i class="mr-3 fa fa-linkedin"></i>
+                                            <span class="g-hidden-xs-down keen-cw">Login with</span> Linkedin
+                                          </button>
+                                <div class="d-flex justify-content-center text-center g-mb-30">
+                                    <div class="d-inline-block align-self-center g-width-50 g-height-1 g-bg-gray-light-v1"></div>
+                                    <span class="align-self-center g-color-gray-dark-v3 mx-4">OR</span>
+                                    <div class="d-inline-block align-self-center g-width-50 g-height-1 g-bg-gray-light-v1"></div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Email:</label>
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="email" placeholder="johndoe@gmail.com">
+                                </div>
 
-                     <asp:TextBox runat="server" ID="login_Email" class="input" />
-                <asp:RegularExpressionValidator ID="aa" ValidationGroup="gg"  runat="server" CssClass="text-danger" Display="Dynamic" ErrorMessage="The Email invalid format." ControlToValidate="login_Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
-                <asp:RequiredFieldValidator ID="bb" ValidationGroup="gg"  runat="server" ControlToValidate="login_Email"  Display="Dynamic"
-                    CssClass="text-danger" ErrorMessage="The Email field is required." />
-				</div>
-				<div class="group">
-					<label for="pass" class="label">Password</label>
-					<%--<input id="pass" type="password" class="input" data-type="password">--%>
-                    <asp:TextBox ID="login_password" runat="server" TextMode="Password"  CssClass="input"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="cc" ValidationGroup="gg"   runat="server"  Display="Dynamic" ControlToValidate="login_password" CssClass="text-danger" ErrorMessage="The password field is required." />
-				</div>
-				<%--<div class="group">
-					<input id="check" type="checkbox" class="check" checked>
-					<label for="check"><span class="icon"></span> Keep me Signed in</label>
-				</div>--%>
-				<div class="group">
-					<%--<input type="submit" class="button" value="Sign In">--%>
-                    <asp:Button ID="btn_login" runat="server" style="margin-top:22px;"  ValidationGroup="gg" CssClass="button" OnClick="btn_login_Click" Text="Sign In" />
-                   <a href="Signup.aspx" class="button" style="margin-top:5px;text-align:center">Create a new Keen Profile account</a>
-                   <%-- <asp:Button ID="Button1" runat="server"  CssClass="button" Text="Sign In" />--%>
-				</div>
+                                <div class="g-mb-35">
+                                    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Password:</label>
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15 mb-3" type="password" placeholder="Password">
+                                    <div class="row justify-content-between">
+                                        <div class="col align-self-center">
+                                            <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-12 g-pl-25 mb-0">
+                          <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                          <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
+                            <i class="fa" data-check-icon="&#xf00c"></i>
+                          </div>
+                          Keep signed in
+                        </label>
+                                        </div>
+                                        <div class="col align-self-center text-right ">
+                                            <a class="g-font-size-12 " href="#!">Forgot password?</a>
+                                        </div>
+                                    </div>
+                                </div>
 
-
-
-                 
-
-				<div class="hr"></div>
-                <div class="foot-lnk">
-                    <a href="Forgot">Forgot Password?</a>
-                   </div>
-				<div class="foot-lnk">
-					
-                    
-				</div>
-			</div>
+                                <div class="mb-4">
+                                    <button class="btn btn-md btn-block u-btn-primary rounded g-py-13 keen-btn-primary" type="button">Login</button>
+                                </div>
 
 
+                            </div>
+                            <!-- End Form -->
 
-			
-		</div>
-	</div>
+                            <footer class="text-center">
+                                <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">Don't have an account? <a class="g-font-weight-600 " href="page-signup-2.html">signup</a>
+                                </p>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        
-</div>
+        </section>
+        <!-- End Login -->
+     
    
    <%-- <asp:Button ID="Button1" CssClass="button" runat="server" OnClick="btnSignup_Click" Text="Sign Up" />--%>
 </asp:Content>
