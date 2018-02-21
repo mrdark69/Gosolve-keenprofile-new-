@@ -19,11 +19,11 @@
                             </header>
                             <button class="btn btn-block u-btn-facebook rounded text-uppercase g-py-13 g-mb-15 " type="button">
                                     <i class="mr-3 fa fa-facebook"></i>
-                                    <span class="g-hidden-xs-down keen-cw">Login with</span> Facebook
+                                    <span class="g-hidden-xs-down keen-cw">สมัครผ่าน</span> Facebook
                                   </button>
                             <button class="btn btn-block u-btn-linkedin rounded text-uppercase g-py-13 g-mb-30" type="button">
                                     <i class="mr-3 fa fa-linkedin"></i>
-                                    <span class="g-hidden-xs-down keen-cw">Login with</span> Twitter
+                                    <span class="g-hidden-xs-down keen-cw">สมัครผ่าน</span> Linkedin
                                   </button>
                             <div class="d-flex justify-content-center text-center g-mb-30">
                                 <div class="d-inline-block align-self-center g-width-50 g-height-1 g-bg-gray-light-v1"></div>
@@ -34,11 +34,11 @@
                             <div class="g-py-15">
                                 <div class="row">
                                     <div class="col g-mb-20">
-                                        <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="First name">
+                                        <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="ชื่อ">
                                     </div>
 
                                     <div class="col g-mb-20">
-                                        <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="Last name">
+                                        <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="นามสกุล">
                                     </div>
                                 </div>
 
@@ -69,21 +69,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-6 col-md-12 col-lg-6 g-mb-20">
-                                    <%--    <select class="js-custom-select u-select-v1 g-brd-gray-light-v3 g-color-gray-dark-v5 rounded g-py-12" style="width: 100%;" data-placeholder="Month" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up">
-                          <option></option>
-                          <option value="First Option">January</option>
-                          <option value="Second Option">February</option>
-                          <option value="Third Option">March</option>
-                          <option value="Fourth Option">April</option>
-                          <option value="Fifth Option">May</option>
-                          <option value="Sixth Option">June</option>
-                          <option value="Seventh Option">July</option>
-                          <option value="Eighth Option">August</option>
-                          <option value="Ninth Option">September</option>
-                          <option value="Tenth Option">October</option>
-                          <option value="Eleventh Option">November</option>
-                          <option value="Twelfth Option">December</option>
-                        </select>--%>
+                                    
 
 
                                          <div class="form-group  g-pos-rel  g-rounded-4 mb-0 keen-no-boder">
@@ -124,7 +110,26 @@
                                           <option value="10" data-content='10'>10</option>
                                           <option value="11" data-content='11'>1</option>
                                           <option value="12" data-content='12'>12</option>
-                                       
+                                       <option value="12" data-content='12'>12</option>
+                                          <option value="13" data-content='13'>13</option>
+                                          <option value="14" data-content='14'>14</option>
+                                          <option value="15" data-content='15'>15</option>
+                                          <option value="16" data-content='16'>16</option>
+                                          <option value="17" data-content='17'>17</option>
+                                          <option value="18" data-content='18'>18</option>
+                                          <option value="19" data-content='19'>19</option>
+                                          <option value="20" data-content='20'>20</option>
+                                          <option value="21" data-content='21'>21</option>
+                                          <option value="22" data-content='22'>22</option>
+                                          <option value="23" data-content='23'>23</option>
+                                          <option value="24" data-content='24'>24</option>
+                                          <option value="25" data-content='25'>25</option>
+                                          <option value="26" data-content='26'>26</option>
+                                          <option value="27" data-content='27'>27</option>
+                                          <option value="28" data-content='28'>28</option>
+                                          <option value="29" data-content='29'>29</option>
+                                          <option value="30" data-content='30'>30</option>
+                                          <option value="31" data-content='31'>31</option>
                                       </select>
 
                                       <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
@@ -148,20 +153,17 @@
                                     </div>
                                 </div>
 
+
                                 <div class="g-mb-20">
-                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="Username">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="อีเมล์ address">
                                 </div>
 
                                 <div class="g-mb-20">
-                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="Email address">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="รัหสผ่าน">
                                 </div>
 
                                 <div class="g-mb-20">
-                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="Password">
-                                </div>
-
-                                <div class="g-mb-20">
-                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="Confirm password">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="ยืนยัน รหัสผ่าน">
                                 </div>
 
                                 <div class="mb-1">
@@ -174,22 +176,14 @@
                       </label>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-13 g-pl-25 mb-2">
-                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
-                        <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
-                          <i class="fa" data-check-icon="&#xf00c"></i>
-                        </div>
-                        Subscribe to our newsletter
-                      </label>
-                                </div>
+                               
 
                                 <button class="btn btn-block u-btn-primary rounded g-py-13 keen-btn-primary" type="button">Signup</button>
                             </div>
                             <!-- End Form -->
 
                             <footer class="text-center">
-                                <p class="g-color-gray-dark-v5 mb-0">Already have an account? <a class="g-font-weight-600" href="page-login-8.html">signin</a>
+                                <p class="g-color-gray-dark-v5 mb-0">เป็นสมาชิก KeenProfile อยู่แล้ว? <a class="g-font-weight-600" href="page-login-8.html">เข้าสู่ระบบ</a>
                                 </p>
                             </footer>
                         </div>

@@ -9,25 +9,25 @@ using System.Web.UI.WebControls;
 
 public partial class _Login : Page
 {
-    //public const string FaceBookAppKey = "208d02df5b5b65c4a081e7ee2e8b13e1";
-    //protected void Page_Load(object sender, EventArgs e)
-    //{
-    //    this.Page.Title = "KeenProfile Login";
-    //    if (!this.Page.IsPostBack)
-    //    {
-    //        Model_Users u = UserSessionController.FrontAppAuthLogin(this);
-    //        //if (u != null)
-    //        //{
-    //        //    Response.Redirect("/");
-    //        //    Response.End();
-    //        //}
+    public const string FaceBookAppKey = "208d02df5b5b65c4a081e7ee2e8b13e1";
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        this.Page.Title = "KeenProfile Login";
+        if (!this.Page.IsPostBack)
+        {
+            Model_Users u = UserSessionController.FrontAppAuthLogin(this);
+            //if (u != null)
+            //{
+            //    Response.Redirect("/");
+            //    Response.End();
+            //}
 
-            
-            
-    //    }
-            
 
-    //}
+
+        }
+
+
+    }
     //private static string GetFacebookUserJSON(string access_token)
     //{
     //    string url = string.Format("https://graph.facebook.com/me?access_token={0}&fields=email,name,first_name,last_name,link", access_token);
@@ -56,5 +56,5 @@ public partial class _Login : Page
     //    }
     //}
 
-   
+
 }

@@ -12,6 +12,7 @@ public partial class _Signup : Page
     public const string FaceBookAppKey = "208d02df5b5b65c4a081e7ee2e8b13e1";
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Page.Title = "KeenProfile Login";
         if (!this.Page.IsPostBack)
         {
             Model_Users u = UserSessionController.FrontAppAuthLogin(this);
@@ -25,7 +26,7 @@ public partial class _Signup : Page
             string YearSel = string.Empty;
             for(int i = 0; i < 60; i++)
             {
-                int yearstart = 1900;
+                int yearstart = 1958;
                 yearstart = yearstart + i;
 
                 YearSel += "<option value=\""+ yearstart + "\" data-content=\""+ yearstart + "\" >"+ yearstart + "</option>";

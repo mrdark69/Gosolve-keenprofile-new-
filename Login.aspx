@@ -33,11 +33,11 @@
                             <div class="g-py-15">
                                 <button class="btn btn-block u-btn-facebook rounded text-uppercase g-py-13 g-mb-15 " type="button">
                                             <i class="mr-3 fa fa-facebook"></i>
-                                            <span class="g-hidden-xs-down keen-cw">Login with</span> Facebook
+                                            <span class="g-hidden-xs-down keen-cw">เข้าสู่ระบบผ่าน</span> Facebook
                                           </button>
                                 <button class="btn btn-block u-btn-linkedin rounded text-uppercase g-py-13 g-mb-30" type="button">
                                             <i class="mr-3 fa fa-linkedin"></i>
-                                            <span class="g-hidden-xs-down keen-cw">Login with</span> Linkedin
+                                            <span class="g-hidden-xs-down keen-cw">เข้าสู่ระบบผ่าน</span> Linkedin
                                           </button>
                                 <div class="d-flex justify-content-center text-center g-mb-30">
                                     <div class="d-inline-block align-self-center g-width-50 g-height-1 g-bg-gray-light-v1"></div>
@@ -45,31 +45,25 @@
                                     <div class="d-inline-block align-self-center g-width-50 g-height-1 g-bg-gray-light-v1"></div>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Email:</label>
+                                    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">อีเมล์:</label>
                                     <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="email" placeholder="johndoe@gmail.com">
                                 </div>
 
                                 <div class="g-mb-35">
-                                    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">Password:</label>
+                                    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">รหัสผ่าน:</label>
                                     <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15 mb-3" type="password" placeholder="Password">
                                     <div class="row justify-content-between">
                                         <div class="col align-self-center">
-                                            <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-12 g-pl-25 mb-0">
-                          <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
-                          <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
-                            <i class="fa" data-check-icon="&#xf00c"></i>
-                          </div>
-                          Keep signed in
-                        </label>
+                                            
                                         </div>
                                         <div class="col align-self-center text-right ">
-                                            <a class="g-font-size-12 " href="#!">Forgot password?</a>
+                                            <a class="g-font-size-12 " href="#!">ลืมรหัสผ่าน?</a>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="mb-4">
-                                    <button class="btn btn-md btn-block u-btn-primary rounded g-py-13 keen-btn-primary" type="button">Login</button>
+                                    <button class="btn btn-md btn-block u-btn-primary rounded g-py-13 keen-btn-primary" type="button">เข้าสู่ระบบ</button>
                                 </div>
 
 
@@ -77,7 +71,7 @@
                             <!-- End Form -->
 
                             <footer class="text-center">
-                                <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">Don't have an account? <a class="g-font-weight-600 " href="page-signup-2.html">signup</a>
+                                <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">ท่านยังไม่ได้เป็นสมาชิก KeenProfile? <a class="g-font-weight-600 " href="page-signup-2.html">สมัครสมาชิก</a>
                                 </p>
                             </footer>
                         </div>
