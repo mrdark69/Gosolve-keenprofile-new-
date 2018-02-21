@@ -1,5 +1,8 @@
 /* Add here all your css styles (customizations) */
-
+body,p,h1,h2,h3,div,form,span,label {
+    font-family: 'Kanit', sans-serif !important;
+    font-weight:200 !important;
+}
 .custom-right {
     position: absolute !important;
 }
@@ -61,12 +64,13 @@
     background: rgba(40, 57, 101, .9) !important;
 }
 
-.keen-form-bg input,
-.keen-form-bg .chosen-container {
-    background: rgba(255, 255, 255, .1)!important;
-    color: #fff !important;
-    border: 0px;
-}
+    .keen-form-bg input,
+    .keen-form-bg .chosen-container,
+    .keen-form-bg .dropdown-toggle {
+        background: rgba(255, 255, 255, .1) !important;
+        color: #fff !important;
+        border: 0px;
+    }
 
 .keen-form-bg label,
 .keen-form-bg span {
@@ -129,3 +133,14 @@
 .u-btn-linkedin:hover {
     background-color: #005983;
 }
+
+.keen-no-boder{
+    border:0px !important;
+    border-color:transparent !important;
+}
+
+
+    .bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:active, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover {
+      
+        background: rgba(255, 255, 255, .1) !important;
+    }

@@ -17,14 +17,14 @@
                     <div class="col-lg-8">
                         <!-- Heading -->
                         <h1 class="g-color-white text-uppercase mb-4 keen-txt">Login or register an account</h1>
-                        <div class="d-inline-block g-width-60 g-height-2 g-bg-white mb-4 keen-bg-blue"></div>
+                        <div class="d-inline-block g-width-60 g-height-2 mb-4 keen-bg-blue"></div>
                         <p class="lead g-color-white keen-txt">The time has come to bring those ideas and plans to life. This is where we really begin to visualize your napkin sketches and make them into beautiful pixels.</p>
                         <!-- End Heading -->
                     </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-sm-8 col-lg-6 ">
-                        <div class="u-shadow-v21 g-bg-white rounded g-pa-50 keen-form-bg keen-style">
+                        <div class="u-shadow-v21  rounded g-pa-50 keen-form-bg keen-style">
                             <header class="text-center mb-4">
                                 <h2 class="h2 g-color-black g-font-weight-600 keen-cw">Login</h2>
                             </header>

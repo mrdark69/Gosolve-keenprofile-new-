@@ -10,20 +10,33 @@ using System.Web.UI.WebControls;
 public partial class _Signup : Page
 {
     public const string FaceBookAppKey = "208d02df5b5b65c4a081e7ee2e8b13e1";
-    //protected void Page_Load(object sender, EventArgs e)
-    //{
-    //    if (!this.Page.IsPostBack)
-    //    {
-    //        Model_Users u = UserSessionController.FrontAppAuthLogin(this);
-    //        //if (u != null)
-    //        //{
-    //        //    Response.Redirect("/");
-    //        //    Response.End();
-    //        //}
-    //    }
-            
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!this.Page.IsPostBack)
+        {
+            Model_Users u = UserSessionController.FrontAppAuthLogin(this);
+            //if (u != null)
+            //{
+            //    Response.Redirect("/");
+            //    Response.End();
+            //}
 
-    //}
+
+            string YearSel = string.Empty;
+            for(int i = 0; i < 60; i++)
+            {
+                int yearstart = 1900;
+                yearstart = yearstart + i;
+
+                YearSel += "<option value=\""+ yearstart + "\" data-content=\""+ yearstart + "\" >"+ yearstart + "</option>";
+
+            }
+
+            yearlist.Text = YearSel;
+        }
+
+
+    }
     //private static string GetFacebookUserJSON(string access_token)
     //{
     //    string url = string.Format("https://graph.facebook.com/me?access_token={0}&fields=email,name,first_name,last_name,link", access_token);
@@ -37,7 +50,7 @@ public partial class _Signup : Page
 
     //    return s;
     //}
-   
+
 
     //protected void btnSignup_Click(object sender, EventArgs e)
     //{
@@ -66,7 +79,7 @@ public partial class _Signup : Page
     //        //RadioButton ra =(RadioButton)this.Page.FindControl("tab-2");
     //        //ra.Checked = true;
     //        emailerror.EnableClientScript = false;
-            
+
     //        emailerror.ErrorMessage = "the Email has already use";
 
 
@@ -74,8 +87,8 @@ public partial class _Signup : Page
 
     //        // alert.Text = "the Email has already use";
     //    }
-        
-        
+
+
 
 
     //}

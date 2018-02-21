@@ -10,6 +10,7 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="../../../favicon.ico">
     <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300,400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="Theme/fronttheme/assets/vendor/bootstrap/bootstrap.min.css">
@@ -29,13 +30,16 @@
     <link rel="stylesheet"  href="Theme/fronttheme/assets/vendor/fancybox/jquery.fancybox.css">
     <link rel="stylesheet"  href="Theme/fronttheme/assets/vendor/chosen/chosen.css">
 
+       <link rel="stylesheet" href="Theme/fronttheme/assets/vendor/hs-admin-icons/hs-admin-icons.css">
+
     <!-- CSS Unify -->
+    <link rel="stylesheet" href="Theme/fronttheme/assets/css/unify-admin.css">
     <link rel="stylesheet"  href="Theme/fronttheme/assets/css/unify-core.css?ver=122">
     <link rel="stylesheet"  href="Theme/fronttheme/assets/css/unify-components.css?ver=122">
     <link rel="stylesheet"  href="Theme/fronttheme/assets/css/unify-globals.css?ver=22">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet"  href="Theme/fronttheme/assets/css/custom.css?ver=1ssss">
+    <link rel="stylesheet"  href="Theme/fronttheme/assets/css/custom.css?ver=1sssss">
     <asp:ContentPlaceHolder ID="HeaderScript" runat="server">
     </asp:ContentPlaceHolder>
 
@@ -427,5 +431,10 @@
             $.HSCore.helpers.HSHamburgers.init('.hamburger');
         });
     </script>
+
+       <asp:ContentPlaceHolder ID="ContentFooter" runat="server">
+
+       
+       </asp:ContentPlaceHolder>
    </body>
 </html>
