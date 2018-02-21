@@ -183,7 +183,7 @@
                             <!-- End Form -->
 
                             <footer class="text-center">
-                                <p class="g-color-gray-dark-v5 mb-0">เป็นสมาชิก KeenProfile อยู่แล้ว? <a class="g-font-weight-600" href="page-login-8.html">เข้าสู่ระบบ</a>
+                                <p class="g-color-gray-dark-v5 mb-0">เป็นสมาชิก KeenProfile อยู่แล้ว? <a class="g-font-weight-600" href="http://member.keenprofile.com/Login">เข้าสู่ระบบ</a>
                                 </p>
                             </footer>
                         </div>

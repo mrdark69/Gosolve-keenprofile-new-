@@ -71,7 +71,7 @@
                             <!-- End Form -->
 
                             <footer class="text-center">
-                                <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">ท่านยังไม่ได้เป็นสมาชิก KeenProfile? <a class="g-font-weight-600 " href="page-signup-2.html">สมัครสมาชิก</a>
+                                <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">ท่านยังไม่ได้เป็นสมาชิก KeenProfile? <a class="g-font-weight-600 " href="http://member.keenprofile.com/Signup">สมัครสมาชิก</a>
                                 </p>
                             </footer>
                         </div>
