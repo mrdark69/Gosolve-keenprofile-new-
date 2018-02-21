@@ -166,19 +166,27 @@
                                     <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="ยืนยัน รหัสผ่าน">
                                 </div>
 
+                                 <div class="g-mb-20">
+                                    <input name="userlocation" id="userlocation" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="เมืองและประเทศปัจจุบัน">
+                                     <input type="hidden" name="country-code" id="country-code" value="" class="input-validate">
+
+                                       <input type="hidden" name="area-location" id="area-location" value="" class="input-validate">
+                                      <input type="hidden" name="area-location2" id="area-location2" value="" class="input-validate">
+                                </div>
+
                                 <div class="mb-1">
                                     <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-13 g-pl-25 mb-2">
-                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
-                        <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
-                          <i class="fa" data-check-icon="&#xf00c"></i>
-                        </div>
-                        I accept the <a href="#!">Terms and Conditions</a>
-                      </label>
+                                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                                        <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
+                                          <i class="fa" data-check-icon="&#xf00c"></i>
+                                        </div>
+                                        I accept the <a href="#!">Terms and Conditions</a>
+                                      </label>
                                 </div>
 
                                
 
-                                <button class="btn btn-block u-btn-primary rounded g-py-13 keen-btn-primary" type="button">Signup</button>
+                                <button class="btn btn-block u-btn-primary rounded g-py-13 keen-btn-primary" type="button">สมัครสมาชิก</button>
                             </div>
                             <!-- End Form -->
 
@@ -247,12 +255,17 @@
 </asp:Content>
 <asp:Content ID="FooterScript" ContentPlaceHolderID="ContentFooter" runat="server">
      <script src="Theme/fronttheme/assets/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZIk2xiS6rpx3P_Yf09edwDC3CKc6gKcY&libraries=places&callback=initAutocomplete&language=en" sync="" defer=""></script>
+         <script id="google.map.api" src=Scripts/vendor/googlelocation/keen.google.map.api.js type="text/javascript" auto-location="true" ></script>
+     <script src=//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js type=text/javascript></script>
       <script>
+
     $(document).on('ready', function () {
       // initialization of custom select
       $('.js-select').selectpicker();
   
-      
+          
+          var CURR_DISPLAY = "th"
     });
   </script>
  </asp:Content>
