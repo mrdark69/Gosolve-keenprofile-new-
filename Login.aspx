@@ -25,7 +25,7 @@
                     </div>
 
                    
-            </div>
+                </div>
 
                 <div class="row justify-content-center text-center mb-5">
                     <div class="col-lg-8">

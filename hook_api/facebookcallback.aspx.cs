@@ -36,7 +36,10 @@ public partial class hook_api_facebookcallback : System.Web.UI.Page
             //Response.Write("<br />Link: " + oUser.link);
 
             //checkuser facebook channel
-          
+
+            string sex = oUser.gender;
+
+
             Model_Users u = UsersController.UserCheckloginExternal(oUser.email.Trim(), UserLoginChannel.Facebook);
             if (u != null)
             {
@@ -50,7 +53,8 @@ public partial class hook_api_facebookcallback : System.Web.UI.Page
                 {
                     Email = oUser.email,
                     UserName = oUser.email,
-                    Password = "",
+                    Gender = (byte)(oUser.gender == "male" ? 1 : 2),
+                    Password = DateTime.Now.ToString("ddmmyyyyhhmmss"),
                     UserCatId = 1,
                     UserLoginChannel = UserLoginChannel.Facebook,
                     FirstName = oUser.first_name,

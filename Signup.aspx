@@ -34,12 +34,14 @@
                             <!-- Form -->
                             <div class="g-py-15">
                                 <div class="row">
-                                    <div class="g-mb-20 col-sm-12 col-lg-6">
-                                        <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="ชื่อ">
+                                    <div class="g-mb-20 col-sm-12 col-lg-6 keen-form-block">
+                                        <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="text" placeholder="ชื่อ">
+                                        <p class="text-validate" >กรุณากรอกชื่อของท่าน</p>
                                     </div>
 
-                                    <div class="g-mb-20 col-sm-12 col-lg-6">
-                                        <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="นามสกุล">
+                                    <div class="g-mb-20 col-sm-12 col-lg-6 keen-form-block">
+                                        <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="text" placeholder="นามสกุล">
+                                        <p class="text-validate" >กรุณากรอกนามสกุลของท่าน</p>
                                     </div>
                                 </div>
 
@@ -51,13 +53,14 @@
                                     <option value="Third Option">Other</option>
                                   </select>--%>
 
-                                    <div class="form-group  g-pos-rel  g-rounded-4 mb-0 keen-no-boder">
-                                      <select class="js-select u-select--v3-select u-sibling w-100" required="required" title="เพศ" style="display: none;">
-                                        <option value="1" data-content='<span class="d-flex align-items-center w-100"><i class="hs-admin-rocket g-font-size-18 g-mr-15"></i><span>Male</span></span>'>Male
+                                    <div class="form-group  g-pos-rel  g-rounded-4 mb-0 keen-no-boder  keen-form-block">
+                                      <select class="js-select u-select--v3-select u-sibling w-100 keen-required" data-validtype="select" required="required" title="เพศ" style="display: none;">
+                                       
+                                        <option value="1" data-content='<span class="d-flex align-items-center w-100"><i class="hs-admin-rocket g-font-size-18 g-mr-15"></i><span>ชาย</span></span>'>ชาย
                                         </option>
-                                        <option value="2" data-content='<span class="d-flex align-items-center w-100"><i class="hs-admin-headphone-alt g-font-size-18 g-mr-15"></i><span>Female</span></span>'>Female
+                                        <option value="2" data-content='<span class="d-flex align-items-center w-100"><i class="hs-admin-headphone-alt g-font-size-18 g-mr-15"></i><span>หญิง</span></span>'>หญิง
                                         </option>
-                                        <option value="3" data-content='<span class="d-flex align-items-center w-100"><i class="hs-admin-shift-right g-font-size-18 g-mr-15"></i><span>Other</span></span>'>Other
+                                        <option value="3" data-content='<span class="d-flex align-items-center w-100"><i class="hs-admin-shift-right g-font-size-18 g-mr-15"></i><span>ไม่ระบุ</span></span>'>ไม่ระบุ
                                         </option>
                                        
                                       </select>
@@ -65,13 +68,14 @@
                                       <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
                                         <i class="hs-admin-angle-down"></i>
                                       </div>
+                                           <p class="text-validate" >กรุณาระบุเพศ ของท่าน</p>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-sm-6 col-md-12 col-lg-6 g-mb-20">
+                                    <div class="col-sm-6 col-md-12 col-lg-6 g-mb-20 keen-form-block keen-form-block">
                                         <div class="form-group  g-pos-rel  g-rounded-4 mb-0 keen-no-boder">
-                                              <select class="js-select u-select--v3-select u-sibling w-100" required="required" title="เดือนเกิด" style="display: none;">
+                                              <select class="js-select u-select--v3-select u-sibling w-100 keen-required" data-validtype="select" required="required"  title="เดือนเกิด" style="display: none;">
                                                 <option value="1" data-content='January'>January</option>
                                                 <option value="2" data-content='February'>February</option>
                                                   <option value="3" data-content='March'>March</option>
@@ -91,44 +95,52 @@
                                                 <i class="hs-admin-angle-down"></i>
                                       </div>
                                     </div>
+                                               <p class="text-validate" >กรุณาเลือกเดือนเกิด</p>
                                     </div>
-                                    <div class="col g-mb-20">
-                                      <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="วันเกิด">
+                                    <div class="col g-mb-20 keen-form-block">
+                                      <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" data-validtype="number,date"  maxlength="2"  type="text" placeholder="วันเกิด">
+                                               <p class="text-validate" >กรุณากรอกวันที่ เป็นตัวเลข 2 หลัก</p>
                                     </div>
-                                   <div class="col g-mb-20  ">
-                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="ปีเกิด">
+                                   <div class="col g-mb-20  keen-form-block">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="text" placeholder="ปีเกิด ค.ศ."  maxlength="4"  data-validtype="number,year">
+                                              <p class="text-validate" >กรุณากรอกปีเกิด เป็น ค.ศ. เช่น 1982</p>
                                     </div>
 
-                                 
+                             
                                 </div>
 
 
-                                <div class="g-mb-20">
-                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="อีเมล์">
+                                <div class="g-mb-20 keen-form-block">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="text" data-validtype="email" placeholder="อีเมล์">
+                                       <p class="text-validate" >อีเมล์ไม่ถูกต้อง</p>
                                 </div>
 
-                                <div class="g-mb-20">
-                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="รัหสผ่าน">
+                                <div class="g-mb-20 keen-form-block">
+                                    <input id="userpassword" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="password" placeholder="รัหสผ่าน"  data-validtype="password">
+                                       <p class="text-validate" >กรุณาใส่รหัสผ่าน 8-15 ตัวอักษรและมีอักษรตัวใหญ่ อย่างน้อย 1 ตัวอักษร</p>
                                 </div>
 
-                                <div class="g-mb-20">
-                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="ยืนยัน รหัสผ่าน">
+                                <div class="g-mb-20 keen-form-block">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="password" placeholder="ยืนยัน รหัสผ่าน" data-validtype="equal-password" data-equal="userpassword">
+                                       <p class="text-validate" >กรุณายืนยันรหัสผ่านให้ถูกต้อง</p>
                                 </div>
 
-                                 <div class="g-mb-20">
+                                 <div class="g-mb-20 keen-form-block">
                                     <input name="userlocation" id="userlocation" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="เมืองและประเทศปัจจุบัน">
                                      <input type="hidden" name="country-code" id="country-code" value="" class="input-validate">
 
                                        <input type="hidden" name="area-location" id="area-location" value="" class="input-validate">
                                       <input type="hidden" name="area-location2" id="area-location2" value="" class="input-validate">
+
+                                        <p class="text-validate" >ชื่อไม่สามารถใช้แค่ตัวเลขกับอักษรพิเศษ</p>
                                 </div>
 
-                                 <div class="g-mb-20">
+                                 <div class="g-mb-20 keen-form-block">
                                     <input name="userphone" id="userphone"  class="keen-input-phone form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="เบอร์ติดต่อ">
-                                  
+                                     <p class="text-validate" >ชื่อไม่สามารถใช้แค่ตัวเลขกับอักษรพิเศษ</p>
                                 </div>
 
-                                <div class="mb-1">
+                                <div class="mb-1 keen-form-block">
                                     <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-13 g-pl-25 mb-2">
                                         <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
                                         <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
@@ -136,11 +148,12 @@
                                         </div>
                                         I accept the <a href="#!">Terms and Conditions</a>
                                       </label>
+                                       <p class="text-validate" >ชื่อไม่สามารถใช้แค่ตัวเลขกับอักษรพิเศษ</p>
                                 </div>
 
                                
 
-                                <button class="btn btn-block u-btn-primary rounded g-py-13 keen-btn-primary" type="button">สมัครสมาชิก</button>
+                                <button onclick="return KeenValidate();" class="btn btn-block u-btn-primary rounded g-py-13 keen-btn-primary" type="button">สมัครสมาชิก</button>
                             </div>
                             <!-- End Form -->
 
@@ -266,7 +279,121 @@
               nationalMode: !1
           });
           var CURR_DISPLAY = "th"
-    });
+
+
+
+
+          });
+
+          function KeenValidate() {
+
+              var ret = true;
+
+              var reqEle = $('.keen-required');
+              $.each(reqEle, function () {
+                  ret = true;
+
+                  var _this = $(this);
+
+                  var validtype = _this.data('validtype');
+
+                  var eleVal = _this.val();
+
+                  if (eleVal == "") {
+                      ret = false;
+
+                  }
+
+                  if (validtype) {
+
+                     
+
+                   
+                      var arrtype = validtype.split(',');
+                      if (arrtype.length > 0) {
+
+                          for (var i = 0; i < arrtype.length;i++){
+
+                              switch (arrtype[i]) {
+                                  case "number":
+                                      
+                                      var re = new RegExp('^[0-9]*$');
+                                      if (!eleVal.match(re)) {
+                                          ret = false;
+                                      }
+
+
+                                      break;
+                                  case "date":
+                                      var re = new RegExp('^[0-9]{2}$');
+                                      if (!eleVal.match(re)) {
+                                          ret = false;
+                                      }
+                                      break;
+                                  case "year":
+                                      var re = new RegExp('^[0-9]{4}$');
+                                      if (!eleVal.match(re)) {
+                                          ret = false;
+                                      }
+                                      break;
+
+                                  case "select":
+
+                                      if (eleVal == "" || eleVal == null) {
+                                          ret = false;
+                                      }
+                                      break;
+                                  case "email":
+
+                                      var re = new RegExp('^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$');
+                                      if (!eleVal.match(re)) {
+                                          ret = false;
+                                      }
+                                      break;
+                                  case "password":
+
+                                      var re = new RegExp("^(?=.*[A-Z]).{8,15}$");
+                                      if (!eleVal.match(re)) {
+                                          ret = false;
+                                      }
+                                      break;
+                                  case "equal-password":
+                                      //equal
+
+                                      var q = _this.data('equal');
+                                      var equal = $('#' + q);
+                                      var password = equal.val();
+                                      if (eleVal != password) {
+                                          ret = false;
+                                      }
+                                      
+                                      break;
+
+
+                              }
+
+
+                          }
+
+                      }
+
+
+
+                  }
+
+                  if (!ret) {
+                      _this.addClass("keen-invalid");
+                      _this.closest('.keen-form-block').find("p.text-validate").show();
+                  } else {
+                      _this.removeClass("keen-invalid");
+                      _this.closest('.keen-form-block').find("p.text-validate").hide();
+                  }
+
+
+              });
+              //keen-required
+              return ret;
+          }
   </script>
 
    

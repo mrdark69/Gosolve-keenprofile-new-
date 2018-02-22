@@ -39,7 +39,7 @@
     <link rel="stylesheet"  href="Theme/fronttheme/assets/css/unify-globals.css?ver=22">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet"  href="Theme/fronttheme/assets/css/custom.css?ver=1sssswsssss">
+    <link rel="stylesheet"  href="Theme/fronttheme/assets/css/custom.css?ver=1sssswsssssssssss">
     <asp:ContentPlaceHolder ID="HeaderScript" runat="server">
     </asp:ContentPlaceHolder>
 
@@ -78,13 +78,13 @@
                             <!-- loginblock -->
 
                             <div class="d-inline-block  g-pos-rel g-valign-middle  g-pl-0--lg g-mr-5 g-mr-15--lg g-pt-8 g-pt-8 custom-right custom-right-login">
-                                <a class=" g-font-size-13 text-uppercase g-py-10 g-px-15 text-white" href="http://member.keenprofile.com/Login" target="_blank">เข้าสู่ระบบ</a>
+                                <a class=" g-font-size-13 text-uppercase g-py-10 g-px-15 text-white" href="/Login" target="_blank">เข้าสู่ระบบ</a>
                             </div>
                             <!-- loginblock -->
 
                             <!-- signup block -->
                             <div class="d-inline-block  g-pos-rel g-valign-middle  g-pl-0--lg g-mr-5 g-mr-15--lg g-pt-8 custom-right custom-right-register">
-                                <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15" href="http://member.keenprofile.com/SignUp" target="_blank">สมัครมมาชิก</a>
+                                <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15" href="/SignUp" target="_blank">สมัครมมาชิก</a>
                             </div>
 
 
