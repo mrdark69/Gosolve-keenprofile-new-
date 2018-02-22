@@ -15,7 +15,8 @@ public enum UserLoginChannel : byte
 {
      Application=1,
      Facebook =2,
-     Google = 3
+     Google = 3,
+     LinkedIn =  4
 }
 /// <summary>
 /// Summary description for Model_User
@@ -148,9 +149,9 @@ VALUES(@FirstName,@LastName,@UserName,@Password,@Status,@UserCatId,@UsersRoleId,
         int ret = 0;
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmdcheck = new SqlCommand("SELECT COUNT(*) FROM Users WHERE UserName=@UserName  AND UserCatId=1 AND UserLoginChannel=@UserLoginChannel", cn);
+            SqlCommand cmdcheck = new SqlCommand("SELECT COUNT(*) FROM Users WHERE UserName=@UserName  AND UserCatId=1", cn);
             cmdcheck.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = users.UserName;
-            cmdcheck.Parameters.Add("@UserLoginChannel", SqlDbType.TinyInt).Value = users.UserLoginChannel;
+            //cmdcheck.Parameters.Add("@UserLoginChannel", SqlDbType.TinyInt).Value = users.UserLoginChannel;
             //cmdcheck.Parameters.Add("@Password", SqlDbType.NVarChar).Value = Hotels2MD5EncryptedData(users.Password);
             cn.Open();
             if ((int)ExecuteScalar(cmdcheck) > 0)
@@ -167,7 +168,7 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChann
                 cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = Hotels2MD5EncryptedData(users.Password);
                 cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = true;
                 cmd.Parameters.Add("@UserCatId", SqlDbType.TinyInt).Value = users.UserCatId;
-                cmd.Parameters.Add("@DateSubmit", SqlDbType.SmallDateTime).Value = users.DateSubmit;
+                cmd.Parameters.Add("@DateSubmit", SqlDbType.SmallDateTime).Value = DateTime.UtcNow;
                 cmd.Parameters.Add("@UserLoginChannel", SqlDbType.TinyInt).Value = users.UserLoginChannel;
                 cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = users.FirstName;
                 cmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = users.LastName;
@@ -207,7 +208,7 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChann
                 cmd.Parameters.Add("@Password", SqlDbType.NVarChar).Value = Hotels2MD5EncryptedData(users.Password);
                 cmd.Parameters.Add("@Status", SqlDbType.Bit).Value = true;
                 cmd.Parameters.Add("@UserCatId", SqlDbType.TinyInt).Value = users.UserCatId;
-                cmd.Parameters.Add("@DateSubmit", SqlDbType.SmallDateTime).Value = users.DateSubmit;
+                cmd.Parameters.Add("@DateSubmit", SqlDbType.SmallDateTime).Value = DateTime.UtcNow;
                 cmd.Parameters.Add("@UserLoginChannel", SqlDbType.TinyInt).Value = users.UserLoginChannel;
                 cmd.Parameters.Add("@UserID", SqlDbType.Int).Direction = ParameterDirection.Output;
 
@@ -451,7 +452,8 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChann
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE UserName=@UserName AND Password=@Password AND UserCatId=1 AND UserLoginChannel=1", cn);
+            //AND UserLoginChannel=1
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE UserName=@UserName AND Password=@Password AND UserCatId=1 ", cn);
             cmd.Parameters.Add("@UserName", SqlDbType.VarChar).Value = strUserName;
             cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = Hotels2MD5EncryptedData(strPassword);
             cn.Open();
@@ -467,9 +469,24 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChann
     {
         using (SqlConnection cn = new SqlConnection(this.ConnectionString))
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE UserName=@UserName AND UserCatId=1 AND UserLoginChannel=@UserLoginChannel", cn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE UserName=@UserName AND UserCatId=1 ", cn);
             cmd.Parameters.Add("@UserName", SqlDbType.VarChar).Value = strUserName;
-            cmd.Parameters.Add("@UserLoginChannel", SqlDbType.TinyInt).Value = loginChannel;
+            //cmd.Parameters.Add("@UserLoginChannel", SqlDbType.TinyInt).Value = loginChannel;
+            cn.Open();
+            IDataReader reader = ExecuteReader(cmd, CommandBehavior.SingleRow);
+            if (reader.Read())
+                return MappingObjectFromDataReaderByName(reader);
+            else
+                return null;
+        }
+    }
+    public Model_Users CheckLoginUserExternal(string strUserName)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE UserName=@UserName AND UserCatId=1 ", cn);
+            cmd.Parameters.Add("@UserName", SqlDbType.VarChar).Value = strUserName;
+            //cmd.Parameters.Add("@UserLoginChannel", SqlDbType.TinyInt).Value = loginChannel;
             cn.Open();
             IDataReader reader = ExecuteReader(cmd, CommandBehavior.SingleRow);
             if (reader.Read())

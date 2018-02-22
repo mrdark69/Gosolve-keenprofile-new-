@@ -52,6 +52,33 @@ public partial class _Login : Page
         }
         else
         {
+
+            Model_Users ux = UsersController.UserCheckloginExternal(email_txt.Value.Trim());
+            if(ux !=null){
+
+                string url = Request.Url.ToString().Split('?')[0];
+
+                switch (ux.UserLoginChannel)
+                {
+                    case UserLoginChannel.Application:
+
+                        Response.Redirect(url + "?loginfailed=passwordinvalid");
+                        break;
+                    case UserLoginChannel.Facebook:
+                        Response.Redirect(url + "?loginfailed=sociallogin&s=facebook");
+                        break;
+                    case UserLoginChannel.Google:
+                        Response.Redirect(url + "?loginfailed=sociallogin&s=google");
+                        break;
+                    case UserLoginChannel.LinkedIn:
+                        Response.Redirect(url + "?loginfailed=sociallogin&s=linkedin");
+                        break;
+
+                }
+
+            }else{
+
+            }
             //FailureText.Text = "UserName Invalid";
             //ErrorMessage.Visible = true;
         }

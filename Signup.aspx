@@ -4,6 +4,7 @@
    <link rel="stylesheet" href="Scripts/vendor/telinput/css/intlTelInput.css">
     </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+     <div id="fb-root"></div>
        <!-- Login -->
         <section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall" data-options="{direction: 'reverse', settings_mode_oneelement_max_offset: '150'}">
             <!-- Parallax Image -->
@@ -17,7 +18,7 @@
                             <header class="text-center mb-4">
                                 <h2 class="h2 g-color-black g-font-weight-600 keen-cw">Signup</h2>
                             </header>
-                            <button class="btn btn-block u-btn-facebook rounded text-uppercase g-py-13 g-mb-15 " type="button">
+                            <button onclick="loginByFacebook();"  class="btn btn-block u-btn-facebook rounded text-uppercase g-py-13 g-mb-15 " type="button">
                                     <i class="mr-3 fa fa-facebook"></i>
                                     <span class="g-hidden-xs-down keen-cw">สมัครผ่าน</span> Facebook
                                   </button>
@@ -212,7 +213,42 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZIk2xiS6rpx3P_Yf09edwDC3CKc6gKcY&libraries=places&callback=initAutocomplete&language=en" sync="" defer=""></script>
      <script id="google.map.api" src="Scripts/vendor/googlelocation/keen.google.map.api.js" type="text/javascript" auto-location="true" ></script>
      <script src=//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js type=text/javascript></script>
-      <script>
+      <script  type="text/javascript">
+
+          window.fbAsyncInit = function () {
+              FB.init({
+                  appId: '358756381252009',
+                  status: true, // check login status
+                  cookie: true, // enable cookies to allow the server to access the session
+                  xfbml: true, // parse XFBML
+                  oauth: true // enable OAuth 2.0
+              });
+          };
+          (function () {
+              var e = document.createElement('script'); e.async = true;
+              e.src = document.location.protocol +
+                  '//connect.facebook.net/en_US/all.js';
+              $('#fb-root').prepend(e);
+              // document.getElementById('fb-root').appendChild(e);
+          }());
+
+          function loginByFacebook() {
+              FB.login(function (response) {
+                  if (response.authResponse) {
+                      FacebookLoggedIn(response);
+                  } else {
+                      console.log('User cancelled login or did not fully authorize.');
+                  }
+              }, { scope: 'public_profile,user_friends,email' });
+          }
+
+          function FacebookLoggedIn(response) {
+              var loc = '/hook_api/facebookcallback.aspx';
+              if (loc.indexOf('?') > -1)
+                  window.location = loc + '&authprv=facebook&access_token=' + response.authResponse.accessToken;
+              else
+                  window.location = loc + '?authprv=facebook&access_token=' + response.authResponse.accessToken;
+          }
 
     $(document).on('ready', function () {
       // initialization of custom select
@@ -232,5 +268,7 @@
           var CURR_DISPLAY = "th"
     });
   </script>
+
+   
  </asp:Content>
 

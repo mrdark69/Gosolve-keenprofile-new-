@@ -5,13 +5,27 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
       <div id="fb-root"></div>
-
+   
      <!-- Login -->
         <section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall" data-options="{direction: 'reverse', settings_mode_oneelement_max_offset: '150'}">
             <!-- Parallax Image -->
             <div class="divimage dzsparallaxer--target w-100 u-bg-overlay g-bg-size-cover g-bg-bluegray-opacity-0_3--after keen-bg-img" style="height: 140%; background-image: url(Theme/fronttheme/assets/KeenImg/Skyscrapers.jpg);"></div>
             <!-- End Parallax Image -->
             <div class="container g-py-30 g-py-100--lg">
+
+                 <div id="notify" class="noty_bar noty_type__info noty_theme__unify--v1--dark noty_close_with_click noty_close_with_button g-mb-25" style="display:none;">
+                    <div class="noty_body">
+                      <div class="g-mr-20">
+                        <div class="noty_body__icon">
+                          <i class="hs-admin-info"></i>
+                        </div>
+                      </div>
+
+                      <div id="er-message">Hi, welcome to Unify. This is example of Toastr notification box.</div>
+                    </div>
+
+                   
+            </div>
 
                 <div class="row justify-content-center text-center mb-5">
                     <div class="col-lg-8">
@@ -135,5 +149,57 @@
             else
                 window.location = loc + '?authprv=facebook&access_token=' + response.authResponse.accessToken;
         }
-                                </script>
+
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        $(document).ready(function () {
+
+            var error = getParameterByName('loginfailed');
+            var social = getParameterByName('s');
+
+            var ele = $('#er-message');
+
+            if (error) {
+             
+
+                if (error == "passwordinvalid") {
+                    ele.html("Email or password is incorrect");
+                }
+
+                if (error == "sociallogin") {
+                    if (social) {
+                        switch (social) {
+                          
+                            case "facebook":
+                                ele.html("บัญชีของท่าน ลงทะเบียนโดย Facebook ท่านสามารถกดปุ่ม \"เข่าสู่ระบบผ่าน Facebook\" เพ่ื่อเข้าสู่ระบบ หากท่านต้องการ เพื่อเข้าระบบแบบปกติ คลิ๊ก <a href=\"Forgot\">Reset Password</a> ");
+
+                                break;
+                            case "google":
+                                ele.html("บัญชีของท่าน ลงทะเบียนโดย Google ท่านสามารถกดปุ่ม \"เข่าสู่ระบบผ่าน Facebook\" เพ่ื่อเข้าสู่ระบบ หากท่านต้องการ เพื่อเข้าระบบแบบปกติ คลิ๊ก <a href=\"Forgot\">Reset Password</a> ");
+
+                                break;
+                            case "linkedin":
+                                ele.html("บัญชีของท่าน ลงทะเบียนโดย LinkedIn ท่านสามารถกดปุ่ม \"เข่าสู่ระบบผ่าน Facebook\" เพ่ื่อเข้าสู่ระบบ หากท่านต้องการ เพื่อเข้าระบบแบบปกติ คลิ๊ก <a href=\"Forgot\">Reset Password</a> ");
+
+                                break;
+                        }
+                    }
+                }
+
+                $('#notify').show();
+
+                return false;
+            }
+
+        })
+   </script>
      </asp:Content>

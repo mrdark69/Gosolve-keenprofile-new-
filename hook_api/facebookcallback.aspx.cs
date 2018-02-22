@@ -37,7 +37,7 @@ public partial class hook_api_facebookcallback : System.Web.UI.Page
 
             //checkuser facebook channel
           
-              Model_Users u = UsersController.UserCheckloginExternal(oUser.email.Trim(), UserLoginChannel.Facebook);
+            Model_Users u = UsersController.UserCheckloginExternal(oUser.email.Trim(), UserLoginChannel.Facebook);
             if (u != null)
             {
                 UserSessionController.CloseOtherCurrentLogin(u.UserID);

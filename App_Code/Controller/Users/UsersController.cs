@@ -138,6 +138,11 @@ public class UsersController
         Model_Users u = new Model_Users();
         return u.CheckLoginUserExternal(user, loginchannel);
     }
+    public static Model_Users UserCheckloginExternal(string user)
+    {
+        Model_Users u = new Model_Users();
+        return u.CheckLoginUserExternal(user);
+    }
 
     public static int InsertUser(Model_Users user)
     {
