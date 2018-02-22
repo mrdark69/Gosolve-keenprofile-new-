@@ -4,7 +4,7 @@
     </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-
+      <div id="fb-root"></div>
 
      <!-- Login -->
         <section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall" data-options="{direction: 'reverse', settings_mode_oneelement_max_offset: '150'}">
@@ -31,10 +31,14 @@
 
                             <!-- Form -->
                             <div class="g-py-15">
-                                <button class="btn btn-block u-btn-facebook rounded text-uppercase g-py-13 g-mb-15 " type="button">
+                                <button onclick="loginByFacebook();" class="btn btn-block u-btn-facebook rounded text-uppercase g-py-13 g-mb-15 " type="button">
                                             <i class="mr-3 fa fa-facebook"></i>
                                             <span class="g-hidden-xs-down keen-cw">เข้าสู่ระบบผ่าน</span> Facebook
                                           </button>
+
+
+                                
+
                                 <button class="btn btn-block u-btn-linkedin rounded text-uppercase g-py-13 g-mb-30" type="button">
                                             <i class="mr-3 fa fa-linkedin"></i>
                                             <span class="g-hidden-xs-down keen-cw">เข้าสู่ระบบผ่าน</span> Linkedin
@@ -46,18 +50,25 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">อีเมล์:</label>
-                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="email" placeholder="johndoe@gmail.com">
+                                  
+
+                                    <input id="email_txt" runat="server" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="email" placeholder="johndoe@gmail.com" />
+                                  
                                 </div>
+
+                             
 
                                 <div class="g-mb-35">
                                     <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">รหัสผ่าน:</label>
-                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15 mb-3" type="password" placeholder="Password">
+                                  
+
+                                    <input id="password_txt" runat="server" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15 mb-3" type="password" placeholder="Password" />
                                     <div class="row justify-content-between">
                                         <div class="col align-self-center">
                                             
                                         </div>
                                         <div class="col align-self-center text-right ">
-                                            <a class="g-font-size-12 " href="#!">ลืมรหัสผ่าน?</a>
+                                            <a class="g-font-size-12 " href="/Forgot">ลืมรหัสผ่าน?</a>
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +76,8 @@
 
 
                                 <div class="mb-4">
-                                    <button class="btn btn-md btn-block u-btn-primary rounded g-py-13 keen-btn-primary" type="button">เข้าสู่ระบบ</button>
+                                    <asp:Button ID="btn_submit" runat="server" OnClick="btn_login_Click" CssClass="btn btn-md btn-block u-btn-primary rounded g-py-13 keen-btn-primary" Text="เข้าสู่ระบบ" ></asp:Button>
+                                   <%-- <button class="btn btn-md btn-block u-btn-primary rounded g-py-13 keen-btn-primary" runat="server" OnClick="btn_login_Click"  type="submit">เข้าสู่ระบบ</button>--%>
                                 </div>
 
 
@@ -73,7 +85,7 @@
                             <!-- End Form -->
 
                             <footer class="text-center">
-                                <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">ท่านยังไม่ได้เป็นสมาชิก KeenProfile? <a class="g-font-weight-600 " href="http://member.keenprofile.com/Signup">สมัครสมาชิก</a>
+                                <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">ท่านยังไม่ได้เป็นสมาชิก KeenProfile? <a class="g-font-weight-600 " href="/Signup">สมัครสมาชิก</a>
                                 </p>
                             </footer>
                         </div>
@@ -87,3 +99,41 @@
    
    <%-- <asp:Button ID="Button1" CssClass="button" runat="server" OnClick="btnSignup_Click" Text="Sign Up" />--%>
 </asp:Content>
+<asp:Content ID="FooterScript" ContentPlaceHolderID="ContentFooter" runat="server">
+    <script type="text/javascript">
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '358756381252009',
+                status: true, // check login status
+                cookie: true, // enable cookies to allow the server to access the session
+                xfbml: true, // parse XFBML
+                oauth: true // enable OAuth 2.0
+            });
+        };
+        (function () {
+            var e = document.createElement('script'); e.async = true;
+            e.src = document.location.protocol +
+                '//connect.facebook.net/en_US/all.js';
+            $('#fb-root').prepend(e);
+            // document.getElementById('fb-root').appendChild(e);
+        }());
+
+        function loginByFacebook() {
+            FB.login(function (response) {
+                if (response.authResponse) {
+                    FacebookLoggedIn(response);
+                } else {
+                    console.log('User cancelled login or did not fully authorize.');
+                }
+            }, { scope: 'public_profile,user_friends,email' });
+        }
+
+        function FacebookLoggedIn(response) {
+            var loc = '/hook_api/facebookcallback.aspx';
+            if (loc.indexOf('?') > -1)
+                window.location = loc + '&authprv=facebook&access_token=' + response.authResponse.accessToken;
+            else
+                window.location = loc + '?authprv=facebook&access_token=' + response.authResponse.accessToken;
+        }
+                                </script>
+     </asp:Content>
