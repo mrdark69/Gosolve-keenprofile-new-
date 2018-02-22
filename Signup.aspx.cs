@@ -83,36 +83,37 @@ public partial class _Signup : Page
         }
         else
         {
-
-            Model_Users ux = UsersController.UserCheckloginExternal(signup_email.Value.Trim());
-            if (ux != null)
+            if(ret < 0)
             {
-
-                string url = Request.Url.ToString().Split('?')[0];
-
-                switch (ux.UserLoginChannel)
+                //case already registered;
+                Model_Users ux = UsersController.UserCheckloginExternal(signup_email.Value.Trim());
+                if (ux != null)
                 {
-                    case UserLoginChannel.Application:
 
-                        Response.Redirect(url + "?loginfailed=passwordinvalid");
-                        break;
-                    case UserLoginChannel.Facebook:
-                        Response.Redirect(url + "?loginfailed=sociallogin&s=facebook");
-                        break;
-                    case UserLoginChannel.Google:
-                        Response.Redirect(url + "?loginfailed=sociallogin&s=google");
-                        break;
-                    case UserLoginChannel.LinkedIn:
-                        Response.Redirect(url + "?loginfailed=sociallogin&s=linkedin");
-                        break;
+                    string url = Request.Url.ToString().Split('?')[0];
+
+                    switch (ux.UserLoginChannel)
+                    {
+                        case UserLoginChannel.Application:
+
+                            Response.Redirect(url + "?loginfailed=already");
+                            break;
+                        case UserLoginChannel.Facebook:
+                            Response.Redirect(url + "?loginfailed=sociallogin&s=facebook");
+                            break;
+                        case UserLoginChannel.Google:
+                            Response.Redirect(url + "?loginfailed=sociallogin&s=google");
+                            break;
+                        case UserLoginChannel.LinkedIn:
+                            Response.Redirect(url + "?loginfailed=sociallogin&s=linkedin");
+                            break;
+
+                    }
 
                 }
-
+                
             }
-            else
-            {
-
-            }
+            
 
             //RadioButton ra =(RadioButton)this.Page.FindControl("tab-2");
             //ra.Checked = true;

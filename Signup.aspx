@@ -69,11 +69,11 @@
                                     <div class="form-group  g-pos-rel  g-rounded-4 mb-0 keen-no-boder  keen-form-block">
                                       <select id="usergender" runat="server" class="js-select u-select--v3-select u-sibling w-100 keen-required" data-validtype="select" required="required" title="เพศ" style="display: none;">
                                        
-                                        <option value="1" data-content='<span class="d-flex align-items-center w-100"><i class="hs-admin-rocket g-font-size-18 g-mr-15"></i><span>ชาย</span></span>'>ชาย
+                                        <option value="1" data-content='<span class="d-flex align-items-center w-100"><span>ชาย</span></span>'>ชาย
                                         </option>
-                                        <option value="2" data-content='<span class="d-flex align-items-center w-100"><i class="hs-admin-headphone-alt g-font-size-18 g-mr-15"></i><span>หญิง</span></span>'>หญิง
+                                        <option value="2" data-content='<span class="d-flex align-items-center w-100"><span>หญิง</span></span>'>หญิง
                                         </option>
-                                        <option value="3" data-content='<span class="d-flex align-items-center w-100"><i class="hs-admin-shift-right g-font-size-18 g-mr-15"></i><span>ไม่ระบุ</span></span>'>ไม่ระบุ
+                                        <option value="3" data-content='<span class="d-flex align-items-center w-100"><span>ไม่ระบุ</span></span>'>ไม่ระบุ
                                         </option>
                                        
                                       </select>
@@ -129,12 +129,12 @@
                                 </div>
 
                                 <div class="g-mb-20 keen-form-block">
-                                    <input id="userpassword" runat="server" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="password" placeholder="รหัสผ่าน 8-15 ตัวอักษรมีและอย่างน้อย 1 ตัวอักษรตัวใหญ่"  data-validtype="password">
+                                    <input id="userpassword"  runat="server" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="password" placeholder="รหัสผ่าน 8-15 ตัวอักษรมีและอย่างน้อย 1 ตัวอักษรตัวใหญ่"  data-validtype="password">
                                        <p class="text-validate" >กรุณาใส่รหัสผ่าน 8-15 ตัวอักษรและมีอักษรตัวใหญ่ อย่างน้อย 1 ตัวอักษร</p>
                                 </div>
 
                                 <div class="g-mb-20 keen-form-block">
-                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="password" placeholder="ยืนยัน รหัสผ่าน" data-validtype="equal-password" data-equal="userpassword">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="password" placeholder="ยืนยัน รหัสผ่าน" data-validtype="equal-password" data-equal="MainContent_userpassword">
                                        <p class="text-validate" >กรุณายืนยันรหัสผ่านให้ถูกต้อง</p>
                                 </div>
 
@@ -164,7 +164,7 @@
                                        <p class="text-validate" >กรุณา check เพื่อยอมรับเงื่อนไข</p>
                                 </div>
 
-                               <asp:Button ID="btn_submit" runat="server" OnClientClick="return KeenValidate();" OnClick="btnSignup_Click" CssClass="btn btn-md btn-block u-btn-primary rounded g-py-13 keen-btn-primary" Text="สมัครสมาชิก" ></asp:Button>
+                               <asp:Button ID="btn_submit" runat="server" OnClientClick="return KeenValidate()" OnClick="btnSignup_Click" CssClass="btn btn-md btn-block u-btn-primary rounded g-py-13 keen-btn-primary" Text="สมัครสมาชิก" ></asp:Button>
 
 <%--                                <button onclick="return KeenValidate();" class="btn btn-block u-btn-primary rounded g-py-13 keen-btn-primary" type="button">สมัครสมาชิก</button>--%>
                             </div>
@@ -304,8 +304,8 @@
           if (error) {
 
 
-              if (error == "passwordinvalid") {
-                  ele.html("อีเมล์ที่ท่านใช้สมัคร ได้ถูกใช้งานแล้ว");
+              if (error == "already") {
+                  ele.html("อีเมล์ที่ท่านใช้สมัคร ได้ถูกใช้งานแล้ว การสามารถคลิ๊กที่ <a href=\"Login\">เข้าสู่ระบบ</a> หากท่านจำรหัสผ่านไม่ได้ คลิ๊ก <a href=\"Forgot\">ลืมรหัสผ่าน</a>");
               }
 
               if (error == "sociallogin") {
@@ -313,15 +313,15 @@
                       switch (social) {
 
                           case "facebook":
-                              ele.html("บัญชีของท่าน ลงทะเบียนโดย Facebook ท่านสามารถกดปุ่ม \"เข่าสู่ระบบผ่าน Facebook\" เพ่ื่อเข้าสู่ระบบ หากท่านต้องการ เพื่อเข้าระบบแบบปกติ คลิ๊ก <a href=\"Forgot\">Reset Password</a> ");
+                              ele.html("บัญชีของท่าน ลงทะเบียนโดย Facebook ท่านสามารถกดปุ่ม \"เข่าสู่ระบบผ่าน Facebook\" เพ่ื่อเข้าสู่ระบบ หากท่านต้องการ เพื่อเข้าระบบแบบปกติ คลิ๊ก <a href=\"Forgot\">เปลี่ยนรหัสผ่าน</a> ");
 
                               break;
                           case "google":
-                              ele.html("บัญชีของท่าน ลงทะเบียนโดย Google ท่านสามารถกดปุ่ม \"เข่าสู่ระบบผ่าน Facebook\" เพ่ื่อเข้าสู่ระบบ หากท่านต้องการ เพื่อเข้าระบบแบบปกติ คลิ๊ก <a href=\"Forgot\">Reset Password</a> ");
+                              ele.html("บัญชีของท่าน ลงทะเบียนโดย Google ท่านสามารถกดปุ่ม \"เข่าสู่ระบบผ่าน Facebook\" เพ่ื่อเข้าสู่ระบบ หากท่านต้องการ เพื่อเข้าระบบแบบปกติ คลิ๊ก <a href=\"Forgot\">เปลี่ยนรหัสผ่าน</a> ");
 
                               break;
                           case "linkedin":
-                              ele.html("บัญชีของท่าน ลงทะเบียนโดย LinkedIn ท่านสามารถกดปุ่ม \"เข่าสู่ระบบผ่าน Facebook\" เพ่ื่อเข้าสู่ระบบ หากท่านต้องการ เพื่อเข้าระบบแบบปกติ คลิ๊ก <a href=\"Forgot\">Reset Password</a> ");
+                              ele.html("บัญชีของท่าน ลงทะเบียนโดย LinkedIn ท่านสามารถกดปุ่ม \"เข่าสู่ระบบผ่าน Facebook\" เพ่ื่อเข้าสู่ระบบ หากท่านต้องการ เพื่อเข้าระบบแบบปกติ คลิ๊ก <a href=\"Forgot\"เปลี่ยนรหัสผ่าน</a> ");
 
                               break;
                       }
@@ -337,9 +337,11 @@
 
           function KeenValidate() {
 
+              var checkret = true;
+
               var ret = true;
 
-              var reqEle = $('.keen-required');
+              var reqEle = $('.keen-required').not('div');
               $.each(reqEle, function () {
                   ret = true;
 
@@ -351,6 +353,7 @@
 
                   if (eleVal == "") {
                       ret = false;
+                      checkret = false;
 
                   }
 
@@ -370,6 +373,7 @@
                                       var re = new RegExp('^[0-9]*$');
                                       if (!eleVal.match(re)) {
                                           ret = false;
+                                          checkret = false;
                                       }
 
 
@@ -378,12 +382,14 @@
                                       var re = new RegExp('^[0-9]{2}$');
                                       if (!eleVal.match(re)) {
                                           ret = false;
+                                          checkret = false;
                                       }
                                       break;
                                   case "year":
                                       var re = new RegExp('^[0-9]{4}$');
                                       if (!eleVal.match(re)) {
                                           ret = false;
+                                          checkret = false;
                                       }
                                       break;
 
@@ -391,6 +397,7 @@
 
                                       if (eleVal == "" || eleVal == null) {
                                           ret = false;
+                                          checkret = false;
                                       }
                                       break;
                                   case "email":
@@ -398,6 +405,7 @@
                                       var re = new RegExp('^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$');
                                       if (!eleVal.match(re)) {
                                           ret = false;
+                                          checkret = false;
                                       }
                                       break;
                                   case "password":
@@ -405,6 +413,7 @@
                                       var re = new RegExp("^(?=.*[A-Z]).{8,15}$");
                                       if (!eleVal.match(re)) {
                                           ret = false;
+                                          checkret = false;
                                       }
                                       break;
                                   case "equal-password":
@@ -415,6 +424,7 @@
                                       var password = equal.val();
                                       if (eleVal != password) {
                                           ret = false;
+                                          checkret = false;
                                       }
                                       
                                       break;
@@ -423,6 +433,7 @@
                                  
                                       if (!_this.prop('checked')) {
                                           ret = false;
+                                          checkret = false;
                                       }
                                       break;
 
@@ -431,6 +442,7 @@
                                      
                                       if (eleVal == "" || eleVal == null || eleVal == "undified") {
                                           ret = false;
+                                          checkret = false;
                                       }
                                       break;
 
@@ -439,6 +451,7 @@
                                       var re = new RegExp('^[\\+]*[0-9]{8,12}$');
                                       if (!eleVal.match(re)) {
                                           ret = false;
+                                          checkret = false;
                                       }
                                       
 
@@ -459,13 +472,15 @@
                       _this.closest('.keen-form-block').find("p.text-validate").show();
                   } else {
                       _this.removeClass("keen-invalid");
+
+                      _this.closest('.keen-form-block').find('.keen-invalid').removeClass('keen-invalid');
                       _this.closest('.keen-form-block').find("p.text-validate").hide();
                   }
 
 
               });
               //keen-required
-              return ret;
+              return checkret;
           }
   </script>
 
