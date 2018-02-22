@@ -23,17 +23,17 @@ public partial class _Signup : Page
             //}
 
 
-            string YearSel = string.Empty;
-            for(int i = 0; i < 60; i++)
-            {
-                int yearstart = 1958;
-                yearstart = yearstart + i;
+            //string YearSel = string.Empty;
+            //for(int i = 0; i < 60; i++)
+            //{
+            //    int yearstart = 1958;
+            //    yearstart = yearstart + i;
 
-                YearSel += "<option value=\""+ yearstart + "\" data-content=\""+ yearstart + "\" >"+ yearstart + "</option>";
+            //    YearSel += "<option value=\""+ yearstart + "\" data-content=\""+ yearstart + "\" >"+ yearstart + "</option>";
 
-            }
+            //}
 
-            yearlist.Text = YearSel;
+            //yearlist.Text = YearSel;
         }
 
 

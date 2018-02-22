@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Userlogin.Master" AutoEventWireup="true" CodeFile="Signup.aspx.cs" Inherits="_Signup" %>
 <asp:Content ID="HeaderScript" ContentPlaceHolderID="HeaderScript" runat="server">
      <link rel="stylesheet" href="Theme/fronttheme/assets/vendor/bootstrap-select/css/bootstrap-select.min.css">
-   
+   <link rel="stylesheet" href="Scripts/vendor/telinput/css/intlTelInput.css">
     </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
        <!-- Login -->
@@ -13,7 +13,7 @@
             <div class="container g-pt-100 g-pb-20">
                 <div class="row justify-content-between ">
                     <div class="col-md-6 col-lg-6 flex-md-unordered align-self-center g-mb-80">
-                        <div class="u-shadow-v21  rounded g-pa-50 keen-form-bg keen-style">
+                        <div class="u-shadow-v21  rounded g-pa-50--lg keen-form-bg keen-style g-pa-30">
                             <header class="text-center mb-4">
                                 <h2 class="h2 g-color-black g-font-weight-600 keen-cw">Signup</h2>
                             </header>
@@ -33,11 +33,11 @@
                             <!-- Form -->
                             <div class="g-py-15">
                                 <div class="row">
-                                    <div class="col g-mb-20">
+                                    <div class="g-mb-20 col-sm-12 col-lg-6">
                                         <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="ชื่อ">
                                     </div>
 
-                                    <div class="col g-mb-20">
+                                    <div class="g-mb-20 col-sm-12 col-lg-6">
                                         <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="นามสกุล">
                                     </div>
                                 </div>
@@ -69,93 +69,41 @@
 
                                 <div class="row">
                                     <div class="col-sm-6 col-md-12 col-lg-6 g-mb-20">
-                                    
-
-
-                                         <div class="form-group  g-pos-rel  g-rounded-4 mb-0 keen-no-boder">
-                                      <select class="js-select u-select--v3-select u-sibling w-100" required="required" title="เดือนเกิด" style="display: none;">
-                                        <option value="1" data-content='January'>January</option>
-                                        <option value="2" data-content='February'>February</option>
-                                          <option value="3" data-content='March'>March</option>
-                                          <option value="4" data-content='April'>April</option>
-                                          <option value="5" data-content='May'>May</option>
-                                          <option value="6" data-content='June'>June</option>
-                                          <option value="7" data-content='July'>July</option>
-                                          <option value="8" data-content='August'>August</option>
-                                          <option value="9" data-content='September'>September</option>
-                                          <option value="10" data-content='October'>October</option>
-                                          <option value="11" data-content='November'>November</option>
-                                          <option value="12" data-content='December'>December</option>
+                                        <div class="form-group  g-pos-rel  g-rounded-4 mb-0 keen-no-boder">
+                                              <select class="js-select u-select--v3-select u-sibling w-100" required="required" title="เดือนเกิด" style="display: none;">
+                                                <option value="1" data-content='January'>January</option>
+                                                <option value="2" data-content='February'>February</option>
+                                                  <option value="3" data-content='March'>March</option>
+                                                  <option value="4" data-content='April'>April</option>
+                                                  <option value="5" data-content='May'>May</option>
+                                                  <option value="6" data-content='June'>June</option>
+                                                  <option value="7" data-content='July'>July</option>
+                                                  <option value="8" data-content='August'>August</option>
+                                                  <option value="9" data-content='September'>September</option>
+                                                  <option value="10" data-content='October'>October</option>
+                                                  <option value="11" data-content='November'>November</option>
+                                                  <option value="12" data-content='December'>December</option>
                                        
-                                      </select>
+                                              </select>
 
-                                      <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
-                                        <i class="hs-admin-angle-down"></i>
+                                              <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
+                                                <i class="hs-admin-angle-down"></i>
                                       </div>
                                     </div>
                                     </div>
-
                                     <div class="col g-mb-20">
-                                      <div class="form-group  g-pos-rel  g-rounded-4 mb-0 keen-no-boder">
-                                      <select class="js-select u-select--v3-select u-sibling w-100" required="required" title="วันเกิด" style="display: none;">
-                                        <option value="1" data-content='1'>1</option>
-                                        <option value="2" data-content='2'>2</option>
-                                          <option value="3" data-content='3'>3</option>
-                                          <option value="4" data-content='4'>4</option>
-                                          <option value="5" data-content='5'>5</option>
-                                          <option value="6" data-content='6'>6</option>
-                                          <option value="7" data-content='7'>7</option>
-                                          <option value="8" data-content='8'>8</option>
-                                          <option value="9" data-content='9'>9</option>
-                                          <option value="10" data-content='10'>10</option>
-                                          <option value="11" data-content='11'>1</option>
-                                          <option value="12" data-content='12'>12</option>
-                                       <option value="12" data-content='12'>12</option>
-                                          <option value="13" data-content='13'>13</option>
-                                          <option value="14" data-content='14'>14</option>
-                                          <option value="15" data-content='15'>15</option>
-                                          <option value="16" data-content='16'>16</option>
-                                          <option value="17" data-content='17'>17</option>
-                                          <option value="18" data-content='18'>18</option>
-                                          <option value="19" data-content='19'>19</option>
-                                          <option value="20" data-content='20'>20</option>
-                                          <option value="21" data-content='21'>21</option>
-                                          <option value="22" data-content='22'>22</option>
-                                          <option value="23" data-content='23'>23</option>
-                                          <option value="24" data-content='24'>24</option>
-                                          <option value="25" data-content='25'>25</option>
-                                          <option value="26" data-content='26'>26</option>
-                                          <option value="27" data-content='27'>27</option>
-                                          <option value="28" data-content='28'>28</option>
-                                          <option value="29" data-content='29'>29</option>
-                                          <option value="30" data-content='30'>30</option>
-                                          <option value="31" data-content='31'>31</option>
-                                      </select>
-
-                                      <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
-                                        <i class="hs-admin-angle-down"></i>
-                                      </div>
+                                      <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="วันเกิด">
                                     </div>
+                                   <div class="col g-mb-20  ">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="ปีเกิด">
                                     </div>
 
-                                    <div class="col g-mb-20">
-                                         <div class="form-group  g-pos-rel  g-rounded-4 mb-0 keen-no-boder">
-                                      <select class="js-select u-select--v3-select u-sibling w-100" required="required" title="ปีเกิด" style="display: none;">
-                                          <asp:Literal ID="yearlist" runat="server"></asp:Literal>
-                                       
-                                       
-                                      </select>
-
-                                      <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
-                                        <i class="hs-admin-angle-down"></i>
-                                      </div>
-                                    </div>
-                                    </div>
+                                 
                                 </div>
 
 
                                 <div class="g-mb-20">
-                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="อีเมล์ address">
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="อีเมล์">
                                 </div>
 
                                 <div class="g-mb-20">
@@ -172,6 +120,11 @@
 
                                        <input type="hidden" name="area-location" id="area-location" value="" class="input-validate">
                                       <input type="hidden" name="area-location2" id="area-location2" value="" class="input-validate">
+                                </div>
+
+                                 <div class="g-mb-20">
+                                    <input name="userphone" id="userphone"  class="keen-input-phone form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="เบอร์ติดต่อ">
+                                  
                                 </div>
 
                                 <div class="mb-1">
@@ -255,8 +208,9 @@
 </asp:Content>
 <asp:Content ID="FooterScript" ContentPlaceHolderID="ContentFooter" runat="server">
      <script src="Theme/fronttheme/assets/vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+      <script  src="Scripts/vendor/telinput/js/intlTelInput.min.js" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZIk2xiS6rpx3P_Yf09edwDC3CKc6gKcY&libraries=places&callback=initAutocomplete&language=en" sync="" defer=""></script>
-         <script id="google.map.api" src=Scripts/vendor/googlelocation/keen.google.map.api.js type="text/javascript" auto-location="true" ></script>
+     <script id="google.map.api" src="Scripts/vendor/googlelocation/keen.google.map.api.js" type="text/javascript" auto-location="true" ></script>
      <script src=//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js type=text/javascript></script>
       <script>
 
@@ -264,7 +218,17 @@
       // initialization of custom select
       $('.js-select').selectpicker();
   
-          
+          $("#userphone").intlTelInput({
+              initialCountry: "auto",
+              geoIpLookup: function (i) {
+                  $.get("https://ipinfo.io", function () { }, "jsonp").always(function (n) {
+                      var t = n && n.country ? n.country : "";
+                      i(t)
+                  })
+              },
+              utilsScript: "Scripts/vendor/telinput/js/utils.js",
+              nationalMode: !1
+          });
           var CURR_DISPLAY = "th"
     });
   </script>

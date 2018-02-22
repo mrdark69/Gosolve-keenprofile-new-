@@ -103,7 +103,7 @@ body,p,h1,h2,h3,div,form,span,label,input,select {
 
 @media (max-width: 774px) {
     .custom-right-login {
-        right: 80px;
+        right: 100px;
     }
     .custom-right-register a {
         padding: 5px 10px 5px 10px !important;
@@ -145,4 +145,18 @@ body,p,h1,h2,h3,div,form,span,label,input,select {
     .bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:active, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover {
       
         background: rgba(255, 255, 255, .1) !important;
+    }
+
+
+
+.keen-input-phone{
+    padding-left:52px !important;
+}
+
+.intl-tel-input{
+    width:100%;
+}
+
+.intl-tel-input .iti-arrow {
+        border-top-color: #fff !important;
     }
