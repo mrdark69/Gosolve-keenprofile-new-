@@ -84,7 +84,7 @@
 
                             <!-- signup block -->
                             <div class="d-inline-block  g-pos-rel g-valign-middle  g-pl-0--lg g-mr-5 g-mr-15--lg g-pt-8 custom-right custom-right-register">
-                                <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15" href="/SignUp" target="_blank">สมัครมมาชิก</a>
+                                <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15" href="/SignUp" target="_blank">สมัครสมาชิก</a>
                             </div>
 
 

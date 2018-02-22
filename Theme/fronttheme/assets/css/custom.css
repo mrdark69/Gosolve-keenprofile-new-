@@ -167,6 +167,7 @@ p.text-validate {
     color: #ef7032 !important;
     font-size: 13px !important;
     display:none;
+    padding-left:5px;
 }
 
 .keen-required {

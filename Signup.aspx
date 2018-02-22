@@ -116,7 +116,7 @@
                                 </div>
 
                                 <div class="g-mb-20 keen-form-block">
-                                    <input id="userpassword" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="password" placeholder="รัหสผ่าน"  data-validtype="password">
+                                    <input id="userpassword" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="password" placeholder="รหัสผ่าน 8-15 ตัวอักษรมีและอย่างน้อย 1 ตัวอักษรตัวใหญ่"  data-validtype="password">
                                        <p class="text-validate" >กรุณาใส่รหัสผ่าน 8-15 ตัวอักษรและมีอักษรตัวใหญ่ อย่างน้อย 1 ตัวอักษร</p>
                                 </div>
 
@@ -126,27 +126,27 @@
                                 </div>
 
                                  <div class="g-mb-20 keen-form-block">
-                                    <input name="userlocation" id="userlocation" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="เมืองและประเทศปัจจุบัน">
-                                     <input type="hidden" name="country-code" id="country-code" value="" class="input-validate">
+                                    <input name="userlocation" id="userlocation" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="text" placeholder="เมืองและประเทศปัจจุบัน">
+                                     <input type="hidden" name="country-code" id="country-code" value="" class="keen-required" data-validtype="hidden">
 
-                                       <input type="hidden" name="area-location" id="area-location" value="" class="input-validate">
-                                      <input type="hidden" name="area-location2" id="area-location2" value="" class="input-validate">
+                                       <input type="hidden" name="area-location" id="area-location" value="" class="keen-required" data-validtype="hidden">
+                                      <input type="hidden" name="area-location2" id="area-location2" value="" >
 
-                                        <p class="text-validate" >ชื่อไม่สามารถใช้แค่ตัวเลขกับอักษรพิเศษ</p>
+                                        <p class="text-validate" >กรุณาเลือก เมืองและประเทศปัจจุบันของท่าน</p>
                                 </div>
 
                                  <div class="g-mb-20 keen-form-block">
-                                    <input name="userphone" id="userphone"  class="keen-input-phone form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15" type="text" placeholder="เบอร์ติดต่อ">
-                                     <p class="text-validate" >ชื่อไม่สามารถใช้แค่ตัวเลขกับอักษรพิเศษ</p>
+                                    <input name="userphone" id="userphone" maxlength="12"  class="keen-input-phone form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="text" placeholder="เบอร์ติดต่อ" data-validtype="phone">
+                                     <p class="text-validate" >เบอร์โทรศัพท์ไม่ถูกต้อง</p>
                                 </div>
 
                                 <div class="mb-1 keen-form-block">
                                     <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-13 g-pl-25 mb-2">
-                                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0 keen-required" type="checkbox" checked="checked" data-validtype="checkbox">
                                         <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
                                           <i class="fa" data-check-icon="&#xf00c"></i>
                                         </div>
-                                        I accept the <a href="#!">Terms and Conditions</a>
+                                        I accept the <a href="http://www.keenprofile.com/terms-and-conditions/" target="_blank">Terms and Conditions</a>
                                       </label>
                                        <p class="text-validate" >ชื่อไม่สามารถใช้แค่ตัวเลขกับอักษรพิเศษ</p>
                                 </div>
@@ -158,7 +158,7 @@
                             <!-- End Form -->
 
                             <footer class="text-center">
-                                <p class="g-color-gray-dark-v5 mb-0">เป็นสมาชิก KeenProfile อยู่แล้ว? <a class="g-font-weight-600" href="http://member.keenprofile.com/Login">เข้าสู่ระบบ</a>
+                                <p class="g-color-gray-dark-v5 mb-0">เป็นสมาชิก KeenProfile อยู่แล้ว? <a class="g-font-weight-600" href="/Login">เข้าสู่ระบบ</a>
                                 </p>
                             </footer>
                         </div>
@@ -368,8 +368,31 @@
                                       }
                                       
                                       break;
+                                  case "checkbox":
 
+                                 
+                                      if (!_this.prop('checked')) {
+                                          ret = false;
+                                      }
+                                      break;
 
+                                  case "hidden":
+
+                                     
+                                      if (eleVal == "" || eleVal == null || eleVal == "undified") {
+                                          ret = false;
+                                      }
+                                      break;
+
+                                  case "phone":
+
+                                      var re = new RegExp('^[\\+]*[0-9]{8,12}$');
+                                      if (!eleVal.match(re)) {
+                                          ret = false;
+                                      }
+                                      
+
+                                      break;
                               }
 
 
