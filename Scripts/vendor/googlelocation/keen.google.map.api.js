@@ -47,10 +47,10 @@ function getLocationJson() { // static element
 
         getCountryFromPlace(place.address_components, function (data, location) {
 
-        var country_code = document.getElementById("country-code");
-        var country_name = document.getElementById("country-name");
+        var country_code = document.getElementById("country_code");
+        var country_name = document.getElementById("country_name");
         var geographic = document.getElementById("geographic");
-        var locationarea = document.getElementById("area-location");
+        var locationarea = document.getElementById("area_location");
 
         if(data && place.geometry) {
           data.geolocation = [place.geometry.location.lat(), place.geometry.location.lng()];
@@ -327,7 +327,8 @@ function getCountryFromPlace(address_components, callback) {
 
 
 function blurLocation() {
-  var countryCode = document.getElementById('country-code');
+  
+  var countryCode = document.getElementById('country_code');
   var txt_country_code = document.getElementById('txt-location');
   if(countryCode.value) {
     if(txt_country_code) {
@@ -341,7 +342,7 @@ function blurLocation() {
 }
 
 function resetLocation() {
-  var countryCode = document.getElementById('country-code');
+  var countryCode = document.getElementById('country_code');
   countryCode.value = null
 }
 
@@ -378,7 +379,7 @@ function autofillRegisterLocation() {
     $("#candidateLocation").css("display", "none");
 
     $('#companyLocation').val(text);
-    $('#country-code').val(country_code);
+    $('#country_code').val(country_code);
     $('#companyCountry-code').val(country_code);
     $(".company-div-location").css("display", "block");
     $("#companyLocation").css("display", "none");

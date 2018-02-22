@@ -16,11 +16,11 @@ public partial class _Signup : Page
         if (!this.Page.IsPostBack)
         {
             Model_Users u = UserSessionController.FrontAppAuthLogin(this);
-            //if (u != null)
-            //{
-            //    Response.Redirect("/");
-            //    Response.End();
-            //}
+            if (u != null)
+            {
+                Response.Redirect("/");
+                Response.End();
+            }
 
 
             //string YearSel = string.Empty;
@@ -53,44 +53,81 @@ public partial class _Signup : Page
     //}
 
 
-    //protected void btnSignup_Click(object sender, EventArgs e)
-    //{
+    protected void btnSignup_Click(object sender, EventArgs e)
+    {
+
+        DateTime dBirth = new DateTime(int.Parse(useryear.Value),int.Parse(usermonth.Value),int.Parse(userday.Value));
+        Model_Users mu = new Model_Users
+        {
+            Email = signup_email.Value.Trim(),
+            UserName = signup_email.Value.Trim(),
+            Password = userpassword.Value.Trim(),
+            UserCatId = 1,
+            UserLoginChannel = UserLoginChannel.Application,
+            ContryCode = country_code.Value.Trim(),
+            AreaLocation = area_location.Value.Trim(),
+            AreaLocation2 = area_location2.Value.Trim(),
+            Gender = byte.Parse(usergender.Value),
+            DateofBirth = dBirth,
+            MobileNumber = userphone.Value.Trim()
+        };
+
+        int ret = UsersController.InsertUser(mu);
 
 
-    //    Model_Users mu = new Model_Users
-    //    {
-    //        Email = signup_email.Text.Trim(),
-    //        UserName = signup_email.Text.Trim(),
-    //        Password = signup_password.Text.Trim(),
-    //        UserCatId = 1,
-    //         UserLoginChannel= UserLoginChannel.Application
-    //    };
+        if (ret > 0)
+        {
+            Model_Users cmu = UsersController.GetUserbyID(ret);
+            UserSessionController.CloseOtherCurrentLogin(cmu.UserID);
+            UserSessionController.SessionCreateUserFront(cmu);
+        }
+        else
+        {
 
-    //    int ret = UsersController.InsertUser(mu);
+            Model_Users ux = UsersController.UserCheckloginExternal(signup_email.Value.Trim());
+            if (ux != null)
+            {
+
+                string url = Request.Url.ToString().Split('?')[0];
+
+                switch (ux.UserLoginChannel)
+                {
+                    case UserLoginChannel.Application:
+
+                        Response.Redirect(url + "?loginfailed=passwordinvalid");
+                        break;
+                    case UserLoginChannel.Facebook:
+                        Response.Redirect(url + "?loginfailed=sociallogin&s=facebook");
+                        break;
+                    case UserLoginChannel.Google:
+                        Response.Redirect(url + "?loginfailed=sociallogin&s=google");
+                        break;
+                    case UserLoginChannel.LinkedIn:
+                        Response.Redirect(url + "?loginfailed=sociallogin&s=linkedin");
+                        break;
+
+                }
+
+            }
+            else
+            {
+
+            }
+
+            //RadioButton ra =(RadioButton)this.Page.FindControl("tab-2");
+            //ra.Checked = true;
+            //emailerror.EnableClientScript = false;
+
+            //emailerror.ErrorMessage = "the Email has already use";
 
 
-    //    if( ret > 0)
-    //    {
-    //        Model_Users cmu = UsersController.GetUserbyID(ret);
-    //        UserSessionController.CloseOtherCurrentLogin(cmu.UserID);
-    //        UserSessionController.SessionCreateUserFront(cmu);
-    //    }
-    //    else
-    //    {
-    //        //RadioButton ra =(RadioButton)this.Page.FindControl("tab-2");
-    //        //ra.Checked = true;
-    //        emailerror.EnableClientScript = false;
+            //ClientScript.RegisterClientScriptBlock(typeof(Page), "myscript", "checkpan()", true);
 
-    //        emailerror.ErrorMessage = "the Email has already use";
-
-
-    //        ClientScript.RegisterClientScriptBlock(typeof(Page), "myscript", "checkpan()", true);
-
-    //        // alert.Text = "the Email has already use";
-    //    }
+            // alert.Text = "the Email has already use";
+        }
 
 
 
 
-    //}
+    }
 }

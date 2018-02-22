@@ -12,6 +12,19 @@
             <!-- End Parallax Image -->
 
             <div class="container g-pt-100 g-pb-20">
+                <div id="notify" class="noty_bar noty_type__info noty_theme__unify--v1--dark noty_close_with_click noty_close_with_button g-mb-25" style="display:none;">
+                    <div class="noty_body">
+                      <div class="g-mr-20">
+                        <div class="noty_body__icon">
+                          <i class="hs-admin-info"></i>
+                        </div>
+                      </div>
+
+                      <div id="er-message">Hi, welcome to Unify. This is example of Toastr notification box.</div>
+                    </div>
+
+                   
+                </div>
                 <div class="row justify-content-between ">
                     <div class="col-md-6 col-lg-6 flex-md-unordered align-self-center g-mb-80">
                         <div class="u-shadow-v21  rounded g-pa-50--lg keen-form-bg keen-style g-pa-30">
@@ -54,7 +67,7 @@
                                   </select>--%>
 
                                     <div class="form-group  g-pos-rel  g-rounded-4 mb-0 keen-no-boder  keen-form-block">
-                                      <select class="js-select u-select--v3-select u-sibling w-100 keen-required" data-validtype="select" required="required" title="เพศ" style="display: none;">
+                                      <select id="usergender" runat="server" class="js-select u-select--v3-select u-sibling w-100 keen-required" data-validtype="select" required="required" title="เพศ" style="display: none;">
                                        
                                         <option value="1" data-content='<span class="d-flex align-items-center w-100"><i class="hs-admin-rocket g-font-size-18 g-mr-15"></i><span>ชาย</span></span>'>ชาย
                                         </option>
@@ -75,7 +88,7 @@
                                 <div class="row">
                                     <div class="col-sm-6 col-md-12 col-lg-6 g-mb-20 keen-form-block keen-form-block">
                                         <div class="form-group  g-pos-rel  g-rounded-4 mb-0 keen-no-boder">
-                                              <select class="js-select u-select--v3-select u-sibling w-100 keen-required" data-validtype="select" required="required"  title="เดือนเกิด" style="display: none;">
+                                              <select id="usermonth" runat="server" class="js-select u-select--v3-select u-sibling w-100 keen-required" data-validtype="select" required="required"  title="เดือนเกิด" style="display: none;">
                                                 <option value="1" data-content='January'>January</option>
                                                 <option value="2" data-content='February'>February</option>
                                                   <option value="3" data-content='March'>March</option>
@@ -98,11 +111,11 @@
                                                <p class="text-validate" >กรุณาเลือกเดือนเกิด</p>
                                     </div>
                                     <div class="col g-mb-20 keen-form-block">
-                                      <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" data-validtype="number,date"  maxlength="2"  type="text" placeholder="วันเกิด">
+                                      <input id="userday" runat="server" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" data-validtype="number,date"  maxlength="2"  type="text" placeholder="วันเกิด">
                                                <p class="text-validate" >กรุณากรอกวันที่ เป็นตัวเลข 2 หลัก</p>
                                     </div>
                                    <div class="col g-mb-20  keen-form-block">
-                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="text" placeholder="ปีเกิด ค.ศ."  maxlength="4"  data-validtype="number,year">
+                                    <input id="useryear" runat="server" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="text" placeholder="ปีเกิด ค.ศ."  maxlength="4"  data-validtype="number,year">
                                               <p class="text-validate" >กรุณากรอกปีเกิด เป็น ค.ศ. เช่น 1982</p>
                                     </div>
 
@@ -111,12 +124,12 @@
 
 
                                 <div class="g-mb-20 keen-form-block">
-                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="text" data-validtype="email" placeholder="อีเมล์">
+                                    <input id="signup_email" runat="server" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="text" data-validtype="email" placeholder="อีเมล์">
                                        <p class="text-validate" >อีเมล์ไม่ถูกต้อง</p>
                                 </div>
 
                                 <div class="g-mb-20 keen-form-block">
-                                    <input id="userpassword" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="password" placeholder="รหัสผ่าน 8-15 ตัวอักษรมีและอย่างน้อย 1 ตัวอักษรตัวใหญ่"  data-validtype="password">
+                                    <input id="userpassword" runat="server" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="password" placeholder="รหัสผ่าน 8-15 ตัวอักษรมีและอย่างน้อย 1 ตัวอักษรตัวใหญ่"  data-validtype="password">
                                        <p class="text-validate" >กรุณาใส่รหัสผ่าน 8-15 ตัวอักษรและมีอักษรตัวใหญ่ อย่างน้อย 1 ตัวอักษร</p>
                                 </div>
 
@@ -127,16 +140,16 @@
 
                                  <div class="g-mb-20 keen-form-block">
                                     <input name="userlocation" id="userlocation" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="text" placeholder="เมืองและประเทศปัจจุบัน">
-                                     <input type="hidden" name="country-code" id="country-code" value="" class="keen-required" data-validtype="hidden">
+                                     <input type="hidden" name="country_code" id="country_code"  runat="server" value="" class="keen-required" data-validtype="hidden">
 
-                                       <input type="hidden" name="area-location" id="area-location" value="" class="keen-required" data-validtype="hidden">
-                                      <input type="hidden" name="area-location2" id="area-location2" value="" >
+                                       <input type="hidden" name="area_location" id="area_location" runat="server" value="" class="keen-required" data-validtype="hidden">
+                                      <input type="hidden" name="area_location2" id="area_location2" runat="server" value="" >
 
                                         <p class="text-validate" >กรุณาเลือก เมืองและประเทศปัจจุบันของท่าน</p>
                                 </div>
 
                                  <div class="g-mb-20 keen-form-block">
-                                    <input name="userphone" id="userphone" maxlength="12"  class="keen-input-phone form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="text" placeholder="เบอร์ติดต่อ" data-validtype="phone">
+                                    <input name="userphone" id="userphone" runat="server" maxlength="12"  class="keen-input-phone form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v3 rounded g-py-15 g-px-15 keen-required" type="text" placeholder="เบอร์ติดต่อ" data-validtype="phone">
                                      <p class="text-validate" >เบอร์โทรศัพท์ไม่ถูกต้อง</p>
                                 </div>
 
@@ -148,12 +161,12 @@
                                         </div>
                                         I accept the <a href="http://www.keenprofile.com/terms-and-conditions/" target="_blank">Terms and Conditions</a>
                                       </label>
-                                       <p class="text-validate" >ชื่อไม่สามารถใช้แค่ตัวเลขกับอักษรพิเศษ</p>
+                                       <p class="text-validate" >กรุณา check เพื่อยอมรับเงื่อนไข</p>
                                 </div>
 
-                               
+                               <asp:Button ID="btn_submit" runat="server" OnClientClick="return KeenValidate();" OnClick="btnSignup_Click" CssClass="btn btn-md btn-block u-btn-primary rounded g-py-13 keen-btn-primary" Text="สมัครสมาชิก" ></asp:Button>
 
-                                <button onclick="return KeenValidate();" class="btn btn-block u-btn-primary rounded g-py-13 keen-btn-primary" type="button">สมัครสมาชิก</button>
+<%--                                <button onclick="return KeenValidate();" class="btn btn-block u-btn-primary rounded g-py-13 keen-btn-primary" type="button">สมัครสมาชิก</button>--%>
                             </div>
                             <!-- End Form -->
 
@@ -267,7 +280,7 @@
       // initialization of custom select
       $('.js-select').selectpicker();
   
-          $("#userphone").intlTelInput({
+          $("#MainContent_userphone").intlTelInput({
               initialCountry: "auto",
               geoIpLookup: function (i) {
                   $.get("https://ipinfo.io", function () { }, "jsonp").always(function (n) {
@@ -278,10 +291,47 @@
               utilsScript: "Scripts/vendor/telinput/js/utils.js",
               nationalMode: !1
           });
-          var CURR_DISPLAY = "th"
+          //var CURR_DISPLAY = "th"
 
 
 
+        //err response
+          var error = getParameterByName('loginfailed');
+          var social = getParameterByName('s');
+
+          var ele = $('#er-message');
+
+          if (error) {
+
+
+              if (error == "passwordinvalid") {
+                  ele.html("อีเมล์ที่ท่านใช้สมัคร ได้ถูกใช้งานแล้ว");
+              }
+
+              if (error == "sociallogin") {
+                  if (social) {
+                      switch (social) {
+
+                          case "facebook":
+                              ele.html("บัญชีของท่าน ลงทะเบียนโดย Facebook ท่านสามารถกดปุ่ม \"เข่าสู่ระบบผ่าน Facebook\" เพ่ื่อเข้าสู่ระบบ หากท่านต้องการ เพื่อเข้าระบบแบบปกติ คลิ๊ก <a href=\"Forgot\">Reset Password</a> ");
+
+                              break;
+                          case "google":
+                              ele.html("บัญชีของท่าน ลงทะเบียนโดย Google ท่านสามารถกดปุ่ม \"เข่าสู่ระบบผ่าน Facebook\" เพ่ื่อเข้าสู่ระบบ หากท่านต้องการ เพื่อเข้าระบบแบบปกติ คลิ๊ก <a href=\"Forgot\">Reset Password</a> ");
+
+                              break;
+                          case "linkedin":
+                              ele.html("บัญชีของท่าน ลงทะเบียนโดย LinkedIn ท่านสามารถกดปุ่ม \"เข่าสู่ระบบผ่าน Facebook\" เพ่ื่อเข้าสู่ระบบ หากท่านต้องการ เพื่อเข้าระบบแบบปกติ คลิ๊ก <a href=\"Forgot\">Reset Password</a> ");
+
+                              break;
+                      }
+                  }
+              }
+
+              $('#notify').show();
+
+              return false;
+          }
 
           });
 

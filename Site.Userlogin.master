@@ -385,6 +385,10 @@
     <!-- JS Custom -->
     <script src="Theme/fronttheme/assets/js/custom.js"></script>
 
+       
+    <!--  Keen profile -->
+    <script src="Scripts/vendor/keenprofile/keenutility.js"></script>
+
     <!-- JS Plugins Init. -->
     <script>
         $(document).on('ready', function () {

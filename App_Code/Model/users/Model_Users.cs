@@ -50,6 +50,9 @@ public class Model_Users : BaseModel<Model_Users>
 
     public bool IsResetPassword { get; set; } = false;
 
+    public string AreaLocation { get; set; }
+    public string AreaLocation2 { get; set; }
+    public string ContryCode { get; set; }
 
     public int TotalRows { get; set; }
     public int RowNum { get; set; }
@@ -200,8 +203,8 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChann
             }
             else
             {
-                SqlCommand cmd = new SqlCommand(@"INSERT INTO Users (Email,UserName,Password,Status,UserCatId,DateSubmit,UserLoginChannel)
-VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChannel);SET @UserID = SCOPE_IDENTITY();", cn);
+                SqlCommand cmd = new SqlCommand(@"INSERT INTO Users (Email,UserName,Password,Status,UserCatId,DateSubmit,UserLoginChannel,AreaLocation,ContryCode,AreaLocation2)
+VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChannel,@AreaLocation,@ContryCode,@AreaLocation2);SET @UserID = SCOPE_IDENTITY();", cn);
 
                 cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = users.Email;
                 cmd.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = users.UserName;
@@ -210,6 +213,9 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChann
                 cmd.Parameters.Add("@UserCatId", SqlDbType.TinyInt).Value = users.UserCatId;
                 cmd.Parameters.Add("@DateSubmit", SqlDbType.SmallDateTime).Value = DateTime.UtcNow;
                 cmd.Parameters.Add("@UserLoginChannel", SqlDbType.TinyInt).Value = users.UserLoginChannel;
+                cmd.Parameters.Add("@ContryCode", SqlDbType.NVarChar).Value = users.ContryCode;
+                cmd.Parameters.Add("@AreaLocation", SqlDbType.NVarChar).Value = users.AreaLocation;
+                cmd.Parameters.Add("@AreaLocation2", SqlDbType.NVarChar).Value = users.AreaLocation2;
                 cmd.Parameters.Add("@UserID", SqlDbType.Int).Direction = ParameterDirection.Output;
 
                 ret = ExecuteNonQuery(cmd);
