@@ -614,6 +614,10 @@ public class AssessmentController
                 AdjustREsult = RawResult + (decimal)0.1;
 
                 CurrentJobFitScore = Math.Round(AdjustREsult * 100, 0);
+
+
+                //Set Maximum Value 100%
+                CurrentJobFitScore = CurrentJobFitScore > 100 ? 100 : CurrentJobFitScore;
             }
 
             ret = ret.Replace("<!--###T4_list###-->", T4ret.ToString());
