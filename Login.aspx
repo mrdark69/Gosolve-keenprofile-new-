@@ -53,7 +53,7 @@
 
                                 
 
-                                <a class="btn btn-block u-btn-linkedin rounded text-uppercase g-py-13 g-mb-30" href="//www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81h1zat2gc50un&redirect_uri=http%3A%2F%2Fwww-dev.keenprofile.com%2Fhook_api%2Fsignin-linkedin.aspx" >
+                                <a class="btn btn-block u-btn-linkedin rounded text-uppercase g-py-13 g-mb-30" href="//www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81h1zat2gc50un&redirect_uri=https%3A%2F%2Fmember-stg.keenprofile.com%2Fhook_api%2Fsignin-linkedin.aspx" >
                                             <i class="mr-3 fa fa-linkedin"></i>
                                             <span class="g-hidden-xs-down keen-cw">เข้าสู่ระบบผ่าน</span> Linkedin
                                           </a>
