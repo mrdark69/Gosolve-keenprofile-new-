@@ -53,30 +53,34 @@
 
                                 
 
-                                <button class="btn btn-block u-btn-linkedin rounded text-uppercase g-py-13 g-mb-30" type="button">
+                                <a class="btn btn-block u-btn-linkedin rounded text-uppercase g-py-13 g-mb-30" href="//www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81h1zat2gc50un&redirect_uri=http%3A%2F%2Fwww-dev.keenprofile.com%2Fhook_api%2Fsignin-linkedin.aspx" >
                                             <i class="mr-3 fa fa-linkedin"></i>
                                             <span class="g-hidden-xs-down keen-cw">เข้าสู่ระบบผ่าน</span> Linkedin
-                                          </button>
+                                          </a>
+
+
+
                                 <div class="d-flex justify-content-center text-center g-mb-30">
                                     <div class="d-inline-block align-self-center g-width-50 g-height-1 g-bg-gray-light-v1"></div>
                                     <span class="align-self-center g-color-gray-dark-v3 mx-4">OR</span>
                                     <div class="d-inline-block align-self-center g-width-50 g-height-1 g-bg-gray-light-v1"></div>
                                 </div>
-                                <div class="mb-4">
+                                <div class="mb-4 keen-form-block">
                                     <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">อีเมล์:</label>
                                   
 
-                                    <input id="email_txt" runat="server" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" type="email" placeholder="johndoe@gmail.com" />
-                                  
+                                    <input id="email_txt" runat="server" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15  keen-required"  data-validtype="email" type="email" placeholder="อีเมล์" />
+                                   <p class="text-validate" >อีเมล์ไม่ถูกต้อง</p>
                                 </div>
 
                              
 
-                                <div class="g-mb-35">
+                                <div class="g-mb-35 keen-form-block">
                                     <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13">รหัสผ่าน:</label>
                                   
 
-                                    <input id="password_txt" runat="server" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15 mb-3" type="password" placeholder="Password" />
+                                    <input id="password_txt" runat="server" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15  keen-required" type="password"  data-validtype="password" placeholder="Password" />
+                                     <p class="text-validate" >กรุณายืนยันรหัสผ่านให้ถูกต้อง</p>
                                     <div class="row justify-content-between">
                                         <div class="col align-self-center">
                                             
@@ -90,7 +94,7 @@
 
 
                                 <div class="mb-4">
-                                    <asp:Button ID="btn_submit" runat="server" OnClick="btn_login_Click" CssClass="btn btn-md btn-block u-btn-primary rounded g-py-13 keen-btn-primary" Text="เข้าสู่ระบบ" ></asp:Button>
+                                    <asp:Button ID="btn_submit" runat="server" OnClientClick="return KeenValidate()" OnClick="btn_login_Click" CssClass="btn btn-md btn-block u-btn-primary rounded g-py-13 keen-btn-primary" Text="เข้าสู่ระบบ" ></asp:Button>
                                    <%-- <button class="btn btn-md btn-block u-btn-primary rounded g-py-13 keen-btn-primary" runat="server" OnClick="btn_login_Click"  type="submit">เข้าสู่ระบบ</button>--%>
                                 </div>
 
@@ -114,6 +118,7 @@
    <%-- <asp:Button ID="Button1" CssClass="button" runat="server" OnClick="btnSignup_Click" Text="Sign Up" />--%>
 </asp:Content>
 <asp:Content ID="FooterScript" ContentPlaceHolderID="ContentFooter" runat="server">
+     <script  src="Scripts/vendor/keenprofile/keen.validate.js" type="text/javascript"  ></script>
     <script type="text/javascript">
         window.fbAsyncInit = function () {
             FB.init({
