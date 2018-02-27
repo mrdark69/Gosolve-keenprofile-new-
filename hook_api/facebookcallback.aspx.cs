@@ -40,7 +40,7 @@ public partial class hook_api_facebookcallback : System.Web.UI.Page
             string sex = oUser.gender;
 
 
-            Model_Users u = UsersController.UserCheckloginExternal(oUser.email.Trim(), UserLoginChannel.Facebook);
+            Model_Users u = UsersController.UserCheckloginExternal(oUser.email.Trim());
             if (u != null)
             {
                 UserSessionController.CloseOtherCurrentLogin(u.UserID);
@@ -59,7 +59,7 @@ public partial class hook_api_facebookcallback : System.Web.UI.Page
                     UserLoginChannel = UserLoginChannel.Facebook,
                     FirstName = oUser.first_name,
                     LastName = oUser.last_name,
-                    EmailVerify = true
+                    EmailVerify = false
 
                 };
                 int ret = UsersController.InsertUserExternal(mu);
