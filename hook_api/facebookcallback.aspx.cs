@@ -39,12 +39,31 @@ public partial class hook_api_facebookcallback : System.Web.UI.Page
 
             string sex = oUser.gender;
 
+            string userID = oUser.id.ToString();
+
+           
+
+
+
+           // http://graph.facebook.com/10159605614725366/picture?type=large
+
+            string strPicturePath = "http://graph.facebook.com/" + userID + "/picture?type=large";
 
             Model_Users u = UsersController.UserCheckloginExternal(oUser.email.Trim());
             if (u != null)
             {
+                if (string.IsNullOrEmpty(u.PicturePath))
+                {
+                    u.PicturePath = strPicturePath;
+                    u.UpdateUserProfilePicutre(u);
+                }
+
+
                 UserSessionController.CloseOtherCurrentLogin(u.UserID);
                 UserSessionController.SessionCreateUserFront(u);
+
+
+               
             }
             else
             {
@@ -59,7 +78,9 @@ public partial class hook_api_facebookcallback : System.Web.UI.Page
                     UserLoginChannel = UserLoginChannel.Facebook,
                     FirstName = oUser.first_name,
                     LastName = oUser.last_name,
-                    EmailVerify = false
+                    EmailVerify = false,
+                    PicturePath = strPicturePath
+
 
                 };
                 int ret = UsersController.InsertUserExternal(mu);

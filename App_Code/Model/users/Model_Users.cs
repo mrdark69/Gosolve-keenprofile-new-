@@ -54,6 +54,8 @@ public class Model_Users : BaseModel<Model_Users>
     public string AreaLocation2 { get; set; }
     public string ContryCode { get; set; }
 
+    public string PicturePath { get; set; }
+
     public int TotalRows { get; set; }
     public int RowNum { get; set; }
 
@@ -163,8 +165,8 @@ VALUES(@FirstName,@LastName,@UserName,@Password,@Status,@UserCatId,@UsersRoleId,
             }
             else
             {
-                SqlCommand cmd = new SqlCommand(@"INSERT INTO Users (Email,UserName,Password,Status,UserCatId,DateSubmit,UserLoginChannel,FirstName,LastName,EmailVerify)
-VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChannel,@FirstName,@LastName,@EmailVerify);SET @UserID = SCOPE_IDENTITY();", cn);
+                SqlCommand cmd = new SqlCommand(@"INSERT INTO Users (Email,UserName,Password,Status,UserCatId,DateSubmit,UserLoginChannel,FirstName,LastName,EmailVerify,PicturePath)
+VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChannel,@FirstName,@LastName,@EmailVerify,@PicturePath);SET @UserID = SCOPE_IDENTITY();", cn);
 
                 cmd.Parameters.Add("@Email", SqlDbType.NVarChar).Value = users.Email;
                 cmd.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = users.UserName;
@@ -175,7 +177,7 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChann
                 cmd.Parameters.Add("@UserLoginChannel", SqlDbType.TinyInt).Value = users.UserLoginChannel;
                 cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = users.FirstName;
                 cmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = users.LastName;
-
+                   cmd.Parameters.Add("@PicturePath", SqlDbType.NVarChar).Value = users.PicturePath;
                 cmd.Parameters.Add("@EmailVerify", SqlDbType.NVarChar).Value = users.EmailVerify;
                 cmd.Parameters.Add("@UserID", SqlDbType.Int).Direction = ParameterDirection.Output;
 
@@ -276,6 +278,28 @@ VALUES(@Email,@UserName,@Password,@Status,@UserCatId,@DateSubmit,@UserLoginChann
             cmd.Parameters.Add("@Gender", SqlDbType.TinyInt).Value = users.Gender;
             cmd.Parameters.Add("@Nationality", SqlDbType.Int).Value = users.Nationality;
             cmd.Parameters.Add("@MobileNumber", SqlDbType.VarChar).Value = users.MobileNumber;
+            cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = users.UserID;
+            cmd.CommandText = q;
+            cmd.Connection = cn;
+
+            cn.Open();
+
+            return ExecuteNonQuery(cmd) == 1;
+        }
+
+    }
+
+    public bool UpdateUserProfilePicutre(Model_Users users)
+    {
+        using (SqlConnection cn = new SqlConnection(this.ConnectionString))
+        {
+            string w = string.Empty;
+
+            SqlCommand cmd = new SqlCommand();
+
+            string q = @"UPDATE Users SET PicturePath=@PicturePath  WHERE UserID=@UserID";
+            cmd.Parameters.Add("@PicturePath", SqlDbType.NVarChar).Value = users.PicturePath;
+       
             cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = users.UserID;
             cmd.CommandText = q;
             cmd.Connection = cn;

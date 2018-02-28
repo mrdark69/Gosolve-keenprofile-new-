@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSPINIA | Advanced Form Elements</title>
+
+    <link href="Scripts/vendor/externaltheme/css/bootstrap.min.css" rel="stylesheet">
+    <link href="Scripts/vendor/externaltheme/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/chosen/bootstrap-chosen.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/cropper/cropper.min.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/switchery/switchery.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
+    <link href="Scripts/vendor/externaltheme/css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/select2/select2.min.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/plugins/dualListbox/bootstrap-duallistbox.min.css" rel="stylesheet">
+
+    <link href="Scripts/vendor/externaltheme/css/animate.css" rel="stylesheet">
+    <link href="Scripts/vendor/externaltheme/css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+
+        <div id="page-wrapper" class="gray-bg">
+
+
+            <div class="wrapper wrapper-content animated fadeInRight">
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="ibox-content">
+                            <p>
+                                A simple jQuery image cropping plugin.
+                            </p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="image-crop">
+                                        <img src="img/p3.jpg">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>Preview image</h4>
+                                    <div class="img-preview img-preview-sm"></div>
+                                    <h4>Comon method</h4>
+                                    <p>
+                                        You can upload new image to crop container and easy download new cropped image.
+                                    </p>
+                                    <div class="btn-group">
+                                        <label title="Upload image file" for="inputImage" class="btn btn-primary">
+                                        <input type="file" accept="image/*" name="file" id="inputImage" class="hide">
+                                        Upload new image
+                                    </label>
+                                        <label title="Donload image" id="download" class="btn btn-primary">Download</label>
+                                    </div>
+                                    <h4>Other method</h4>
+                                    <p>
+                                        You may set cropper options with <code>$(image}).cropper(options)</code>
+                                    </p>
+                                    <div class="btn-group">
+                                        <button class="btn btn-white" id="zoomIn" type="button">Zoom In</button>
+                                        <button class="btn btn-white" id="zoomOut" type="button">Zoom Out</button>
+                                        <button class="btn btn-white" id="rotateLeft" type="button">Rotate Left</button>
+                                        <button class="btn btn-white" id="rotateRight" type="button">Rotate Right</button>
+                                        <button class="btn btn-warning" id="setDrag" type="button">New crop</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="Scripts/vendor/externaltheme/js/jquery-3.1.1.min.js"></script>
+    <script src="Scripts/vendor/externaltheme/js/bootstrap.min.js"></script>
+
+
+
+    <!-- Image cropper -->
+    <script src="Scripts/vendor/externaltheme/js/plugins/cropper/cropper.min.js"></script>
+
+
+
+    <script>
+        $(document).ready(function() {
+
+
+
+            var $image = $(".image-crop > img")
+            $($image).cropper({
+                aspectRatio: 1.618,
+                preview: ".img-preview",
+                done: function(data) {
+                    // Output the result data for cropping image.
+                }
+            });
+
+            var $inputImage = $("#inputImage");
+            if (window.FileReader) {
+                $inputImage.change(function() {
+                    var fileReader = new FileReader(),
+                        files = this.files,
+                        file;
+
+                    if (!files.length) {
+                        return;
+                    }
+
+                    file = files[0];
+
+                    if (/^image\/\w+$/.test(file.type)) {
+                        fileReader.readAsDataURL(file);
+                        fileReader.onload = function() {
+                            $inputImage.val("");
+                            $image.cropper("reset", true).cropper("replace", this.result);
+                        };
+                    } else {
+                        showMessage("Please choose an image file.");
+                    }
+                });
+            } else {
+                $inputImage.addClass("hide");
+            }
+
+            $("#download").click(function() {
+                window.open($image.cropper("getDataURL"));
+            });
+
+            $("#zoomIn").click(function() {
+                $image.cropper("zoom", 0.1);
+            });
+
+            $("#zoomOut").click(function() {
+                $image.cropper("zoom", -0.1);
+            });
+
+            $("#rotateLeft").click(function() {
+                $image.cropper("rotate", 45);
+            });
+
+            $("#rotateRight").click(function() {
+                $image.cropper("rotate", -45);
+            });
+
+            $("#setDrag").click(function() {
+                $image.cropper("setDragMode", "crop");
+            });
+        });
+    </script>
+
+</body>
+
+</html>
