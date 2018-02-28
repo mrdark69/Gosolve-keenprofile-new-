@@ -136,13 +136,16 @@ body, p, h1, h2, h3, div, form, span, label, input[type="text"], input[type="ema
 
     .u-btn-linkedin:hover {
         background-color: #005983;
-        color: #fff;
+        color: #fff !important;
     }
-
-.keen-no-boder{
-    border:0px !important;
-    border-color:transparent !important;
-}
+    .u-btn-linkedin:visited {
+        color: #fff !important;
+    }
+    
+    .keen-no-boder {
+        border: 0px !important;
+        border-color: transparent !important;
+    }
 
 
     .bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:active, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover {
