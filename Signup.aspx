@@ -35,10 +35,10 @@
                                     <i class="mr-3 fa fa-facebook"></i>
                                     <span class="g-hidden-xs-down keen-cw">สมัครผ่าน</span> Facebook
                                   </button>
-                            <button class="btn btn-block u-btn-linkedin rounded text-uppercase g-py-13 g-mb-30" type="button">
+                            <a class="btn btn-block u-btn-linkedin rounded text-uppercase g-py-13 g-mb-30"  href="//www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81h1zat2gc50un&redirect_uri=https%3A%2F%2Fmember-stg.keenprofile.com%2Fhook_api%2Fsignin-linkedin.aspx">
                                     <i class="mr-3 fa fa-linkedin"></i>
                                     <span class="g-hidden-xs-down keen-cw">สมัครผ่าน</span> Linkedin
-                                  </button>
+                                  </a>
                             <div class="d-flex justify-content-center text-center g-mb-30">
                                 <div class="d-inline-block align-self-center g-width-50 g-height-1 g-bg-gray-light-v1"></div>
                                 <span class="align-self-center g-color-gray-dark-v3 mx-4">OR</span>

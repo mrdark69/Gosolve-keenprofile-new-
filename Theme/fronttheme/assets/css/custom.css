@@ -134,9 +134,10 @@ body, p, h1, h2, h3, div, form, span, label, input[type="text"], input[type="ema
     color: #fff;
 }
 
-.u-btn-linkedin:hover {
-    background-color: #005983;
-}
+    .u-btn-linkedin:hover {
+        background-color: #005983;
+        color: #fff;
+    }
 
 .keen-no-boder{
     border:0px !important;
@@ -177,3 +178,5 @@ p.text-validate {
 .keen-invalid {
     border: 1px solid #ef7032 !important;
 }
+
+
