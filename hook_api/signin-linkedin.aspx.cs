@@ -39,6 +39,7 @@ public partial class external_signin_linkedin : System.Web.UI.Page
         string myParameters = "grant_type=authorization_code&client_id=" + client_id + "&client_secret=" + client_secret + "&code=" + code + "&redirect_uri=" + redirect;
 
         Response.Write(URI + "?" + myParameters);
+        Response.End();
         string HtmlResult = string.Empty;
         using (WebClient wc = new WebClient())
         {
