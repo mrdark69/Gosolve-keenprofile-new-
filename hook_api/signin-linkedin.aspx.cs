@@ -28,7 +28,7 @@ public partial class external_signin_linkedin : System.Web.UI.Page
         string client_id = "81h1zat2gc50un";
         string client_secret = "ZLi6H1m1k6EICMES";
         string code = Request.QueryString["code"];
-        string redirect = Request.Url.AbsoluteUri.Split('?')[0];
+        string redirect = Request.Url.AbsoluteUri.Split('?')[0].Replace("http", "https");
 
 
 
