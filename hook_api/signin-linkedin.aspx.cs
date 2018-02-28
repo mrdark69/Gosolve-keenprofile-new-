@@ -43,7 +43,7 @@ public partial class external_signin_linkedin : System.Web.UI.Page
         string HtmlResult = string.Empty;
         using (WebClient wc = new WebClient())
         {
-            //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
              HtmlResult = wc.UploadString(URI, myParameters);
         }
