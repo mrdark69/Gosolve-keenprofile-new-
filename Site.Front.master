@@ -40,7 +40,7 @@
     <link rel="stylesheet"  href="Theme/fronttheme/assets/css/unify-globals.css?ver=22">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet"  href="Theme/fronttheme/assets/css/custom.css?ver=1sssssswsssssssssss">
+    <link rel="stylesheet"  href="Theme/fronttheme/assets/css/custom.css?ver=1sssssswsssssssssssss">
           <link rel="stylesheet"  href="Theme/fronttheme/assets/css/custom-mainpage.css?ver=1ssssssssws33ssssssssssss">
     <asp:ContentPlaceHolder ID="HeaderScript" runat="server">
     </asp:ContentPlaceHolder>
@@ -60,7 +60,7 @@
          <main>
           
             <!-- Header -->
-            <header id="js-header" class="u-header u-header--static u-header--show-hide u-header--change-appearance" data-header-fix-moment="500" data-header-fix-effect="slide">
+            <header id="js-header" class="u-header u-header--static u-header--show-hide u-header--change-appearance" data-header-fix-moment="50" data-header-fix-effect="slide">
               <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 keen-header-color" data-header-fix-moment-classes="u-shadow-v18 g-py-5">
                 <nav class="js-mega-menu navbar navbar-expand-lg hs-menu-initialized hs-menu-horizontal">
                   <div class="container">

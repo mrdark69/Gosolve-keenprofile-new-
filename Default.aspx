@@ -76,6 +76,203 @@
  </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+
+
+     <!-- Promo Block -->
+    <section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll loaded dzsprx-readyall " data-options='{direction: "fromtop", animation_duration: 25, direction: "reverse"}'>
+      <!-- Parallax Image -->
+      <div class="divimage dzsparallaxer--target w-100 g-bg-cover g-bg-size-cover g-bg-pos-top-center g-bg-primary-gradient-opacity-v1--after" style="height: 140%; background-image: url(/ssTheme/fronttheme/assets/img-temp/1920x800/img2.jpg);"></div>
+      <!-- End Parallax Image -->
+
+      <!-- Promo Block Content -->
+      <div class="container g-color-white text-center g-pos-rel g-z-index-1 g-pt-150 g-pb-200">
+        <h3 class="h2 g-font-weight-300 mb-0">KEENCareer Finder</h3>
+        <h2 class="g-font-weight-700 g-font-size-65 text-uppercase">เริ่มทำแบบประเมิน</h2>
+      </div>
+      <!-- Promo Block Content -->
+    </section>
+    <!-- End Promo Block -->
+
+    <!-- Pricing Plans -->
+    <section class="g-bg-gray-light-v5">
+      <div class="container-fluid g-pb-100">
+        <!-- Pricing Plans -->
+        <div class="row g-mt-minus-100 g-mb-70">
+
+
+          <div class="col-md-3 g-mb-30">
+            <!-- Article -->
+            <article class="u-shadow-v21 u-shadow-v21--hover g-bg-white text-center g-overflow-hidden g-rounded-4 g-pos-rel g-z-index-2 g-cursor-pointer g-transition-0_3">
+              <!-- Article Header -->
+              <header class="g-bg-primary g-pos-rel g-px-20 g-py-70">
+                <svg class="g-pos-abs g-bottom-0 g-left-0 g-right-0" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="70px" viewBox="0 0 300 70">
+                  <path d="M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+                c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z" opacity="0.6" fill="#ffffff" />
+                  <path d="M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+                c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z" opacity="0.6" fill="#ffffff" />
+                  <path d="M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+                H42.401L43.415,98.342z" opacity="0.7" fill="#ffffff" />
+                  <path d="M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+                c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z" fill="#ffffff" />
+                </svg>
+                  <div class="circle circle-4" style="color:#366f9a">1</div>
+               <%-- <strong class="d-block g-color-white g-font-size-50 g-line-height-0_7 g-mb-20">
+                    
+                    <span class="g-valign-top g-font-size-default">$</span>19<span class="g-font-size-default">/ month</span>
+                  </strong>--%>
+                <h3 class="h6 text-uppercase g-color-white-opacity-0_7 g-letter-spacing-3 g-mb-20">KEENCareer Finder Report</h3>
+              </header>
+              <!-- End Article Header -->
+
+              <!-- Article Content -->
+              <div class="g-px-20 g-py-40">
+                  <h2> KEENCareer Finder Report</h2>
+                  <p>รายงานแสดงผลอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ คุณจะทราบวิธีการพัฒนาศักยภาพการทำงานที่เหมาะสมกับตัวคุณ </p>
+
+                <a class="btn text-uppercase u-btn-primary g-rounded-50 g-font-size-12 g-font-weight-700 g-pa-15-30 g-mb-10" href="#!">Order Now</a>
+              </div>
+              <!-- End Article Content -->
+            </article>
+            <!-- End Article -->
+          </div>
+
+          <div class="col-md-3 g-mb-30">
+            <!-- Article -->
+            <article class="u-shadow-v21 u-shadow-v21--hover g-bg-white text-center g-overflow-hidden g-rounded-4 g-pos-rel g-z-index-2 g-cursor-pointer g-transition-0_3">
+              <!-- Article Header -->
+              <header class="g-bg-primary g-pos-rel g-px-20 g-py-70">
+                <svg class="g-pos-abs g-bottom-0 g-left-0 g-right-0" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="70px" viewBox="0 0 300 70">
+                  <path d="M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+                c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z" opacity="0.6" fill="#ffffff" />
+                  <path d="M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+                c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z" opacity="0.6" fill="#ffffff" />
+                  <path d="M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+                H42.401L43.415,98.342z" opacity="0.7" fill="#ffffff" />
+                  <path d="M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+                c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z" fill="#ffffff" />
+                </svg>
+                  <div class="circle circle-4" style="color:#366f9a">2</div>
+                <%--<strong class="d-block g-color-white g-font-size-50 g-line-height-0_7 g-mb-20">
+                    <span class="g-valign-top g-font-size-default">$</span>49<span class="g-font-size-default">/ month</span>
+                  </strong>--%>
+                <h3 class="h6 text-uppercase g-color-white-opacity-0_7 g-letter-spacing-3 g-mb-20">Your Current Job & Company Fit Report</h3>
+              </header>
+              <!-- End Article Header -->
+
+              <!-- Article Content -->
+              <div class="g-px-20 g-py-40">
+                <h2>Your Current Job & Company Fit Report</h2>
+                  <p>รายงานแสดงผลความเหมาะสมระหว่างตัวคุณกับงานปัจจุบันและวัฒนธรรมของบริษัทปัจจุบัน คุณควรทำงานนี้ต่อไปหรือไม่?</p>
+                <a class="btn text-uppercase u-btn-primary g-rounded-50 g-font-size-12 g-font-weight-700 g-pa-15-30 g-mb-10" href="#!">Order Now</a>
+              </div>
+              <!-- End Article Content -->
+            </article>
+            <!-- End Article -->
+          </div>
+
+          <div class="col-md-3 g-mb-30">
+            <!-- Article -->
+            <article class="u-shadow-v21 u-shadow-v21--hover g-bg-white text-center g-overflow-hidden g-rounded-4 g-pos-rel g-z-index-2 g-cursor-pointer g-transition-0_3">
+              <!-- Article Header -->
+              <header class="g-bg-primary g-pos-rel g-px-20 g-py-70">
+                <svg class="g-pos-abs g-bottom-0 g-left-0 g-right-0" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="70px" viewBox="0 0 300 70">
+                  <path d="M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+                c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z" opacity="0.6" fill="#ffffff" />
+                  <path d="M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+                c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z" opacity="0.6" fill="#ffffff" />
+                  <path d="M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+                H42.401L43.415,98.342z" opacity="0.7" fill="#ffffff" />
+                  <path d="M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+                c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z" fill="#ffffff" />
+                </svg>
+                  <div class="circle circle-4" style="color:#366f9a">3</div>
+               <%-- <strong class="d-block g-color-white g-font-size-50 g-line-height-0_7 g-mb-20">
+                    <span class="g-valign-top g-font-size-default">$</span>99<span class="g-font-size-default">/ month</span>
+                  </strong>--%>
+                <h3 class="h6 text-uppercase g-color-white-opacity-0_7 g-letter-spacing-3 g-mb-20">The Right Job Functions Report</h3>
+              </header>
+              <!-- End Article Header -->
+
+              <!-- Article Content -->
+              <div class="g-px-20 g-py-40">
+                 <h2>The Right Job Functions Report</h2>
+                  <p>รายงานแสดงผลสายงานทั้งหมดที่เหมาะสมกับอัจฉริยภาพและบุคลิกภาพการทำงานของคุณคุณจะไม่หลงทางกับเส้นทางอาชีพอีกต่อไป </p>
+                <a class="btn text-uppercase u-btn-primary g-rounded-50 g-font-size-12 g-font-weight-700 g-pa-15-30 g-mb-10" href="#!">Order Now</a>
+              </div>
+              <!-- End Article Content -->
+            </article>
+            <!-- End Article -->
+          </div>
+
+            <div class="col-md-3 g-mb-30">
+            <!-- Article -->
+            <article class="u-shadow-v21 u-shadow-v21--hover g-bg-white text-center g-overflow-hidden g-rounded-4 g-pos-rel g-z-index-2 g-cursor-pointer g-transition-0_3">
+              <!-- Article Header -->
+              <header class="g-bg-primary g-pos-rel g-px-20 g-py-70">
+                <svg class="g-pos-abs g-bottom-0 g-left-0 g-right-0" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="70px" viewBox="0 0 300 70">
+                  <path d="M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+                c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z" opacity="0.6" fill="#ffffff" />
+                  <path d="M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+                c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z" opacity="0.6" fill="#ffffff" />
+                  <path d="M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+                H42.401L43.415,98.342z" opacity="0.7" fill="#ffffff" />
+                  <path d="M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+                c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z" fill="#ffffff" />
+                </svg>
+                  <div class="circle circle-4" style="color:#366f9a">4</div>
+             <%--   <strong class="d-block g-color-white g-font-size-50 g-line-height-0_7 g-mb-20">
+                    <span class="g-valign-top g-font-size-default">$</span>99<span class="g-font-size-default">/ month</span>
+                  </strong>--%>
+                <h3 class="h6 text-uppercase g-color-white-opacity-0_7 g-letter-spacing-3 g-mb-20">KEENCareer Coaching</h3>
+              </header>
+              <!-- End Article Header -->
+
+              <!-- Article Content -->
+              <div class="g-px-20 g-py-40">
+                <h2>KEENCareer Coaching</h2>
+                  <p>โค้ชตัวต่อตัวกับผู้เชี่ยวชาญของทางทีมงาน KEEN PROFILE เพื่อทำความเข้าใจเชิงลึกเกี่ยวกับเส้นทางอาชีพที่เหมาะกับอัจฉริยภาพและบุคลิกภาพการทำงานของคุณ</p>
+                <a class="btn text-uppercase u-btn-primary g-rounded-50 g-font-size-12 g-font-weight-700 g-pa-15-30 g-mb-10" href="#!">Order Now</a>
+              </div>
+              <!-- End Article Content -->
+            </article>
+            <!-- End Article -->
+          </div>
+        </div>
+        <!-- End Pricing Plans -->
+
+        <h2 class="h5 g-font-weight-700 text-center text-uppercase mb-5">Why Unify?</h2>
+
+        <!-- Icons Block -->
+        <div class="row no-gutters justify-content-center">
+          <div class="col-md-5 col-lg-4">
+            <!-- Icon Blocks -->
+            <div class="u-shadow-v20 g-brd-right--md g-brd-gray-light-v5 g-bg-white text-center g-rounded-left-5 g-px-20 g-py-40">
+              <span class="u-icon-v1 u-icon-size--lg g-color-black g-mb-10">
+                  <i class="icon-education-087 u-line-icon-pro"></i>
+                </span>
+              <h3 class="h5 mb-2">Creative ideas</h3>
+              <p class="g-color-gray-dark-v5">This is where we sit down, grab a cup of coffee and dial in the details.</p>
+            </div>
+            <!-- End Icon Blocks -->
+          </div>
+
+          <div class="col-md-5 col-lg-4">
+            <!-- Icon Blocks -->
+            <div class="u-shadow-v20 g-bg-white text-center g-rounded-right-5 g-px-20 g-py-40">
+              <span class="u-icon-v1 u-icon-size--lg g-color-black g-mb-10">
+                  <i class="icon-education-035 u-line-icon-pro"></i>
+                </span>
+              <h3 class="h5 mb-2">Excellent features</h3>
+              <p class="g-color-gray-dark-v5">This is where we sit down, grab a cup of coffee and dial in the details.</p>
+            </div>
+            <!-- End Icon Blocks -->
+          </div>
+        </div>
+        <!-- End Icons Block -->
+      </div>
+    </section>
+    <!-- End Pricing Plans -->
   
    <section id="about" class="section section-about">
 					<div class="animate-up animated">

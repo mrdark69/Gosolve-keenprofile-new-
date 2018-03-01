@@ -57,7 +57,7 @@
        <form runat="server">
          <main>
                 <!-- Header -->
-            <header id="js-header" class="u-header u-header--static u-header--show-hide u-header--change-appearance" data-header-fix-moment="500" data-header-fix-effect="slide">
+            <header id="js-header" class="u-header u-header--static u-header--show-hide u-header--change-appearance" data-header-fix-moment="100" data-header-fix-effect="slide">
                 <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 keen-header-color" data-header-fix-moment-classes="u-shadow-v18 g-py-5">
                     <nav class="navbar navbar-expand-lg">
                         <div class="container">

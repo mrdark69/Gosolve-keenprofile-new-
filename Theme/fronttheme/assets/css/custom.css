@@ -3,6 +3,10 @@ body, p, h1, h2, h3, div, form, span, label, input[type="text"], input[type="ema
     font-family: 'Kanit', sans-serif !important;
     font-weight: 200 !important;
 }
+
+.u-header[data-header-fix-effect] {
+    transition: none !important;
+}
 .custom-right {
     position: absolute !important;
 }
