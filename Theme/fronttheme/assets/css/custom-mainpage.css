@@ -1,0 +1,38 @@
+.keen-nav-bar ul li a{
+    color:#fff !important;
+}
+.u-header__section--light .hamburger-inner, .u-header__section--light .hamburger-inner::after, .u-header__section--light .hamburger-inner::before{
+    background-color:#fff !important;
+}
+
+.keen-button-res-menu {
+    right: 0 !important;
+    top: -1px !important;
+}
+
+.keen-profile-state{
+    position:absolute !important;
+    margin-top:8px !important;
+}
+
+.keen-drop-profile-menu{
+
+}
+
+.keen-drop-profile-menu a img {
+    float:left;
+}
+
+    .keen-drop-profile-menu a p {
+       padding:0 0 0 45px;
+       margin:0px;
+       text-transform:none !important;
+
+    }
+        .keen-drop-profile-menu a p.keen-txt-cuxtom {
+             color:blue !important;
+        }
+
+.keen-nav-bar .keen-nav-sub-menu li a {
+    color: #555555 !important;
+}

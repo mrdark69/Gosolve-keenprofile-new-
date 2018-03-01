@@ -8,7 +8,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class SiteUserLoginMaster : MasterPage
+public partial class SiteFrontMaster : MasterPage
 {
     private const string AntiXsrfTokenKey = "__AntiXsrfToken";
     private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
@@ -58,7 +58,6 @@ public partial class SiteUserLoginMaster : MasterPage
 
     protected void master_Page_PreLoad(object sender, EventArgs e)
     {
-       
         //if (!IsPostBack)
         //{
         //    // Set Anti-XSRF token
@@ -78,16 +77,14 @@ public partial class SiteUserLoginMaster : MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+     
+        Page p = new Page();
+        Model_Users u = UserSessionController.FrontAppAuthorization(p);
 
-        //Page p = new Page();
-        //Model_Users u = UserSessionController.FrontAppAuthorization(p);
-
-        //if (u != null)
-        //{
-
-        //}
-
+        if (u != null)
+        {
+           // lblprofile.Text = "<i class=\"fa fa-user\" aria-hidden=\"true\"></i> " + u.FirstName + " |&nbsp; <a style=\"color:#fff;\" href=\"http://member.keenprofile.com/logout\" />Log out <i class=\"fa fa-sign-out\" aria-hidden=\"true\"></i></a>";
+        }
     }
 
     protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
@@ -95,9 +92,24 @@ public partial class SiteUserLoginMaster : MasterPage
         //Context.GetOwinContext().Authentication.SignOut();
     }
 
-    protected void Buttosssn1_Click(object sender, EventArgs e)
+    protected void sendmailverify_Click(object sender, EventArgs e)
     {
-        Response.Write("ss");
-        Response.End();
+        LinkButton el = (LinkButton)sender;
+
+        if (!string.IsNullOrEmpty(el.CommandArgument))
+        {
+            
+            //Model_Users mu = new Model_Users
+            //{
+            //    UserID = int.Parse(el.CommandArgument)
+            //};
+            UsersController.SendEmailVerify(int.Parse(el.CommandArgument));
+
+           
+
+            Response.Redirect(Request.Url.ToString().Split('?')[0] + "?resend=completed");
+           
+        }
+         
     }
 }

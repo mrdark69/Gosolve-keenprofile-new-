@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.Userlogin.master.cs" Inherits="SiteUserLoginMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.Front.master.cs" Inherits="SiteFrontMaster" %>
 <!DOCTYPE html>
 <html lang="en">
    <head runat="server">
@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="Theme/fronttheme/assets/vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet"  href="Theme/fronttheme/assets/vendor/bootstrap/offcanvas.css">
     <!-- CSS Global Icons -->
+       <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
     <link rel="stylesheet"  href="Theme/fronttheme/assets/vendor/icon-awesome/css/font-awesome.min.css">
     <link rel="stylesheet"  href="Theme/fronttheme/assets/vendor/icon-line/css/simple-line-icons.css">
     <link rel="stylesheet"  href="Theme/fronttheme/assets/vendor/icon-etlinefont/style.css">
@@ -29,7 +30,7 @@
     <link rel="stylesheet"  href="Theme/fronttheme/assets/vendor/slick-carousel/slick/slick.css">
     <link rel="stylesheet"  href="Theme/fronttheme/assets/vendor/fancybox/jquery.fancybox.css">
     <link rel="stylesheet"  href="Theme/fronttheme/assets/vendor/chosen/chosen.css">
-
+        <link rel="stylesheet" href="Theme/fronttheme/assets/vendor/hs-megamenu/src/hs.megamenu.css">
        <link rel="stylesheet" href="Theme/fronttheme/assets/vendor/hs-admin-icons/hs-admin-icons.css">
 
     <!-- CSS Unify -->
@@ -40,6 +41,7 @@
 
     <!-- CSS Customization -->
     <link rel="stylesheet"  href="Theme/fronttheme/assets/css/custom.css?ver=1sssssswsssssssssss">
+          <link rel="stylesheet"  href="Theme/fronttheme/assets/css/custom-mainpage.css?ver=1ssssssssws33ssssssssssss">
     <asp:ContentPlaceHolder ID="HeaderScript" runat="server">
     </asp:ContentPlaceHolder>
 
@@ -56,28 +58,113 @@
    <body>
        <form runat="server">
          <main>
-                <!-- Header -->
+          
+            <!-- Header -->
             <header id="js-header" class="u-header u-header--static u-header--show-hide u-header--change-appearance" data-header-fix-moment="500" data-header-fix-effect="slide">
-                <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 keen-header-color" data-header-fix-moment-classes="u-shadow-v18 g-py-5">
-                    <nav class="navbar navbar-expand-lg">
-                        <div class="container">
+              <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 keen-header-color" data-header-fix-moment-classes="u-shadow-v18 g-py-5">
+                <nav class="js-mega-menu navbar navbar-expand-lg hs-menu-initialized hs-menu-horizontal">
+                  <div class="container">
+                    <!-- Responsive Toggle Button -->
+                    <button class="navbar-toggler navbar-toggler-left btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-3 g-left-100 keen-button-res-menu" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
+                      <span class="hamburger hamburger--slider">
+                    <span class="hamburger-box">
+                      <span class="hamburger-inner"></span>
+                      </span>
+                      </span>
+                    </button>
+                    <!-- End Responsive Toggle Button -->
 
-
-                            <!-- Logo -->
+                     <!-- Logo -->
                             <a href="http://www.keenprofile.com" class="navbar-brand g-mr-50--lg  keen-logo-txt">
                                 <!-- <img src="Theme/fronttheme/assets/KeenImg/keenprofile-logo.png" alt="keenprofile"> -->
                                 KEEN PROFILE
                             </a>
                             <!-- End Logo -->
 
+                    <!-- Navigation -->
+                    <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10 g-pt-5--lg g-mr-40--lg keen-nav-bar" id="navBar">
+                      <ul class="navbar-nav text-uppercase g-pos-rel g-font-weight-600 ">
+
+                           <!-- Intro -->
+                        <li class="nav-item  g-mx-10--lg g-mx-15--xl">
+                          <a href="/Default" class="nav-link g-py-7 g-px-0">Dashboard</a>
+                        </li>
+                        <!-- End Intro -->
+                        <!-- Intro -->
+                        <li class="nav-item  g-mx-10--lg g-mx-15--xl">
+                          <a href="/Default" class="nav-link g-py-7 g-px-0">Assessment</a>
+                        </li>
+                        <!-- End Intro -->
+
+                      
+
+                        <!-- Pages -->
+                        <li class="hs-has-sub-menu nav-item active g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                          <a id="nav-link-pages" class="nav-link g-py-7 g-px-0" href="#!" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-pages">Profile</a>
+
+                          <ul class="keen-nav-sub-menu hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling" id="nav-submenu-pages" aria-labelledby="nav-link-pages">
+                            <!-- Pages - About -->
+                            <li class="dropdown-item  ">
+                              <a id="nav-link--pages--about" class="nav-link" href="#!" aria-haspopup="true" aria-expanded="false" >Your Profile</a>
+
+                            </li>
+                            <!-- End Pages - About -->
+
+                            <!-- Pages - Portfolios -->
+                            <li class="dropdown-item ">
+                              <a id="nav-link--pages--portfolio" class="nav-link" href="#!" aria-haspopup="true" aria-expanded="false" >Edit Profile</a>
+
+                            </li>
+                            <!-- End Pages - Portfolios -->
 
 
+                           
+                          </ul>
+                        </li>
+                        <!-- End Pages -->
+
+                      
+                      </ul>
+                    </div>
+                    <!-- End Navigation -->
 
 
+                      <div class="d-flex g-mt-2 g-mr-15">
+                           <ul class="navbar-nav text-uppercase g-pos-rel g-font-weight-600 ">
+                             <li class="hs-has-sub-menu nav-item active g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                          <a  class="nav-link g-py-7 g-px-0" href="#!" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-pages">
 
+                              <img class="g-width-40 g-height-40 rounded-circle mCS_img_loaded" src="Theme/fronttheme/assets/KeenImg/profileempty.png" alt="profile image">
+                          </a>
+
+                          <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling keen-profile-state"  >
+                           <li class="dropdown-item keen-drop-profile-menu ">
+
+                              <a  class="nav-link" href="#!" aria-haspopup="true" aria-expanded="false" ><img class="g-width-40 g-height-40 rounded-circle mCS_img_loaded" src="Theme/fronttheme/assets/KeenImg/profileempty.png" alt="profile image"> <p>Peerapong Nimnon</p><p class="keen-txt-cuxtom"> Personal Profile</p>  </a>
+
+                            </li>
+                            <li class="dropdown-item  ">
+                              <a  class="nav-link" href="#!" aria-haspopup="true" aria-expanded="false" ><i class="fas fa-cog"></i> Setting</a>
+
+                            </li>
+                          
+                            <li class="dropdown-item ">
+                              <a  class="nav-link" href="#!" aria-haspopup="true" aria-expanded="false" ><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+                            </li>
+                         
+
+
+                           
+                          </ul>
+                                
+                        </li>
+                        </ul>
+                          
+                        </div>
                             <!-- loginblock -->
 
-                            <div class="d-inline-block  g-pos-rel g-valign-middle  g-pl-0--lg g-mr-5 g-mr-15--lg g-pt-8 g-pt-8 custom-right custom-right-login">
+                         <%--   <div class="d-inline-block  g-pos-rel g-valign-middle  g-pl-0--lg g-mr-5 g-mr-15--lg g-pt-8 g-pt-8 custom-right custom-right-login">
                                 <a class=" g-font-size-13 text-uppercase g-py-10 g-px-15 text-white" href="/Login" target="_blank">เข้าสู่ระบบ</a>
                             </div>
                             <!-- loginblock -->
@@ -85,36 +172,10 @@
                             <!-- signup block -->
                             <div class="d-inline-block  g-pos-rel g-valign-middle  g-pl-0--lg g-mr-5 g-mr-15--lg g-pt-8 custom-right custom-right-register">
                                 <a class="btn u-btn-outline-primary g-font-size-13 text-uppercase g-py-10 g-px-15" href="/SignUp" target="_blank">สมัครสมาชิก</a>
-                            </div>
-
-
-                            <!-- signup block -->
-                            <!-- Search -->
-                            <!-- <div class="d-inline-block  g-pos-rel g-valign-middle  g-pl-0--lg g-mr-15 g-pt-8 ">
-                                    <a href="#!" id="languages-dropdown-invoker-2" class="g-color-gray-dark-v2 g-color-primary--hover g-text-underline--none--hover" aria-controls="languages-dropdown-2" aria-haspopup="true" aria-expanded="false" data-dropdown-event="click" data-dropdown-target="#languages-dropdown-2"
-                                    data-dropdown-type="css-animation" data-dropdown-duration="500" data-dropdown-hide-on-scroll="false" data-dropdown-animation-in="fadeIn" data-dropdown-animation-out="fadeOut">
-                                         EN&nbsp;<i class="fa fa-angle-down g-ml-3"></i>
-                                </a>
-                                <ul id="languages-dropdown-2" class="list-unstyled text-left u-shadow-v23 g-pos-abs g-left-0 g-bg-white g-width-160 g-z-index-2 g-py-20 g-pb-15 g-mt-25--lg g-mt-20--lg--scrolling" aria-labelledby="languages-dropdown-invoker-2">
-                                    <li>
-                                        <a class="d-block g-color-main g-color-primary--hover g-text-underline--none--hover g-py-8 g-px-20" href="#!">English</a>
-                                    </li>
-                                    <li>
-                                        <a class="d-block g-color-main g-color-primary--hover g-text-underline--none--hover g-py-8 g-px-20" href="#!">Spanish</a>
-                                    </li>
-                                    <li>
-                                        <a class="d-block g-color-main g-color-primary--hover g-text-underline--none--hover g-py-8 g-px-20" href="#!">Russian</a>
-                                    </li>
-                                    <li>
-                                        <a class="d-block g-color-main g-color-primary--hover g-text-underline--none--hover g-py-8 g-px-20" href="#!">German</a>
-                                    </li>
-                                </ul>
-                            </div> -->
-
-                            <!-- End Search -->
-                        </div>
-                    </nav>
-                </div>
+                            </div>--%>
+                  </div>
+                </nav>
+              </div>
             </header>
             <!-- End Header -->
    
@@ -364,6 +425,7 @@
     <script src="Theme/fronttheme/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="Theme/fronttheme/assets/vendor/slick-carousel/slick/slick.js"></script>
     <script src="Theme/fronttheme/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+    <script src="Theme/fronttheme/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
 
     <!-- JS Unify -->
     <script src="Theme/fronttheme/assets/js/hs.core.js"></script>
@@ -415,22 +477,33 @@
             $.HSCore.components.HSPopup.init('.js-fancybox');
 
 
-           
-        });
-
-        $(window).on('load', function () {
             $(window).on('load', function () {
                 // initialization of header
                 $.HSCore.components.HSHeader.init($('#js-header'));
                 $.HSCore.helpers.HSHamburgers.init('.hamburger');
-
-
-
-                // initialization of custom select
-                setTimeout(function () { // important in this case
-                    $.HSCore.components.HSSelect.init('.js-custom-select');
-                }, 1);
+                
             });
+        });
+
+        $(window).on('load', function () {
+            // initialization of header
+            $.HSCore.components.HSHeader.init($('#js-header'));
+            $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+
+            // initialization of HSMegaMenu component
+            $('.js-mega-menu').HSMegaMenu({
+                event: 'hover',
+                pageContainer: $('.container'),
+                breakpoint: 991
+            });
+
+
+
+            // initialization of custom select
+            setTimeout(function () { // important in this case
+                $.HSCore.components.HSSelect.init('.js-custom-select');
+            }, 1);
         });
     </script>
 
@@ -439,4 +512,5 @@
        
        </asp:ContentPlaceHolder>
    </body>
+   
 </html>

@@ -339,10 +339,10 @@ public class UserSessionController
 
         if (HttpContext.Current.Request.Cookies["SessionKey"] != null)
         {
-            HttpCookie objCookie = new HttpCookie("SessionKey");
-            //objCookie.Domain = "www.hotels2thailand.com";
-            objCookie.Expires = DateTime.Now.AddDays(-1d);
-            HttpContext.Current.Response.Cookies.Add(objCookie);
+            //HttpCookie objCookie = new HttpCookie("SessionKey");
+            ////objCookie.Domain = "www.hotels2thailand.com";
+            //objCookie.Expires = DateTime.Now.AddDays(-1d);
+            //HttpContext.Current.Response.Cookies.Add(objCookie);
 
 
             Model_Session ms = new Model_Session();
@@ -376,10 +376,10 @@ public class UserSessionController
 
         if (HttpContext.Current.Request.Cookies["SessionKeyFront"] != null)
         {
-            HttpCookie objCookie = new HttpCookie("SessionKeyFront");
-            //objCookie.Domain = "www.hotels2thailand.com";
-            objCookie.Expires = DateTime.Now.AddDays(-1d);
-            HttpContext.Current.Response.Cookies.Add(objCookie);
+            //HttpCookie objCookie = new HttpCookie("SessionKeyFront");
+            ////objCookie.Domain = "www.hotels2thailand.com";
+            //objCookie.Expires = DateTime.Now.AddDays(-1d);
+            //HttpContext.Current.Response.Cookies.Add(objCookie);
 
 
             Model_Session ms = new Model_Session();
