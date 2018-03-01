@@ -83,6 +83,20 @@ public partial class SiteFrontMaster : MasterPage
 
         if (u != null)
         {
+
+            string fullname = u.FirstName + " " + u.LastName;
+            profilename.Text = fullname;
+            string strImageUrl = "Theme/fronttheme/assets/keenimg/profileempty.png";
+
+            if (!string.IsNullOrEmpty(u.PicturePath))
+            {
+                strImageUrl = u.PicturePath;
+            }
+
+            imageProfile.ImageUrl = strImageUrl;
+            imageProfile2.ImageUrl = strImageUrl;
+            imageProfile2.AlternateText = fullname;
+
            // lblprofile.Text = "<i class=\"fa fa-user\" aria-hidden=\"true\"></i> " + u.FirstName + " |&nbsp; <a style=\"color:#fff;\" href=\"http://member.keenprofile.com/logout\" />Log out <i class=\"fa fa-sign-out\" aria-hidden=\"true\"></i></a>";
         }
     }

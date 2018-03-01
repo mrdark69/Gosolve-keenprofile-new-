@@ -132,15 +132,16 @@
                       <div class="d-flex g-mt-2 g-mr-15">
                            <ul class="navbar-nav text-uppercase g-pos-rel g-font-weight-600 ">
                              <li class="hs-has-sub-menu nav-item active g-mx-10--lg g-mx-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut">
-                          <a  class="nav-link g-py-7 g-px-0" href="#!" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-pages">
+                              <a  class="nav-link g-py-7 g-px-0" href="#!" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-pages">
 
-                              <img class="g-width-40 g-height-40 rounded-circle mCS_img_loaded" src="Theme/fronttheme/assets/keenimg/profileempty.png" alt="profile image">
-                          </a>
+                                  <asp:Image ID="imageProfile" runat="server" CssClass="g-width-40 g-height-40 rounded-circle mCS_img_loaded"  />
+                                  <%--<img class="g-width-40 g-height-40 rounded-circle mCS_img_loaded" src="Theme/fronttheme/assets/keenimg/profileempty.png" alt="profile image">--%>
+                              </a>
 
                           <ul class="hs-sub-menu list-unstyled u-shadow-v11 g-brd-top g-brd-primary g-brd-top-2 g-min-width-220 g-mt-18 g-mt-8--lg--scrolling keen-profile-state"  >
-                           <li class="dropdown-item keen-drop-profile-menu ">
+                           <li class="dropdown-item keen-drop-profile-menu">
 
-                              <a  class="nav-link" href="#!" aria-haspopup="true" aria-expanded="false" ><img class="g-width-40 g-height-40 rounded-circle mCS_img_loaded" src="Theme/fronttheme/assets/keenimg/profileempty.png" alt="profile image"> <p>Peerapong Nimnon</p><p class="keen-txt-cuxtom"> Personal Profile</p>  </a>
+                              <a  class="nav-link" href="#!" aria-haspopup="true" aria-expanded="false" > <asp:Image ID="imageProfile2" runat="server" CssClass="g-width-40 g-height-40 rounded-circle mCS_img_loaded" /> <p><asp:Literal ID="profilename" runat="server" ></asp:Literal></p><p class="keen-txt-cuxtom"> Personal Profile</p>  </a>
 
                             </li>
                             <li class="dropdown-item  ">
@@ -149,7 +150,7 @@
                             </li>
                           
                             <li class="dropdown-item ">
-                              <a  class="nav-link" href="#!" aria-haspopup="true" aria-expanded="false" ><i class="fas fa-sign-out-alt"></i> Logout</a>
+                              <a  class="nav-link" href="/logout" aria-haspopup="true" aria-expanded="false" ><i class="fas fa-sign-out-alt"></i> Logout</a>
 
                             </li>
                          
